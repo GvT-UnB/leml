@@ -1,5 +1,10 @@
+#include <stdint.h>
+
 /**< Assinatura do arquivo .class */
 #define U4_MAGIC 0xCAFEBABE
+
+/**< Tamanho de um byte */
+#define BYTE_SIZE 8
 
 /**< Máscara de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
 #define ACC_PUBLIC 0x0001 //Declaração pública para CLASSES, METODOS E ATRIBUTOS
@@ -32,7 +37,7 @@
 /**<Tipos de Dados do arquivo .class*/
 typedef unsigned char u1; //1 byte
 typedef unsigned short u2; //2 bytes
-typedef unsigned int u4; //4 bytes
+typedef int32_t u4; //4 bytes
 
 /**< O famoso Constante Pool! */
 typedef struct {
@@ -82,6 +87,16 @@ typedef struct {
 	}
 }cp_info;
 
+typedef struct{
+    u2 access_flags;
+	u2 name_index;
+	u2 descriptor_index;
+	u2 attributes_count;
+	//attribute_info attributes[attributes_count];
+    //attribute_info *attributes;
+} field_info;
+
+
 /**<Estrutura Interna dum arquivo .class*/
 typedef struct{
     u4 magic;
@@ -94,28 +109,14 @@ typedef struct{
     u2 this_class;
     u2 super_class;
     u2 interfaces_count;
-    //u2 interfaces[interfaces_count];
     u2 *interfaces;
     u2 fields_count;
-    field_info fields[fields_count];
+    field_info *fields;
     u2 methods_count;
-    method_info methods[methods_count];
+    //method_info* methods;
     u2 attributes_count;
-    attribute_info attributes[attributes_count];
+    //attribute_info *attributes;
 }ClassFile;
-
-typedef struct{
-    u2 access_flags;  
-	u2 name_index;
-    u2 descriptor_index;
-    u2 attributes_count;   
-	//attribute_info attributes[attributes_count];
-    attribute_info *attributes;
-} field_info;
-
-typedef struct{
-
-} attribute_info;
 
 
 
