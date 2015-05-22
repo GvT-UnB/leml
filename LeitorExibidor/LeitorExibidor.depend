@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1432251121 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lib/macros.h"
+
+1432256104 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+
