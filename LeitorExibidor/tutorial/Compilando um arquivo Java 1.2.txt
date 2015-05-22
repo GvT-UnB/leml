@@ -1,0 +1,7 @@
+No prompt de comando digite para compilar:
+
+javac -target 1.2 -source 1.2 HelloWorld.java
+
+Para executar, basta chamar:
+
+java HelloWorld
