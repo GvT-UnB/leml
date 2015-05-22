@@ -56,7 +56,6 @@ typedef struct {
 		} NameAndType; //tag = 12
 		struct {
             u2 length;
-            //u1 bytes[length];
             u1 *bytes;
 		}UTF8; //tag = 1
 		struct {
