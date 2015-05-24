@@ -1,23 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-//#include "lib/macros.h"
-//#include "lib/uReader.h"
 #include "lib/classManager.h"
-
-void classRead(FILE * dot_class);
+#include "lib/exceptionManager.h"
 
 int main(int argc, char *argv[]){
     FILE * dot_class;
+    ClassFile * class_file;
     char *program_full_name = argv[0]; /* nome do programa para caso de erro */
 
     if((dot_class = fopen(*++argv,"rb")) == NULL){
-        fprintf(stderr, "%s: Nao foi possivel abrir o arquivo %s\n", program_full_name, *argv); //Em caso de erro
-        exit(1);
+        throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG);
     }
-
-    classRead(dot_class);
-
+    printf("Lendo o bytecode Java para a memoria...\n");
+    class_file = classRead(dot_class);
     fclose(dot_class);
     return 0;
 }

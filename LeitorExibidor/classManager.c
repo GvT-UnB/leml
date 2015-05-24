@@ -1,12 +1,17 @@
 #define CLASSMANAGER_SERV
+#include <stdio.h>
 #include "lib/classManager.h"
+#include "lib/exceptionManager.h"
 
-void classRead(FILE * dot_class){
+ClassFile * classRead(FILE * dot_class){
     ClassFile * class_file;
 
     class_file = (ClassFile *)malloc(sizeof(ClassFile)); //Aloca espaço na memória para o arquivo .class
 
     class_file->magic = u4Read(dot_class);
+    if(class_file->magic != U4_MAGIC) //Verifica se o arquivo informado eh um bytecode java
+        throwException(NOT_BYTECODE_JAVA, NOT_BYTECODE_JAVA_MSG);
+
     class_file->minor_version = u2Read(dot_class);
     class_file->major_version = u2Read(dot_class);
     class_file->constant_pool_count = u2Read(dot_class);
@@ -22,7 +27,7 @@ void classRead(FILE * dot_class){
         class_file->constant_pool->tag = u1Read(dot_class);
         printf("\nConstant Pool Tag: %d\n",class_file->constant_pool->tag);
 
-        switch(class_file->constant_pool->tag){
+        switch(class_file->constant_pool->tag){ //Dependendo do valor da TAG, será utilizado uma diferente struct da Union do Constant Pool
             case CONSTANT_Class:
                 class_file->constant_pool->Class.name_index = u2Read(dot_class);
                     printf("\tNAME_INDEX: %d\n",class_file->constant_pool->Class.name_index);
@@ -83,16 +88,17 @@ void classRead(FILE * dot_class){
                         class_file->constant_pool->UTF8.bytes = u1Read(dot_class);
                             printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool->UTF8.bytes);
                     }
+                    printf("\t\tBYTES CHAR: %c\n",class_file->constant_pool->UTF8.bytes);
                 break;
             default:
                 break;
         }
-        system("pause");
+        //system("pause");
     }
 
     class_file->access_flags = u2Read(dot_class);
     class_file->this_class = u2Read(dot_class);
-    class_file->super_class = u2Read(dot_class);
+    class_file->super_class = u2Read(dot_class); //Se for ZERO a classe estende a classe OBJECT
     class_file->interfaces_count = u2Read(dot_class);
     class_file->interfaces = (u2 *)malloc(class_file->interfaces_count * sizeof(u2));
 
@@ -108,4 +114,6 @@ void classRead(FILE * dot_class){
 
     class_file->fields_count = u2Read(dot_class);
     printf("Fields Counter: %d\n",class_file->fields_count);
+
+    return class_file;
 }
