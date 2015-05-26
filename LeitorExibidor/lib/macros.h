@@ -34,6 +34,17 @@
 #define CONSTANT_NameAndType        12
 #define CONSTANT_Utf8               1
 
+/**< Tipos Válidos de Tags (Constants Pool) */
+#define ATTRIBUTE_ConstantValue     1
+#define ATTRIBUTE_Code              2
+#define ATTRIBUTE_Exceptions        3
+#define ATTRIBUTE_InnerClasses      4
+#define ATTRIBUTE_Syntethic         5
+#define ATTRIBUTE_LineNumber        6
+#define ATTRIBUTE_LocalVariable     7
+#define ATTRIBUTE_SourceFile        8
+#define ATTRIBUTE_Unknown           9
+
 /**<Tipos de Dados do arquivo .class*/
 typedef unsigned char u1; //1 byte
 typedef unsigned short u2; //2 bytes
@@ -86,15 +97,90 @@ typedef struct {
 	}
 }cp_info;
 
+/**< structs relacionadas as estruturas de atributo incluindo a propria */
+typedef struct {
+    u2 start_pc;
+    u2 end_pc;
+    u2 handler_pc;
+    u2 catch_type;
+} ExceptionTable;
+
+typedef struct {
+    u2 inner_class_info_index;
+    u2 outer_class_info_index;
+    u2 inner_name_index;
+    u2 inner_class_access_flags;
+} Classes;
+
+typedef struct {
+    u2 start_pc;
+    u2 line_number;
+} Line_number_table;
+
+typedef struct {
+    u2 start_pc;
+    u2 length;
+    u2 name_index;
+    u2 descriptor_index;
+    u2 index;
+} Local_variable_table;
+
+typedef struct{
+    u2 name_index;//Use essa tag para definir a union
+	u4 length;
+	u1 tag;
+	union {
+   		struct {
+            u2 index;
+		} Constantvalue;
+		struct {
+            u2 max_stack;
+            u2 max_locals;
+            u4 code_length;  
+            u1 *code; //code[code_length]
+            u2 exception_table_length;
+            ExceptionTable *ExceptionTable;
+            u2 attributes_count;
+            struct attribute_info *attributes;
+		} Code;
+		struct {
+            u2 number_of_exceptions;
+            u2 *exception_index_table;
+		} Exceptions;
+		struct {
+            u2 number_of_classes;
+            Classes *Classes;
+        } innerClasses;
+        struct {
+            u2 line_number_table_length;
+            Line_number_table *Line_number_table;
+        } Linenumber;
+        struct {
+            u2 local_variable_table_length;
+            Local_variable_table *Local_variable_table;
+        } Localvariable;
+        struct {
+            u2 sourcefile_index;
+        } Sourcefile;
+	}
+} attribute_info;
+
 typedef struct{
     u2 access_flags;
 	u2 name_index;
 	u2 descriptor_index;
 	u2 attributes_count;
 	//attribute_info attributes[attributes_count];
-    //attribute_info *attributes;
+    attribute_info *attributes;
 } field_info;
 
+typedef struct {
+    u2 access_flags;
+    u2 name_index;
+    u2 descriptor_index;
+    u2 attributes_count;
+    attribute_info *attributes;
+} method_info;
 
 /**<Estrutura Interna dum arquivo .class*/
 typedef struct{
