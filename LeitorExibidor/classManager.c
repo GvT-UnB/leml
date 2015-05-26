@@ -83,12 +83,13 @@ ClassFile * classRead(FILE * dot_class){
             case CONSTANT_Utf8:
                     class_file->constant_pool->UTF8.length = u2Read(dot_class);
                         printf("\tLENGTH: %d\n",class_file->constant_pool->UTF8.length);
+                        class_file->constant_pool->UTF8.bytes = (u1 *)malloc((class_file->constant_pool->UTF8.length * sizeof(u1)) + 1);
                     for(int j = 0; j < class_file->constant_pool->UTF8.length; j++){
-                        class_file->constant_pool->UTF8.bytes = (u1 *)malloc(sizeof(u1));
-                        class_file->constant_pool->UTF8.bytes = u1Read(dot_class);
-                            printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool->UTF8.bytes);
+                        class_file->constant_pool->UTF8.bytes[j] = u1Read(dot_class);
+                            printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool->UTF8.bytes[j]);
                     }
-                    printf("\t\tBYTES CHAR: %c\n",class_file->constant_pool->UTF8.bytes);
+                    class_file->constant_pool->UTF8.bytes[class_file->constant_pool->UTF8.length] = '\0';
+                    printf("\t\tBYTES CHAR: %s\n",class_file->constant_pool->UTF8.bytes);
                 break;
             default:
                 break;

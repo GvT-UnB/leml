@@ -33,6 +33,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="classManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="exceptionManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/classManager.h" />
+		<Unit filename="lib/exceptionManager.h" />
 		<Unit filename="lib/macros.h" />
 		<Unit filename="lib/uReader.h" />
 		<Unit filename="main.c">

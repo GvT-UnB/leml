@@ -67,7 +67,7 @@ typedef struct {
 		} NameAndType; //tag = 12
 		struct {
             u2 length;
-            u1 *bytes;
+            u1 * bytes;
 		}UTF8; //tag = 1
 		struct {
             u2 class_index;
@@ -136,7 +136,7 @@ typedef struct{
 		struct {
             u2 max_stack;
             u2 max_locals;
-            u4 code_length;  
+            u4 code_length;
             u1 *code; //code[code_length]
             u2 exception_table_length;
             ExceptionTable *ExceptionTable;
@@ -201,8 +201,5 @@ typedef struct{
     u2 attributes_count;
     //attribute_info *attributes;
 }ClassFile;
-
-
-
 
 
