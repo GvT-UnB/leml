@@ -16,7 +16,7 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1432675888 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1432687044 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"

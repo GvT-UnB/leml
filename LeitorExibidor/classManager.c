@@ -163,41 +163,59 @@ ClassFile * classRead(FILE * dot_class){
 void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class){
     for(int j = 0; j < attributes_count; j++){
         attributes->name_index = u2Read(dot_class);
+            printf("\tNAME_INDEX: %d\n",attributes->name_index);
         attributes->length = u4Read(dot_class);
+            printf("\tLENGTH: %d\n",attributes->length);
         attributes->tag = u1Read(dot_class);
+            printf("\tTAG: %d\n",attributes->tag);
         switch(attributes->tag){
             case ATTRIBUTE_ConstantValue:
                 attributes->ConstantValue.index = u2Read(dot_class);
+                    printf("\t\tConstantValue.index: %d\n",attributes->ConstantValue.index);
                 break;
             case ATTRIBUTE_Code:
                 attributes->Code.max_stack = u2Read(dot_class);
+                    printf("\t\tCode.max_stack: %d\n",attributes->Code.max_stack);
                 attributes->Code.max_locals = u2Read(dot_class);
+                    printf("\t\tCode.max_locals: %d\n",attributes->Code.max_locals);
                 attributes->Code.code_length = u4Read(dot_class);
-                attributes->Code.code = (u1 *)malloc(attributes->Code.code_length * sizeof(u1));
+                    printf("\t\tCode.code_length: %d\n",attributes->Code.code_length);
+                attributes->Code.code = (u1 *)malloc((attributes->Code.code_length * sizeof(u1))+1);
                 for(int k =0; k < attributes->Code.code_length; k++){
                     attributes->Code.code[k] =  u1Read(dot_class);
                 }
+                attributes->Code.code[attributes->Code.code_length] =  '\0';
+                    printf("\t\tCode.code: %s\n",attributes->Code.code);
                 attributes->Code.exception_table_length = u2Read(dot_class);
+                    printf("\t\tCode.exception_table_length: %d\n",attributes->Code.exception_table_length);
                 attributes->Code.ExceptionTable = (ExceptionTable *)malloc(attributes->Code.exception_table_length * sizeof(ExceptionTable));
                 for(int k =0; k < attributes->Code.exception_table_length; k++){
                     attributes->Code.ExceptionTable[k].start_pc =  u2Read(dot_class);
+                        printf("\t\tCode.ExceptionTable[%d].start_pc: %d\n",k,attributes->Code.ExceptionTable[k].start_pc);
                     attributes->Code.ExceptionTable[k].end_pc =  u2Read(dot_class);
+                        printf("\t\tCode.ExceptionTable[%d].end_pc: %d\n",k,attributes->Code.ExceptionTable[k].end_pc);
                     attributes->Code.ExceptionTable[k].handler_pc =  u2Read(dot_class);
+                        printf("\t\tCode.ExceptionTable[%d].handler_pc: %d\n",k,attributes->Code.ExceptionTable[k].handler_pc);
                     attributes->Code.ExceptionTable[k].catch_type =  u2Read(dot_class);
+                        printf("\t\tCode.ExceptionTable[%d].catch_type: %d\n",k,attributes->Code.ExceptionTable[k].catch_type);
                 }
                 attributes->Code.attributes_count = u2Read(dot_class);
+                    printf("\t\tCode.attributes_count: %d\n",attributes->Code.attributes_count);
                 attributes->Code.attributes = (attribute_info *)malloc(attributes->Code.attributes_count * sizeof(attribute_info));
                 readAttributesInfo(attributes->Code.attributes,attributes->Code.attributes_count,dot_class);
                 break;
             case ATTRIBUTE_Exceptions:
                 attributes->Exceptions.number_of_exceptions = u2Read(dot_class);
+                    printf("\t\tExceptions.number_of_exceptions: %d\n",attributes->Exceptions.number_of_exceptions);
                 attributes->Exceptions.exception_index_table = (u2 *)malloc(attributes->Exceptions.number_of_exceptions * sizeof(u2));
                 for(int k =0; k < attributes->Exceptions.number_of_exceptions; k++){
                     attributes->Exceptions.exception_index_table[k] =  u2Read(dot_class);
+                        printf("\t\tExceptions.exception_index_table[%d]: %d\n",k,attributes->Exceptions.exception_index_table[k]);
                 }
                 break;
             case ATTRIBUTE_InnerClasses:
                 attributes->InnerClasses.number_of_classes = u2Read(dot_class);
+                    printf("\t\tInnerClasses.number_of_classes: %d\n",attributes->InnerClasses.number_of_classes);
                 attributes->InnerClasses.Classes = (Classes *)malloc(attributes->InnerClasses.number_of_classes * sizeof(Classes));
                 readClasses(attributes->InnerClasses.Classes,attributes->InnerClasses.number_of_classes,dot_class); //Chama a função responsavel por ler os dados das Classes
                 break;
@@ -205,20 +223,24 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
                 break;
             case ATTRIBUTE_LineNumber:
                 attributes->LineNumber.line_number_table_length = u2Read(dot_class);
+                    printf("\t\tLineNumber.line_number_table_length: %d\n",attributes->LineNumber.line_number_table_length);
                 attributes->LineNumber.Line_number_table = (Line_number_table *)malloc(attributes->LineNumber.line_number_table_length * sizeof(Line_number_table));
                 readLineNumberTable(attributes->LineNumber.Line_number_table,attributes->LineNumber.line_number_table_length,dot_class);
                 break;
             case ATTRIBUTE_LocalVariable:
                 attributes->LocalVariable.local_variable_table_length = u2Read(dot_class);
+                    printf("\t\tLocalVariable.local_variable_table_length: %d\n",attributes->LocalVariable.local_variable_table_length);
                 attributes->LocalVariable.Local_variable_table = (Local_variable_table *)malloc(attributes->LocalVariable.local_variable_table_length * sizeof(Local_variable_table));
                 readLocalVariableTable(attributes->LocalVariable.Local_variable_table,attributes->LocalVariable.local_variable_table_length,dot_class);
                 break;
             case ATTRIBUTE_SourceFile:
                 attributes->SourceFile.sourcefile_index = u2Read(dot_class);
+                    printf("\t\tSourceFile.sourcefile_index: %d\n",attributes->SourceFile.sourcefile_index);
                 break;
-            case ATTRIBUTE_Unknown:
+            default: //ATTRIBUTE_Unknown
                 break;
         }
+        system("pause");
     }
 }
 
