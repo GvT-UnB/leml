@@ -132,7 +132,7 @@ typedef struct{
 	union {
    		struct {
             u2 index;
-		} Constantvalue;
+		} ConstantValue;
 		struct {
             u2 max_stack;
             u2 max_locals;
@@ -150,18 +150,18 @@ typedef struct{
 		struct {
             u2 number_of_classes;
             Classes *Classes;
-        } innerClasses;
+        } InnerClasses;
         struct {
             u2 line_number_table_length;
             Line_number_table *Line_number_table;
-        } Linenumber;
+        } LineNumber;
         struct {
             u2 local_variable_table_length;
             Local_variable_table *Local_variable_table;
-        } Localvariable;
+        } LocalVariable;
         struct {
             u2 sourcefile_index;
-        } Sourcefile;
+        } SourceFile;
 	}
 } attribute_info;
 
@@ -197,9 +197,9 @@ typedef struct{
     u2 fields_count;
     field_info *fields;
     u2 methods_count;
-    //method_info* methods;
+    method_info *methods;
     u2 attributes_count;
-    //attribute_info *attributes;
+    attribute_info *attributes;
 }ClassFile;
 
 

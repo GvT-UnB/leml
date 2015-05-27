@@ -16,4 +16,12 @@
  */
 EXTERN ClassFile * classRead(FILE * dot_class);
 
+EXTERN void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class);
+
+EXTERN void readClasses(Classes * Classes, u2 number_of_classes, FILE * dot_class);
+
+EXTERN void readLineNumberTable(Line_number_table * line_number_table, u2 line_number_table_length, FILE * dot_class);
+
+EXTERN void readLocalVariableTable(Local_variable_table * local_variable_table, u2 local_variable_table_length, FILE * dot_class);
+
 #endif // CLASSMANAGER_H_INCLUDED
