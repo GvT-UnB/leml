@@ -31,3 +31,30 @@
 
 1432504845 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
 
+1432569642 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1432830041 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1432569642 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1432831899 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1432830041 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1432830041 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1432355666 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+

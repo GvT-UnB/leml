@@ -86,7 +86,7 @@ ClassFile * classRead(FILE * dot_class){
                         class_file->constant_pool[i].UTF8.bytes = (u1 *)malloc((class_file->constant_pool[i].UTF8.length * sizeof(u1)) + 1);
                     for(int j = 0; j < class_file->constant_pool[i].UTF8.length; j++){
                         class_file->constant_pool[i].UTF8.bytes[j] = u1Read(dot_class);
-                            printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool[i].UTF8.bytes[j]);
+                            //printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool[i].UTF8.bytes[j]);
                     }
                     class_file->constant_pool[i].UTF8.bytes[class_file->constant_pool[i].UTF8.length] = '\0';
                     printf("\t\tBYTES CHAR: %s\n",class_file->constant_pool[i].UTF8.bytes);
@@ -146,7 +146,7 @@ ClassFile * classRead(FILE * dot_class){
             printf("\tATTRIBUTES_COUNT: 0x%04x\n",class_file->methods[i].attributes_count);
         class_file->methods[i].attributes = (attribute_info *)malloc(class_file->methods[i].attributes_count * sizeof(attribute_info));
 
-        readAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count,dot_class); //Chama a função que carrega as informações dos atributos
+        readAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count,dot_class, class_file->constant_pool); //Chama a função que carrega as informações dos atributos
         printf("************************\n");
 
     }
@@ -155,20 +155,52 @@ ClassFile * classRead(FILE * dot_class){
     class_file->attributes_count = u2Read(dot_class);
     printf("Attributes Counter: %d\n",class_file->attributes_count);
     class_file->attributes = (attribute_info *)malloc(class_file->attributes_count * sizeof(attribute_info));
-    readAttributesInfo(class_file->attributes,class_file->attributes_count,dot_class);
+    readAttributesInfo(class_file->attributes,class_file->attributes_count,dot_class, class_file->constant_pool);
 
 
     return class_file;
 }
 
-void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class){
+void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class, cp_info * constant_pool){
+    char *indice = NULL;
     for(int j = 0; j < attributes_count; j++){
         attributes[j].name_index = u2Read(dot_class);
             printf("\tNAME_INDEX: %d\n",attributes[j].name_index);
         attributes[j].length = u4Read(dot_class);
             printf("\tLENGTH: %d\n",attributes[j].length);
-        attributes[j].tag = u1Read(dot_class);
-            printf("\tTAG: %d\n",attributes[j].tag);
+
+        indice = constant_pool[attributes[j].name_index].UTF8.bytes;
+        printf("\nConstant Pool Tag: %d\n",constant_pool[j].tag);
+        printf("\t\tNAME_INDEX STRING CP: %s\n",indice);
+
+        if (strcmp("ConstantValue", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_ConstantValue;
+        }
+        else if (strcmp("Code", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_Code;
+        }
+        else if (strcmp("Exceptions", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_Exceptions;
+        }
+        else if (strcmp("InnerClasses", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_InnerClasses;
+        }
+        else if (strcmp("Synthetic", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_Syntethic;
+        }
+        else if (strcmp("LineNumberTable", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_LineNumber;
+        }
+        else if (strcmp("LocalVariableTable", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_LocalVariable;
+        }
+        else if (strcmp("SourceFile", indice) == 0){
+            attributes[j].tag = ATTRIBUTE_SourceFile;
+        }
+        else{
+            attributes[j].tag = ATTRIBUTE_Unknown;
+        }
+        printf("\tTAG: %d\n",attributes[j].tag);
         switch(attributes[j].tag){
             case ATTRIBUTE_ConstantValue:
                 attributes[j].ConstantValue.index = u2Read(dot_class);
@@ -184,6 +216,7 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
                 attributes[j].Code.code = (u1 *)malloc((attributes[j].Code.code_length * sizeof(u1))+1);
                 for(int k =0; k < attributes[j].Code.code_length; k++){
                     attributes[j].Code.code[k] =  u1Read(dot_class);
+                    printf("\t\tCode.code[%d]: %d\n",k, attributes[j].Code.code[k]);
                 }
                 attributes[j].Code.code[attributes[j].Code.code_length] =  '\0';
                     printf("\t\tCode.code: %s\n",attributes[j].Code.code);
@@ -203,7 +236,7 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
                 attributes[j].Code.attributes_count = u2Read(dot_class);
                     printf("\t\tCode.attributes_count: %d\n",attributes[j].Code.attributes_count);
                 attributes[j].Code.attributes = (attribute_info *)malloc(attributes[j].Code.attributes_count * sizeof(attribute_info));
-                readAttributesInfo(attributes[j].Code.attributes,attributes[j].Code.attributes_count,dot_class);
+                readAttributesInfo(attributes[j].Code.attributes,attributes[j].Code.attributes_count,dot_class, constant_pool);
                 break;
             case ATTRIBUTE_Exceptions:
                 attributes[j].Exceptions.number_of_exceptions = u2Read(dot_class);
@@ -239,6 +272,7 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
                     printf("\t\tSourceFile.sourcefile_index: %d\n",attributes[j].SourceFile.sourcefile_index);
                 break;
             default: //ATTRIBUTE_Unknown
+                    printf("\t\tATRIBUTO DESCONHECIDO:\n");
                 break;
         }
         system("pause");

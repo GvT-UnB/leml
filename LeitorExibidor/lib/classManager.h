@@ -16,7 +16,7 @@
  */
 EXTERN ClassFile * classRead(FILE * dot_class);
 
-EXTERN void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class);
+EXTERN void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE * dot_class, cp_info * constant_pool);
 
 EXTERN void readClasses(Classes * Classes, u2 number_of_classes, FILE * dot_class);
 
