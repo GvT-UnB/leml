@@ -168,7 +168,6 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
             printf("\tNAME_INDEX: %d\n",attributes[j].name_index);
         attributes[j].length = u4Read(dot_class);
             printf("\tLENGTH: %d\n",attributes[j].length);
-
         indice = constant_pool[attributes[j].name_index].UTF8.bytes;
         printf("\nConstant Pool Tag: %d\n",constant_pool[j].tag);
         printf("\t\tNAME_INDEX STRING CP: %s\n",indice);
