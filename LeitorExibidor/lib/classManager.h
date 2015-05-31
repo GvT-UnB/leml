@@ -24,4 +24,5 @@ EXTERN void readLineNumberTable(Line_number_table * line_number_table, u2 line_n
 
 EXTERN void readLocalVariableTable(Local_variable_table * local_variable_table, u2 local_variable_table_length, FILE * dot_class);
 
+
 #endif // CLASSMANAGER_H_INCLUDED

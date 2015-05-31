@@ -3,6 +3,7 @@
 #include "lib/classManager.h"
 #include "lib/exceptionManager.h"
 
+
 ClassFile * classRead(FILE * dot_class){
     ClassFile * class_file;
 
@@ -19,77 +20,92 @@ ClassFile * classRead(FILE * dot_class){
 
     printf("Magic Number: 0x%08x\n",class_file->magic);
     printf("Minor Version: %d\n",class_file->minor_version);
-    printf("Major Version: %d\n",class_file->major_version);
+    if(class_file->major_version > 48) //Condição para imprimir o número da versão comercial do Java
+        printf("Major Version: %d [%d]\n",class_file->major_version, class_file->major_version%44);
+    else
+        printf("Major Version: %d [1.%d]\n",class_file->major_version, class_file->major_version%44);
     printf("Constant Pool Counter: %d\n",class_file->constant_pool_count);
 
+    printf("\nConstant Pool:\n");
 
     for(int i = 1; i < class_file->constant_pool_count; i++){ //Lembre-se, o constant_pool começa em 1 !!!
         class_file->constant_pool[i].tag = u1Read(dot_class);
-        printf("\nConstant Pool Tag: %d\n",class_file->constant_pool[i].tag);
 
         switch(class_file->constant_pool[i].tag){ //Dependendo do valor da TAG, será utilizado uma diferente struct da Union do Constant Pool
             case CONSTANT_Class:
                 class_file->constant_pool[i].Class.name_index = u2Read(dot_class);
-                    printf("\tNAME_INDEX: %d\n",class_file->constant_pool[i].Class.name_index);
+                    printf("\n[%02d]CONSTANT_Class:", i);
+                    printf("\t\tClass Name:\tcp_info #%d\n",class_file->constant_pool[i].Class.name_index);
                 break;
             case CONSTANT_Fieldref:
                 class_file->constant_pool[i].Fieldref.class_index = u2Read(dot_class);
                 class_file->constant_pool[i].Fieldref.name_and_type_index = u2Read(dot_class);
-                    printf("\tCLASS_INDEX: %d\n",class_file->constant_pool[i].Fieldref.class_index);
-                    printf("\tNAME_AND_TYPE_INDEX: %d\n",class_file->constant_pool[i].Fieldref.name_and_type_index);
+                    printf("\n[%02d]CONSTANT_Fieldref:", i);
+                    printf("\t\tClass name:\tcp_info #%d\n",class_file->constant_pool[i].Fieldref.class_index);
+                    printf("\t\t\t\tName and type:\tcp_info #%d\n",class_file->constant_pool[i].Fieldref.name_and_type_index);
                 break;
             case CONSTANT_Methodref:
                 class_file->constant_pool[i].Methodref.class_index = u2Read(dot_class);
                 class_file->constant_pool[i].Methodref.name_and_type_index = u2Read(dot_class);
-                    printf("\tCLASS_INDEX: %d\n",class_file->constant_pool[i].Methodref.class_index);
-                    printf("\tNAME_AND_TYPE_INDEX: %d\n",class_file->constant_pool[i].Methodref.name_and_type_index);
+                    printf("\n[%02d]CONSTANT_Methodref:", i);
+                    printf("\t\tClass name:\tcp_info #%d\n",class_file->constant_pool[i].Methodref.class_index);
+                    printf("\t\t\t\tName and type:\tcp_info #%d\n",class_file->constant_pool[i].Methodref.name_and_type_index);
                 break;
             case CONSTANT_InterfaceMethodref:
                 class_file->constant_pool[i].InterfaceMethodref.class_index = u2Read(dot_class);
                 class_file->constant_pool[i].InterfaceMethodref.name_and_type_index = u2Read(dot_class);
-                    printf("\tCLASS_INDEX: %d\n",class_file->constant_pool[i].InterfaceMethodref.class_index);
-                    printf("\tNAME_AND_TYPE_INDEX: %d\n",class_file->constant_pool[i].InterfaceMethodref.name_and_type_index);
+                    printf("\n[%02d]CONSTANT_InterfaceMethodref:",i);
+                    printf("\t\tClass name:\tcp_info #%d\n",class_file->constant_pool[i].InterfaceMethodref.class_index);
+                    printf("\t\t\t\tName and type:\tcp_info #%d\n",class_file->constant_pool[i].InterfaceMethodref.name_and_type_index);
                 break;
             case CONSTANT_String:
                 class_file->constant_pool[i].String.string_index = u2Read(dot_class);
-                    printf("\tSTRING_INDEX: %d\n",class_file->constant_pool[i].String.string_index);
+                    printf("\n[%02d]CONSTANT_String",i);
+                    printf("\t\tString:\t\tcp_info #%d\n",class_file->constant_pool[i].String.string_index);
                 break;
             case CONSTANT_Integer:
                 class_file->constant_pool[i].Integer.bytes = u4Read(dot_class);
-                    printf("\tBYTES: %d\n",class_file->constant_pool[i].Integer.bytes);
+                    printf("\n[%02d]CONSTANT_Integer", i);
+                    printf("\t\tBytes:\tcp_info #%d\n",class_file->constant_pool[i].Integer.bytes);
                 break;
             case CONSTANT_Float:
                 class_file->constant_pool[i].Float.bytes = u4Read(dot_class);
-                    printf("\tBYTES: %d\n",class_file->constant_pool[i].Float.bytes);
+                    printf("\n[%02d]CONSTANT_Float", i);
+                    printf("\t\tBytes:\tcp_info #%d\n",class_file->constant_pool[i].Float.bytes);
                 break;
             case CONSTANT_Long:
                 class_file->constant_pool[i].Long.high_bytes = u4Read(dot_class);
                 class_file->constant_pool[i].Long.low_bytes = u4Read(dot_class);
-                    printf("\tHIGH_BYTES: %d\n",class_file->constant_pool[i].Long.high_bytes);
-                    printf("\tLOW_BYTES: %d\n",class_file->constant_pool[i].Long.low_bytes);
+                    printf("\n[%02d]CONSTANT_Long",i);
+                    printf("\t\tHIGH_BYTES:\tcp_info #%d\n",class_file->constant_pool[i].Long.high_bytes);
+                    printf("\t\t\t\tLOW_BYTES:\tcp_info #%d\n",class_file->constant_pool[i].Long.low_bytes);
                 break;
             case CONSTANT_Double:
                 class_file->constant_pool[i].Double.high_bytes = u4Read(dot_class);
                 class_file->constant_pool[i].Double.low_bytes = u4Read(dot_class);
-                    printf("\tHIGH_BYTES: %d\n",class_file->constant_pool[i].Double.high_bytes);
-                    printf("\tLOW_BYTES: %d\n",class_file->constant_pool[i].Double.low_bytes);
+                    printf("\n[%02d]CONSTANT_Double",i);
+                    printf("\t\tHIGH_BYTES:\tcp_info #%d\n",class_file->constant_pool[i].Double.high_bytes);
+                    printf("\t\t\t\tLOW_BYTES:\tcp_info #%d\n",class_file->constant_pool[i].Double.low_bytes);
                 break;
             case CONSTANT_NameAndType:
                 class_file->constant_pool[i].NameAndType.name_index = u2Read(dot_class);
                 class_file->constant_pool[i].NameAndType.descriptor_index = u2Read(dot_class);
-                    printf("\tNAME_INDEX: %d\n",class_file->constant_pool[i].NameAndType.name_index);
-                    printf("\tDESCRIPTOR_INDEX: %d\n",class_file->constant_pool[i].NameAndType.descriptor_index);
+                    printf("\n[%02d]CONSTANT_NameAndType", i);
+                    printf("\tName:\t\tcp_info #%d\n",class_file->constant_pool[i].NameAndType.name_index);
+                    printf("\t\t\t\tDescriptor:\tcp_info #%d\n",class_file->constant_pool[i].NameAndType.descriptor_index);
                 break;
             case CONSTANT_Utf8:
                     class_file->constant_pool[i].UTF8.length = u2Read(dot_class);
-                        printf("\tLENGTH: %d\n",class_file->constant_pool[i].UTF8.length);
+                        printf("\n[%02d]CONSTANT_Utf8",i);
+                        printf("\t\tLength of byte array:\t%d\n",class_file->constant_pool[i].UTF8.length);
+                        printf("\t\t\t\tLength of string:\t%d\n",class_file->constant_pool[i].UTF8.length);
                         class_file->constant_pool[i].UTF8.bytes = (u1 *)malloc((class_file->constant_pool[i].UTF8.length * sizeof(u1)) + 1);
                     for(int j = 0; j < class_file->constant_pool[i].UTF8.length; j++){
                         class_file->constant_pool[i].UTF8.bytes[j] = u1Read(dot_class);
                             //printf("\t\tBYTES: 0x%04x\n",class_file->constant_pool[i].UTF8.bytes[j]);
                     }
                     class_file->constant_pool[i].UTF8.bytes[class_file->constant_pool[i].UTF8.length] = '\0';
-                    printf("\t\tBYTES CHAR: %s\n",class_file->constant_pool[i].UTF8.bytes);
+                    printf("\t\t\t\tString:\t\t\t%s\n",class_file->constant_pool[i].UTF8.bytes);
                 break;
             default:
                 break;
@@ -103,10 +119,10 @@ ClassFile * classRead(FILE * dot_class){
     class_file->interfaces_count = u2Read(dot_class);
     class_file->interfaces = (u2 *)malloc(class_file->interfaces_count * sizeof(u2));
 
-    printf("ACCESS_FLAGS: 0x%04x\n",class_file->access_flags);
-    printf("THIS_CLASS: %d\n",class_file->this_class);
-    printf("SUPER_CLASS: %d\n",class_file->super_class);
-    printf("Interfaces Counter: %d\n",class_file->interfaces_count);
+    printf("\n\tACCESS_FLAGS:\t\t0x%04x\n",class_file->access_flags);
+    printf("\tTHIS_CLASS:\t\tcp_info #%d\n",class_file->this_class);
+    printf("\tSUPER_CLASS:\t\tcp_info #%d\n",class_file->super_class);
+    printf("\tInterfaces Counter:\t%d\n",class_file->interfaces_count);
 
     for(int i = 0; i < class_file->interfaces_count; i++){
         class_file->interfaces[i] = u2Read(dot_class);
@@ -114,7 +130,7 @@ ClassFile * classRead(FILE * dot_class){
     }
 
     class_file->fields_count = u2Read(dot_class);
-    printf("Fields Counter: %d\n",class_file->fields_count);
+    printf("\tFields Counter:\t\t%d\n",class_file->fields_count);
     class_file->fields = (field_info *)malloc(class_file->fields_count * sizeof(field_info));
    //system("pause");
 
@@ -124,15 +140,15 @@ ClassFile * classRead(FILE * dot_class){
         class_file->fields[i].descriptor_index = u2Read(dot_class);
         class_file->fields[i].attributes_count = u2Read(dot_class);
 
-        printf("\tACCESS_FLAGS: 0x%04x\n",class_file->fields[i].access_flags);
-        printf("\tNAME_INDEX: 0x%04x\n",class_file->fields[i].name_index);
-        printf("\tDESCRIPTOR_INDEX: 0x%04x\n",class_file->fields[i].descriptor_index);
-        printf("\tATTRIBUTES_COUNT: 0x%04x\n",class_file->fields[i].attributes_count);
+        printf("\tACCESS_FLAGS:\t\t0x%04x\n",class_file->fields[i].access_flags);
+        printf("\tNAME_INDEX:\t\t0x%04x\n",class_file->fields[i].name_index);
+        printf("\tDESCRIPTOR_INDEX:\t0x%04x\n",class_file->fields[i].descriptor_index);
+        printf("\tATTRIBUTES_COUNT:\t0x%04x\n",class_file->fields[i].attributes_count);
     }
 
     system("pause");
     class_file->methods_count = u2Read(dot_class);
-    printf("Methods Counter: %d\n",class_file->methods_count);
+    printf("\tMethods Counter:\t%d\n",class_file->methods_count);
     class_file->methods = (method_info *)malloc(class_file->methods_count * sizeof(method_info));
 
     for(int i = 0; i < class_file->methods_count; i++){
@@ -165,9 +181,9 @@ void readAttributesInfo(attribute_info * attributes, u2 attributes_count, FILE *
     char *indice = NULL;
     for(int j = 0; j < attributes_count; j++){
         attributes[j].name_index = u2Read(dot_class);
-            printf("\tNAME_INDEX: %d\n",attributes[j].name_index);
+            printf("\tAttribute name index:\tcp_info #%d\n",attributes[j].name_index);
         attributes[j].length = u4Read(dot_class);
-            printf("\tLENGTH: %d\n",attributes[j].length);
+            printf("\tAttribute length:\t\t%d\n",attributes[j].length);
         indice = constant_pool[attributes[j].name_index].UTF8.bytes;
         printf("\nConstant Pool Tag: %d\n",constant_pool[j].tag);
         printf("\t\tNAME_INDEX STRING CP: %s\n",indice);
@@ -303,3 +319,4 @@ void readLocalVariableTable(Local_variable_table * local_variable_table, u2 loca
         local_variable_table[i].index = u2Read(dot_class);
     }
 }
+
