@@ -33,6 +33,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="UserViewer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="UserViewer.h" />
 		<Unit filename="classManager.c">
 			<Option compilerVar="CC" />
 		</Unit>

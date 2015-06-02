@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include "lib/classManager.h"
 #include "lib/exceptionManager.h"
+#include "lib/UserViewer.h"
 
 int main(int argc, char *argv[]){
     FILE * dot_class;
@@ -14,6 +15,7 @@ int main(int argc, char *argv[]){
     }
     printf("Lendo o bytecode Java para a memoria...\n");
     class_file = classRead(dot_class);
+    classPrint(dot_class, class_file);
     fclose(dot_class);
     return 0;
 }

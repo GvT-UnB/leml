@@ -58,7 +58,7 @@
 1432355666 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1433046074 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c
+1433275586 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
@@ -70,7 +70,7 @@
 	<stdio.h>
 	"macros.h"
 
-1433007657 c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
+1433278291 c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1433007657 c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
@@ -80,13 +80,66 @@
 	<stdio.h>
 	<stdarg.h>
 
-1433008232 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\main.c
+1433178072 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
 
 1433007657 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
+
+1433007657 source:c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1433007657 c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1433178072 source:c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
+
+1433027360 c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1433007657 c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1433226524 c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1433007657 source:c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+
+1433222795 source:c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\classmanager.c
+	<stdio.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1433226667 c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\lib\userviewer.h
+	"uReader.h"
+
+1433225600 source:c:\users\eliandra\documents\leitor exibidor\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
+
+1433280324 c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1433275315 source:c:\users\eliandra\documents\sb\leitor exibidor\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"lib/UserViewer.h"
 

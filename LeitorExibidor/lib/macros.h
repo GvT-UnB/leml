@@ -248,6 +248,7 @@
 #define OPCODE_jsr_w  201
 #define OPCODE_breakpoint  202
 
+
 /**<Tipos de Dados do arquivo .class*/
 typedef unsigned char u1; //1 byte
 typedef unsigned short u2; //2 bytes
