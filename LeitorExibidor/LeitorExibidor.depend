@@ -16,12 +16,12 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1432687044 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1433204120 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 
-1432684367 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
+1433204120 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1432505183 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\exceptionmanager.c
