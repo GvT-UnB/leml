@@ -143,3 +143,46 @@
 	<math.h>
 	"lib/UserViewer.h"
 
+1433301353 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\classmanager.c
+	<stdio.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1433301353 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1433301353 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
+
+1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1433301353 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+
+1433301512 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/UserViewer.h"
+

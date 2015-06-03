@@ -7,21 +7,33 @@
 #include "lib/UserViewer.h"
 
 void classPrint(FILE * dot_class, ClassFile * class_file){
-    char string[100], stringFinal[100];
+    char string[100];
     u4 var_u4;
     float var_float;
     int64_t var_64;
     double var_double;
 
-	printf("Magic Number: 0x%08x\n",class_file->magic);
-    printf("Minor Version: %d\n",class_file->minor_version);
+	printf("Magic Number:\t\t0x%08x\n",class_file->magic);
+    printf("Minor Version:\t\t%d\n",class_file->minor_version);
     if(class_file->major_version > 48) //Condição para imprimir o número da versão comercial do Java
-        printf("Major Version: %d [%d]\n",class_file->major_version, class_file->major_version%44);
+        printf("Major Version:\t\t%d [%d]\n",class_file->major_version, class_file->major_version%44);
     else
-        printf("Major Version: %d [1.%d]\n",class_file->major_version, class_file->major_version%44);
-    printf("Constant Pool Count: %d\n",class_file->constant_pool_count);
+        printf("Major Version:\t\t%d [1.%d]\n",class_file->major_version, class_file->major_version%44);
 
-	printf("\nConstant Pool:\n");
+    printf("Constant Pool Count:\t%d\n",class_file->constant_pool_count);
+    printf("Access flags:\t\t0x%04x\n",class_file->access_flags);
+    string[0] = '\0';
+    selectPointer(class_file, class_file->this_class, &string, 0);
+    printf("This class:\t\tcp_info #%d <%s>\n",class_file->this_class, string);
+    string[0] = '\0';
+    selectPointer(class_file, class_file->super_class, &string, 0);
+    printf("Super class:\t\tcp_info #%d <%s>\n",class_file->super_class, string);
+    printf("Interfaces Count:\t%d\n",class_file->interfaces_count);
+    printf("Fields Count:\t\t%d\n",class_file->fields_count);
+    printf("Methods Count:\t\t%d\n",class_file->methods_count);
+    printf("Attributes Count:\t%d\n",class_file->attributes_count);
+
+	printf("\n+Constant Pool:\n");
 	for(int i = 1; i < class_file->constant_pool_count; i++){
 
 		 switch(class_file->constant_pool[i].tag){
@@ -119,25 +131,23 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
             system("pause");
 	}
 
-	printf("\n\tACCESS_FLAGS:\t\t0x%04x\n",class_file->access_flags);
-    printf("\tTHIS_CLASS:\t\tcp_info #%d\n",class_file->this_class);
-    printf("\tSUPER_CLASS:\t\tcp_info #%d\n",class_file->super_class);
-    printf("\tInterfaces Count:\t%d\n",class_file->interfaces_count);
-
+    printf("\n+Interfaces\n");
 	for(int i = 0; i < class_file->interfaces_count; i++){
-		printf("\tINTERFACES: %d\n",class_file->interfaces[i]);
+        string[0] = '\0';
+        selectPointer(class_file, class_file->interfaces[i], &string, 0);
+		printf("\tInterface %d:\t\tcp_info #%d <%s>\n", i,class_file->interfaces[i], string);
 	}
-
-	printf("\tFields Count:\t\t%d\n",class_file->fields_count);
-
+	printf("\n+Fields\n");
+    printf("\tMember Count:\t\t%d\n",class_file->fields_count);
 	for(int i = 0; i < class_file->fields_count; i++){
-		printf("\tName:\t\t\tcp_info #%d\n",class_file->fields[i].name_index);
-        printf("\tDescriptor:\t\tcp_info #%d\n",class_file->fields[i].descriptor_index);
-        printf("\tAccess flags:\t\t\t0x%04x\n",class_file->fields[i].access_flags);
-        printf("\tATTRIBUTES_COUNT:\t\t0x%04x\n",class_file->fields[i].attributes_count);
+        string[0] = '\0';
+        selectPointer(class_file, class_file->fields[i].name_index, &string, 0);
+        printf("\t[%d] %s", i, string);
+		printf("\tName:\t\t\t\tcp_info #%d\n",class_file->fields[i].name_index);
+        printf("\t\t\tDescriptor:\t\t\tcp_info #%d\n",class_file->fields[i].descriptor_index);
+        printf("\t\t\tAccess flags:\t\t\t0x%04x\n",class_file->fields[i].access_flags);
+        printf("\t\t\tATTRIBUTES_COUNT:\t\t0x%04x\n",class_file->fields[i].attributes_count);
 	}
-
-	printf("\tMethods Count:\t%d\n",class_file->methods_count);
 
 	for(int i = 0; i < class_file->methods_count; i++){
 		printf("\tName:\t\t\tcp_info #%d\n",class_file->methods[i].name_index);
@@ -148,7 +158,6 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
 		printf("************************\n");
 	}
 
-	printf("Attributes Count: %d\n",class_file->attributes_count);
 	printAttributesInfo(class_file->attributes,class_file->attributes_count, class_file->constant_pool, class_file);
 }
 
