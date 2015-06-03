@@ -127,7 +127,7 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
 			default:
                 break;
 		 }
-        if(i%3==0)
+        if(i%5==0)
             system("pause");
 	}
 
@@ -137,27 +137,34 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
         selectPointer(class_file, class_file->interfaces[i], &string, 0);
 		printf("\tInterface %d:\t\tcp_info #%d <%s>\n", i,class_file->interfaces[i], string);
 	}
+	system("pause");
 	printf("\n+Fields\n");
     printf("\tMember Count:\t\t%d\n",class_file->fields_count);
 	for(int i = 0; i < class_file->fields_count; i++){
         string[0] = '\0';
         selectPointer(class_file, class_file->fields[i].name_index, &string, 0);
-        printf("\t[%d] %s", i, string);
+        printf("\n\t[%d] %s", i, string);
 		printf("\tName:\t\t\t\tcp_info #%d\n",class_file->fields[i].name_index);
         printf("\t\t\tDescriptor:\t\t\tcp_info #%d\n",class_file->fields[i].descriptor_index);
         printf("\t\t\tAccess flags:\t\t\t0x%04x\n",class_file->fields[i].access_flags);
-        printf("\t\t\tATTRIBUTES_COUNT:\t\t0x%04x\n",class_file->fields[i].attributes_count);
-	}
 
+        printAttributesInfo(class_file->fields[i].attributes, class_file->fields[i].attributes_count, class_file->constant_pool, class_file);
+ 	}
+    system("pause");
+    printf("\n+Methods\n");
+    printf("\tMember Count:\t\t%d\n",class_file->methods_count);
 	for(int i = 0; i < class_file->methods_count; i++){
-		printf("\tName:\t\t\tcp_info #%d\n",class_file->methods[i].name_index);
-		printf("\tDescriptor:\t\tcp_info #%d\n",class_file->methods[i].descriptor_index);
-		printf("\tACCESS_FLAGS:\t\t0x%04x\n",class_file->methods[i].access_flags);
-		printf("\tATTRIBUTES_COUNT:\t%d\n\n",class_file->methods[i].attributes_count);
+        string[0] = '\0';
+        selectPointer(class_file, class_file->methods[i].name_index, &string, 0);
+        printf("\n\t[%d] %s\n", i, string);
+		printf("\t\tName:\t\t\tcp_info #%d\n",class_file->methods[i].name_index);
+		printf("\t\tDescriptor:\t\tcp_info #%d\n",class_file->methods[i].descriptor_index);
+		printf("\t\tAccess flags:\t\t0x%04x\n",class_file->methods[i].access_flags);
+		//printf("\t\tATTRIBUTES_COUNT:\t%d\n\n",class_file->methods[i].attributes_count);
 		printAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count, class_file->constant_pool, class_file);
-		printf("************************\n");
 	}
 
+    printf("\n+Attributes\n");
 	printAttributesInfo(class_file->attributes,class_file->attributes_count, class_file->constant_pool, class_file);
 }
 
@@ -166,32 +173,35 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 	for(int j = 0; j < attributes_count; j++){
 		indice = constant_pool[attributes[j].name_index].UTF8.bytes;
 
-		printf("\n\tNAME_INDEX STRING CP: %s\n",indice);
-        printf("\tAttribute name index:\tcp_info #%d\n",attributes[j].name_index);
-        printf("\tAttribute length:\t\t%d\n",attributes[j].length);
+		printf("\n\t\t[%d] %s\n", j, indice);
+        printf("\t\t\tAttribute name index:\t\tcp_info #%d\n",attributes[j].name_index);
+        printf("\t\t\tAttribute length:\t\t%d\n",attributes[j].length);
 
 		switch(attributes[j].tag){
 			case ATTRIBUTE_ConstantValue:
-				printf("\t\tConstantValue.index: %d\n",attributes[j].ConstantValue.index);
+				printf("\t\t\tConstant value index:\t\tcp_info #%d\n",attributes[j].ConstantValue.index);
 				break;
 			case ATTRIBUTE_Code:
-				printf("\t\tCode.max_stack: %d\n",attributes[j].Code.max_stack);
-				printf("\t\tCode.max_locals: %d\n",attributes[j].Code.max_locals);
-				printf("\t\tCode.code_length: %d\n",attributes[j].Code.code_length);
-				/*for(int k =0; k < attributes[j].Code.code_length; k++){
-                    printf("\t\tCode.code[%d]: %d\n",k, attributes[j].Code.code[k]);
-                }*/
-                printCode(attributes[j].Code.code, attributes[j].Code.code_length);
-				//printf("\t\tCode.code: %s\n",attributes[j].Code.code);
-				printf("\t\tCode.exception_table_length: %d\n",attributes[j].Code.exception_table_length);
+			    printf("\t\tBytecode:\n");
+			    printf("\t\t-------------------------------------------\n");
+				printCode(attributes[j].Code.code, attributes[j].Code.code_length);
+				printf("\t\t-------------------------------------------\n");
+				printf("\n\t\tException table:\n");
+				printf("\t----------------------------------------------------------------------\n");
+				printf("\tNr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose\n");
 				for(int k =0; k < attributes[j].Code.exception_table_length; k++){
-					printf("\t\tCode.ExceptionTable[%d].start_pc: %d\n",k,attributes[j].Code.ExceptionTable[k].start_pc);
-					printf("\t\tCode.ExceptionTable[%d].end_pc: %d\n",k,attributes[j].Code.ExceptionTable[k].end_pc);
-					printf("\t\tCode.ExceptionTable[%d].handler_pc: %d\n",k,attributes[j].Code.ExceptionTable[k].handler_pc);
-					printf("\t\tCode.ExceptionTable[%d].catch_type: %d\n",k,attributes[j].Code.ExceptionTable[k].catch_type);
+                    printf("\t\t%d\t|\t%d\t|\t%d\t|\t%d\n", k, attributes[j].Code.ExceptionTable[k].start_pc, \
+                           attributes[j].Code.ExceptionTable[k].end_pc, attributes[j].Code.ExceptionTable[k].handler_pc, \
+                           attributes[j].Code.ExceptionTable[k].catch_type);
                 }
-				printf("\t\tCode.attributes_count: %d\n",attributes[j].Code.attributes_count);
+                printf("\t----------------------------------------------------------------------\n");
+				printf("\n\t\tMisc:\n");
+				printf("\t\tMaximum stack depth:\t\t%d\n",attributes[j].Code.max_stack);
+				printf("\t\tMaximum local variables:\t%d\n",attributes[j].Code.max_locals);
+				printf("\t\tCode length:\t\t\t%d\n",attributes[j].Code.code_length);
+
 				printAttributesInfo(attributes[j].Code.attributes, attributes[j].Code.attributes_count,class_file->constant_pool, class_file);
+
 				break;
 			case ATTRIBUTE_Exceptions:
 				printf("\t\tExceptions.number_of_exceptions: %d\n",attributes[j].Exceptions.number_of_exceptions);
@@ -205,17 +215,18 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 			case ATTRIBUTE_Syntethic:
 				break;
 			case ATTRIBUTE_LineNumber:
-				printf("\t\tLineNumber.line_number_table_length: %d\n",attributes[j].LineNumber.line_number_table_length);
-				printf("Nr.\tstart_pc\tline_number\n");
+				printf("\t\t\tNr.\t    start_pc\t    line_number\n");
+				printf("\t\t-------------------------------------------------\n");
 				for(int i=0; i<attributes[j].LineNumber.line_number_table_length; i++){
-                    printf("%d\t\t%d\t\t%d\n", i, attributes[j].LineNumber.Line_number_table[i].start_pc, attributes[j].LineNumber.Line_number_table[i].line_number);
+                    printf("\t\t\t%d\t\t%d\t\t%d\n", i, attributes[j].LineNumber.Line_number_table[i].start_pc, attributes[j].LineNumber.Line_number_table[i].line_number);
 				}
+				printf("\t\t-------------------------------------------------\n");
                 break;
 			case ATTRIBUTE_LocalVariable:
 				printf("\t\tLocalVariable.local_variable_table_length: %d\n",attributes[j].LocalVariable.local_variable_table_length);
 				break;
 			case ATTRIBUTE_SourceFile:
-				printf("\t\tSourceFile.sourcefile_index: %d\n",attributes[j].SourceFile.sourcefile_index);
+				printf("\t\t\tSource file name index:\t\tcp_info #%d\n",attributes[j].SourceFile.sourcefile_index);
                 break;
 			default: //ATTRIBUTE_Unknown
                 printf("\t\tATRIBUTO DESCONHECIDO:\n");
@@ -308,7 +319,7 @@ void catchString(ClassFile * class_file, int indice, char *string){
 
 void printCode(u1 *code, u4 code_length){
     for(int k = 0; k < code_length; k++){
-    printf("\t\tcode[%d]: ",k);
+    printf("\t\t\t%2d  ",k);
         switch(code[k]){
             case OPCODE_nop:
                 printf("nop\n");
