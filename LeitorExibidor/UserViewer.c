@@ -86,7 +86,7 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
 				printf("\t\tBytes:\t0x%04x\n",class_file->constant_pool[i].Float.bytes);
 				var_u4 = class_file->constant_pool[i].Float.bytes;
 				var_float = *((float*)&var_u4);
-				printf("\t\t\t\tFloat:\t%.1f\n",var_float);
+				printf("\t\t\t\tFloat:\t%.4f\n",var_float);
 				break;
 			case CONSTANT_Long:
 				printf("\n[%02d]CONSTANT_Long",i);
@@ -157,10 +157,12 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
         string[0] = '\0';
         selectPointer(class_file, class_file->methods[i].name_index, &string, 0);
         printf("\n\t[%d] %s\n", i, string);
-		printf("\t\tName:\t\t\tcp_info #%d\n",class_file->methods[i].name_index);
-		printf("\t\tDescriptor:\t\tcp_info #%d\n",class_file->methods[i].descriptor_index);
+		printf("\t\tName:\t\t\tcp_info #%d <%s>\n",class_file->methods[i].name_index, string);
+		string[0] = '\0';
+        selectPointer(class_file, class_file->methods[i].descriptor_index, &string, 0);
+		printf("\t\tDescriptor:\t\tcp_info #%d <%s>\n",class_file->methods[i].descriptor_index, string);
 		printf("\t\tAccess flags:\t\t0x%04x\n",class_file->methods[i].access_flags);
-		//printf("\t\tATTRIBUTES_COUNT:\t%d\n\n",class_file->methods[i].attributes_count);
+
 		printAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count, class_file->constant_pool, class_file);
 	}
 
@@ -170,6 +172,8 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
 
 void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_pool, ClassFile *class_file){
 	char *indice = NULL;
+	char string[100];
+
 	for(int j = 0; j < attributes_count; j++){
 		indice = constant_pool[attributes[j].name_index].UTF8.bytes;
 
@@ -226,7 +230,9 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 				printf("\t\tLocalVariable.local_variable_table_length: %d\n",attributes[j].LocalVariable.local_variable_table_length);
 				break;
 			case ATTRIBUTE_SourceFile:
-				printf("\t\t\tSource file name index:\t\tcp_info #%d\n",attributes[j].SourceFile.sourcefile_index);
+			    string[0] = '\0';
+                selectPointer(class_file, attributes[j].SourceFile.sourcefile_index, &string, 0);
+				printf("\t\t\tSource file name index:\t\tcp_info #%d <%s>\n",attributes[j].SourceFile.sourcefile_index, string);
                 break;
 			default: //ATTRIBUTE_Unknown
                 printf("\t\tATRIBUTO DESCONHECIDO:\n");
