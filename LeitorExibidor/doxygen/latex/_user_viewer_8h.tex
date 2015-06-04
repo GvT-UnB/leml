@@ -1,0 +1,187 @@
+\hypertarget{_user_viewer_8h}{}\section{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/lib/\+User\+Viewer.h File Reference}
+\label{_user_viewer_8h}\index{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/lib/\+User\+Viewer.\+h@{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/lib/\+User\+Viewer.\+h}}
+{\ttfamily \#include \char`\"{}macros.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N}~extern
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_aaabcbb5496e2b52fdf4acd0e288565a7}{print\+Attributes\+Info} (\hyperlink{structattribute__info}{attribute\+\_\+info} $\ast$attributes, \hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} attributes\+\_\+count, \hyperlink{structcp__info}{cp\+\_\+info} $\ast$constant\+\_\+poo, \hyperlink{struct_class_file}{Class\+File} $\ast$class\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Funcao responsavel por imprimir na tela as informacoes dos atributos. \end{DoxyCompactList}\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_a55c314c0b400bb1044ff1d906c7110cb}{class\+Print} (F\+I\+L\+E $\ast$dot\+\_\+class, \hyperlink{struct_class_file}{Class\+File} $\ast$class\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Principal funcao responsavel por imprimir o bytecode. \end{DoxyCompactList}\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_a060b2ed3993dfef45547bb8498ee276a}{catch\+String} (\hyperlink{struct_class_file}{Class\+File} $\ast$class\+\_\+file, int i, char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Principal funcao responsavel por pegar a string referenciada pelos ponteiros presentes tanto no constant\+\_\+pool, methods,\textbackslash{} attributes e fields. \end{DoxyCompactList}\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_aac1dd20a34ae987cecab09fe22de5920}{select\+Pointer} (\hyperlink{struct_class_file}{Class\+File} $\ast$class\+\_\+file, int i, char $\ast$string, int option)
+\begin{DoxyCompactList}\small\item\em funcao que seleciona em qual ponteiro vai ser buscado a string. Caso, so tenha um ponteiro, nao faz diferenca \end{DoxyCompactList}\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_aed1f32918c4277e64cf126034ac5c3d2}{print\+Code} (\hyperlink{macros_8h_a8026a39c502750413402a90d9d8bae3c}{u1} $\ast$code, \hyperlink{macros_8h_a4af10c3137cf79c12265e8d288070711}{u4} code\+\_\+length, \hyperlink{structcp__info}{cp\+\_\+info} $\ast$constant\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em funcao que seleciona em qual ponteiro vai ser buscado a string. Caso, so tenha um ponteiro, nao faz diferenca \end{DoxyCompactList}\item 
+\hyperlink{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{E\+X\+T\+E\+R\+N} void \hyperlink{_user_viewer_8h_a10661e1ef4b23655880e4ae400f2b5c1}{get\+Access\+Flag} (int flag, char $\ast$string, int tipo)
+\begin{DoxyCompactList}\small\item\em funcao que imprimi o bytecode do atributo code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!E\+X\+T\+E\+R\+N@{E\+X\+T\+E\+R\+N}}
+\index{E\+X\+T\+E\+R\+N@{E\+X\+T\+E\+R\+N}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{E\+X\+T\+E\+R\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+X\+T\+E\+R\+N~extern}\label{_user_viewer_8h_a77366c1bd428629dc898e188bfd182a3}
+
+
+Definition at line 6 of file User\+Viewer.\+h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_user_viewer_8h_a060b2ed3993dfef45547bb8498ee276a}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!catch\+String@{catch\+String}}
+\index{catch\+String@{catch\+String}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{catch\+String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void catch\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf Class\+File} $\ast$}]{class\+\_\+file, }
+\item[{int}]{i, }
+\item[{char $\ast$}]{string}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_a060b2ed3993dfef45547bb8498ee276a}
+
+
+Principal funcao responsavel por pegar a string referenciada pelos ponteiros presentes tanto no constant\+\_\+pool, methods,\textbackslash{} attributes e fields. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ponteiro} & para o class\+\_\+file, o indice no constant\+\_\+pool buscado e o ponteiro para a string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 428 of file User\+Viewer.\+c.
+
+\hypertarget{_user_viewer_8h_a55c314c0b400bb1044ff1d906c7110cb}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!class\+Print@{class\+Print}}
+\index{class\+Print@{class\+Print}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{class\+Print}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void class\+Print (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class, }
+\item[{{\bf Class\+File} $\ast$}]{class\+\_\+file}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_a55c314c0b400bb1044ff1d906c7110cb}
+
+
+Principal funcao responsavel por imprimir o bytecode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & F\+I\+L\+E$\ast$ ponteiro para o arquivo bytecode e class\+\_\+file estrutura principal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 9 of file User\+Viewer.\+c.
+
+\hypertarget{_user_viewer_8h_a10661e1ef4b23655880e4ae400f2b5c1}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!get\+Access\+Flag@{get\+Access\+Flag}}
+\index{get\+Access\+Flag@{get\+Access\+Flag}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{get\+Access\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void get\+Access\+Flag (
+\begin{DoxyParamCaption}
+\item[{int}]{flag, }
+\item[{char $\ast$}]{string, }
+\item[{int}]{tipo}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_a10661e1ef4b23655880e4ae400f2b5c1}
+
+
+funcao que imprimi o bytecode do atributo code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ponteiro} & para o bytecode do atributo code, tamanho do bytecode e o ponteiro da constant pool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 257 of file User\+Viewer.\+c.
+
+\hypertarget{_user_viewer_8h_aaabcbb5496e2b52fdf4acd0e288565a7}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!print\+Attributes\+Info@{print\+Attributes\+Info}}
+\index{print\+Attributes\+Info@{print\+Attributes\+Info}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{print\+Attributes\+Info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void print\+Attributes\+Info (
+\begin{DoxyParamCaption}
+\item[{{\bf attribute\+\_\+info} $\ast$}]{attributes, }
+\item[{{\bf u2}}]{attributes\+\_\+count, }
+\item[{{\bf cp\+\_\+info} $\ast$}]{constant\+\_\+poo, }
+\item[{{\bf Class\+File} $\ast$}]{class\+\_\+file}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_aaabcbb5496e2b52fdf4acd0e288565a7}
+
+
+Funcao responsavel por imprimir na tela as informacoes dos atributos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ponteiros} & para o atributo a ser impresso e para o constant\+\_\+pool, class\+\_\+file e a quantidade de atributos a serem impressos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file User\+Viewer.\+c.
+
+\hypertarget{_user_viewer_8h_aed1f32918c4277e64cf126034ac5c3d2}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!print\+Code@{print\+Code}}
+\index{print\+Code@{print\+Code}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{print\+Code}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void print\+Code (
+\begin{DoxyParamCaption}
+\item[{{\bf u1} $\ast$}]{code, }
+\item[{{\bf u4}}]{code\+\_\+length, }
+\item[{{\bf cp\+\_\+info} $\ast$}]{constant\+\_\+pool}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_aed1f32918c4277e64cf126034ac5c3d2}
+
+
+funcao que seleciona em qual ponteiro vai ser buscado a string. Caso, so tenha um ponteiro, nao faz diferenca 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ponteiro} & para o class\+\_\+file, o indice no constant\+\_\+pool buscado e o ponteiro para a string e a opcao de qual ponteiro a ser usado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 488 of file User\+Viewer.\+c.
+
+\hypertarget{_user_viewer_8h_aac1dd20a34ae987cecab09fe22de5920}{}\index{User\+Viewer.\+h@{User\+Viewer.\+h}!select\+Pointer@{select\+Pointer}}
+\index{select\+Pointer@{select\+Pointer}!User\+Viewer.\+h@{User\+Viewer.\+h}}
+\subsubsection[{select\+Pointer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+X\+T\+E\+R\+N} void select\+Pointer (
+\begin{DoxyParamCaption}
+\item[{{\bf Class\+File} $\ast$}]{class\+\_\+file, }
+\item[{int}]{i, }
+\item[{char $\ast$}]{string, }
+\item[{int}]{option}
+\end{DoxyParamCaption}
+)}\label{_user_viewer_8h_aac1dd20a34ae987cecab09fe22de5920}
+
+
+funcao que seleciona em qual ponteiro vai ser buscado a string. Caso, so tenha um ponteiro, nao faz diferenca 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ponteiro} & para o class\+\_\+file, o indice no constant\+\_\+pool buscado e o ponteiro para a string e a opcao de qual ponteiro a ser usado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file User\+Viewer.\+c.
+

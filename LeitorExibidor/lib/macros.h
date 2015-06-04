@@ -1,12 +1,12 @@
 #include <stdint.h>
 
-/**< Assinatura do arquivo .class */
+/*! Assinatura do arquivo .class */
 #define U4_MAGIC 0xCAFEBABE
 
-/**< Tamanho de um byte */
+/*! Tamanho de um byte */
 #define BYTE_SIZE 8
 
-/**< Máscara de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
+/*! Máscara de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
 #define ACC_PUBLIC 0x0001 //Declaração pública para CLASSES, METODOS E ATRIBUTOS
 #define ACC_PRIVATE 0x0002 //Declaração privada para METODOS E ATRIBUTOS
 #define ACC_PROTECTED 0x0004 //Declaração protegida para METODOS E ATRIBUTOS
@@ -21,10 +21,10 @@
 #define ACC_ABSTRACT 0x0400 //Declaração abstrata, CLASSES não podem ser instanciadas e MÉTODOS não possuem definição.
 #define ACC_STRICT 0x0800 //MÉTODO Strictfp: utiliza modo de ponto flutuante FP-strict (não normalizado)
 
-/**< Combinações de máscaras de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
+/*! Combinações de máscaras de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
 
 
-/**< Tipos Válidos de Tags (Constants Pool) */
+/*! Tipos Válidos de Tags (Constants Pool) */
 #define CONSTANT_Class              7
 #define CONSTANT_Fieldref           9
 #define CONSTANT_Methodref          10
@@ -37,7 +37,7 @@
 #define CONSTANT_NameAndType        12
 #define CONSTANT_Utf8               1
 
-/**< Tipos Válidos de Tags (Constants Pool) */
+/*! Tipos Válidos de Tags (Constants Pool) */
 #define ATTRIBUTE_ConstantValue     1
 #define ATTRIBUTE_Code              2
 #define ATTRIBUTE_Exceptions        3
@@ -47,7 +47,8 @@
 #define ATTRIBUTE_LocalVariable     7
 #define ATTRIBUTE_SourceFile        8
 #define ATTRIBUTE_Unknown           9
-/**<Opcodes*/
+
+/*! Opcodes*/
 #define OPCODE_nop  0
 #define OPCODE_aconst_null  1
 #define OPCODE_iconst_m1  2
@@ -252,12 +253,22 @@
 #define OPCODE_breakpoint  202
 
 
-/**<Tipos de Dados do arquivo .class*/
+/*! \typedef  u1
+    \brief 1 byte
+*/
 typedef unsigned char u1; //1 byte
+/*! \typedef  u2
+    \brief 2 bytes
+*/
 typedef unsigned short u2; //2 bytes
+/*! \typedef  u4
+    \brief 4 bytes
+*/
 typedef int32_t u4; //4 bytes
 
-/**< O famoso Constante Pool! */
+/*! \union cp_info
+    \brief O famoso Constante Pool!
+*/
 typedef struct {
 	u1 tag;
 	union {
@@ -304,7 +315,9 @@ typedef struct {
 	}
 }cp_info;
 
-/**< structs relacionadas as estruturas de atributo incluindo a propria */
+/*! \struct   ExceptionTable
+    \brief structs relacionadas as estruturas de ExceptionTable do attribute_info
+*/
 typedef struct {
     u2 start_pc;
     u2 end_pc;
@@ -312,6 +325,9 @@ typedef struct {
     u2 catch_type;
 } ExceptionTable;
 
+/*! \struct   Classes
+    \brief structs relacionadas as estruturas de Classes do attribute_info
+*/
 typedef struct {
     u2 inner_class_info_index;
     u2 outer_class_info_index;
@@ -319,11 +335,17 @@ typedef struct {
     u2 inner_class_access_flags;
 } Classes;
 
+/*! \struct   Line_number_table
+    \brief structs relacionadas as estruturas de Line_number_table do attribute_info
+*/
 typedef struct {
     u2 start_pc;
     u2 line_number;
 } Line_number_table;
 
+/*! \struct   Local_variable_table
+    \brief structs relacionadas as estruturas de Local_variable_table do attribute_info
+*/
 typedef struct {
     u2 start_pc;
     u2 length;
@@ -332,6 +354,9 @@ typedef struct {
     u2 index;
 } Local_variable_table;
 
+/*! \struct   attribute_info
+    \brief structs referente ao campo attribute_info
+*/
 typedef struct{
     u2 name_index;//Use essa tag para definir a union
 	u4 length;
@@ -372,15 +397,20 @@ typedef struct{
 	}
 } attribute_info;
 
+/*! \struct   field_info
+    \brief structs referente ao campo field_info
+*/
 typedef struct{
     u2 access_flags;
 	u2 name_index;
 	u2 descriptor_index;
 	u2 attributes_count;
-	//attribute_info attributes[attributes_count];
     attribute_info *attributes;
 } field_info;
 
+/*! \struct   method_info
+    \brief structs referente ao campo method_info
+*/
 typedef struct {
     u2 access_flags;
     u2 name_index;
@@ -389,7 +419,9 @@ typedef struct {
     attribute_info *attributes;
 } method_info;
 
-/**<Estrutura Interna dum arquivo .class*/
+/*! \struct   ClassFile
+    \brief Estrutura Interna dum arquivo .class
+*/
 typedef struct{
     u4 magic;
     u2 minor_version;

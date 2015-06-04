@@ -1,0 +1,57 @@
+\hypertarget{exception_manager_8c}{}\section{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/exception\+Manager.c File Reference}
+\label{exception_manager_8c}\index{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/exception\+Manager.\+c@{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/exception\+Manager.\+c}}
+{\ttfamily \#include \char`\"{}lib/exception\+Manager.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{exception_manager_8c_afd1875ae83d4e5875ddb48149cebe879}{E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{exception_manager_8c_a6e46b9ebd4f8a8df0ba471a7691e0d82}{throw\+Exception} (int exception\+\_\+code, char $\ast$string\+\_\+error,...)
+\begin{DoxyCompactList}\small\item\em Apresenta no terminal a mensagem e o codigo de erro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{exception_manager_8c_afd1875ae83d4e5875ddb48149cebe879}{}\index{exception\+Manager.\+c@{exception\+Manager.\+c}!E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V@{E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}}
+\index{E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V@{E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}!exception\+Manager.\+c@{exception\+Manager.\+c}}
+\subsubsection[{E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+X\+C\+E\+P\+T\+I\+O\+N\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}\label{exception_manager_8c_afd1875ae83d4e5875ddb48149cebe879}
+
+
+Definition at line 1 of file exception\+Manager.\+c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{exception_manager_8c_a6e46b9ebd4f8a8df0ba471a7691e0d82}{}\index{exception\+Manager.\+c@{exception\+Manager.\+c}!throw\+Exception@{throw\+Exception}}
+\index{throw\+Exception@{throw\+Exception}!exception\+Manager.\+c@{exception\+Manager.\+c}}
+\subsubsection[{throw\+Exception}]{\setlength{\rightskip}{0pt plus 5cm}void throw\+Exception (
+\begin{DoxyParamCaption}
+\item[{int}]{exception\+\_\+code, }
+\item[{char $\ast$}]{string\+\_\+error, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{exception_manager_8c_a6e46b9ebd4f8a8df0ba471a7691e0d82}
+
+
+Apresenta no terminal a mensagem e o codigo de erro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exception\+\_\+code} & int O codigo do erro, todos os codigos de erros estao listados na tabela de erros \\
+\hline
+{\em string\+\_\+error} & char$\ast$ A mensagem de erro que deve ser apresentada no terminal, todas as mensagen de erro estao listadas na tabela de mensagens \\
+\hline
+{\em ...} & Lista todos os argumentos que a mensgaem de erro possa apresentar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+X\+T\+E\+R\+N void 
+\end{DoxyReturn}
+
+
+Definition at line 6 of file exception\+Manager.\+c.
+

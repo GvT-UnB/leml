@@ -1,0 +1,170 @@
+\hypertarget{class_manager_8c}{}\section{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software BÃ¡sico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/class\+Manager.c File Reference}
+\label{class_manager_8c}\index{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software BÃ¡sico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/class\+Manager.\+c@{C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software BÃ¡sico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/class\+Manager.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}lib/class\+Manager.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/exception\+Manager.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{class_manager_8c_a5c7b181a46e1bf752e98109ae790381f}{C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_class_file}{Class\+File} $\ast$ \hyperlink{class_manager_8c_a2cbe11774dca89a614176e7c5a4089c3}{class\+Read} (F\+I\+L\+E $\ast$dot\+\_\+class)
+\begin{DoxyCompactList}\small\item\em Funcao responsavel por ler o bytecode java e armazenar na memoria. \end{DoxyCompactList}\item 
+void \hyperlink{class_manager_8c_a2425b9f7e0832e0a7c1cb20e888d4ecd}{read\+Attributes\+Info} (\hyperlink{structattribute__info}{attribute\+\_\+info} $\ast$attributes, \hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} attributes\+\_\+count, F\+I\+L\+E $\ast$dot\+\_\+class, \hyperlink{structcp__info}{cp\+\_\+info} $\ast$constant\+\_\+pool)
+\begin{DoxyCompactList}\small\item\em Funcao responsavel por ler para a memoria os dados referentes ao Attributte Info do bytecode java. \end{DoxyCompactList}\item 
+void \hyperlink{class_manager_8c_ab90509f4e11897c9b797b6a8959320da}{read\+Classes} (\hyperlink{struct_classes}{Classes} $\ast$classes, \hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} number\+\_\+of\+\_\+classes, F\+I\+L\+E $\ast$dot\+\_\+class)
+\begin{DoxyCompactList}\small\item\em Funcao responsavel por ler para a memoria os dados referentes as \hyperlink{struct_classes}{Classes} do Attribute Info. \end{DoxyCompactList}\item 
+void \hyperlink{class_manager_8c_a97fd6819b6f3b07ff9443e7dac0df871}{read\+Line\+Number\+Table} (\hyperlink{struct_line__number__table}{Line\+\_\+number\+\_\+table} $\ast$line\+\_\+number\+\_\+table, \hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} line\+\_\+number\+\_\+table\+\_\+length, F\+I\+L\+E $\ast$dot\+\_\+class)
+\item 
+void \hyperlink{class_manager_8c_a38da885d64308c9c1993549209c89986}{read\+Local\+Variable\+Table} (\hyperlink{struct_local__variable__table}{Local\+\_\+variable\+\_\+table} $\ast$local\+\_\+variable\+\_\+table, \hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} local\+\_\+variable\+\_\+table\+\_\+length, F\+I\+L\+E $\ast$dot\+\_\+class)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{class_manager_8c_a5c7b181a46e1bf752e98109ae790381f}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V@{C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}}
+\index{C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V@{C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+L\+A\+S\+S\+M\+A\+N\+A\+G\+E\+R\+\_\+\+S\+E\+R\+V}\label{class_manager_8c_a5c7b181a46e1bf752e98109ae790381f}
+
+
+Definition at line 1 of file class\+Manager.\+c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{class_manager_8c_a2cbe11774dca89a614176e7c5a4089c3}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!class\+Read@{class\+Read}}
+\index{class\+Read@{class\+Read}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{class\+Read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Class\+File}$\ast$ class\+Read (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class}
+\end{DoxyParamCaption}
+)}\label{class_manager_8c_a2cbe11774dca89a614176e7c5a4089c3}
+
+
+Funcao responsavel por ler o bytecode java e armazenar na memoria. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dot\+\_\+class} & F\+I\+L\+E$\ast$ arquivo bytecode que deve ser lido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{struct_class_file}{Class\+File} $\ast$ retorna o endereço do bytecode salvo em memória. 
+\end{DoxyReturn}
+
+
+Definition at line 7 of file class\+Manager.\+c.
+
+\hypertarget{class_manager_8c_a2425b9f7e0832e0a7c1cb20e888d4ecd}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!read\+Attributes\+Info@{read\+Attributes\+Info}}
+\index{read\+Attributes\+Info@{read\+Attributes\+Info}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{read\+Attributes\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Attributes\+Info (
+\begin{DoxyParamCaption}
+\item[{{\bf attribute\+\_\+info} $\ast$}]{attributes, }
+\item[{{\bf u2}}]{attributes\+\_\+count, }
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class, }
+\item[{{\bf cp\+\_\+info} $\ast$}]{constant\+\_\+pool}
+\end{DoxyParamCaption}
+)}\label{class_manager_8c_a2425b9f7e0832e0a7c1cb20e888d4ecd}
+
+
+Funcao responsavel por ler para a memoria os dados referentes ao Attributte Info do bytecode java. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attributes} & attribute\+\_\+info$\ast$ ponteiro para o espaço de memória onde os dados devem ser salvos. \\
+\hline
+{\em attributes\+\_\+count} & u2 a quantidade de atributos que serão lidos do bytecode. \\
+\hline
+{\em dot\+\_\+class} & F\+I\+L\+E$\ast$ ponteiro para o arquivo bytecode. \\
+\hline
+{\em constant\+\_\+pool} & cp\+\_\+info$\ast$ ponteiro para o constant pool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file class\+Manager.\+c.
+
+\hypertarget{class_manager_8c_ab90509f4e11897c9b797b6a8959320da}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!read\+Classes@{read\+Classes}}
+\index{read\+Classes@{read\+Classes}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{read\+Classes}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Classes (
+\begin{DoxyParamCaption}
+\item[{{\bf Classes} $\ast$}]{Classes, }
+\item[{{\bf u2}}]{number\+\_\+of\+\_\+classes, }
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class}
+\end{DoxyParamCaption}
+)}\label{class_manager_8c_ab90509f4e11897c9b797b6a8959320da}
+
+
+Funcao responsavel por ler para a memoria os dados referentes as \hyperlink{struct_classes}{Classes} do Attribute Info. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{struct_classes}{Classes}} & Classes$\ast$ ponteiro para o espaço de memória onde os dados devem ser salvos. \\
+\hline
+{\em number\+\_\+of\+\_\+classes} & u2 quantidade de classes que serão lidas. \\
+\hline
+{\em dot\+\_\+class} & F\+I\+L\+E$\ast$ ponteiro para o arquivo bytecode. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+X\+T\+E\+R\+N void 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file class\+Manager.\+c.
+
+\hypertarget{class_manager_8c_a97fd6819b6f3b07ff9443e7dac0df871}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!read\+Line\+Number\+Table@{read\+Line\+Number\+Table}}
+\index{read\+Line\+Number\+Table@{read\+Line\+Number\+Table}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{read\+Line\+Number\+Table}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Line\+Number\+Table (
+\begin{DoxyParamCaption}
+\item[{{\bf Line\+\_\+number\+\_\+table} $\ast$}]{line\+\_\+number\+\_\+table, }
+\item[{{\bf u2}}]{line\+\_\+number\+\_\+table\+\_\+length, }
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class}
+\end{DoxyParamCaption}
+)}\label{class_manager_8c_a97fd6819b6f3b07ff9443e7dac0df871}
+
+\begin{DoxyParams}{Parameters}
+{\em line\+\_\+number\+\_\+table} & Line\+\_\+number\+\_\+table$\ast$ ponteiro para o espaço de memoria onde os dados devem ser salvos. \\
+\hline
+{\em line\+\_\+number\+\_\+table\+\_\+length} & u2 quantidade de line number tabes que serão lidas. \\
+\hline
+{\em dot\+\_\+class} & F\+I\+L\+E$\ast$ ponteiro para o arquivo bytecode. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+X\+T\+E\+R\+N void 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file class\+Manager.\+c.
+
+\hypertarget{class_manager_8c_a38da885d64308c9c1993549209c89986}{}\index{class\+Manager.\+c@{class\+Manager.\+c}!read\+Local\+Variable\+Table@{read\+Local\+Variable\+Table}}
+\index{read\+Local\+Variable\+Table@{read\+Local\+Variable\+Table}!class\+Manager.\+c@{class\+Manager.\+c}}
+\subsubsection[{read\+Local\+Variable\+Table}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Local\+Variable\+Table (
+\begin{DoxyParamCaption}
+\item[{{\bf Local\+\_\+variable\+\_\+table} $\ast$}]{local\+\_\+variable\+\_\+table, }
+\item[{{\bf u2}}]{local\+\_\+variable\+\_\+table\+\_\+length, }
+\item[{F\+I\+L\+E $\ast$}]{dot\+\_\+class}
+\end{DoxyParamCaption}
+)}\label{class_manager_8c_a38da885d64308c9c1993549209c89986}
+
+\begin{DoxyParams}{Parameters}
+{\em local\+\_\+variable\+\_\+table} & Local\+\_\+variable\+\_\+table$\ast$ ponteiro para o espaço de memoria onde os dados devem ser salvos. \\
+\hline
+{\em local\+\_\+variable\+\_\+table\+\_\+length} & u2 quantidade de local variable table que serao lidas. \\
+\hline
+{\em dot\+\_\+class} & F\+I\+L\+E$\ast$ ponteiro para o arquivo bytecode. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+X\+T\+E\+R\+N void 
+\end{DoxyReturn}
+
+
+Definition at line 238 of file class\+Manager.\+c.
+

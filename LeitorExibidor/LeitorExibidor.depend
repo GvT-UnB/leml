@@ -1,15 +1,16 @@
 # depslib dependency file v1.0
-1432505183 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1433287000 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
 
-1432684528 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1433382053 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
-1432316275 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
+1433382083 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
 	<stdio.h>
 	"macros.h"
 
@@ -21,7 +22,7 @@
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 
-1433204120 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
+1433382177 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1432505183 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\exceptionmanager.c
@@ -29,7 +30,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1432504845 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+1433382465 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
 
 1433007657 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
 	"lib/exceptionManager.h"
@@ -193,5 +194,8 @@
 	"lib/exceptionManager.h"
 
 1433381557 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1433382734 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 

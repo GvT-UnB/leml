@@ -15,6 +15,8 @@ ClassFile * classRead(FILE * dot_class){
 
     class_file->minor_version = u2Read(dot_class);
     class_file->major_version = u2Read(dot_class);
+    if(class_file->major_version > 48) //Verifica se o bytecode informado é compativel com Java 2 ou inferior.
+        throwException(NOT_JAVA_2_VERSION,NOT_JAVA_2_VERSION_MSG);
     class_file->constant_pool_count = u2Read(dot_class);
     class_file->constant_pool = (cp_info *)malloc(class_file->constant_pool_count * sizeof(cp_info)); //aloca espaço para o constant_pool
 

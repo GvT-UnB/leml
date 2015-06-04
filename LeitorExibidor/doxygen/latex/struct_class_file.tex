@@ -1,0 +1,173 @@
+\hypertarget{struct_class_file}{}\section{Class\+File Struct Reference}
+\label{struct_class_file}\index{Class\+File@{Class\+File}}
+
+
+Estrutura Interna dum arquivo .class.  
+
+
+
+
+{\ttfamily \#include $<$macros.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{macros_8h_a4af10c3137cf79c12265e8d288070711}{u4} \hyperlink{struct_class_file_a9c187266c328a40ddc2dde8c8a230a65}{magic}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_ad0028839ce12090266cbdc5df1046062}{minor\+\_\+version}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a5a3ef20c14bd517fca3fa5841846ab4b}{major\+\_\+version}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a0d64ff67928a39e52a75c972b5f5697a}{constant\+\_\+pool\+\_\+count}
+\item 
+\hyperlink{structcp__info}{cp\+\_\+info} $\ast$ \hyperlink{struct_class_file_ace3229f6e4d460d20e72e493d180ecc5}{constant\+\_\+pool}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a4cc32d48303aeaaaaea05bf77abdec59}{access\+\_\+flags}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_afd1a9f5d893befc9ea66f915fd6fa039}{this\+\_\+class}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a85a7fa4c7fd5d455b77e525d952f440f}{super\+\_\+class}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a5d766202b705d1bdb025a0e7fff8953c}{interfaces\+\_\+count}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} $\ast$ \hyperlink{struct_class_file_a31608612612ea019eef47ae5d656dc23}{interfaces}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a8bebe0bfa4e37dde1e67c6a72af398c0}{fields\+\_\+count}
+\item 
+\hyperlink{structfield__info}{field\+\_\+info} $\ast$ \hyperlink{struct_class_file_ae01d16d1ab715a4f5dd1fe8254322594}{fields}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_a8858a4e08f7cc000e0f62459722ecce8}{methods\+\_\+count}
+\item 
+\hyperlink{structmethod__info}{method\+\_\+info} $\ast$ \hyperlink{struct_class_file_af0fc99630af87d96f99637f77f6bb565}{methods}
+\item 
+\hyperlink{macros_8h_aa76d8c8015643c6a837661a10142016e}{u2} \hyperlink{struct_class_file_aa53122439ee827a418258d52c51368c6}{attributes\+\_\+count}
+\item 
+\hyperlink{structattribute__info}{attribute\+\_\+info} $\ast$ \hyperlink{struct_class_file_aae221e548ab4ef529cd1a0f2fcdabb9b}{attributes}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Estrutura Interna dum arquivo .class. 
+
+Definition at line 425 of file macros.\+h.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct_class_file_a4cc32d48303aeaaaaea05bf77abdec59}{}\index{Class\+File@{Class\+File}!access\+\_\+flags@{access\+\_\+flags}}
+\index{access\+\_\+flags@{access\+\_\+flags}!Class\+File@{Class\+File}}
+\subsubsection[{access\+\_\+flags}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} access\+\_\+flags}\label{struct_class_file_a4cc32d48303aeaaaaea05bf77abdec59}
+
+
+Definition at line 431 of file macros.\+h.
+
+\hypertarget{struct_class_file_aae221e548ab4ef529cd1a0f2fcdabb9b}{}\index{Class\+File@{Class\+File}!attributes@{attributes}}
+\index{attributes@{attributes}!Class\+File@{Class\+File}}
+\subsubsection[{attributes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf attribute\+\_\+info}$\ast$ attributes}\label{struct_class_file_aae221e548ab4ef529cd1a0f2fcdabb9b}
+
+
+Definition at line 441 of file macros.\+h.
+
+\hypertarget{struct_class_file_aa53122439ee827a418258d52c51368c6}{}\index{Class\+File@{Class\+File}!attributes\+\_\+count@{attributes\+\_\+count}}
+\index{attributes\+\_\+count@{attributes\+\_\+count}!Class\+File@{Class\+File}}
+\subsubsection[{attributes\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} attributes\+\_\+count}\label{struct_class_file_aa53122439ee827a418258d52c51368c6}
+
+
+Definition at line 440 of file macros.\+h.
+
+\hypertarget{struct_class_file_ace3229f6e4d460d20e72e493d180ecc5}{}\index{Class\+File@{Class\+File}!constant\+\_\+pool@{constant\+\_\+pool}}
+\index{constant\+\_\+pool@{constant\+\_\+pool}!Class\+File@{Class\+File}}
+\subsubsection[{constant\+\_\+pool}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cp\+\_\+info}$\ast$ constant\+\_\+pool}\label{struct_class_file_ace3229f6e4d460d20e72e493d180ecc5}
+
+
+Definition at line 430 of file macros.\+h.
+
+\hypertarget{struct_class_file_a0d64ff67928a39e52a75c972b5f5697a}{}\index{Class\+File@{Class\+File}!constant\+\_\+pool\+\_\+count@{constant\+\_\+pool\+\_\+count}}
+\index{constant\+\_\+pool\+\_\+count@{constant\+\_\+pool\+\_\+count}!Class\+File@{Class\+File}}
+\subsubsection[{constant\+\_\+pool\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} constant\+\_\+pool\+\_\+count}\label{struct_class_file_a0d64ff67928a39e52a75c972b5f5697a}
+
+
+Definition at line 429 of file macros.\+h.
+
+\hypertarget{struct_class_file_ae01d16d1ab715a4f5dd1fe8254322594}{}\index{Class\+File@{Class\+File}!fields@{fields}}
+\index{fields@{fields}!Class\+File@{Class\+File}}
+\subsubsection[{fields}]{\setlength{\rightskip}{0pt plus 5cm}{\bf field\+\_\+info}$\ast$ fields}\label{struct_class_file_ae01d16d1ab715a4f5dd1fe8254322594}
+
+
+Definition at line 437 of file macros.\+h.
+
+\hypertarget{struct_class_file_a8bebe0bfa4e37dde1e67c6a72af398c0}{}\index{Class\+File@{Class\+File}!fields\+\_\+count@{fields\+\_\+count}}
+\index{fields\+\_\+count@{fields\+\_\+count}!Class\+File@{Class\+File}}
+\subsubsection[{fields\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} fields\+\_\+count}\label{struct_class_file_a8bebe0bfa4e37dde1e67c6a72af398c0}
+
+
+Definition at line 436 of file macros.\+h.
+
+\hypertarget{struct_class_file_a31608612612ea019eef47ae5d656dc23}{}\index{Class\+File@{Class\+File}!interfaces@{interfaces}}
+\index{interfaces@{interfaces}!Class\+File@{Class\+File}}
+\subsubsection[{interfaces}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2}$\ast$ interfaces}\label{struct_class_file_a31608612612ea019eef47ae5d656dc23}
+
+
+Definition at line 435 of file macros.\+h.
+
+\hypertarget{struct_class_file_a5d766202b705d1bdb025a0e7fff8953c}{}\index{Class\+File@{Class\+File}!interfaces\+\_\+count@{interfaces\+\_\+count}}
+\index{interfaces\+\_\+count@{interfaces\+\_\+count}!Class\+File@{Class\+File}}
+\subsubsection[{interfaces\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} interfaces\+\_\+count}\label{struct_class_file_a5d766202b705d1bdb025a0e7fff8953c}
+
+
+Definition at line 434 of file macros.\+h.
+
+\hypertarget{struct_class_file_a9c187266c328a40ddc2dde8c8a230a65}{}\index{Class\+File@{Class\+File}!magic@{magic}}
+\index{magic@{magic}!Class\+File@{Class\+File}}
+\subsubsection[{magic}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u4} magic}\label{struct_class_file_a9c187266c328a40ddc2dde8c8a230a65}
+
+
+Definition at line 426 of file macros.\+h.
+
+\hypertarget{struct_class_file_a5a3ef20c14bd517fca3fa5841846ab4b}{}\index{Class\+File@{Class\+File}!major\+\_\+version@{major\+\_\+version}}
+\index{major\+\_\+version@{major\+\_\+version}!Class\+File@{Class\+File}}
+\subsubsection[{major\+\_\+version}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} major\+\_\+version}\label{struct_class_file_a5a3ef20c14bd517fca3fa5841846ab4b}
+
+
+Definition at line 428 of file macros.\+h.
+
+\hypertarget{struct_class_file_af0fc99630af87d96f99637f77f6bb565}{}\index{Class\+File@{Class\+File}!methods@{methods}}
+\index{methods@{methods}!Class\+File@{Class\+File}}
+\subsubsection[{methods}]{\setlength{\rightskip}{0pt plus 5cm}{\bf method\+\_\+info}$\ast$ methods}\label{struct_class_file_af0fc99630af87d96f99637f77f6bb565}
+
+
+Definition at line 439 of file macros.\+h.
+
+\hypertarget{struct_class_file_a8858a4e08f7cc000e0f62459722ecce8}{}\index{Class\+File@{Class\+File}!methods\+\_\+count@{methods\+\_\+count}}
+\index{methods\+\_\+count@{methods\+\_\+count}!Class\+File@{Class\+File}}
+\subsubsection[{methods\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} methods\+\_\+count}\label{struct_class_file_a8858a4e08f7cc000e0f62459722ecce8}
+
+
+Definition at line 438 of file macros.\+h.
+
+\hypertarget{struct_class_file_ad0028839ce12090266cbdc5df1046062}{}\index{Class\+File@{Class\+File}!minor\+\_\+version@{minor\+\_\+version}}
+\index{minor\+\_\+version@{minor\+\_\+version}!Class\+File@{Class\+File}}
+\subsubsection[{minor\+\_\+version}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} minor\+\_\+version}\label{struct_class_file_ad0028839ce12090266cbdc5df1046062}
+
+
+Definition at line 427 of file macros.\+h.
+
+\hypertarget{struct_class_file_a85a7fa4c7fd5d455b77e525d952f440f}{}\index{Class\+File@{Class\+File}!super\+\_\+class@{super\+\_\+class}}
+\index{super\+\_\+class@{super\+\_\+class}!Class\+File@{Class\+File}}
+\subsubsection[{super\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} super\+\_\+class}\label{struct_class_file_a85a7fa4c7fd5d455b77e525d952f440f}
+
+
+Definition at line 433 of file macros.\+h.
+
+\hypertarget{struct_class_file_afd1a9f5d893befc9ea66f915fd6fa039}{}\index{Class\+File@{Class\+File}!this\+\_\+class@{this\+\_\+class}}
+\index{this\+\_\+class@{this\+\_\+class}!Class\+File@{Class\+File}}
+\subsubsection[{this\+\_\+class}]{\setlength{\rightskip}{0pt plus 5cm}{\bf u2} this\+\_\+class}\label{struct_class_file_afd1a9f5d893befc9ea66f915fd6fa039}
+
+
+Definition at line 432 of file macros.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Diogo/\+Documents/\+Un\+B/\+Software Básico/\+Leitor -\/ Exibidor/trunk/\+Leitor\+Exibidor/lib/\hyperlink{macros_8h}{macros.\+h}\end{DoxyCompactItemize}

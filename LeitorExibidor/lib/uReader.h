@@ -11,7 +11,7 @@
 
 
 
-/** \brief Função responsavel por ler um byte do bytecode java.
+/** \brief Funaoo responsavel por ler um byte do bytecode java.
  *
  * \param fp FILE* ponteiro para o arquivo bytecode.
  * \return EXTERNu1 byte lido.
@@ -19,7 +19,7 @@
  */
 EXTERN u1 u1Read(FILE * fp);
 
-/** \brief Função responsavel por ler dois bytes do bytecode java.
+/** \brief Funcao responsavel por ler dois bytes do bytecode java.
  *
  * \param fp FILE* ponteiro para o arquivo bytecode.
  * \return EXTERNu1 Os bytes lidos.
@@ -27,7 +27,7 @@ EXTERN u1 u1Read(FILE * fp);
  */
 EXTERN u2 u2Read(FILE * fp);
 
-/** \brief Função responsavel por ler quatro bytes do bytecode java.
+/** \brief Funcao responsavel por ler quatro bytes do bytecode java.
  *
  * \param fp FILE* ponteiro para o arquivo bytecode.
  * \return EXTERNu1 Os bytes lidos.
