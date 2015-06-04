@@ -44,7 +44,14 @@ EXTERN void selectPointer(ClassFile *class_file, int i, char *string, int option
  *
  */
 
+
 EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool);
+/** \brief funcao que imprimi o bytecode do atributo code.
+ *
+ * \param ponteiro para o bytecode do atributo code, tamanho do bytecode e o ponteiro da constant pool.
+ * \return void
+ *
+ */
 
 EXTERN void getAccessFlag(int flag, char *string, int tipo);
 #endif // CLASSMANAGER_H_INCLUDED
