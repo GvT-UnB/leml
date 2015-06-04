@@ -198,7 +198,7 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 			case ATTRIBUTE_Code:
 			    printf("\t\tBytecode:\n");
 			    printf("\t\t-------------------------------------------\n");
-				printCode(attributes[j].Code.code, attributes[j].Code.code_length);
+				printCode(attributes[j].Code.code, attributes[j].Code.code_length, constant_pool);
 				printf("\t\t-------------------------------------------\n");
 				printf("\n\t\tException table:\n");
 				printf("\t----------------------------------------------------------------------\n");
@@ -485,7 +485,9 @@ void catchString(ClassFile * class_file, int indice, char *string){
     }
 }
 
-void printCode(u1 *code, u4 code_length){
+void printCode(u1 *code, u4 code_length, cp_info * constant_pool){
+    u2 var_u2;
+    u2 index1, index2;
     for(int k = 0; k < code_length; k++){
     printf("\t\t\t%2d  ",k);
         switch(code[k]){
@@ -1072,19 +1074,35 @@ void printCode(u1 *code, u4 code_length){
                 k=k+2;
                 break;
             case OPCODE_invokevirtual:
-                printf("invokevirtual %d %d\n", code[k+1], code[k+2]);
+                var_u2 = (code[k+1] << 8) | code[k+2];
+                index1 = constant_pool[var_u2].Methodref.class_index;
+                index1 = constant_pool[index1].Class.name_index;
+                index2 = constant_pool[var_u2].Methodref.name_and_type_index;
+                index2 = constant_pool[index2].NameAndType.name_index;
+                printf("invokevirtual %d <%s.%s>\n", var_u2, constant_pool[index1].UTF8.bytes, constant_pool[index2].UTF8.bytes);
                 k=k+2;
                 break;
             case OPCODE_invokespecial:
-                printf("invokespecial %d %d\n", code[k+1], code[k+2]);
+                var_u2 = (code[k+1] << 8) | code[k+2];
+                index1 = constant_pool[var_u2].Methodref.class_index;
+                index1 = constant_pool[index1].Class.name_index;
+                index2 = constant_pool[var_u2].Methodref.name_and_type_index;
+                index2 = constant_pool[index2].NameAndType.name_index;
+                printf("invokespecial %d <%s.%s>\n", var_u2, constant_pool[index1].UTF8.bytes, constant_pool[index2].UTF8.bytes);
                 k=k+2;
                 break;
             case OPCODE_invokestatic:
-                printf("invokestatic %d %d\n", code[k+1], code[k+2]);
+                var_u2 = (code[k+1] << 8) | code[k+2];
+                index1 = constant_pool[var_u2].Methodref.class_index;
+                index1 = constant_pool[index1].Class.name_index;
+                index2 = constant_pool[var_u2].Methodref.name_and_type_index;
+                index2 = constant_pool[index2].NameAndType.name_index;
+                printf("invokestatic %d <%s.%s>\n", var_u2, constant_pool[index1].UTF8.bytes, constant_pool[index2].UTF8.bytes);
                 k=k+2;
                 break;
             case OPCODE_invokeinterface:
-                printf("invokeinterface %d %d %d %d\n", code[k+1], code[k+2], code[k+3], code[k+4]);
+                var_u2 = (code[k+1] << 8) | code[k+2];
+                printf("invokeinterface %d %d %d\n", var_u2, code[k+3], code[k+4]);
                 break;
             case OPCODE_new:
                 printf("new %d %d\n", code[k+1], code[k+2]);

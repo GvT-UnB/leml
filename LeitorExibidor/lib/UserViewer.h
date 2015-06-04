@@ -19,7 +19,7 @@ EXTERN void selectPointer(ClassFile *class_file, int i, char *string, int option
 
 EXTERN u4 getFloat(u4 number);
 
-EXTERN void printCode(u1 *code, u4 code_length);
+EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool);
 
 EXTERN void getAccessFlag(int flag, char *string, int tipo);
 #endif // CLASSMANAGER_H_INCLUDED
