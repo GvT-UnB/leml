@@ -155,7 +155,7 @@
 	<stdio.h>
 	"macros.h"
 
-1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\macros.h
+1433350433 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\exceptionmanager.h
@@ -173,13 +173,13 @@
 	"lib/exceptionManager.h"
 	"lib/UserViewer.h"
 
-1433301353 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\userviewer.h
+1433377017 c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 
 1433301353 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1433331864 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\userviewer.c
+1433348746 source:c:\users\eliandra\documents\sb\leitorexibidoroficial\trunk\leitorexibidor\userviewer.c
 	<stdio.h>
 	<string.h>
 	<math.h>

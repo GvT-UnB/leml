@@ -21,6 +21,9 @@
 #define ACC_ABSTRACT 0x0400 //Declaração abstrata, CLASSES não podem ser instanciadas e MÉTODOS não possuem definição.
 #define ACC_STRICT 0x0800 //MÉTODO Strictfp: utiliza modo de ponto flutuante FP-strict (não normalizado)
 
+/**< Combinações de máscaras de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
+
+
 /**< Tipos Válidos de Tags (Constants Pool) */
 #define CONSTANT_Class              7
 #define CONSTANT_Fieldref           9

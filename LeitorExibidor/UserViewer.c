@@ -21,7 +21,9 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
         printf("Major Version:\t\t%d [1.%d]\n",class_file->major_version, class_file->major_version%44);
 
     printf("Constant Pool Count:\t%d\n",class_file->constant_pool_count);
-    printf("Access flags:\t\t0x%04x\n",class_file->access_flags);
+    string[0] = '\0';
+    getAccessFlag(class_file->access_flags, &string, 0);
+    printf("Access flags:\t\t0x%04x [%s]\n",class_file->access_flags, string);
     string[0] = '\0';
     selectPointer(class_file, class_file->this_class, &string, 0);
     printf("This class:\t\tcp_info #%d <%s>\n",class_file->this_class, string);
@@ -144,9 +146,13 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
         string[0] = '\0';
         selectPointer(class_file, class_file->fields[i].name_index, &string, 0);
         printf("\n\t[%d] %s", i, string);
-		printf("\tName:\t\t\t\tcp_info #%d\n",class_file->fields[i].name_index);
-        printf("\t\t\tDescriptor:\t\t\tcp_info #%d\n",class_file->fields[i].descriptor_index);
-        printf("\t\t\tAccess flags:\t\t\t0x%04x\n",class_file->fields[i].access_flags);
+		printf("\tName:\t\t\t\tcp_info #%d <%s>\n",class_file->fields[i].name_index, string);
+		string[0] = '\0';
+        selectPointer(class_file, class_file->fields[i].descriptor_index, &string, 0);
+        printf("\t\t\tDescriptor:\t\t\tcp_info #%d <%s>\n",class_file->fields[i].descriptor_index, string);
+        string[0] = '\0';
+        getAccessFlag(class_file->fields[i].access_flags, &string, 0);
+        printf("\t\t\tAccess flags:\t\t\t0x%04x [%s]\n",class_file->fields[i].access_flags, string);
 
         printAttributesInfo(class_file->fields[i].attributes, class_file->fields[i].attributes_count, class_file->constant_pool, class_file);
  	}
@@ -161,7 +167,9 @@ void classPrint(FILE * dot_class, ClassFile * class_file){
 		string[0] = '\0';
         selectPointer(class_file, class_file->methods[i].descriptor_index, &string, 0);
 		printf("\t\tDescriptor:\t\tcp_info #%d <%s>\n",class_file->methods[i].descriptor_index, string);
-		printf("\t\tAccess flags:\t\t0x%04x\n",class_file->methods[i].access_flags);
+		string[0] = '\0';
+        getAccessFlag(class_file->methods[i].access_flags, &string, 1);
+		printf("\t\tAccess flags:\t\t0x%04x [%s]\n",class_file->methods[i].access_flags, string);
 
 		printAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count, class_file->constant_pool, class_file);
 	}
@@ -183,7 +191,9 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 
 		switch(attributes[j].tag){
 			case ATTRIBUTE_ConstantValue:
-				printf("\t\t\tConstant value index:\t\tcp_info #%d\n",attributes[j].ConstantValue.index);
+                string[0] = '\0';
+                selectPointer(class_file, attributes[j].ConstantValue.index, &string, 0);
+				printf("\t\t\tConstant value index:\t\tcp_info #%d <%s>\n",attributes[j].ConstantValue.index, string);
 				break;
 			case ATTRIBUTE_Code:
 			    printf("\t\tBytecode:\n");
@@ -243,6 +253,130 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 
 }
 
+
+void getAccessFlag(int flag, char *string, int tipo){
+    switch (tipo){
+    case (0):
+        if(flag == 0){
+            return;
+        }else if(flag%ACC_STRICT == 0){
+            flag -= ACC_STRICT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "strict ");
+        }else if(flag%ACC_ABSTRACT == 0){
+            flag -= ACC_ABSTRACT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "abstract ");
+        }else if(flag%ACC_INTERFACE == 0){
+            printf("inter\n");
+            flag -= ACC_INTERFACE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "interface ");
+        }else if(flag%ACC_NATIVE == 0){
+            flag -= ACC_NATIVE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "native ");
+        }else if(flag%ACC_TRANSIENT == 0){
+            flag -= ACC_TRANSIENT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "transient ");
+        }else if(flag%ACC_VOLATILE == 0){
+            flag -= ACC_VOLATILE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "volatile ");
+        }else if(flag%33 == 0){ //considera o 0x0021 como public
+            flag -= 33;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "public ");
+        }else if(flag%ACC_SUPER == 0){
+            flag -= ACC_SUPER;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "super ");
+        }else if(flag%ACC_FINAL == 0){
+            flag -= ACC_FINAL;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "final ");
+        }else if(flag%ACC_STATIC == 0){
+            flag -= ACC_STATIC;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "static ");
+        }else if(flag%ACC_PROTECTED == 0){
+            flag -= ACC_PROTECTED;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "protect ");
+        }else if(flag%ACC_PRIVATE == 0){
+            flag -= ACC_PRIVATE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "private ");
+        }else if(flag%ACC_PUBLIC == 0){
+            flag -= ACC_PUBLIC;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "public ");
+        }
+        break;
+    case (1):
+        if(flag == 0){
+            return;
+        }else if(flag%ACC_STRICT == 0){
+            flag -= ACC_STRICT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "strict ");
+        }else if(flag%ACC_ABSTRACT == 0){
+            flag -= ACC_ABSTRACT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "abstract ");
+        }else if(flag%ACC_INTERFACE == 0){
+            printf("inter\n");
+            flag -= ACC_INTERFACE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "interface ");
+        }else if(flag%ACC_NATIVE == 0){
+            flag -= ACC_NATIVE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "native ");
+        }else if(flag%ACC_TRANSIENT == 0){
+            flag -= ACC_TRANSIENT;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "transient ");
+        }else if(flag%ACC_VOLATILE == 0){
+            flag -= ACC_VOLATILE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "volatile ");
+        }else if(flag%33 == 0){ //considera o 0x0021 como public
+            flag -= 33;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "public ");
+        }else if(flag%ACC_SUPER == 0){
+            flag -= ACC_SYNCHRONIZED;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "syncronized ");
+        }else if(flag%ACC_FINAL == 0){
+            flag -= ACC_FINAL;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "final ");
+        }else if(flag%ACC_STATIC == 0){
+            flag -= ACC_STATIC;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "static ");
+        }else if(flag%ACC_PROTECTED == 0){
+            flag -= ACC_PROTECTED;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "protect ");
+        }else if(flag%ACC_PRIVATE == 0){
+            flag -= ACC_PRIVATE;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "private ");
+        }else if(flag%ACC_PUBLIC == 0){
+            flag -= ACC_PUBLIC;
+            getAccessFlag(flag, &(*string), tipo);
+            strcat(string, "public ");
+        }
+        break;
+    //case ('a'):
+      //  break;
+    }
+}
+
 //Função responsável por selecionar a opção dentro do CONSTANT_x quando esta possui mais de dois indices
 void selectPointer(ClassFile * class_file, int indice, char *string, int option){
     u1 *s1;
@@ -279,9 +413,12 @@ void selectPointer(ClassFile * class_file, int indice, char *string, int option)
         else
             catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, &(*string));
         break;
-    case (CONSTANT_Utf8):
+    /*case (CONSTANT_Utf8):
         s1 = class_file->constant_pool[indice].UTF8.bytes;
         strcat(string, s1);
+    break;*/
+    default:
+        catchString(class_file, indice, &(*string));
         break;
     }
 }
@@ -292,6 +429,9 @@ void catchString(ClassFile * class_file, int indice, char *string){
 
     u1 *s1;
     s1 = (u1*)malloc(100*sizeof(u1));
+    int64_t var_64;
+    float var_float;
+    double var_double;
 
     switch (class_file->constant_pool[indice].tag){
     case (CONSTANT_Class):
@@ -318,6 +458,28 @@ void catchString(ClassFile * class_file, int indice, char *string){
         break;
     case (CONSTANT_Utf8):
         s1 = class_file->constant_pool[indice].UTF8.bytes;
+        strcat(string, s1);
+        break;
+    case (CONSTANT_Integer):
+        sprintf(s1, "%d", class_file->constant_pool[indice].Integer.bytes);
+        strcat(string, s1);
+        break;
+    case (CONSTANT_Float):
+        var_float = *((float*)&(class_file->constant_pool[indice].Float.bytes));
+        sprintf(s1, "%d", var_float);
+        strcat(string, s1);
+        break;
+    case (CONSTANT_Long):
+        var_64 = class_file->constant_pool[indice].Long.high_bytes;
+        var_64 = (var_64 << 32) | class_file->constant_pool[indice].Long.low_bytes;
+        sprintf(s1, "%ld", var_64);
+        strcat(string, s1);
+        break;
+    case (CONSTANT_Double):
+        var_64 = class_file->constant_pool[indice].Double.high_bytes;
+        var_64 = (var_64 << 32) | class_file->constant_pool[indice].Double.low_bytes;
+        var_double = *((double*)&var_64);
+        sprintf(s1, "%f", var_double);
         strcat(string, s1);
         break;
     }
