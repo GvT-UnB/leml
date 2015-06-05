@@ -441,4 +441,33 @@ typedef struct{
     attribute_info *attributes;
 }ClassFile;
 
+/*! \struct   LocalVariable
+    \brief structs referente aos items do vetor de variaveis locais do Frame
+*/
+typedef struct{
+    u4 value;
+    //u1 local_variable_type;
+} LocalVariable;
+
+/*! \struct   ClassHandler
+    \brief structs referente aos dados que sao armazenados quando uma classe eh instanciada (Objeto).
+*/
+typedef struct{
+    ClassFile * classRef; ///Referencia para a classe alocada na memoria
+    field_info * fields; ///Espaco de memoria alocado para os fields do Objeto
+}ClassHandler; ///Objeto
+
+typedef struct{
+    u4 * operandStack; ///Pilha de Operandos
+    LocalVariable * localVariableArray; /**< O indice ZERO do array é uma REFERENCIA para o method_info */
+    cp_info * constant_pool;///Referencia para o constant pool da classe
+    method_info *methods; ///Referencia para o method_info do metodo dono do frame
+    ClassHandler *handler; ///Referencia para o Objeto dono do metodo
+    u4 returnPC; ///Endereco do PC atual do metodo que invocou o metodo corrente.
+} Frame;
+
+
+
+/**< Apenas para a main =>  */
+#define NOT_RETURN -1
 

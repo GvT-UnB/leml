@@ -5,6 +5,8 @@
 #include "lib/exceptionManager.h"
 #include "lib/UserViewer.h"
 
+u4 PC;
+
 int main(int argc, char *argv[]){
     FILE * dot_class;
     ClassFile * class_file;
