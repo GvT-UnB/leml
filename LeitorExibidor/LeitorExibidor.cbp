@@ -36,13 +36,13 @@
 		<Unit filename="UserViewer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="UserViewer.h" />
 		<Unit filename="classManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="exceptionManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="lib/UserViewer.h" />
 		<Unit filename="lib/classManager.h" />
 		<Unit filename="lib/exceptionManager.h" />
 		<Unit filename="lib/macros.h" />
