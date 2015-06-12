@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1434079025 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1434132444 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -31,7 +31,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1433382465 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+1434132474 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
 
 1433007657 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
 	"lib/exceptionManager.h"

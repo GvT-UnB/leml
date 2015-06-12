@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="tutorial/ClassicSingleton.class -print" />
+				<Option parameters="tutorial/TiposPrimitivos.class" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-std=c99" />
@@ -45,6 +45,7 @@
 		<Unit filename="lib/UserViewer.h" />
 		<Unit filename="lib/classManager.h" />
 		<Unit filename="lib/exceptionManager.h" />
+		<Unit filename="lib/frameManager.h" />
 		<Unit filename="lib/macros.h" />
 		<Unit filename="lib/uReader.h" />
 		<Unit filename="main.c">

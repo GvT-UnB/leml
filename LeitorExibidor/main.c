@@ -5,8 +5,24 @@
 #include "lib/classManager.h"
 #include "lib/exceptionManager.h"
 #include "lib/UserViewer.h"
+//#include "lib/frameManager.h"
 
+/** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
+ *
+ * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+ * \return void
+ *
+ */
 void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
+
+/** \brief Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode.
+ *
+ * \param argv char* nome do bytecode
+ * \param class_file ClassFile* espaço em memoria onde os daados da classe estão salvos.
+ * \return void
+ *
+ */
+void verifyClassName(char * argv, ClassFile * class_file);
 
 int main(int argc, char *argv[]){
     FILE * dot_class;
@@ -23,9 +39,10 @@ int main(int argc, char *argv[]){
     printf("Bytecode Java copiado com sucesso!\n");
     fclose(dot_class);
 
+    verifyClassName(*argv,class_file);
+
     if(argc > 2 && !strcmp(*++argv,"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
         classPrint(class_file);
-
 
     fillNumberOfByteInstruction(&numberOfByteInstruction);
 
@@ -190,7 +207,49 @@ void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
                 break;
         }
     }
+}
 
+
+void verifyClassName(char * argv, ClassFile * class_file){
+    int i=0;
+    int classNameLength = strlen(argv);
+    char hasSlash;
+    char classRealName[100];
+    char * className;
+    char * classFullName = (char *)malloc(classNameLength * sizeof(char *));
+    classFullName = argv;
+
+    ///Retira o caminho até o arquivo
+    while(hasSlash = strchr(classFullName,'/')){
+        while(classFullName[i] != '/'){
+            i++;
+        }
+        className = (char *)malloc((classNameLength-i) * sizeof(char *));
+        i++;
+        for(int j=0;j<=(classNameLength-i);j++){
+            className[j] = classFullName[i+j];
+        }
+        strcpy(classFullName,className);
+        classNameLength = strlen(classFullName);
+    }
+
+    ///Retira o .class do nome do arquivo
+    i=0;
+    while(classFullName[i] != '.'){
+        i++;
+    }
+    free(className);
+    className = (char *)malloc((i+1) * sizeof(char *));
+    for(int j=0;j<i;j++){
+        className[j] = classFullName[j];
+    }
+    className[i] = '\0';
+
+    ///Verifica se o nomo do arquivo é o mesmo nome da classe
+    selectPointer(class_file, class_file->this_class, classRealName, 0);
+    if(strcmp(className,classRealName)){
+        throwException(CLASS_DIFFER_FILE_NAME,CLASS_DIFFER_FILE_NAME_MSG);
+    }
 }
 
 
