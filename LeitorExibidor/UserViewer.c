@@ -65,25 +65,25 @@ void classPrint(ClassFile * class_file){
 			    string[0] = '\0';
 			    selectPointer(class_file, i, &string, 0);
 				printf("\n[%02d]CONSTANT_Methodref:", i);
-				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.class_index);
+				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.class_index, string);
 				string[0] = '\0';
 			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.name_and_type_index);
+				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.name_and_type_index, string);
 				break;
 			case CONSTANT_InterfaceMethodref:
 				printf("\n[%02d]CONSTANT_InterfaceMethodref:",i);
 				string[0] = '\0';
 			    selectPointer(class_file, i, &string, 0);
-				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.class_index);
+				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.class_index, string);
 				string[0] = '\0';
 			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.name_and_type_index);
+				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.name_and_type_index, string);
 				break;
 			case CONSTANT_String:
 				printf("\n[%02d]CONSTANT_String",i);
 				string[0] = '\0';
 			    selectPointer(class_file, i, &string, 0);
-                printf("\t\tString:\t\tcp_info #%d <%s>\n",class_file->constant_pool[i].String.string_index);
+                printf("\t\tString:\t\tcp_info #%d <%s>\n",class_file->constant_pool[i].String.string_index, string);
 				break;
 			case CONSTANT_Integer:
 				printf("\n[%02d]CONSTANT_Integer", i);
@@ -186,7 +186,7 @@ void classPrint(ClassFile * class_file){
 }
 
 void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_pool, ClassFile *class_file){
-	char *indice = NULL;
+	char *indice;
 	char string[100];
 
 	for(int j = 0; j < attributes_count; j++){
@@ -211,7 +211,7 @@ void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_in
 				printf("\t----------------------------------------------------------------------\n");
 				printf("\tNr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose\n");
 				for(int k =0; k < attributes[j].Code.exception_table_length; k++){
-                    printf("\t\t%d\t|\t%d\t|\t%d\t|\t%d\n", k, attributes[j].Code.ExceptionTable[k].start_pc, \
+                    printf("\t\t%d\t|\t%d\t|\t%d\t|\t%d\t|\t%d\n", k, attributes[j].Code.ExceptionTable[k].start_pc, \
                            attributes[j].Code.ExceptionTable[k].end_pc, attributes[j].Code.ExceptionTable[k].handler_pc, \
                            attributes[j].Code.ExceptionTable[k].catch_type);
                 }
@@ -268,56 +268,56 @@ void getAccessFlag(int flag, char *string, int tipo){
             return;
         }else if(flag%ACC_STRICT == 0){
             flag -= ACC_STRICT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "strict ");
         }else if(flag%ACC_ABSTRACT == 0){
             flag -= ACC_ABSTRACT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "abstract ");
         }else if(flag%ACC_INTERFACE == 0){
             printf("inter\n");
             flag -= ACC_INTERFACE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "interface ");
         }else if(flag%ACC_NATIVE == 0){
             flag -= ACC_NATIVE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "native ");
         }else if(flag%ACC_TRANSIENT == 0){
             flag -= ACC_TRANSIENT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "transient ");
         }else if(flag%ACC_VOLATILE == 0){
             flag -= ACC_VOLATILE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "volatile ");
         }else if(flag%33 == 0){ //considera o 0x0021 como public
             flag -= 33;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "public ");
         }else if(flag%ACC_SUPER == 0){
             flag -= ACC_SUPER;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "super ");
         }else if(flag%ACC_FINAL == 0){
             flag -= ACC_FINAL;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "final ");
         }else if(flag%ACC_STATIC == 0){
             flag -= ACC_STATIC;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "static ");
         }else if(flag%ACC_PROTECTED == 0){
             flag -= ACC_PROTECTED;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "protect ");
         }else if(flag%ACC_PRIVATE == 0){
             flag -= ACC_PRIVATE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "private ");
         }else if(flag%ACC_PUBLIC == 0){
             flag -= ACC_PUBLIC;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "public ");
         }
         break;
@@ -326,56 +326,56 @@ void getAccessFlag(int flag, char *string, int tipo){
             return;
         }else if(flag%ACC_STRICT == 0){
             flag -= ACC_STRICT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "strict ");
         }else if(flag%ACC_ABSTRACT == 0){
             flag -= ACC_ABSTRACT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "abstract ");
         }else if(flag%ACC_INTERFACE == 0){
             printf("inter\n");
             flag -= ACC_INTERFACE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "interface ");
         }else if(flag%ACC_NATIVE == 0){
             flag -= ACC_NATIVE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "native ");
         }else if(flag%ACC_TRANSIENT == 0){
             flag -= ACC_TRANSIENT;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "transient ");
         }else if(flag%ACC_VOLATILE == 0){
             flag -= ACC_VOLATILE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "volatile ");
         }else if(flag%33 == 0){ //considera o 0x0021 como public
             flag -= 33;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "public ");
         }else if(flag%ACC_SUPER == 0){
             flag -= ACC_SYNCHRONIZED;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "syncronized ");
         }else if(flag%ACC_FINAL == 0){
             flag -= ACC_FINAL;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "final ");
         }else if(flag%ACC_STATIC == 0){
             flag -= ACC_STATIC;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "static ");
         }else if(flag%ACC_PROTECTED == 0){
             flag -= ACC_PROTECTED;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "protect ");
         }else if(flag%ACC_PRIVATE == 0){
             flag -= ACC_PRIVATE;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "private ");
         }else if(flag%ACC_PUBLIC == 0){
             flag -= ACC_PUBLIC;
-            getAccessFlag(flag, &(*string), tipo);
+            getAccessFlag(flag, string, tipo);
             strcat(string, "public ");
         }
         break;
@@ -386,46 +386,40 @@ void getAccessFlag(int flag, char *string, int tipo){
 
 //Função responsável por selecionar a opção dentro do CONSTANT_x quando esta possui mais de dois indices
 void selectPointer(ClassFile * class_file, int indice, char *string, int option){
-    u1 *s1;
-    s1 = (u1*)malloc(100*sizeof(u1));
 
     switch (class_file->constant_pool[indice].tag){
     case (CONSTANT_Class):
-        catchString(class_file, class_file->constant_pool[indice].Class.name_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].Class.name_index, string);
         break;
     case (CONSTANT_String):
-        catchString(class_file, class_file->constant_pool[indice].String.string_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].String.string_index, string);
         break;
     case (CONSTANT_Methodref):
         if(option == 0)
-            catchString(class_file, class_file->constant_pool[indice].Methodref.class_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].Methodref.class_index, string);
         else
-            catchString(class_file, class_file->constant_pool[indice].Methodref.name_and_type_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].Methodref.name_and_type_index, string);
         break;
     case (CONSTANT_Fieldref):
         if(option == 0)
-            catchString(class_file, class_file->constant_pool[indice].Fieldref.class_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].Fieldref.class_index, string);
         else
-            catchString(class_file, class_file->constant_pool[indice].Fieldref.name_and_type_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].Fieldref.name_and_type_index, string);
         break;
     case(CONSTANT_NameAndType):
         if(option == 0)
-            catchString(class_file, class_file->constant_pool[indice].NameAndType.name_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].NameAndType.name_index, string);
         else
-            catchString(class_file, class_file->constant_pool[indice].NameAndType.descriptor_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].NameAndType.descriptor_index, string);
         break;
     case (CONSTANT_InterfaceMethodref):
         if(option == 0)
-            catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, string);
         else
-            catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, &(*string));
+            catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, string);
         break;
-    /*case (CONSTANT_Utf8):
-        s1 = class_file->constant_pool[indice].UTF8.bytes;
-        strcat(string, s1);
-    break;*/
     default:
-        catchString(class_file, indice, &(*string));
+        catchString(class_file, indice, string);
         break;
     }
 }
@@ -442,26 +436,26 @@ void catchString(ClassFile * class_file, int indice, char *string){
 
     switch (class_file->constant_pool[indice].tag){
     case (CONSTANT_Class):
-        catchString(class_file, class_file->constant_pool[indice].Class.name_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].Class.name_index, string);
         break;
     case (CONSTANT_String):
-        catchString(class_file, class_file->constant_pool[indice].String.string_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].String.string_index, string);
         break;
     case (CONSTANT_Methodref):
-        catchString(class_file, class_file->constant_pool[indice].Methodref.class_index, &(*string));
-        catchString(class_file, class_file->constant_pool[indice].Methodref.name_and_type_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].Methodref.class_index, string);
+        catchString(class_file, class_file->constant_pool[indice].Methodref.name_and_type_index, string);
         break;
     case (CONSTANT_Fieldref):
-        catchString(class_file, class_file->constant_pool[indice].Fieldref.class_index, &(*string));
-        catchString(class_file, class_file->constant_pool[indice].Fieldref.name_and_type_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].Fieldref.class_index, string);
+        catchString(class_file, class_file->constant_pool[indice].Fieldref.name_and_type_index, string);
         break;
     case(CONSTANT_NameAndType):
-        catchString(class_file, class_file->constant_pool[indice].NameAndType.name_index, &(*string));
-        catchString(class_file, class_file->constant_pool[indice].NameAndType.descriptor_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].NameAndType.name_index, string);
+        catchString(class_file, class_file->constant_pool[indice].NameAndType.descriptor_index, string);
         break;
     case (CONSTANT_InterfaceMethodref):
-        catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, &(*string));
-        catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, &(*string));
+        catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, string);
+        catchString(class_file, class_file->constant_pool[indice].InterfaceMethodref.class_index, string);
         break;
     case (CONSTANT_Utf8):
         s1 = class_file->constant_pool[indice].UTF8.bytes;
@@ -473,7 +467,7 @@ void catchString(ClassFile * class_file, int indice, char *string){
         break;
     case (CONSTANT_Float):
         var_float = *((float*)&(class_file->constant_pool[indice].Float.bytes));
-        sprintf(s1, "%d", var_float);
+        sprintf(s1, "%f", var_float);
         strcat(string, s1);
         break;
     case (CONSTANT_Long):
@@ -1189,7 +1183,7 @@ void printOperandStack(structOperandStack * operandStack){
     printf("Operand Stack:\n");
     printf("---------------------------------------------------------------------------------------\n");
     while(operandStack->next != NULL){
-        printf("%d->", operandStack->value);
+        printf("%d->", operandStackTop);
         operandStackTop = operandStack->next;
     }
     printf("\n---------------------------------------------------------------------------------------\n");
@@ -1211,7 +1205,7 @@ void printHandler(ClassHandler *handler){
 void printFields(u2 fields_count, field_info *fields){
     printf("Fields Vector:\n");
     printf("---------------------------------------------------------------------------------------\n");
-    for(int i; i<fields_count; i++){
+    for(int i=0; i<fields_count; i++){
         printf("Name:\t\tcp_info #%d\n", fields->name_index);
         printf("Descriptor:\tcp_info #%d\n", fields->descriptor_index);
         printf("Access Flags:\t\t0x%04x\n", fields->access_flags);

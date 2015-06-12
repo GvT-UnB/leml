@@ -222,14 +222,14 @@
 1434137233 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
-1434117922 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\exceptionmanager.h
+1434138346 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\exceptionmanager.h
 
 1434117922 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\exceptionmanager.c
 	"lib/exceptionManager.h"
 	<stdio.h>
 	<stdarg.h>
 
-1434117925 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\main.c
+1434138346 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -243,4 +243,11 @@
 
 1434117926 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
+
+1434150980 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/UserViewer.h"
 
