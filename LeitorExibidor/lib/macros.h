@@ -452,6 +452,11 @@ typedef struct{
     //u1 local_variable_type;
 } LocalVariable;
 
+typedef struct{
+    u4 value;   ///Armazena o valor do operando
+    struct structOperandStack *next; /// Ponteiro para o próximo no da pilha
+}structOperandStack;
+
 /*! \struct   ClassHandler
     \brief structs referente aos dados que sao armazenados quando uma classe eh instanciada (Objeto).
 */
@@ -461,7 +466,7 @@ typedef struct{
 }ClassHandler; ///Objeto
 
 typedef struct{
-    u4 * operandStack; ///Pilha de Operandos
+    structOperandStack * operandStack; ///Pilha de Operandos
     LocalVariable * localVariableArray; /**< O indice ZERO do array é uma REFERENCIA para o method_info */
     cp_info * constant_pool;///Referencia para o constant pool da classe
     method_info *methods; ///Referencia para o method_info do metodo dono do frame

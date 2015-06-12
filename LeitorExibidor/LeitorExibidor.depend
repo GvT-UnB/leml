@@ -207,3 +207,40 @@
 	<stdint.h>
 	"lib/UserViewer.h"
 
+1434117893 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\classmanager.c
+	<stdio.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1434117922 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1434117924 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1434137233 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1434117922 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1434117922 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1434117925 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+	"lib/UserViewer.h"
+
+1434117922 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1434117926 source:c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+

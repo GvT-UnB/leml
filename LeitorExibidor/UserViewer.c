@@ -6,6 +6,13 @@
 
 #include "lib/UserViewer.h"
 
+///Funcoes de Debug (Serao apagadas depois de cumprirem sua funcao)
+void printFrame(Frame *frame);
+void printHandler(ClassHandler *handler);
+void printFields(u2 fields_count, field_info *fields);
+void printLocalVariableArray(u2 attributes_count, LocalVariable *localVariableArray);
+void printOperandStack(structOperandStack * operandStack);
+
 void classPrint(ClassFile * class_file){
     char string[100];
     u4 var_u4;
@@ -1163,3 +1170,55 @@ void printCode(u1 *code, u4 code_length, cp_info * constant_pool){
         }
     }
 }
+
+///Debug (sem testar, não tenho certeza do funcionamento de nada)
+///-----------------------------------------------------------------------------------------------------------------------------
+void printFrame(Frame *frame){
+    printOperandStack(frame->operandStack); /// Funcao para imprimir a pilha de operandos - envia a propria pilha
+    printLocalVariableArray(frame->methods->attributes_count, frame->localVariableArray); /// Funcao que imprime o vetor de variaveis locais
+    printf("Referencia Constant_pool:\t%d", frame->constant_pool);
+    printf("Referencia Methods:\t\t%d", frame->methods);
+    printf("Referencia Handler:\t\t%d", frame->handler);
+    printf("Return PC:\t\t%d\n", frame->returnPC);
+}
+
+///Muito provavelmente não funciona. Tem que testar ainda
+void printOperandStack(structOperandStack * operandStack){
+    structOperandStack *operandStackTop;
+    operandStackTop = operandStack;
+    printf("Operand Stack:\n");
+    printf("---------------------------------------------------------------------------------------\n");
+    while(operandStack->next != NULL){
+        printf("%d->", operandStack->value);
+        operandStackTop = operandStack->next;
+    }
+    printf("\n---------------------------------------------------------------------------------------\n");
+}
+
+void printLocalVariableArray(u2 attributes_count, LocalVariable *localVariableArray){
+    printf("Vetor de variáveis locais:\n");
+    printf("---------------------------------------------------------------------------------------\n");
+    for(int i=0; i<attributes_count; i++){
+        printf("%d ", localVariableArray[i].value);
+    }
+    printf("\n---------------------------------------------------------------------------------------\n");
+}
+void printHandler(ClassHandler *handler){
+    printf("Class Reference:\t%d", handler->classRef);
+    printFields(handler->classRef->fields_count, handler->fields);
+}
+
+void printFields(u2 fields_count, field_info *fields){
+    printf("Fields Vector:\n");
+    printf("---------------------------------------------------------------------------------------\n");
+    for(int i; i<fields_count; i++){
+        printf("Name:\t\tcp_info #%d\n", fields->name_index);
+        printf("Descriptor:\tcp_info #%d\n", fields->descriptor_index);
+        printf("Access Flags:\t\t0x%04x\n", fields->access_flags);
+        printf("Attribute count:\t\t%d\n\n", fields->attributes_count);
+        ///Não estou imprimindo os atributos das fields
+    }
+    printf("\n---------------------------------------------------------------------------------------\n");
+}
+///-----------------------------------------------------------------------------------------------------------------------------
+///
