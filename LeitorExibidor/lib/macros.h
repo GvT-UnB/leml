@@ -6,6 +6,9 @@
 /*! Tamanho de um byte */
 #define BYTE_SIZE 8
 
+/*! Tamanho máximo de instruções que a JVM possui */
+#define MAX_INSTRUCTIONS 250
+
 /*! Máscara de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos */
 #define ACC_PUBLIC 0x0001 //Declaração pública para CLASSES, METODOS E ATRIBUTOS
 #define ACC_PRIVATE 0x0002 //Declaração privada para METODOS E ATRIBUTOS

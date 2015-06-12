@@ -6,7 +6,7 @@
 
 #include "lib/UserViewer.h"
 
-void classPrint(FILE * dot_class, ClassFile * class_file){
+void classPrint(ClassFile * class_file){
     char string[100];
     u4 var_u4;
     float var_float;

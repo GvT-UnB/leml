@@ -15,13 +15,14 @@
  *
  */
 EXTERN void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_poo, ClassFile *class_file);
+
 /** \brief Principal funcao responsavel por imprimir o bytecode.
  *
- * \param fp FILE* ponteiro para o arquivo bytecode e class_file estrutura principal.
- * \return void
+ * \param class_file ClassFile* estrutura principal.
+ * \return EXTERN void
  *
  */
-EXTERN void classPrint(FILE * dot_class, ClassFile * class_file);
+EXTERN void classPrint(ClassFile * class_file);
 /** \brief Principal funcao responsavel por pegar a string referenciada pelos ponteiros presentes tanto no constant_pool, methods,\
             attributes e fields.
  *

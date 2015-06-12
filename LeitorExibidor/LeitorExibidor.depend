@@ -1,13 +1,14 @@
 # depslib dependency file v1.0
-1433287000 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1434079025 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
+	<string.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 	"lib/UserViewer.h"
 
-1433382053 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1434075555 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1433382083 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
@@ -17,7 +18,7 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1433204120 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1433382671 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
@@ -196,6 +197,13 @@
 1433381557 c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 
-1433382734 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\userviewer.h
+1434079311 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
+
+1434079311 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/UserViewer.h"
 
