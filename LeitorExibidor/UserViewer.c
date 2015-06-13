@@ -1206,10 +1206,10 @@ void printFields(u2 fields_count, field_info *fields){
     printf("Fields Vector:\n");
     printf("---------------------------------------------------------------------------------------\n");
     for(int i=0; i<fields_count; i++){
-        printf("Name:\t\tcp_info #%d\n", fields->name_index);
-        printf("Descriptor:\tcp_info #%d\n", fields->descriptor_index);
-        printf("Access Flags:\t\t0x%04x\n", fields->access_flags);
-        printf("Attribute count:\t\t%d\n\n", fields->attributes_count);
+        printf("Name:\t\tcp_info #%d\n", fields[i].name_index);
+        printf("Descriptor:\tcp_info #%d\n", fields[i].descriptor_index);
+        printf("Access Flags:\t\t0x%04x\n", fields[i].access_flags);
+        printf("Attribute count:\t\t%d\n\n", fields[i].attributes_count);
         ///Não estou imprimindo os atributos das fields
     }
     printf("\n---------------------------------------------------------------------------------------\n");
