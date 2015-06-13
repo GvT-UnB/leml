@@ -42,6 +42,9 @@
 		<Unit filename="exceptionManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="frameManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="lib/UserViewer.h" />
 		<Unit filename="lib/classManager.h" />
 		<Unit filename="lib/exceptionManager.h" />

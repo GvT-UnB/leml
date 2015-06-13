@@ -1,3 +1,11 @@
+#ifndef MACROS_H_INCLUDED
+#define MACROS_H_INCLUDED
+#ifdef MACROS_SERV
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
 #include <stdint.h>
 
 /*! Assinatura do arquivo .class */
@@ -255,7 +263,6 @@
 #define OPCODE_jsr_w  201
 #define OPCODE_breakpoint  202
 
-
 /*! \typedef  u1
     \brief 1 byte
 */
@@ -268,6 +275,7 @@ typedef unsigned short u2; //2 bytes
     \brief 4 bytes
 */
 typedef int32_t u4; //4 bytes
+
 
 /*! \union cp_info
     \brief O famoso Constante Pool!
@@ -479,3 +487,4 @@ typedef struct{
 /**< Apenas para a main =>  */
 #define NOT_RETURN -1
 
+#endif // MACROS_H_INCLUDED
