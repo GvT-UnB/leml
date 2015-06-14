@@ -7,6 +7,11 @@
 #include "lib/UserViewer.h"
 #include "lib/frameManager.h"
 
+typedef struct StructFrameStack{
+    Frame frame;
+    struct StructFrameStack *next;
+}StructFrameStack;
+
 /** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
  *
  * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
@@ -23,14 +28,23 @@ void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
  *
  */
 void verifyClassName(char * argv, ClassFile * class_file);
-
+///Funcoes para o frame, ainda precisam de ajustes
+///-----------------------------------------------------------------------------------------------------------------------
+void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop);
+void loadClassFrames(StructFrameStack **frameStackTop);
+void pushFrameStack(StructFrameStack **frameStackTop, Frame frame);
+Frame popFrameStack(StructFrameStack **frameStackTop);
+///-----------------------------------------------------------------------------------------------------------------------
 int main(int argc, char *argv[]){
     FILE * dot_class;
     ClassFile * class_file;
     ClassHandler * handler;
+    StructFrameStack *frameStackTop;
     //char *program_full_name = argv[0]; /* nome do programa para caso de erro */
     u4 PC;
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+
+    frameStackTop = NULL;
 
     if((dot_class = fopen(*++argv,"rb")) == NULL){
         throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG);
@@ -49,10 +63,51 @@ int main(int argc, char *argv[]){
 
     newObject(handler,class_file); ///Instancia um novo Objeto da classe class_file
 
+    ///Funcoes para a manipulacao e montagem da pilha de frames e CRIACAO DE CADA FRAME (ainda nao feito)
+    createClassFrames(class_file, &frameStackTop);
+    loadClassFrames(&frameStackTop);
 
     return 0;
 }
+///Area para manipulacao da pilha de frames - AINDA TEM QUE AJUSTAR
+///-----------------------------------------------------------------------------------------------------------------------
+void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop){
+    Frame frame;
+    ///Loop para criar a quantidade de frames do .class e inserir na pilha de frames
+    for(int i=0; i < class_file->methods_count; i++){
+        ///Funcao para criar o frame - FAZER
+        ///A cada frame criado, usa-se a função pushFrameStack para colocá-lo na pilha
+        pushFrameStack(frameStackTop, frame);
+    }
+}
 
+void loadClassFrames(StructFrameStack **frameStackTop){
+    Frame currentFrame; ///Frame corrente (frame em execucao)
+    while((*frameStackTop)->next != NULL){
+        ///Para utilizar um frame da pilha, primeiro se tira ele da pilha
+        currentFrame = popFrameStack(frameStackTop);
+        ///Chama a funcao para operar o frame - FAZER
+    }
+}
+
+void pushFrameStack(StructFrameStack **frameStackTop, Frame frame){
+    StructFrameStack *nodeFrame;
+    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+    nodeFrame->next = *frameStackTop;
+    nodeFrame->frame = frame;
+    *frameStackTop = nodeFrame;
+}
+
+Frame popFrameStack(StructFrameStack **frameStackTop){
+    StructFrameStack *aux;
+    Frame currentframe;
+    aux = *frameStackTop;
+    *frameStackTop = (*frameStackTop)->next;
+    currentframe = aux->frame;
+    free(aux);
+    return currentframe;
+}
+///-----------------------------------------------------------------------------------------------------------------------
 void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
     for(int i = 0; i < MAX_INSTRUCTIONS; i++){
         switch(i){
