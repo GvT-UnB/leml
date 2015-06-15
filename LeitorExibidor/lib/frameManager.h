@@ -12,7 +12,7 @@
  *
  * \param PC u4* Referencia para PC
  * \param cur_frame Frame*  Referencia para o frame corrente.
- * \return EXTERN u1 O codigo da instrrucao apontada por PC corrente.
+ * \return EXTERN u1 O codigo da instrucao apontada por PC corrente.
  *
  */
 EXTERN u1 getOpcode(u4 * PC, Frame * cur_frame);
@@ -67,11 +67,21 @@ EXTERN void copyLocalVariableTable(Local_variable_table * local_variable_table_d
  */
 EXTERN void newObject(ClassHandler * handler, ClassFile * class_file);
 
+/** \brief Empilha um operando na pilha de operandos
+ *
+ * \param  operandStackTop structOperandStack** Ponteiro para o topo da pilha
+ * \param  operand u4 Operando a ser colocado na pilha
+ * \return void
+ *
+ */
+EXTERN void pushOperandStack(structOperandStack **operandStackTop, u4 operand);
 
-
-
-
-
-
+/** \brief Retira um operando da pilha e retorna o operando retirado
+ *
+ * \param operandStackTop structOperandStack** Ponteiro para o topo da pilha
+ * \return u4 retorna o operando retirado da pilha
+ *
+ */
+EXTERN u4 popOperandStack(structOperandStack **operandStackTop);
 
 #endif // FRAMEMANAGER_H_INCLUDED
