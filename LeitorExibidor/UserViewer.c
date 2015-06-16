@@ -1198,7 +1198,7 @@ void printLocalVariableArray(u2 attributes_count, LocalVariable *localVariableAr
     printf("\n---------------------------------------------------------------------------------------\n");
 }
 void printHandler(ClassHandler *handler){
-    printf("Class Reference:\t%d", handler->classRef);
+    printf("Class Reference:\t%d\n", handler->classRef);
     printFields(handler->classRef->fields_count, handler->fields);
 }
 

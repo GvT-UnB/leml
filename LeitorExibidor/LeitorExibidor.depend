@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1434172012 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1434419622 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -7,6 +7,7 @@
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 	"lib/UserViewer.h"
+	"lib/frameManager.h"
 
 1434174796 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
@@ -200,7 +201,7 @@
 1434079311 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 
-1434158342 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\userviewer.c
+1434397877 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\userviewer.c
 	<stdio.h>
 	<string.h>
 	<math.h>
@@ -252,12 +253,12 @@
 	<stdint.h>
 	"lib/UserViewer.h"
 
-1434173900 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
+1434413919 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
 
-1434174383 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
+1434413919 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
 1434174512 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\utype.h

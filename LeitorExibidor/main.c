@@ -35,13 +35,26 @@ void loadClassFrames(StructFrameStack **frameStackTop);
 void pushFrameStack(StructFrameStack **frameStackTop, Frame frame);
 Frame popFrameStack(StructFrameStack **frameStackTop);
 ///-----------------------------------------------------------------------------------------------------------------------
+
+
+/** \brief Instancia um novo objeto da classe class_file.
+ *
+ * \param handler ClassHandler* Objeto que será criado.
+ * \param numberOfClasses u4* Quantidade de classes instanciadas.
+ * \param class_file ClassFile* Classe que será instanciada.
+ * \return void
+ *
+ */
+void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file);
+
 int main(int argc, char *argv[]){
     FILE * dot_class;
     ClassFile * class_file;
-    ClassHandler * handler;
+    ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     StructFrameStack *frameStackTop;
     //char *program_full_name = argv[0]; /* nome do programa para caso de erro */
     u4 PC;
+    u4 numberOfClasses = 0;
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
 
     frameStackTop = NULL;
@@ -61,7 +74,9 @@ int main(int argc, char *argv[]){
 
     fillNumberOfByteInstruction(&numberOfByteInstruction);
 
-    newObject(handler,class_file); ///Instancia um novo Objeto da classe class_file
+    ///Instancia um novo Objeto.
+    createNewObject(handler,&numberOfClasses,class_file);
+    //printHandler(handler);
 
     ///Funcoes para a manipulacao e montagem da pilha de frames e CRIACAO DE CADA FRAME (ainda nao feito)
     createClassFrames(class_file, &frameStackTop);
@@ -311,3 +326,10 @@ void verifyClassName(char * argv, ClassFile * class_file){
     }
 }
 
+void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){
+    u4 aux = *numberOfClasses +1;
+    handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));
+    newObject(handler+(*numberOfClasses),class_file); ///Instancia um novo Objeto da classe class_file
+    //printHandler(handler+(*numberOfClasses));
+    *numberOfClasses = *numberOfClasses + 1; ///Atualiza a quantidade de classes instanciadas.
+}

@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 void newObject(ClassHandler * handler, ClassFile * class_file){
-    handler = (ClassHandler *)malloc(sizeof(ClassHandler));
+    //handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     handler->classRef = class_file;
+
     handler->fields = (field_info *)malloc(handler->classRef->fields_count * sizeof(field_info));
 
     for(int i = 0; i < handler->classRef->fields_count; i++){
@@ -17,11 +18,11 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
         handler->fields[i].attributes = (attribute_info *)malloc(handler->fields[i].attributes_count * sizeof(attribute_info));
         copyAttributesInfo(handler->fields[i].attributes,handler->fields[i].attributes_count, handler->classRef->fields[i].attributes, handler->classRef->constant_pool); ///Chama a função para copiar as informações dos atributos
         //printAttributesInfo(handler->fields[i].attributes, handler->fields[i].attributes_count, handler->classRef->constant_pool, handler->classRef);
-    }
+    }/*
     printFields(handler->classRef->fields_count, handler->fields);
     for(int i = 0; i < handler->classRef->fields_count; i++){
         printAttributesInfo(handler->fields[i].attributes, handler->fields[i].attributes_count, handler->classRef->constant_pool, handler->classRef);
-    }
+    }*/
 }
 
 void copyAttributesInfo(attribute_info * attributes, u2 attributes_count, attribute_info * attributesSrc, cp_info * constant_pool){
