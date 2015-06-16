@@ -67,6 +67,17 @@ EXTERN void copyLocalVariableTable(Local_variable_table * local_variable_table_d
  */
 EXTERN void newObject(ClassHandler * handler, ClassFile * class_file);
 
+/** \brief Instancia um novo Frame de um metodo da classe class_file e logo em seguida o insere no topo da pilha de Frames.
+ *
+ * \param newFrame Frame* Referencia para o frame que sera criado.
+ * \param handler ClassHandler* Referencia para o Objeto dono do metodo.
+ * \param method_index u4 Indice que aponta para o metodo dono do frame.
+ * \param curPC u4 Valor do PC corrente.
+ * \return EXTERN void
+ *
+ */
+EXTERN void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, u4 curPC);
+
 /** \brief Empilha um operando na pilha de operandos
  *
  * \param  operandStackTop structOperandStack** Ponteiro para o topo da pilha

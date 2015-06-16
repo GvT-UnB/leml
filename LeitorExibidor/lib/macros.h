@@ -477,12 +477,15 @@ typedef struct{
     structOperandStack * operandStack; ///Pilha de Operandos
     LocalVariable * localVariableArray; /**< O indice ZERO do array é uma REFERENCIA para o method_info */
     cp_info * constant_pool;///Referencia para o constant pool da classe
-    method_info *methods; ///Referencia para o method_info do metodo dono do frame
+    //method_info *methods; ///Referencia para o method_info do metodo dono do frame
     ClassHandler *handler; ///Referencia para o Objeto dono do metodo
     u4 returnPC; ///Endereco do PC atual do metodo que invocou o metodo corrente.
 } Frame;
 
-
+typedef struct StructFrameStack{
+    Frame * frame;
+    struct StructFrameStack *next;
+}StructFrameStack;
 
 /**< Apenas para a main =>  */
 #define NOT_RETURN -1

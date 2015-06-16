@@ -7,10 +7,11 @@
 #include "lib/UserViewer.h"
 #include "lib/frameManager.h"
 
-typedef struct StructFrameStack{
-    Frame frame;
-    struct StructFrameStack *next;
-}StructFrameStack;
+///Funcoes para o frame, ainda precisam de ajustes
+///-----------------------------------------------------------------------------------------------------------------------
+//void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop);
+void loadClassFrames(StructFrameStack **frameStackTop);
+///-----------------------------------------------------------------------------------------------------------------------
 
 /** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
  *
@@ -28,14 +29,6 @@ void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
  *
  */
 void verifyClassName(char * argv, ClassFile * class_file);
-///Funcoes para o frame, ainda precisam de ajustes
-///-----------------------------------------------------------------------------------------------------------------------
-void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop);
-void loadClassFrames(StructFrameStack **frameStackTop);
-void pushFrameStack(StructFrameStack **frameStackTop, Frame frame);
-Frame popFrameStack(StructFrameStack **frameStackTop);
-///-----------------------------------------------------------------------------------------------------------------------
-
 
 /** \brief Instancia um novo objeto da classe class_file.
  *
@@ -47,17 +40,42 @@ Frame popFrameStack(StructFrameStack **frameStackTop);
  */
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file);
 
+/** \brief Instancia um novo Frame de um metodo da classe class_file e logo em seguida o insere no topo da pilha de Frames.
+ *
+ * \param handler ClassHandler* Objeto dono do metodo.
+ * \param method_index u4 Indice do metodo no methods do class_file.
+ * \param curPC u4 PC Corrente.
+ * \param frameStackTop StructFrameStack* Referencia para o TOPO da pilha de Frames.
+ * \return void
+ *
+ */
+void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop);
+
+/** \brief Coloca o frame no topo da pilha de frames.
+ *
+ * \param frameStackTop StructFrameStack* Referencia para o corrente topo da pilha de frames.
+ * \param frame Frame* referencia para o frame que sea inserido no topo da pilha de frames.
+ * \return void
+ *
+ */
+void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame);
+
+/** \brief Retira um frame do topo da pilha de frames.
+ *
+ * \param frameStackTop StructFrameStack* Referencia para o TOPO da pilha de frames.
+ * \return Frame* Referencia para o frame retirado do topo da pilha.
+ *
+ */
+Frame * popFrameStack(StructFrameStack *frameStackTop);
+
 int main(int argc, char *argv[]){
     FILE * dot_class;
     ClassFile * class_file;
     ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
-    StructFrameStack *frameStackTop;
-    //char *program_full_name = argv[0]; /* nome do programa para caso de erro */
-    u4 PC;
+    StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
+    u4 curPC = 0;
     u4 numberOfClasses = 0;
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
-
-    frameStackTop = NULL;
 
     if((dot_class = fopen(*++argv,"rb")) == NULL){
         throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG);
@@ -78,49 +96,35 @@ int main(int argc, char *argv[]){
     createNewObject(handler,&numberOfClasses,class_file);
     //printHandler(handler);
 
+    ///ATENÇÃO!!!! Estou enviando o valor fixo de 1 pois no MOMENTO vamos tratar apenas o metodo de indice 1 (geralmente o metodo main)
+    createNewFrame(handler,1,curPC,frameStackTop); ///Cria um novo Frame e o coloca na pilha
+    Frame * newFrame = (Frame *)malloc(sizeof(Frame));
+    newFrame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+    printf("TESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("Method Info: \n");
+        printf("---------------------------------------------------------------------------------------\n");
+        printMethodInfo(newFrame->localVariableArray[0], 1, newFrame->handler->classRef);///Apenas para debugar!
+        printf("PC de retorno: %d\n",newFrame->returnPC);
+        printf("Constant Pool: \n");
+        printf("---------------------------------------------------------------------------------------\n");
+        printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
+
     ///Funcoes para a manipulacao e montagem da pilha de frames e CRIACAO DE CADA FRAME (ainda nao feito)
-    createClassFrames(class_file, &frameStackTop);
-    loadClassFrames(&frameStackTop);
+//    createClassFrames(class_file, &frameStackTop);
+    //loadClassFrames(&frameStackTop);
 
     return 0;
 }
 ///Area para manipulacao da pilha de frames - AINDA TEM QUE AJUSTAR
 ///-----------------------------------------------------------------------------------------------------------------------
-void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop){
-    Frame frame;
-    ///Loop para criar a quantidade de frames do .class e inserir na pilha de frames
-    for(int i=0; i < class_file->methods_count; i++){
-        ///Funcao para criar o frame - FAZER
-        ///A cada frame criado, usa-se a função pushFrameStack para colocá-lo na pilha
-        pushFrameStack(frameStackTop, frame);
-    }
-}
 
 void loadClassFrames(StructFrameStack **frameStackTop){
     Frame currentFrame; ///Frame corrente (frame em execucao)
     while((*frameStackTop)->next != NULL){
         ///Para utilizar um frame da pilha, primeiro se tira ele da pilha
-        currentFrame = popFrameStack(frameStackTop);
+        //currentFrame = popFrameStack(frameStackTop);
         ///Chama a funcao para operar o frame - FAZER
     }
-}
-
-void pushFrameStack(StructFrameStack **frameStackTop, Frame frame){
-    StructFrameStack *nodeFrame;
-    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));
-    nodeFrame->next = *frameStackTop;
-    nodeFrame->frame = frame;
-    *frameStackTop = nodeFrame;
-}
-
-Frame popFrameStack(StructFrameStack **frameStackTop){
-    StructFrameStack *aux;
-    Frame currentframe;
-    aux = *frameStackTop;
-    *frameStackTop = (*frameStackTop)->next;
-    currentframe = aux->frame;
-    free(aux);
-    return currentframe;
 }
 ///-----------------------------------------------------------------------------------------------------------------------
 void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
@@ -328,8 +332,45 @@ void verifyClassName(char * argv, ClassFile * class_file){
 
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){
     u4 aux = *numberOfClasses +1;
-    handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));
+    handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));///Inicializa o Objeto
+    if(handler == NULL)
+        throwException(INSUFFICIENT_MEMORY,INSUFFICIENT_MEMORY_MSG);///Verifica se foi possivel alocar memoria suficiente
     newObject(handler+(*numberOfClasses),class_file); ///Instancia um novo Objeto da classe class_file
     //printHandler(handler+(*numberOfClasses));
     *numberOfClasses = *numberOfClasses + 1; ///Atualiza a quantidade de classes instanciadas.
+}
+
+void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop){
+    //Frame * newFrame = (Frame *)malloc(sizeof(Frame));
+    Frame * frame = (Frame *)malloc(sizeof(Frame));
+    newFrame(frame,handler,method_index,curPC);///Cria o novo metodo de indice method_index referente ao Objeto apontado por handler
+    pushFrameStack(frameStackTop, frame);///Coloca o frame no topo da pilha de frames.
+}
+
+void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
+    StructFrameStack *nodeFrame;
+    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
+    nodeFrame->next = frameStackTop; ///Novo membro da pilha aponta para o topo da pilha corrente
+    nodeFrame->frame = frame;///Salva o frame no novo membro da pilha.
+    *frameStackTop = *nodeFrame;///Novo membro vira o topo d apilha.
+/*          printf("Method Info: \n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printMethodInfo(frameStackTop->frame->localVariableArray[0], 1, frameStackTop->frame->handler->classRef);///Apenas para debugar!
+            printf("PC de retorno: %d\n",frameStackTop->frame->returnPC);
+            printf("Constant Pool: \n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printConstantPool(frameStackTop->frame->constant_pool,frameStackTop->frame->handler->classRef->constant_pool_count, frameStackTop->frame->handler->classRef);///Apenas para debugar!
+*/
+}
+
+Frame * popFrameStack(StructFrameStack *frameStackTop){
+    if(frameStackTop != NULL){
+        Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
+        currentframe = frameStackTop->frame;///Novo frame recebe o frame salvo no topo da pilha
+        frameStackTop = frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
+        //free(aux);
+        return currentframe;
+    }else{
+        printf("TESTE #9\n");
+    }
 }

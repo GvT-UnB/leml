@@ -55,4 +55,25 @@ EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool);
  */
 
 EXTERN void getAccessFlag(int flag, char *string, int tipo);
+
+
+/** \brief Funcao que printa no dispositivo padrao de saida os dados do method_info
+ *
+ * \param methods method_info* Referencia para um method_info
+ * \param methods_count u2 Quantidade de method_info que devem ser printados
+ * \param class_file ClassFile* Referencia para a Classe dona do metodo referenciado pelo method_info
+ * \return EXTERN void
+ *
+ */
+EXTERN void printMethodInfo(method_info * methods, u2 methods_count, ClassFile *class_file);
+
+/** \brief uncao que printa no dispositivo padrao de saida os dados do constant_pool
+ *
+ * \param constant_pool cp_info* Referencia para o constant_pool que sera printado
+ * \param constant_pool_count u2 Quantidade de membros do constant_pool que sera printado
+ * \param class_file ClassFile* Referencia para a classe dona do constant pool
+ * \return EXTERN void
+ *
+ */
+EXTERN void printConstantPool(cp_info * constant_pool, u2 constant_pool_count, ClassFile *class_file);
 #endif // CLASSMANAGER_H_INCLUDED

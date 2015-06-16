@@ -13,12 +13,9 @@ void printFields(u2 fields_count, field_info *fields);
 void printLocalVariableArray(u2 attributes_count, LocalVariable *localVariableArray);
 void printOperandStack(structOperandStack * operandStack);
 
+
 void classPrint(ClassFile * class_file){
     char string[100];
-    u4 var_u4;
-    float var_float;
-    int64_t var_64;
-    double var_double;
 
 	printf("Magic Number:\t\t0x%08x\n",class_file->magic);
     printf("Minor Version:\t\t%d\n",class_file->minor_version);
@@ -43,102 +40,7 @@ void classPrint(ClassFile * class_file){
     printf("Attributes Count:\t%d\n",class_file->attributes_count);
 
 	printf("\n+Constant Pool:\n");
-	for(int i = 1; i < class_file->constant_pool_count; i++){
-
-		 switch(class_file->constant_pool[i].tag){
-			case CONSTANT_Class:
-			    string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-				printf("\n[%02d]CONSTANT_Class:", i);
-                printf("\t\tClass Name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Class.name_index, string);
-				break;
-			case CONSTANT_Fieldref:
-			    string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-				printf("\n[%02d]CONSTANT_Fieldref:", i);
-				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Fieldref.class_index, string);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Fieldref.name_and_type_index, string);
-				break;
-			case CONSTANT_Methodref:
-			    string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-				printf("\n[%02d]CONSTANT_Methodref:", i);
-				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.class_index, string);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].Methodref.name_and_type_index, string);
-				break;
-			case CONSTANT_InterfaceMethodref:
-				printf("\n[%02d]CONSTANT_InterfaceMethodref:",i);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-				printf("\t\tClass name:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.class_index, string);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",class_file->constant_pool[i].InterfaceMethodref.name_and_type_index, string);
-				break;
-			case CONSTANT_String:
-				printf("\n[%02d]CONSTANT_String",i);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-                printf("\t\tString:\t\tcp_info #%d <%s>\n",class_file->constant_pool[i].String.string_index, string);
-				break;
-			case CONSTANT_Integer:
-				printf("\n[%02d]CONSTANT_Integer", i);
-                printf("\t\tBytes:\t\t\t0x%04x\n",class_file->constant_pool[i].Integer.bytes);
-                printf("\t\t\t\tInteger:\t\t%d\n",class_file->constant_pool[i].Integer.bytes);
-				break;
-			case CONSTANT_Float:
-				printf("\n[%02d]CONSTANT_Float", i);
-				printf("\t\tBytes:\t0x%04x\n",class_file->constant_pool[i].Float.bytes);
-				var_u4 = class_file->constant_pool[i].Float.bytes;
-				var_float = *((float*)&var_u4);
-				printf("\t\t\t\tFloat:\t%.4f\n",var_float);
-				break;
-			case CONSTANT_Long:
-				printf("\n[%02d]CONSTANT_Long",i);
-				printf("\t\tHIGH_BYTES:\t\t0x%08x\n",class_file->constant_pool[i].Long.high_bytes);
-				printf("\t\t\t\tLOW_BYTES:\t\t0x%04x\n",class_file->constant_pool[i].Long.low_bytes);
-				var_64 = class_file->constant_pool[i].Long.high_bytes;
-				var_64 = (var_64 << 32) | class_file->constant_pool[i].Long.low_bytes;
-				printf("\t\t\t\tLong:\t\t\t%ld\n", var_64);
-                i++;
-                printf("\n[%02d](large numeric continued)\n", i);
-				break;
-			case CONSTANT_Double:
-				printf("\n[%02d]CONSTANT_Double",i);
-				printf("\t\tHigh bytes:\t\t0x%08x\n",class_file->constant_pool[i].Double.high_bytes);
-				printf("\t\t\t\tLow bytes:\t\t0x%08x\n",class_file->constant_pool[i].Double.low_bytes);
-                var_64 = class_file->constant_pool[i].Double.high_bytes;
-                var_64 = (var_64 << 32) | class_file->constant_pool[i].Double.low_bytes;
-                var_double = *((double*)&var_64);
-                printf("\t\t\t\tDouble:\t\t\t%f\n", var_double);
-				i++;
-				printf("\n[%02d](large numeric continued)\n", i);
-				break;
-			case CONSTANT_NameAndType:
-				printf("\n[%02d]CONSTANT_NameAndType", i);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 0);
-				printf("\tName:\t\tcp_info #%d <%s>\n",class_file->constant_pool[i].NameAndType.name_index, string);
-				string[0] = '\0';
-			    selectPointer(class_file, i, &string, 1);
-				printf("\t\t\t\tDescriptor:\tcp_info #%d <%s>\n",class_file->constant_pool[i].NameAndType.descriptor_index, string);
-				break;
-			case CONSTANT_Utf8:
-				printf("\n[%02d]CONSTANT_Utf8",i);
-				printf("\t\tLength of byte array:\t%d\n",class_file->constant_pool[i].UTF8.length);
-				printf("\t\t\t\tLength of string:\t%d\n",class_file->constant_pool[i].UTF8.length);
-				printf("\t\t\t\tString:\t\t\t%s\n",class_file->constant_pool[i].UTF8.bytes);
-				break;
-			default:
-                break;
-		 }
-        if(i%5==0)
-            system("pause");
-	}
+	printConstantPool(class_file->constant_pool,class_file->constant_pool_count, class_file);
 
     printf("\n+Interfaces\n");
 	for(int i = 0; i < class_file->interfaces_count; i++){
@@ -163,26 +65,138 @@ void classPrint(ClassFile * class_file){
 
         printAttributesInfo(class_file->fields[i].attributes, class_file->fields[i].attributes_count, class_file->constant_pool, class_file);
  	}
+
+
+
     system("pause");
     printf("\n+Methods\n");
     printf("\tMember Count:\t\t%d\n",class_file->methods_count);
-	for(int i = 0; i < class_file->methods_count; i++){
-        string[0] = '\0';
-        selectPointer(class_file, class_file->methods[i].name_index, &string, 0);
-        printf("\n\t[%d] %s\n", i, string);
-		printf("\t\tName:\t\t\tcp_info #%d <%s>\n",class_file->methods[i].name_index, string);
-		string[0] = '\0';
-        selectPointer(class_file, class_file->methods[i].descriptor_index, &string, 0);
-		printf("\t\tDescriptor:\t\tcp_info #%d <%s>\n",class_file->methods[i].descriptor_index, string);
-		string[0] = '\0';
-        getAccessFlag(class_file->methods[i].access_flags, &string, 1);
-		printf("\t\tAccess flags:\t\t0x%04x [%s]\n",class_file->methods[i].access_flags, string);
-
-		printAttributesInfo(class_file->methods[i].attributes,class_file->methods[i].attributes_count, class_file->constant_pool, class_file);
-	}
+	///Chama a função responsavl por printar os methods
+	printMethodInfo(class_file->methods, class_file->methods_count, class_file);
 
     printf("\n+Attributes\n");
 	printAttributesInfo(class_file->attributes,class_file->attributes_count, class_file->constant_pool, class_file);
+}
+
+void printConstantPool(cp_info * constant_pool, u2 constant_pool_count, ClassFile *class_file){
+    char string[100];
+    u4 var_u4;
+    float var_float;
+    int64_t var_64;
+    double var_double;
+    for(int i = 1; i < constant_pool_count; i++){
+		 switch(constant_pool[i].tag){
+			case CONSTANT_Class:
+			    string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+				printf("\n[%02d]CONSTANT_Class:", i);
+                printf("\t\tClass Name:\tcp_info #%d <%s>\n",constant_pool[i].Class.name_index, string);
+				break;
+			case CONSTANT_Fieldref:
+			    string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+				printf("\n[%02d]CONSTANT_Fieldref:", i);
+				printf("\t\tClass name:\tcp_info #%d <%s>\n",constant_pool[i].Fieldref.class_index, string);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 1);
+				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",constant_pool[i].Fieldref.name_and_type_index, string);
+				break;
+			case CONSTANT_Methodref:
+			    string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+				printf("\n[%02d]CONSTANT_Methodref:", i);
+				printf("\t\tClass name:\tcp_info #%d <%s>\n",constant_pool[i].Methodref.class_index, string);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 1);
+				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",constant_pool[i].Methodref.name_and_type_index, string);
+				break;
+			case CONSTANT_InterfaceMethodref:
+				printf("\n[%02d]CONSTANT_InterfaceMethodref:",i);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+				printf("\t\tClass name:\tcp_info #%d <%s>\n",constant_pool[i].InterfaceMethodref.class_index, string);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 1);
+				printf("\t\t\t\tName and type:\tcp_info #%d <%s>\n",constant_pool[i].InterfaceMethodref.name_and_type_index, string);
+				break;
+			case CONSTANT_String:
+				printf("\n[%02d]CONSTANT_String",i);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+                printf("\t\tString:\t\tcp_info #%d <%s>\n",constant_pool[i].String.string_index, string);
+				break;
+			case CONSTANT_Integer:
+				printf("\n[%02d]CONSTANT_Integer", i);
+                printf("\t\tBytes:\t\t\t0x%04x\n",constant_pool[i].Integer.bytes);
+                printf("\t\t\t\tInteger:\t\t%d\n",constant_pool[i].Integer.bytes);
+				break;
+			case CONSTANT_Float:
+				printf("\n[%02d]CONSTANT_Float", i);
+				printf("\t\tBytes:\t0x%04x\n",constant_pool[i].Float.bytes);
+				var_u4 = constant_pool[i].Float.bytes;
+				var_float = *((float*)&var_u4);
+				printf("\t\t\t\tFloat:\t%.4f\n",var_float);
+				break;
+			case CONSTANT_Long:
+				printf("\n[%02d]CONSTANT_Long",i);
+				printf("\t\tHIGH_BYTES:\t\t0x%08x\n",constant_pool[i].Long.high_bytes);
+				printf("\t\t\t\tLOW_BYTES:\t\t0x%04x\n",constant_pool[i].Long.low_bytes);
+				var_64 = constant_pool[i].Long.high_bytes;
+				var_64 = (var_64 << 32) | constant_pool[i].Long.low_bytes;
+				printf("\t\t\t\tLong:\t\t\t%ld\n", var_64);
+                i++;
+                printf("\n[%02d](large numeric continued)\n", i);
+				break;
+			case CONSTANT_Double:
+				printf("\n[%02d]CONSTANT_Double",i);
+				printf("\t\tHigh bytes:\t\t0x%08x\n",constant_pool[i].Double.high_bytes);
+				printf("\t\t\t\tLow bytes:\t\t0x%08x\n",constant_pool[i].Double.low_bytes);
+                var_64 = constant_pool[i].Double.high_bytes;
+                var_64 = (var_64 << 32) | constant_pool[i].Double.low_bytes;
+                var_double = *((double*)&var_64);
+                printf("\t\t\t\tDouble:\t\t\t%f\n", var_double);
+				i++;
+				printf("\n[%02d](large numeric continued)\n", i);
+				break;
+			case CONSTANT_NameAndType:
+				printf("\n[%02d]CONSTANT_NameAndType", i);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 0);
+				printf("\tName:\t\tcp_info #%d <%s>\n",constant_pool[i].NameAndType.name_index, string);
+				string[0] = '\0';
+			    selectPointer(class_file, i, &string, 1);
+				printf("\t\t\t\tDescriptor:\tcp_info #%d <%s>\n",constant_pool[i].NameAndType.descriptor_index, string);
+				break;
+			case CONSTANT_Utf8:
+				printf("\n[%02d]CONSTANT_Utf8",i);
+				printf("\t\tLength of byte array:\t%d\n",constant_pool[i].UTF8.length);
+				printf("\t\t\t\tLength of string:\t%d\n",constant_pool[i].UTF8.length);
+				printf("\t\t\t\tString:\t\t\t%s\n",constant_pool[i].UTF8.bytes);
+				break;
+			default:
+                break;
+		 }
+        if(i%5==0)
+            system("pause");
+	}
+}
+
+void printMethodInfo(method_info * methods, u2 methods_count, ClassFile *class_file){
+    char string[100];
+    for(int i = 0; i < methods_count; i++){
+        string[0] = '\0';
+        selectPointer(class_file, methods[i].name_index, &string, 0);
+        printf("\n\t[%d] %s\n", i, string);
+		printf("\t\tName:\t\t\tcp_info #%d <%s>\n",methods[i].name_index, string);
+		string[0] = '\0';
+        selectPointer(class_file, methods[i].descriptor_index, &string, 0);
+		printf("\t\tDescriptor:\t\tcp_info #%d <%s>\n",methods[i].descriptor_index, string);
+		string[0] = '\0';
+        getAccessFlag(methods[i].access_flags, &string, 1);
+		printf("\t\tAccess flags:\t\t0x%04x [%s]\n",methods[i].access_flags, string);
+
+		printAttributesInfo(methods[i].attributes,methods[i].attributes_count, class_file->constant_pool, class_file);
+	}
 }
 
 void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_pool, ClassFile *class_file){
@@ -1169,9 +1183,9 @@ void printCode(u1 *code, u4 code_length, cp_info * constant_pool){
 ///-----------------------------------------------------------------------------------------------------------------------------
 void printFrame(Frame *frame){
     printOperandStack(frame->operandStack); /// Funcao para imprimir a pilha de operandos - envia a propria pilha
-    printLocalVariableArray(frame->methods->attributes_count, frame->localVariableArray); /// Funcao que imprime o vetor de variaveis locais
+    //printLocalVariableArray(frame->localVariableArray[0].value->attributes_count, frame->localVariableArray); /// Funcao que imprime o vetor de variaveis locais
     printf("Referencia Constant_pool:\t%d", frame->constant_pool);
-    printf("Referencia Methods:\t\t%d", frame->methods);
+    //printf("Referencia Methods:\t\t%d", frame->methods);
     printf("Referencia Handler:\t\t%d", frame->handler);
     printf("Return PC:\t\t%d\n", frame->returnPC);
 }
