@@ -50,7 +50,7 @@ void instr_invokeVirtual(){//METHODREF
 	}
 }
 
-void instruction(Frame * frame, u4 pc, u1 fWide, strucOperandStack ** OpS){
+void instruction(Frame * frame, u4 pc, u1 fWide){
 	u1 aux_u1, aux2_u1;
 	u2 aux_u2, index;
 	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4;
