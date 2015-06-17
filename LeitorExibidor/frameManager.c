@@ -26,23 +26,22 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
 }
 
 void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, u4 curPC){
-//    u4 method_index = 1;
     newFrame->operandStack = (structOperandStack *)malloc(sizeof(structOperandStack));///Inicializa a Pilha de Operandos
     newFrame->localVariableArray = (LocalVariable *)malloc(sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
     newFrame->localVariableArray[0].value = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
-        printf("Method Info: \n");
-        printf("---------------------------------------------------------------------------------------\n");
-        printMethodInfo(newFrame->localVariableArray[0], 1, handler->classRef);///Apenas para debugar!
+        //printf("Method Info: \n");
+        //printf("---------------------------------------------------------------------------------------\n");
+        //printMethodInfo(newFrame->localVariableArray[0], 1, handler->classRef);///Apenas para debugar!
     newFrame->constant_pool = (cp_info *)malloc(sizeof(cp_info));///Inicializa a referenciapara o constant pool
     newFrame->constant_pool = handler->classRef->constant_pool;///Referencia para o constant pool da classe dona do metodo.
 
     newFrame->handler = (ClassHandler *)malloc(sizeof(ClassHandler));///Inicializa a referenciapara do ClassHandler
     newFrame->handler = handler;///Referencia para o Objeto dono do metodo.
     newFrame->returnPC = curPC;///Salva o PC corrente antes do metodo iniciar a sua execucao.
-        printf("PC de retorno: %d\n",newFrame->returnPC);
-        printf("Constant Pool: \n");
-        printf("---------------------------------------------------------------------------------------\n");
-        printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
+        //printf("PC de retorno: %d\n",newFrame->returnPC);
+        //printf("Constant Pool: \n");
+        //printf("---------------------------------------------------------------------------------------\n");
+        //printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
 }
 
 void copyAttributesInfo(attribute_info * attributes, u2 attributes_count, attribute_info * attributesSrc, cp_info * constant_pool){

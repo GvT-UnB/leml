@@ -276,6 +276,11 @@ typedef unsigned short u2; //2 bytes
 */
 typedef int32_t u4; //4 bytes
 
+/*! \typedef  u8
+    \brief 8 bytes
+*/
+typedef int64_t u8; //8 bytes
+
 
 /*! \union cp_info
     \brief O famoso Constante Pool!

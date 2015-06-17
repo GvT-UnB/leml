@@ -1,72 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include "lib/classManager.h"
-#include "lib/exceptionManager.h"
-#include "lib/UserViewer.h"
-#include "lib/frameManager.h"
+#define JVMMANAGER_SERV
+#include "lib/jvmManager.h"
 
-///Funcoes para o frame, ainda precisam de ajustes
-///-----------------------------------------------------------------------------------------------------------------------
-//void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop);
-void loadClassFrames(StructFrameStack **frameStackTop);
-///-----------------------------------------------------------------------------------------------------------------------
+///TODO: FLAG do tipo u1 para dizer quando uma instrução é WIDE, deve ser passado pela função que vai chamar
+///TODO: Incremento do PC
+///TODO: Tratar os fields estaticos,são inicializados com ZERO
+///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
+///TODO: Array com Union
+///TODO: Fields dinamicos com Union, tratar os estaticos
 
-/** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
- *
- * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
- * \return void
- *
- */
-void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
-
-/** \brief Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode.
- *
- * \param argv char* nome do bytecode
- * \param class_file ClassFile* espaço em memoria onde os daados da classe estão salvos.
- * \return void
- *
- */
-void verifyClassName(char * argv, ClassFile * class_file);
-
-/** \brief Instancia um novo objeto da classe class_file.
- *
- * \param handler ClassHandler* Objeto que será criado.
- * \param numberOfClasses u4* Quantidade de classes instanciadas.
- * \param class_file ClassFile* Classe que será instanciada.
- * \return void
- *
- */
-void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file);
-
-/** \brief Instancia um novo Frame de um metodo da classe class_file e logo em seguida o insere no topo da pilha de Frames.
- *
- * \param handler ClassHandler* Objeto dono do metodo.
- * \param method_index u4 Indice do metodo no methods do class_file.
- * \param curPC u4 PC Corrente.
- * \param frameStackTop StructFrameStack* Referencia para o TOPO da pilha de Frames.
- * \return void
- *
- */
-void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop);
-
-/** \brief Coloca o frame no topo da pilha de frames.
- *
- * \param frameStackTop StructFrameStack* Referencia para o corrente topo da pilha de frames.
- * \param frame Frame* referencia para o frame que sea inserido no topo da pilha de frames.
- * \return void
- *
- */
-void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame);
-
-/** \brief Retira um frame do topo da pilha de frames.
- *
- * \param frameStackTop StructFrameStack* Referencia para o TOPO da pilha de frames.
- * \return Frame* Referencia para o frame retirado do topo da pilha.
- *
- */
-Frame * popFrameStack(StructFrameStack *frameStackTop);
 
 int main(int argc, char *argv[]){
     FILE * dot_class;
@@ -94,12 +35,13 @@ int main(int argc, char *argv[]){
 
     ///Instancia um novo Objeto.
     createNewObject(handler,&numberOfClasses,class_file);
-    //printHandler(handler);
+    printHandler(handler);
 
     ///ATENÇÃO!!!! Estou enviando o valor fixo de 1 pois no MOMENTO vamos tratar apenas o metodo de indice 1 (geralmente o metodo main)
     createNewFrame(handler,1,curPC,frameStackTop); ///Cria um novo Frame e o coloca na pilha
     Frame * newFrame = (Frame *)malloc(sizeof(Frame));
     newFrame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+    /*
     printf("TESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("Method Info: \n");
         printf("---------------------------------------------------------------------------------------\n");
@@ -108,6 +50,7 @@ int main(int argc, char *argv[]){
         printf("Constant Pool: \n");
         printf("---------------------------------------------------------------------------------------\n");
         printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
+        */
 
     ///Funcoes para a manipulacao e montagem da pilha de frames e CRIACAO DE CADA FRAME (ainda nao feito)
 //    createClassFrames(class_file, &frameStackTop);
@@ -371,6 +314,7 @@ Frame * popFrameStack(StructFrameStack *frameStackTop){
         //free(aux);
         return currentframe;
     }else{
-        printf("TESTE #9\n");
+        char stackName = "Pilha de Frames";
+        throwException(POP_IN_A_EMPTY_STACK,POP_IN_A_EMPTY_STACK_MSG,stackName);
     }
 }

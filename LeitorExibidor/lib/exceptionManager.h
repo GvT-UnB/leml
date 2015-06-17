@@ -26,6 +26,7 @@ EXTERN void throwException(int exception_code, char * string_error, ...);
 #define NOT_JAVA_2_VERSION      3
 #define CLASS_DIFFER_FILE_NAME  4
 #define INSUFFICIENT_MEMORY     5
+#define POP_IN_A_EMPTY_STACK    6
 
 /**< Tabela de mensagens de erros referentes aos diferentes codigos de erro */
 #define OPEN_FILE_ERROR_MSG "Erro: Nao foi possivel abrir o arquivo %s\n", *argv
@@ -33,3 +34,4 @@ EXTERN void throwException(int exception_code, char * string_error, ...);
 #define NOT_JAVA_2_VERSION_MSG "Erro: O bytecode informado nao eh compativel com a JVM 1.2\n"
 #define CLASS_DIFFER_FILE_NAME_MSG "Erro: O arquivo %s nao define a classe principal %s\n", className, classRealName
 #define INSUFFICIENT_MEMORY_MSG "Erro: Memória insuficiente. A JVM será abortada.\n"
+#define POP_IN_A_EMPTY_STACK_MSG "Erro: O programa tentou executar um pop numa pilha vazia (%s).\n", stackName
