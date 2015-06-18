@@ -246,4 +246,223 @@ void readLocalVariableTable(Local_variable_table * local_variable_table, u2 loca
 }
 
 
+u4 findAttributeCodeIndex(attribute_info * attributes, u2 attributes_count){
+    for(int i = 0 ; i < attributes_count ; i++){ ///Percorre todo o attribute_info do metodo.
+        if(attributes[i].tag == ATTRIBUTE_Code){ ///Procura pelo attribute_info CODE
+            return i;
+        }
+    }
+    return ATTRIBUTE_COD_NOT_FOUND;
+}
+
+void verifyClassName(char * argv, ClassFile * class_file){
+    int i=0;
+    int classNameLength = strlen(argv);
+    char hasSlash;
+    char classRealName[100];
+    char * className;
+    char * classFullName = (char *)malloc(classNameLength * sizeof(char *));
+    classFullName = argv;
+
+    ///Retira o caminho até o arquivo
+    while(hasSlash = strchr(classFullName,'/')){
+        while(classFullName[i] != '/'){
+            i++;
+        }
+        className = (char *)malloc((classNameLength-i) * sizeof(char *));
+        i++;
+        for(int j=0;j<=(classNameLength-i);j++){
+            className[j] = classFullName[i+j];
+        }
+        strcpy(classFullName,className);
+        classNameLength = strlen(classFullName);
+    }
+
+    ///Retira o .class do nome do arquivo
+    i=0;
+    while(classFullName[i] != '.'){
+        i++;
+    }
+    free(className);
+    className = (char *)malloc((i+1) * sizeof(char *));
+    for(int j=0;j<i;j++){
+        className[j] = classFullName[j];
+    }
+    className[i] = '\0';
+
+    ///Verifica se o nomo do arquivo é o mesmo nome da classe
+    selectPointer(class_file, class_file->this_class, classRealName, 0);
+    if(strcmp(className,classRealName)){
+        throwException(CLASS_DIFFER_FILE_NAME,CLASS_DIFFER_FILE_NAME_MSG);
+    }
+}
+
+
+void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
+    for(int i = 0; i < MAX_INSTRUCTIONS; i++){
+        switch(i){
+            case OPCODE_bipush:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_ldc:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_iload:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_lload:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_fload:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_dload:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_aload:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_istore:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_lstore:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_fstore:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_dstore:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_astore:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_ret:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_newarray:
+                numberOfByteInstruction[i] = 2; ///2 bytes
+                break;
+            case OPCODE_sipush:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ldc_w:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ldc2_w:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_iinc:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifeq:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifne:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_iflt:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifge:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifgt:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifle:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmpeq:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmpne:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmplt:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmpge:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmpgt:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_icmple:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_if_acmpeq:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_goto:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_jsr:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_getstatic:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_putstatic:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_getfield:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_putfield:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_invokevirtual:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_invokespecial:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_invokestatic:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_invokeinterface:
+                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
+                break;
+            case OPCODE_new:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_anewarray:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_checkcast:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_instanceof:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_multianewarray:
+                numberOfByteInstruction[i] = 4; ///4 bytes
+                break;
+            case OPCODE_ifnull:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_ifnonnull:
+                numberOfByteInstruction[i] = 3; ///3 bytes
+                break;
+            case OPCODE_goto_w:
+                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
+                break;
+            case OPCODE_jsr_w:
+                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
+                break;
+            default:
+                numberOfByteInstruction[i] = 1; ///1 byte
+                break;
+        }
+    }
+}
+
+u1 * getClassName(ClassHandler * handler){
+    u2 this_class = handler->classRef->this_class;
+    u2 name_index = handler->classRef->constant_pool[ this_class ].Class.name_index;
+        //printf("%d\n",this_class);
+        //printf("%d\n",name_index);
+    return handler->classRef->constant_pool[ name_index ].UTF8.bytes;
+}
 

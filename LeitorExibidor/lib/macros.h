@@ -494,5 +494,5 @@ typedef struct StructFrameStack{
 
 /**< Apenas para a main =>  */
 #define NOT_RETURN -1
-
+#define ATTRIBUTE_COD_NOT_FOUND -1
 #endif // MACROS_H_INCLUDED

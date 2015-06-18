@@ -15,22 +15,7 @@
 #include "UserViewer.h"
 #include "frameManager.h"
 
-/** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
- *
- * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
- * \return void
- *
- */
-EXTERN void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
-
-/** \brief Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode.
- *
- * \param argv char* nome do bytecode
- * \param class_file ClassFile* espaço em memoria onde os daados da classe estão salvos.
- * \return void
- *
- */
-EXTERN void verifyClassName(char * argv, ClassFile * class_file);
+#define MAIN_FOUND      1
 
 /** \brief Instancia um novo objeto da classe class_file.
  *
@@ -80,6 +65,14 @@ EXTERN Frame * popFrameStack(StructFrameStack *frameStackTop);
  */
 EXTERN int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStackTop);
 
-
+/** \brief Funcao que efetivamente roda a JVM.
+ *
+ * \param cur_frame Frame* Frame corrente.
+ * \param curPC u4* PC corrente.
+ * \param numberOfByteInstruction u1* Referencia para o vetor que armazena a quantidade de bytes que cada instrução utiliza.
+ * \return EXTERN void
+ *
+ */
+EXTERN void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction);
 
 #endif // FRAMEMANAGER_H_INCLUDED

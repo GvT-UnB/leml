@@ -17,15 +17,15 @@
  */
 EXTERN u1 getOpcode(attribute_info * attributes, u4 curPC);
 
-/** \brief Funcao que pega o OPCODE apontado por PC, chama a funcao responsavel por executalo e incrementa pc ate o fim do metodo.
+/** \brief Funcao que incrementa o PC de acordo com o OPCODE informado.
  *
  * \param curPC u4* Referencia para o PC corrente.
- * \param cur_frame Frame* Referencia para o Frame no topo da pilha.
- * \param numberOfByteInstruction[] u1 Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+ * \param curOPCODE u1 Valor do OPCODE.
+ * \param numberOfByteInstruction u1* Referencia para o vetor que armazena a quantidade de bytes que cada instrução utiliza.
  * \return EXTERN void
  *
  */
-EXTERN void incPC(u4 * curPC, Frame * cur_frame, u1 numberOfByteInstruction[]);
+EXTERN void incPC(u4 * curPC, u1 curOPCODE, u1 * numberOfByteInstruction);
 
 /** \brief Copia o conteudo de attributesSrc para attributes
  *

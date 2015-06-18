@@ -1,9 +1,6 @@
 #define JVMMANAGER_SERV
 #include "lib/jvmManager.h"
 
-#define MAIN_FOUND      1
-
-///TODO: FLAG do tipo u1 para dizer quando uma instrução é WIDE, deve ser passado pela função que vai chamar
 ///TODO: Tratar os fields estaticos,são inicializados com ZERO
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
@@ -21,9 +18,9 @@ int main(int argc, char *argv[]){
     if((dot_class = fopen(*++argv,"rb")) == NULL){
         throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG);
     }
-    printf("Lendo o bytecode Java para a memoria...\n");
+    //printf("Lendo o bytecode Java para a memoria...\n");
     class_file = classRead(dot_class);
-    printf("Bytecode Java copiado com sucesso!\n");
+    //printf("Bytecode Java copiado com sucesso!\n");
     fclose(dot_class);
 
     verifyClassName(*argv,class_file);
@@ -37,233 +34,58 @@ int main(int argc, char *argv[]){
     createNewObject(handler,&numberOfClasses,class_file);
     //printHandler(handler);
 
-
     ///Procura pela MAIN, caso encontra instancia e coloca no topo da pilha de operandos, caso contrairo taca erro.
     createMainFrame(handler,curPC,frameStackTop);
     //createNewFrame(handler,1,curPC,frameStackTop);
-    Frame * newFrame = (Frame *)malloc(sizeof(Frame));
-    newFrame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+    Frame * cur_frame = (Frame *)malloc(sizeof(Frame));
+    cur_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
 /*
     printf("TESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("Method Info: \n");
         printf("---------------------------------------------------------------------------------------\n");
-        printMethodInfo(newFrame->methods, 1, newFrame->handler->classRef);///Apenas para debugar!
-        printf("PC de retorno: %d\n",newFrame->returnPC);
+        printMethodInfo(cur_frame->methods, 1, cur_frame->handler->classRef);///Apenas para debugar!
+        printf("PC de retorno: %d\n",cur_frame->returnPC);
         printf("Constant Pool: \n");
         printf("---------------------------------------------------------------------------------------\n");
-        printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
+        printConstantPool(cur_frame->constant_pool,cur_frame->handler->classRef->constant_pool_count, cur_frame->handler->classRef);///Apenas para debugar!
 */
-    //printHandler(newFrame->localVariableArray[0].value);
+    //printHandler(cur_frame->localVariableArray[0].value);
 
+    ///Chama a funcao responsavel por efetivamente rodar a JVM
+    runJVM(cur_frame,&curPC,&numberOfByteInstruction);
 
-    ///Incrementa PC
-    incPC(&curPC,newFrame,numberOfByteInstruction);
-    printf("PC: %d\n",curPC);
+    ///Verifica se uma classe ja esta no HEAP
+    u1 * className = "TiposPrimitivos"; ///Pega o nome da Classe.
+    for(int i = 0; i < numberOfClasses; i++){
+        if(!strcmp(className,getClassName(handler))){
+            printf("Encontrei a classe %s!\n",getClassName(handler+i));
+            break;
+        }
+        printf("Não encontrei :(\n");
+    }
+    printf("%s\n",className);
 
     return 0;
 }
 
-void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
-    for(int i = 0; i < MAX_INSTRUCTIONS; i++){
-        switch(i){
-            case OPCODE_bipush:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_ldc:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_iload:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_lload:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_fload:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_dload:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_aload:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_istore:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_lstore:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_fstore:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_dstore:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_astore:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_ret:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_newarray:
-                numberOfByteInstruction[i] = 2; ///2 bytes
-                break;
-            case OPCODE_sipush:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ldc_w:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ldc2_w:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_iinc:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifeq:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifne:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_iflt:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifge:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifgt:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifle:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmpeq:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmpne:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmplt:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmpge:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmpgt:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_icmple:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_if_acmpeq:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_goto:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_jsr:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_getstatic:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_putstatic:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_getfield:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_putfield:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_invokevirtual:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_invokespecial:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_invokestatic:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_invokeinterface:
-                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
-                break;
-            case OPCODE_new:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_anewarray:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_checkcast:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_instanceof:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_multianewarray:
-                numberOfByteInstruction[i] = 4; ///4 bytes
-                break;
-            case OPCODE_ifnull:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_ifnonnull:
-                numberOfByteInstruction[i] = 3; ///3 bytes
-                break;
-            case OPCODE_goto_w:
-                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
-                break;
-            case OPCODE_jsr_w:
-                numberOfByteInstruction[i] = 5; ///ATENÇÃO! Isso aqui pode estar errado...
-                break;
-            default:
-                numberOfByteInstruction[i] = 1; ///1 byte
-                break;
+
+void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction){
+    u1 curOPCODE, flagIsWide = 0;
+    u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
+    while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
+        //printf("PC: %d\n",*curPC);
+        curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
+        if(curOPCODE == OPCODE_wide){
+            flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
+        }else{
+            ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
+        //doInstruction(cur_frame,curOPCODE,flagIsWide);
+            flagIsWide = 0; ///Zera a flag de instrucao WIDE.
         }
+        ///Incrementa PC
+        incPC(curPC,curOPCODE,numberOfByteInstruction);
     }
-}
-
-
-void verifyClassName(char * argv, ClassFile * class_file){
-    int i=0;
-    int classNameLength = strlen(argv);
-    char hasSlash;
-    char classRealName[100];
-    char * className;
-    char * classFullName = (char *)malloc(classNameLength * sizeof(char *));
-    classFullName = argv;
-
-    ///Retira o caminho até o arquivo
-    while(hasSlash = strchr(classFullName,'/')){
-        while(classFullName[i] != '/'){
-            i++;
-        }
-        className = (char *)malloc((classNameLength-i) * sizeof(char *));
-        i++;
-        for(int j=0;j<=(classNameLength-i);j++){
-            className[j] = classFullName[i+j];
-        }
-        strcpy(classFullName,className);
-        classNameLength = strlen(classFullName);
-    }
-
-    ///Retira o .class do nome do arquivo
-    i=0;
-    while(classFullName[i] != '.'){
-        i++;
-    }
-    free(className);
-    className = (char *)malloc((i+1) * sizeof(char *));
-    for(int j=0;j<i;j++){
-        className[j] = classFullName[j];
-    }
-    className[i] = '\0';
-
-    ///Verifica se o nomo do arquivo é o mesmo nome da classe
-    selectPointer(class_file, class_file->this_class, classRealName, 0);
-    if(strcmp(className,classRealName)){
-        throwException(CLASS_DIFFER_FILE_NAME,CLASS_DIFFER_FILE_NAME_MSG);
-    }
+    printf("PC: %d\n",*curPC);
 }
 
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){

@@ -58,4 +58,39 @@ EXTERN void readLineNumberTable(Line_number_table * line_number_table, u2 line_n
 EXTERN void readLocalVariableTable(Local_variable_table * local_variable_table, u2 local_variable_table_length, FILE * dot_class);
 
 
+/** \brief Localiza o indice de onde o attribute CODE está salvo num attribute_info.
+ *
+ * \param attributes attribute_info* Referencia para o attribute_info.
+ * \param attributes_count u2 Quantidade de attributes referenciados por attributes.
+ * \return EXTERNu4
+ *
+ */
+EXTERN u4 findAttributeCodeIndex(attribute_info * attributes, u2 attributes_count);
+
+/** \brief Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode.
+ *
+ * \param argv char* nome do bytecode
+ * \param class_file ClassFile* espaço em memoria onde os daados da classe estão salvos.
+ * \return void
+ *
+ */
+EXTERN void verifyClassName(char * argv, ClassFile * class_file);
+
+/** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
+ *
+ * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+ * \return void
+ *
+ */
+EXTERN void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
+
+/** \brief Retorna o nome da classe do Objeto referenciado por handler.
+ *
+ * \param handler ClassHandler* Referencia para um objeto.
+ * \return EXTERN u1* Nome da classe.
+ *
+ */
+EXTERN u1 * getClassName(ClassHandler * handler);
+
+
 #endif // CLASSMANAGER_H_INCLUDED

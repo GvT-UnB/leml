@@ -188,17 +188,6 @@ u1 getOpcode(attribute_info * attributes, u4 curPC){
     return attributes->Code.code[curPC]; ///Retorna o OPCODE apotado pelo PC corrente.
 }
 
-void incPC(u4 * curPC, Frame * cur_frame, u1 numberOfByteInstruction[]){
-    u1 curOPCODE;
-    for(int i = 0 ;i<cur_frame->methods->attributes_count;i++){ ///Percorre todo o attribute_info do metodo.
-        if(cur_frame->methods->attributes[i].tag == ATTRIBUTE_Code){ ///Procura pelo attribute_info CODE
-            while(cur_frame->methods->attributes[i].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
-                printf("PC: %d\n",*curPC);
-                curOPCODE = getOpcode(&cur_frame->methods->attributes[i], *curPC); ///Procura pelo OPCODE apontado por curPC.
-                ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
-                //doInstruction(cur_frame,curOPCODE);
-                *curPC = *curPC + numberOfByteInstruction[curOPCODE];///Incrementa curPC de acordo com a quantidade de bytes que foi necessario na instrucao executada.
-            }
-        }
-    }
+void incPC(u4 * curPC, u1 curOPCODE,u1 * numberOfByteInstruction){
+     *curPC = *curPC + numberOfByteInstruction[curOPCODE];///Incrementa curPC de acordo com a quantidade de bytes que foi necessario na instrucao executada.
 }
