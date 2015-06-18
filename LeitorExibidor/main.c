@@ -1,12 +1,12 @@
 #define JVMMANAGER_SERV
 #include "lib/jvmManager.h"
 
+#define MAIN_FOUND      1
+
 ///TODO: FLAG do tipo u1 para dizer quando uma instrução é WIDE, deve ser passado pela função que vai chamar
-///TODO: Incremento do PC
 ///TODO: Tratar os fields estaticos,são inicializados com ZERO
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
-///TODO: Fields dinamicos com Union, tratar os estaticos
 
 
 int main(int argc, char *argv[]){
@@ -35,41 +35,34 @@ int main(int argc, char *argv[]){
 
     ///Instancia um novo Objeto.
     createNewObject(handler,&numberOfClasses,class_file);
-    printHandler(handler);
+    //printHandler(handler);
 
-    ///ATENÇÃO!!!! Estou enviando o valor fixo de 1 pois no MOMENTO vamos tratar apenas o metodo de indice 1 (geralmente o metodo main)
-    createNewFrame(handler,1,curPC,frameStackTop); ///Cria um novo Frame e o coloca na pilha
+
+    ///Procura pela MAIN, caso encontra instancia e coloca no topo da pilha de operandos, caso contrairo taca erro.
+    createMainFrame(handler,curPC,frameStackTop);
+    //createNewFrame(handler,1,curPC,frameStackTop);
     Frame * newFrame = (Frame *)malloc(sizeof(Frame));
     newFrame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
-    /*
+/*
     printf("TESTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("Method Info: \n");
         printf("---------------------------------------------------------------------------------------\n");
-        printMethodInfo(newFrame->localVariableArray[0], 1, newFrame->handler->classRef);///Apenas para debugar!
+        printMethodInfo(newFrame->methods, 1, newFrame->handler->classRef);///Apenas para debugar!
         printf("PC de retorno: %d\n",newFrame->returnPC);
         printf("Constant Pool: \n");
         printf("---------------------------------------------------------------------------------------\n");
         printConstantPool(newFrame->constant_pool,newFrame->handler->classRef->constant_pool_count, newFrame->handler->classRef);///Apenas para debugar!
-        */
+*/
+    //printHandler(newFrame->localVariableArray[0].value);
 
-    ///Funcoes para a manipulacao e montagem da pilha de frames e CRIACAO DE CADA FRAME (ainda nao feito)
-//    createClassFrames(class_file, &frameStackTop);
-    //loadClassFrames(&frameStackTop);
+
+    ///Incrementa PC
+    incPC(&curPC,newFrame,numberOfByteInstruction);
+    printf("PC: %d\n",curPC);
 
     return 0;
 }
-///Area para manipulacao da pilha de frames - AINDA TEM QUE AJUSTAR
-///-----------------------------------------------------------------------------------------------------------------------
 
-void loadClassFrames(StructFrameStack **frameStackTop){
-    Frame currentFrame; ///Frame corrente (frame em execucao)
-    while((*frameStackTop)->next != NULL){
-        ///Para utilizar um frame da pilha, primeiro se tira ele da pilha
-        //currentFrame = popFrameStack(frameStackTop);
-        ///Chama a funcao para operar o frame - FAZER
-    }
-}
-///-----------------------------------------------------------------------------------------------------------------------
 void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
     for(int i = 0; i < MAX_INSTRUCTIONS; i++){
         switch(i){
@@ -308,13 +301,26 @@ void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
 
 Frame * popFrameStack(StructFrameStack *frameStackTop){
     if(frameStackTop != NULL){
+        StructFrameStack * aux = (StructFrameStack*)malloc(sizeof(StructFrameStack));
         Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
         currentframe = frameStackTop->frame;///Novo frame recebe o frame salvo no topo da pilha
+        aux = frameStackTop;
         frameStackTop = frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
-        //free(aux);
+        free(aux);
         return currentframe;
     }else{
         char stackName = "Pilha de Frames";
         throwException(POP_IN_A_EMPTY_STACK,POP_IN_A_EMPTY_STACK_MSG,stackName);
     }
+}
+
+int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStackTop){
+    for(int i = 0; i < handler->classRef->methods_count; i++){
+        if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes,"main")){ ///Procura pelo metodo main no method_info da classe
+            //printf("Achei a MAIN no indice %d\n",i);
+            createNewFrame(handler,i,curPC,frameStackTop); ///encontrou o metodo main no indice i, cria o frame dele.
+            return MAIN_FOUND; ///Retorna sucesso
+        }
+    }
+    throwException(MAIN_NOT_FOUND,MAIN_NOT_FOUND_MSG); ///Nao encontrou a main, taca erro.
 }

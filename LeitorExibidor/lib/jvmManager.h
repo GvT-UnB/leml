@@ -15,12 +15,6 @@
 #include "UserViewer.h"
 #include "frameManager.h"
 
-///Funcoes para o frame, ainda precisam de ajustes
-///-----------------------------------------------------------------------------------------------------------------------
-//void createClassFrames(ClassFile *class_file, StructFrameStack **frameStackTop);
-EXTERN void loadClassFrames(StructFrameStack **frameStackTop);
-///-----------------------------------------------------------------------------------------------------------------------
-
 /** \brief Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução
  *
  * \param numberOfByteInstruction u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza.
@@ -76,7 +70,15 @@ EXTERN void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame);
  */
 EXTERN Frame * popFrameStack(StructFrameStack *frameStackTop);
 
-
+/** \brief Procura pelo metodo main no ClassHandler, caso encontre o metodo main eh criado o Frame dele e inserido no inicio da pilha de frames.
+ *
+ * \param handler ClassHandler* Referencia ao Objeto.
+ * \param curPC u4 PC corrente.
+ * \param frameStackTop StructFrameStack* Referencia para o topo da pilha de frames.
+ * \return int
+ *
+ */
+EXTERN int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStackTop);
 
 
 

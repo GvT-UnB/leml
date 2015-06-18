@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1434547107 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1434595860 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
-1434492881 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1434588146 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1434174419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
@@ -25,7 +25,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1434544344 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+1434593124 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
 
 1433007657 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
 	"lib/exceptionManager.h"
@@ -246,12 +246,12 @@
 	<stdint.h>
 	"lib/UserViewer.h"
 
-1434544687 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
+1434596472 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
 
-1434494532 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
+1434596227 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
 1434174512 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\utype.h
@@ -264,7 +264,7 @@
 1434400999 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
-1434547464 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
+1434593408 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

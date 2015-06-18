@@ -8,14 +8,24 @@
 
 #include "macros.h"
 
-/** \brief Retorna a instrucao apontada por PC e atualiza o valor de PC para a proxima instrucao.
+/** \brief Retorna OPCODE da instrucao apontada por PC.
  *
- * \param PC u4* Referencia para PC
- * \param cur_frame Frame*  Referencia para o frame corrente.
- * \return EXTERN u1 O codigo da instrucao apontada por PC corrente.
+ * \param attributes attribute_info* Contem o Code desejado.
+ * \param curPC u4 PC corrente
+ * \return EXTERN u1 OPCODE da instrucao apontada pelo pc corrente.
  *
  */
-EXTERN u1 getOpcode(u4 * PC, Frame * cur_frame);
+EXTERN u1 getOpcode(attribute_info * attributes, u4 curPC);
+
+/** \brief Funcao que pega o OPCODE apontado por PC, chama a funcao responsavel por executalo e incrementa pc ate o fim do metodo.
+ *
+ * \param curPC u4* Referencia para o PC corrente.
+ * \param cur_frame Frame* Referencia para o Frame no topo da pilha.
+ * \param numberOfByteInstruction[] u1 Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+ * \return EXTERN void
+ *
+ */
+EXTERN void incPC(u4 * curPC, Frame * cur_frame, u1 numberOfByteInstruction[]);
 
 /** \brief Copia o conteudo de attributesSrc para attributes
  *
