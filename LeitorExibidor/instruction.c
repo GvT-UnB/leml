@@ -4,8 +4,8 @@
 #include <math.h>
 #include <stdint.h>
 
-//#include "lib/instruction.h"
-#include "lib/macros.h"
+#include "lib/instruction.h"
+//#include "lib/macros.h"
 /*
 void instr_getstatic(){//FIELDREF
 	u2 index, ntIndex;
