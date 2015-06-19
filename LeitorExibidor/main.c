@@ -100,12 +100,18 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
+            ///Incrementa PC
+            ///incPC(curPC,curOPCODE,numberOfByteInstruction);
         }else{
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
             printf("OPCODE: %d\n", curOPCODE);
-            doInstruction(cur_frame,curOPCODE,flagIsWide);
-            if(curOPCODE > 171 && curOPCODE < 178){
-                doInstructionReturn(cur_frame, curOPCODE, curPC, frameStackTop);
+            if(curOPCODE > 152 && curOPCODE < 178){
+                doInstructionShift(cur_frame, curOPCODE, curPC, frameStackTop);
+            }
+            else{
+                doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
+                ///Incrementa PC
+                ///incPC(curPC,curOPCODE,numberOfByteInstruction);
             }
             flagIsWide = 0; ///Zera a flag de instrucao WIDE.
         }

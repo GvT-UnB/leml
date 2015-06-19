@@ -50,7 +50,7 @@ void instr_invokeVirtual(){//METHODREF
 	}
 }
 */
-void doInstructionReturn(Frame *cur_frame, u1 curOPCODE, u4 *curPC, StructFrameStack *frameStackTop){
+void doInstructionShift(Frame *cur_frame, u1 curOPCODE, u4 *curPC, StructFrameStack *frameStackTop){
 }
 void instr_tableSwitch(Frame *frame, u4 pc, u1 * code){
     u1 byte1, byte2, byte3, byte4;
@@ -1488,12 +1488,14 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			}
 			break;
 		case OPCODE_goto:
+		    pc++;
 		    branchoffset = (code[pc] << 8) | code[pc+1]; ///Calcula o endereco para o qual o GOTO ira mandar o pc
 		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
 		    pc += aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
 			pc++;
 			break;
 		case OPCODE_jsr:
+		    pc++;
 		    pushOperandStack(frame->operandStack, pc+1); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
 		    branchoffset = (code[pc] << 8) | code[pc+1]; ///Calcula o endereco para onde deve ser deslocado o pc
 		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
