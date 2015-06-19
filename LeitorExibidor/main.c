@@ -5,6 +5,7 @@
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
 ///TODO: handler estah errado, necessita tratamento similar ao do class_file
+///TODO: Empilhar o frame corrente antes de criar um novo frame
 
 int main(int argc, char *argv[]){
     ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
@@ -46,7 +47,7 @@ int main(int argc, char *argv[]){
     //printHandler(cur_frame->localVariableArray[0].value);
 
     ///Chama a funcao responsavel por efetivamente rodar a JVM
-    runJVM(cur_frame,&curPC,&numberOfByteInstruction);
+    runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop);
 
     ///Verifica se uma classe ja esta no HEAP
         classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
@@ -91,7 +92,7 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction){
+void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop){
     u1 curOPCODE, flagIsWide = 0;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
     while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
@@ -101,7 +102,11 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
         }else{
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
-        //doInstruction(cur_frame,curOPCODE,flagIsWide);
+            printf("OPCODE: %d\n", curOPCODE);
+            doInstruction(cur_frame,curOPCODE,flagIsWide);
+            if(curOPCODE > 171 && curOPCODE < 178){
+                doInstructionReturn(cur_frame, curOPCODE, curPC, frameStackTop);
+            }
             flagIsWide = 0; ///Zera a flag de instrucao WIDE.
         }
         ///Incrementa PC

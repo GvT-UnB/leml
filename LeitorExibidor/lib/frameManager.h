@@ -95,7 +95,7 @@ EXTERN void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, 
  * \return void
  *
  */
-EXTERN void pushOperandStack(structOperandStack **operandStackTop, u4 operand);
+EXTERN void pushOperandStack(structOperandStack *operandStackTop, u4 operand);
 
 /** \brief Retira um operando da pilha e retorna o operando retirado
  *
@@ -103,6 +103,6 @@ EXTERN void pushOperandStack(structOperandStack **operandStackTop, u4 operand);
  * \return u4 retorna o operando retirado da pilha
  *
  */
-EXTERN u4 popOperandStack(structOperandStack **operandStackTop);
+EXTERN u4 popOperandStack(structOperandStack *operandStackTop);
 
 #endif // FRAMEMANAGER_H_INCLUDED

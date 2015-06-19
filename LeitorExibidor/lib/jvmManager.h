@@ -74,6 +74,6 @@ EXTERN int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *fra
  * \return EXTERN void
  *
  */
-EXTERN void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction);
+EXTERN void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop);
 
 #endif // FRAMEMANAGER_H_INCLUDED

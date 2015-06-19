@@ -6,6 +6,8 @@
 
 #include "lib/instruções.h"
 
+extern int returnOpcode;
+extern int returnType;
 
 void instr_getstatic(){//FIELDREF
 	u2 index, ntIndex;
@@ -50,10 +52,113 @@ void instr_invokeVirtual(){//METHODREF
 	}
 }
 
+void instr_tableSwitch(Frame *frame, u4 pc){
+    u1 byte1, byte2, byte3, byte4;
+    u4 highTableS, lowTableS, defaultTableS, valTableS, opcodeAddress, targetAddress, *tableSwitch
+    tableSwitch = (u4*)malloc(sizeof(u4)); ///Aloca memória para a tabela(vetor) do switch
+    opcodeAddress = frame.pc;
+    while((frame.pc + 1)%4 != 0){ ///Loop para o preenchimento do padding <0-3 bytes>
+        frame.pc++;
+    }
+    frame.pc++;
+
+    byte1 = frame.code[frame.pc++];
+    byte2 = frame.code[frame.pc++];
+    byte3 = frame.code[frame.pc++];
+    byte4 = frame.code[frame.pc++];
+    defaultTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = frame.code[frame.pc++];
+    byte2 = frame.code[frame.pc++];
+    byte3 = frame.code[frame.pc++];
+    byte4 = frame.code[frame.pc++];
+    lowTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = frame.code[frame.pc++];
+    byte2 = frame.code[frame.pc++];
+    byte3 = frame.code[frame.pc++];
+    byte4 = frame.code[frame.pc++];
+    highTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    valTableS = popOperandStack();
+
+    for(int i; i < highTableS-lowTableS+1; i++){ /// Preenche a tabela (vetor) com os offsets de cada case
+        byte1 = frame.code[frame.pc++];
+        byte2 = frame.code[frame.pc++];
+        byte3 = frame.code[frame.pc++];
+        byte4 = frame.code[frame.pc++];
+        tableSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+    }
+
+    if(valTableS < lowTableS || valTableS > highTableS){
+        targetAddress = opcodeAddress + defaultTableS;
+    }
+    else{
+        targetAddress = opcodeAddress + tableSwitch[index-lowTableS];
+    }
+    frame.pc = targetAddress; /// PC e mandado para o offset selecionado
+}
+
+void instr_lookUpSwitch(Frame *frame, u4 pc){
+    u1 byte1, byte2, byte3, byte4, found;
+    u4 *lookupSwitch, opcodeAddress, defaultLS, targetAddress, npair, i, key;
+    opcodeAddress = frame.pc;
+    while((frame.pc + 1)%4 != 0){
+        frame.pc++;
+    }
+    frame.pc++;
+
+    byte1 = frame.code[frame.pc++];
+    byte2 = frame.code[frame.pc++];
+    byte3 = frame.code[frame.pc++];
+    byte4 = frame.code[frame.pc++];
+    defaultLS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = frame.code[frame.pc++];
+    byte2 = frame.code[frame.pc++];
+    byte3 = frame.code[frame.pc++];
+    byte4 = frame.code[frame.pc++];
+    npair = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; ///Quantidade de itens a serem percorridos
+
+    lookupSwitch = (u4*)malloc(npair*2*sizeof(u4)); /// armazena em um vetor o dobro do espaço de variaveis do switch para armazenar os valores dentro deles
+
+    for(int i=0; i< npair*2; i += 2){ ///Loop anda de dois em dois para pegar dois valores de uma vez
+        byte1 = frame.code[frame.pc++];
+        byte2 = frame.code[frame.pc++];
+        byte3 = frame.code[frame.pc++];
+        byte4 = frame.code[frame.pc++];
+        lookupSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// match
+
+        byte1 = frame.code[frame.pc++];
+        byte2 = frame.code[frame.pc++];
+        byte3 = frame.code[frame.pc++];
+        byte4 = frame.code[frame.pc++];
+        lookupSwitch[i+1] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// offset (key)
+    }
+
+    key = popOperandStack(); ///recupera o valor do topo da pilha
+    i=0;
+    while( found != 1 && i < ((npair*2)-1)){///o loop para quando ele chega no limite do array - 1 ou quando encontra o match
+        if(key != lookupSwitch[i]){
+            found = 1; /// Flag para quando o match é encontrado
+        }
+        i+=2; ///incrementa de dois em dois para buscar entre os match's
+    }
+    if(found == 0){/// caso nao encontre
+        targetAddress = defaultLS + opcodeAddress;
+    }
+    else{///caso encontre
+        targetAddress = lookupSwitch[i+1] + opcodeAddress; ///pega o offset seguido do match selecionado
+    }
+    frame.pc = targetAddress;
+}
+
 void instruction(Frame * frame, u4 pc, u1 fWide){
-	u1 aux_u1, aux2_u1;
-	u2 aux_u2, index;
+	u1 aux_u1, aux2_u1, byte1, byte2, byte3, byte4;
+	u2 aux_u2, index, branchoffset;
 	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4;
+	u4 highTableS, lowTableS, defaultTableS, valTableS, opcodeAddress, targetAddress, *tableSwitch, *lookupSwitch, npair;
+	u4 returnAddress;
 	u8 aux_u8, aux2_u8;
 	float aux_f, aux2_f;
 	double aux_d, aux2_d;
@@ -192,7 +297,7 @@ void instruction(Frame * frame, u4 pc, u1 fWide){
 			break;
 		case OPCODE_ldc2_w:
 			frame.pc++;
-			index = = (frame.code[frame.pc] << 16) | frame.code[frame.pc+1];
+			index = (frame.code[frame.pc] << 16) | frame.code[frame.pc+1];
 			frame.pc++;
 			aux_u1 = frame.cp[index];
 			switch(aux_u1){
@@ -990,16 +1095,43 @@ void instruction(Frame * frame, u4 pc, u1 fWide){
 		case OPCODE_if_acmpne:
 			break;
 		case OPCODE_goto:
+		    branchoffset = (frame.code[frame.pc] << 8) | frame.code[frame.pc+1]; ///Calcula o endereco para o qual o GOTO ira mandar o pc
+		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
+		    frame.pc += aux_4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
 			break;
 		case OPCODE_jsr:
+		    pushOperandStack(frame.pc+1); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
+		    branchoffset = (frame.code[frame.pc] << 8) | frame.code[frame.pc+1]; ///Calcula o endereco para onde deve ser deslocado o pc
+		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
+		    frame.pc += aux_y4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
 			break;
-		case OPCODE_ret:
+		case OPCODE_ret: ///Return from subroutine
+		    frame.pc++;
+		    if(fWide == 1){ ///Checa se a flag da instrucao wide esta setada
+                index = (frame.code[frame.pc] << 8) | frame.code[frame.pc+1]; ///Se sim, o index é composto por dois bytes
+                frame.pc++;
+		    }
+		    else{
+                index = frame.code[frame.pc]; ///Se nao, é por apenas 1 byte
+                if(index < 0 || index > 255)
+                    printf("Erro\n"); ///Deve-se trocar esse printf por uma excessao porque o index tem que estar dentro da faixa 0-255
+		    }
+		    frame.pc = frame.localVariableArray[index]; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
 			break;
-		case OPCODE_tableswitch:
+		case OPCODE_tableswitch: ///Access jump table by index and jump
+            //frame.pc++;
+            instr_tableSwitch(frame, pc);
 			break;
-		case OPCODE_lookupswitch:
+
+		case OPCODE_lookupswitch: /// Access jump table by key match and jump
+            instr_lookUpSwitch(frame, pc);
 			break;
-		case OPCODE_ireturn:
+		case OPCODE_ireturn: /// Return int from method
+		    returnAddress = popOperandStack();
+            ///tenho que dar free na pilha de operandos inteira
+            ///altera a variavel global de retorno
+            ///altera o tipo da variavel global de retorno
+            ///Arrumar um jeito de colocar na pilha de operandos do proximo frame
 			break;
 		case OPCODE_lreturn:
 			break;

@@ -166,20 +166,20 @@ void copyLocalVariableTable(Local_variable_table * local_variable_table_dst, u2 
     }
 }
 
-void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
+void pushOperandStack(structOperandStack *operandStackTop, u4 operand){
     structOperandStack *nodeOperand;
     nodeOperand = (structOperandStack*)malloc(sizeof(structOperandStack));
     nodeOperand->value = operand;
-    nodeOperand->next = *operandStackTop;
-    *operandStackTop = nodeOperand;
+    nodeOperand->next = operandStackTop;
+    operandStackTop = nodeOperand;
 }
 
-u4 popOperandStack(structOperandStack **operandStackTop){
+u4 popOperandStack(structOperandStack *operandStackTop){
     structOperandStack *aux;
     u4 operand;
-    aux = *operandStackTop;
+    aux = operandStackTop;
     operand = aux->value;
-    *operandStackTop = (*operandStackTop)->next;
+    operandStackTop = operandStackTop->next;
     free(aux);
     return operand;
 }
