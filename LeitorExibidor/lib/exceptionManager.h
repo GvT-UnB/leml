@@ -30,10 +30,10 @@ EXTERN void throwException(int exception_code, char * string_error, ...);
 #define MAIN_NOT_FOUND          7
 
 /**< Tabela de mensagens de erros referentes aos diferentes codigos de erro */
-#define OPEN_FILE_ERROR_MSG "Nao foi possivel abrir o arquivo %s\n", *argv
+#define OPEN_FILE_ERROR_MSG "Nao foi possivel abrir o arquivo %s\n", file_name
 #define NOT_BYTECODE_JAVA_MSG "O arquivo informado nao eh um bytecode java\n"
 #define NOT_JAVA_2_VERSION_MSG "O bytecode informado nao eh compativel com a JVM 1.2\n"
-#define CLASS_DIFFER_FILE_NAME_MSG "O arquivo %s nao define a classe principal %s\n", className, classRealName
-#define INSUFFICIENT_MEMORY_MSG "Memória insuficiente. A JVM será abortada.\n"
+#define CLASS_DIFFER_FILE_NAME_MSG "O arquivo %s nao define a classe principal %s\n", className, getClassName(class_file)
+#define INSUFFICIENT_MEMORY_MSG "Memoria insuficiente. A JVM serah abortada.\n"
 #define POP_IN_A_EMPTY_STACK_MSG "O programa tentou executar um pop numa pilha vazia (%s).\n", stackName
 #define MAIN_NOT_FOUND_MSG "O metodo MAIN nao foi encontrado na classe %s.\n", handler->classRef->constant_pool[ handler->classRef->constant_pool[handler->classRef->this_class].Class.name_index ].UTF8.bytes

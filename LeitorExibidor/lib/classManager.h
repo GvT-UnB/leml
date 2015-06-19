@@ -11,10 +11,11 @@
 /** \brief Funcao responsavel por ler o bytecode java e armazenar na memoria.
  *
  * \param dot_class FILE* arquivo bytecode que deve ser lido.
+ * \param class_file ClassFile* Espaco no HEAP onde a classe serah armazenada.
  * \return ClassFile * retorna o endereço do bytecode salvo em memória.
  *
  */
-EXTERN ClassFile * classRead(FILE * dot_class);
+EXTERN ClassFile * classRead(FILE * dot_class,ClassFile * class_file);
 
 /** \brief Funcao responsavel por ler para a memoria os dados referentes ao Attributte Info do bytecode java.
  *
@@ -90,7 +91,17 @@ EXTERN void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
  * \return EXTERN u1* Nome da classe.
  *
  */
-EXTERN u1 * getClassName(ClassHandler * handler);
+EXTERN u1 * getClassName(ClassFile * class_file);
 
+
+/** \brief Carrega no HEAP a classe indicada pelo arquivo de nome file_name
+ *
+ * \param class_file ClassFile* Referencia para o espaco de memoria onde a classe serah armazenada.
+ * \param file_name char* Nome do arquivo bytecode java.
+ * \param numberOfClassesHeap u4* Quantidade de classes armazenadas no HEAP. Eh incrementado ao fim da operacao.
+ * \return EXTERN void
+ *
+ */
+EXTERN void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap);
 
 #endif // CLASSMANAGER_H_INCLUDED

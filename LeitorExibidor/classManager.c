@@ -4,10 +4,10 @@
 #include "lib/exceptionManager.h"
 
 
-ClassFile * classRead(FILE * dot_class){
-    ClassFile * class_file;
+ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
+    //ClassFile * class_file;
 
-    class_file = (ClassFile *)malloc(sizeof(ClassFile)); //Aloca espaço na memória para o arquivo .class
+    //class_file = (ClassFile *)malloc(sizeof(ClassFile)); //Aloca espaço na memória para o arquivo .class
 
     class_file->magic = u4Read(dot_class);
     if(class_file->magic != U4_MAGIC) //Verifica se o arquivo informado eh um bytecode java
@@ -258,22 +258,22 @@ u4 findAttributeCodeIndex(attribute_info * attributes, u2 attributes_count){
 void verifyClassName(char * argv, ClassFile * class_file){
     int i=0;
     int classNameLength = strlen(argv);
-    char hasSlash;
-    char classRealName[100];
     char * className;
-    char * classFullName = (char *)malloc(classNameLength * sizeof(char *));
+    char * classFullName = (char *)malloc(classNameLength * sizeof(char));
     classFullName = argv;
 
     ///Retira o caminho até o arquivo
-    while(hasSlash = strchr(classFullName,'/')){
+    while(strchr(classFullName,'/')){
         while(classFullName[i] != '/'){
             i++;
         }
-        className = (char *)malloc((classNameLength-i) * sizeof(char *));
+
+        className = (char *)malloc((classNameLength-i) * sizeof(char));
         i++;
         for(int j=0;j<=(classNameLength-i);j++){
             className[j] = classFullName[i+j];
         }
+        classFullName = (char *)malloc(classNameLength * sizeof(char));
         strcpy(classFullName,className);
         classNameLength = strlen(classFullName);
     }
@@ -284,15 +284,15 @@ void verifyClassName(char * argv, ClassFile * class_file){
         i++;
     }
     free(className);
-    className = (char *)malloc((i+1) * sizeof(char *));
+    className = (char *)malloc((i+1) * sizeof(char ));
     for(int j=0;j<i;j++){
         className[j] = classFullName[j];
     }
     className[i] = '\0';
 
     ///Verifica se o nomo do arquivo é o mesmo nome da classe
-    selectPointer(class_file, class_file->this_class, classRealName, 0);
-    if(strcmp(className,classRealName)){
+    //selectPointer(class_file, class_file->this_class, classRealName, 0);
+    if(strcmp(className,getClassName(class_file))){
         throwException(CLASS_DIFFER_FILE_NAME,CLASS_DIFFER_FILE_NAME_MSG);
     }
 }
@@ -458,11 +458,23 @@ void fillNumberOfByteInstruction(u1 * numberOfByteInstruction){
     }
 }
 
-u1 * getClassName(ClassHandler * handler){
-    u2 this_class = handler->classRef->this_class;
-    u2 name_index = handler->classRef->constant_pool[ this_class ].Class.name_index;
+u1 * getClassName(ClassFile * class_file){
+    u2 this_class = class_file->this_class;
+    u2 name_index = class_file->constant_pool[ this_class ].Class.name_index;
         //printf("%d\n",this_class);
         //printf("%d\n",name_index);
-    return handler->classRef->constant_pool[ name_index ].UTF8.bytes;
+    return class_file->constant_pool[ name_index ].UTF8.bytes;
 }
 
+void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){
+    FILE * dot_class;
+    if((dot_class = fopen(file_name,"rb")) == NULL){
+        throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG); ///Verifica se o arquivo foi encontrado
+    }
+    //printf("Lendo o bytecode Java para a memoria...\n");
+    *numberOfClassesHeap = *numberOfClassesHeap + 1;
+    classRead(dot_class,class_file); ///Carrega para o HEAP a classe
+    //printf("Bytecode Java copiado com sucesso!\n");
+    fclose(dot_class);
+    verifyClassName(file_name,class_file); ///Verifica se o .class tem o mesmo nome da classe delcarada nele.
+}

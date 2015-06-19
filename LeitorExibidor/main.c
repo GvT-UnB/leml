@@ -4,34 +4,28 @@
 ///TODO: Tratar os fields estaticos,são inicializados com ZERO
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
-
+///TODO: handler estah errado, necessita tratamento similar ao do class_file
 
 int main(int argc, char *argv[]){
-    FILE * dot_class;
-    ClassFile * class_file;
+    ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
     ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
     u4 curPC = 0;
-    u4 numberOfClasses = 0;
+    u4 numberOfClasses = 0; ///Quantidade de objetos instanciados
+    u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
 
-    if((dot_class = fopen(*++argv,"rb")) == NULL){
-        throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG);
-    }
-    //printf("Lendo o bytecode Java para a memoria...\n");
-    class_file = classRead(dot_class);
-    //printf("Bytecode Java copiado com sucesso!\n");
-    fclose(dot_class);
-
-    verifyClassName(*argv,class_file);
+    ///Carrega a classe informada por linha de comando no HEAP
+    classLoader(class_file+numberOfClassesHeap, *++argv, &numberOfClassesHeap);
+    //classPrint(class_file+numberOfClassesHeap-1);
 
     if(argc > 2 && !strcmp(*++argv,"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
-        classPrint(class_file);
+        classPrint(class_file+numberOfClassesHeap-1);
 
     fillNumberOfByteInstruction(&numberOfByteInstruction);
 
     ///Instancia um novo Objeto.
-    createNewObject(handler,&numberOfClasses,class_file);
+    createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1 );
     //printHandler(handler);
 
     ///Procura pela MAIN, caso encontra instancia e coloca no topo da pilha de operandos, caso contrairo taca erro.
@@ -55,19 +49,47 @@ int main(int argc, char *argv[]){
     runJVM(cur_frame,&curPC,&numberOfByteInstruction);
 
     ///Verifica se uma classe ja esta no HEAP
-    u1 * className = "TiposPrimitivos"; ///Pega o nome da Classe.
-    for(int i = 0; i < numberOfClasses; i++){
-        if(!strcmp(className,getClassName(handler))){
-            printf("Encontrei a classe %s!\n",getClassName(handler+i));
+        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
+/*            printf("[1] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
+            classPrint(class_file+numberOfClassesHeap-1);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            system("pause");*/
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+
+        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
+/*        classPrint(class_file+numberOfClassesHeap-1);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            system("pause");*/
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+
+        classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
+ /*           printf("[2] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
+        classPrint(class_file+numberOfClassesHeap-1);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            system("pause");*/
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+
+    ///Verifica se o className jah esta salvo no heap!
+    u1 * className = "OrdenarArray"; ///Pega o nome da Classe.
+    for(int i = 0; i < numberOfClassesHeap; i++){
+        if(!strcmp(className,getClassName(class_file+i))){
+            printf("Encontrei a classe %s! Na posicao %d\n",getClassName(class_file+i),i);
             break;
         }
-        printf("Não encontrei :(\n");
     }
     printf("%s\n",className);
 
     return 0;
 }
-
 
 void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction){
     u1 curOPCODE, flagIsWide = 0;
@@ -90,10 +112,13 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction){
 
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){
     u4 aux = *numberOfClasses +1;
+    //printf("TESTE 1!\n");
     handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));///Inicializa o Objeto
+    //printf("TESTE 2!\n");
     if(handler == NULL)
         throwException(INSUFFICIENT_MEMORY,INSUFFICIENT_MEMORY_MSG);///Verifica se foi possivel alocar memoria suficiente
     newObject(handler+(*numberOfClasses),class_file); ///Instancia um novo Objeto da classe class_file
+    //printf("TESTE 3!\n");
     //printHandler(handler+(*numberOfClasses));
     *numberOfClasses = *numberOfClasses + 1; ///Atualiza a quantidade de classes instanciadas.
 }

@@ -1,70 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <results>
-    <error file="UserViewer.c" line="1173" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct cp_info *&apos;." />
-    <error file="UserViewer.c" line="1174" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct method_info *&apos;." />
-    <error file="UserViewer.c" line="1175" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct ClassHandler *&apos;." />
-    <error file="UserViewer.c" line="1186" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct structOperandStack *&apos;." />
-    <error file="UserViewer.c" line="1201" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct ClassFile *&apos;." />
-    <error file="UserViewer.c" line="189" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
-    <error file="UserViewer.c" line="461" id="memleak" severity="error" msg="Memory leak: s1" />
+    <error file="UserViewer.c" line="1187" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct cp_info *&apos;." />
+    <error file="UserViewer.c" line="1189" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct ClassHandler *&apos;." />
+    <error file="UserViewer.c" line="1200" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct structOperandStack *&apos;." />
+    <error file="UserViewer.c" line="1215" id="invalidPrintfArgType_sint" severity="style" msg="%d in format string (no. 1) requires &apos;int&apos; but the argument type is &apos;struct ClassFile *&apos;." />
+    <error file="UserViewer.c" line="203" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="UserViewer.c" line="475" id="memleak" severity="error" msg="Memory leak: s1" />
+    <error file="classManager.c" line="265" id="redundantAssignment" severity="style" msg="Variable &apos;classFullName&apos; is reassigned a value before the old one has been used." />
     <error file="classManager.c" line="129" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="classManager.c" line="268" id="unreadVariable" severity="style" msg="Variable &apos;hasSlash&apos; is assigned a value that is never used." />
+    <error file="classManager.c" line="265" id="memleak" severity="error" msg="Memory leak: classFullName" />
+    <error file="classManager.c" line="268" id="memleak" severity="error" msg="Memory leak: className" />
     <error file="classManager.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="frameManager.c" line="29" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="frameManager.c" line="51" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
     <error file="lib\UserViewer.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\classManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\classManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\frameManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;FRAMEMANAGER_SERV&apos; was not checked because its code equals another one." />
-    <error file="lib\macros.h" line="287" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous0::name_index&apos; is never used." />
-    <error file="lib\macros.h" line="290" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous1::class_index&apos; is never used." />
-    <error file="lib\macros.h" line="291" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous1::name_and_type_index&apos; is never used." />
-    <error file="lib\macros.h" line="294" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous2::name_index&apos; is never used." />
-    <error file="lib\macros.h" line="295" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous2::descriptor_index&apos; is never used." />
-    <error file="lib\macros.h" line="298" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous3::length&apos; is never used." />
-    <error file="lib\macros.h" line="299" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous3::bytes&apos; is never used." />
-    <error file="lib\macros.h" line="302" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous4::class_index&apos; is never used." />
-    <error file="lib\macros.h" line="303" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous4::name_and_type_index&apos; is never used." />
-    <error file="lib\macros.h" line="306" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous5::class_index&apos; is never used." />
-    <error file="lib\macros.h" line="307" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous5::name_and_type_index&apos; is never used." />
-    <error file="lib\macros.h" line="310" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous6::string_index&apos; is never used." />
-    <error file="lib\macros.h" line="313" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous7::bytes&apos; is never used." />
-    <error file="lib\macros.h" line="316" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous8::bytes&apos; is never used." />
-    <error file="lib\macros.h" line="319" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous9::high_bytes&apos; is never used." />
-    <error file="lib\macros.h" line="320" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous9::low_bytes&apos; is never used." />
-    <error file="lib\macros.h" line="323" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous10::high_bytes&apos; is never used." />
-    <error file="lib\macros.h" line="324" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous10::low_bytes&apos; is never used." />
-    <error file="lib\macros.h" line="377" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous11::index&apos; is never used." />
-    <error file="lib\macros.h" line="380" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::max_stack&apos; is never used." />
-    <error file="lib\macros.h" line="381" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::max_locals&apos; is never used." />
-    <error file="lib\macros.h" line="382" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::code_length&apos; is never used." />
-    <error file="lib\macros.h" line="383" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::code&apos; is never used." />
-    <error file="lib\macros.h" line="384" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::exception_table_length&apos; is never used." />
-    <error file="lib\macros.h" line="386" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::attributes_count&apos; is never used." />
-    <error file="lib\macros.h" line="390" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous13::number_of_exceptions&apos; is never used." />
-    <error file="lib\macros.h" line="391" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous13::exception_index_table&apos; is never used." />
-    <error file="lib\macros.h" line="394" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous14::number_of_classes&apos; is never used." />
-    <error file="lib\macros.h" line="398" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous15::line_number_table_length&apos; is never used." />
-    <error file="lib\macros.h" line="402" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous16::local_variable_table_length&apos; is never used." />
-    <error file="lib\macros.h" line="406" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous17::sourcefile_index&apos; is never used." />
-    <error file="lib\macros.h" line="482" id="unusedStructMember" severity="style" msg="struct or union member &apos;Frame::returnPC&apos; is never used." />
+    <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
+    <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;JVMMANAGER_SERV&apos; was not checked because its code equals another one." />
+    <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
+    <error file="lib\macros.h" line="292" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous0::name_index&apos; is never used." />
+    <error file="lib\macros.h" line="295" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous1::class_index&apos; is never used." />
+    <error file="lib\macros.h" line="296" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous1::name_and_type_index&apos; is never used." />
+    <error file="lib\macros.h" line="299" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous2::name_index&apos; is never used." />
+    <error file="lib\macros.h" line="300" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous2::descriptor_index&apos; is never used." />
+    <error file="lib\macros.h" line="303" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous3::length&apos; is never used." />
+    <error file="lib\macros.h" line="304" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous3::bytes&apos; is never used." />
+    <error file="lib\macros.h" line="307" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous4::class_index&apos; is never used." />
+    <error file="lib\macros.h" line="308" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous4::name_and_type_index&apos; is never used." />
+    <error file="lib\macros.h" line="311" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous5::class_index&apos; is never used." />
+    <error file="lib\macros.h" line="312" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous5::name_and_type_index&apos; is never used." />
+    <error file="lib\macros.h" line="315" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous6::string_index&apos; is never used." />
+    <error file="lib\macros.h" line="318" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous7::bytes&apos; is never used." />
+    <error file="lib\macros.h" line="321" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous8::bytes&apos; is never used." />
+    <error file="lib\macros.h" line="324" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous9::high_bytes&apos; is never used." />
+    <error file="lib\macros.h" line="325" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous9::low_bytes&apos; is never used." />
+    <error file="lib\macros.h" line="328" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous10::high_bytes&apos; is never used." />
+    <error file="lib\macros.h" line="329" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous10::low_bytes&apos; is never used." />
+    <error file="lib\macros.h" line="382" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous11::index&apos; is never used." />
+    <error file="lib\macros.h" line="385" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::max_stack&apos; is never used." />
+    <error file="lib\macros.h" line="386" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::max_locals&apos; is never used." />
+    <error file="lib\macros.h" line="387" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::code_length&apos; is never used." />
+    <error file="lib\macros.h" line="388" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::code&apos; is never used." />
+    <error file="lib\macros.h" line="389" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::exception_table_length&apos; is never used." />
+    <error file="lib\macros.h" line="391" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous12::attributes_count&apos; is never used." />
+    <error file="lib\macros.h" line="395" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous13::number_of_exceptions&apos; is never used." />
+    <error file="lib\macros.h" line="396" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous13::exception_index_table&apos; is never used." />
+    <error file="lib\macros.h" line="399" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous14::number_of_classes&apos; is never used." />
+    <error file="lib\macros.h" line="403" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous15::line_number_table_length&apos; is never used." />
+    <error file="lib\macros.h" line="407" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous16::local_variable_table_length&apos; is never used." />
+    <error file="lib\macros.h" line="411" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous17::sourcefile_index&apos; is never used." />
     <error file="lib\macros.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;MACROS_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\uReader.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="main.c" line="288" id="redundantAssignment" severity="style" msg="Variable &apos;classFullName&apos; is reassigned a value before the old one has been used." />
-    <error file="main.c" line="46" id="unusedVariable" severity="style" msg="Unused variable: PC" />
-    <error file="main.c" line="97" id="unreadVariable" severity="style" msg="Variable &apos;currentFrame&apos; is assigned a value that is never used." />
-    <error file="main.c" line="291" id="unreadVariable" severity="style" msg="Variable &apos;hasSlash&apos; is assigned a value that is never used." />
-    <error file="main.c" line="288" id="memleak" severity="error" msg="Memory leak: classFullName" />
-    <error file="main.c" line="291" id="memleak" severity="error" msg="Memory leak: className" />
-    <error file="main.c" line="89" id="uninitvar" severity="error" msg="Uninitialized variable: frame" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.operandStack" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.localVariableArray" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.constant_pool" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.methods" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.handler" />
-    <error file="main.c" line="89" id="uninitStructMember" severity="error" msg="Uninitialized struct member: frame.returnPC" />
+    <error file="main.c" line="150" id="uselessAssignmentPtrArg" severity="style" msg="Assignment of function parameter has no effect outside the function. Did you forget dereferencing it?" />
+    <error file="main.c" line="34" id="redundantAssignment" severity="style" msg="Variable &apos;cur_frame&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="148" id="redundantAssignment" severity="style" msg="Variable &apos;currentframe&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="149" id="redundantAssignment" severity="style" msg="Variable &apos;aux&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="90" id="variableScope" severity="style" msg="The scope of the variable &apos;curOPCODE&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="main.c" line="90" id="variableScope" severity="style" msg="The scope of the variable &apos;flagIsWide&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="main.c" line="100" id="unreadVariable" severity="style" msg="Variable &apos;flagIsWide&apos; is assigned a value that is never used." />
+    <error file="main.c" line="34" id="memleak" severity="error" msg="Memory leak: cur_frame" />
+    <error file="main.c" line="142" id="memleak" severity="error" msg="Memory leak: nodeFrame" />
+    <error file="main.c" line="148" id="memleak" severity="error" msg="Memory leak: currentframe" />
+    <error file="main.c" line="149" id="memleak" severity="error" msg="Memory leak: aux" />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="frameManager.c" line="155" id="unusedFunction" severity="style" msg="The function &apos;popOperandStack&apos; is never used." />
-    <error file="UserViewer.c" line="1170" id="unusedFunction" severity="style" msg="The function &apos;printFrame&apos; is never used." />
-    <error file="frameManager.c" line="147" id="unusedFunction" severity="style" msg="The function &apos;pushOperandStack&apos; is never used." />
+    <error file="frameManager.c" line="177" id="unusedFunction" severity="style" msg="The function &apos;popOperandStack&apos; is never used." />
+    <error file="UserViewer.c" line="1184" id="unusedFunction" severity="style" msg="The function &apos;printFrame&apos; is never used." />
+    <error file="UserViewer.c" line="1214" id="unusedFunction" severity="style" msg="The function &apos;printHandler&apos; is never used." />
+    <error file="UserViewer.c" line="1206" id="unusedFunction" severity="style" msg="The function &apos;printLocalVariableArray&apos; is never used." />
+    <error file="frameManager.c" line="169" id="unusedFunction" severity="style" msg="The function &apos;pushOperandStack&apos; is never used." />
+    <error file="classManager.c" line="258" id="unusedFunction" severity="style" msg="The function &apos;verifyClassName&apos; is never used." />
     <error id="missingIncludeSystem" severity="style" msg="Cppcheck cannot find all the include files. Cppcheck can check the code without the include files found. But the results will probably be more accurate if all the include files are found. Please check your project&apos;s include directories and add all of them as include directories for Cppcheck. To see what files Cppcheck cannot find use --check-config." />
 </results>
