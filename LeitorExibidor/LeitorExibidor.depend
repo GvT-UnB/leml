@@ -284,3 +284,69 @@
 	<stdint.h>
 	"lib/macros.h"
 
+1434758986 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\classmanager.c
+	<stdio.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1434812428 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1434759000 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1434828735 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\framemanager.c
+	"lib/frameManager.h"
+	<stdio.h>
+	<stdlib.h>
+
+1434828673 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\framemanager.h
+	"macros.h"
+
+1434759000 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\main.c
+	"lib/jvmManager.h"
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\jvmmanager.h
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"classManager.h"
+	"exceptionManager.h"
+	"UserViewer.h"
+	"frameManager.h"
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1434759000 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+
+1434758975 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/UserViewer.h"
+
+1434827738 source:c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\instruction.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/instruction.h"
+
+1434759000 c:\users\jv\documents\unb\sb\leml\trunk\leitorexibidor\lib\instruction.h
+	"macros.h"
+

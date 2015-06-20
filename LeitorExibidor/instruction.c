@@ -42,6 +42,8 @@ void instr_invokeVirtual(){//METHODREF
 		} else if(strstr(mDesc, "[C") != NULL) {
 		} else if(strstr(mDesc, "I") != NULL) {
 		} else if(strstr(mDesc, "F") != NULL) {
+            aux_f = *((float*)&(popOperandStack(frame->operandStack));
+            printf("%f \n",aux_f);
 		} else if(strstr(mDesc, "Ljava/lang/String") != NULL) {
 
 		if(strstr(mName, "println") != NULL) {
@@ -156,7 +158,7 @@ void instr_lookUpSwitch(Frame *frame, u4 pc, u1 * code){
 void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 	u1 aux_u1, aux2_u1;
 	u2 aux_u2, index, branchoffset;
-	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress;
+	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress, *paux_u4;
 	u8 aux_u8, aux2_u8;
 	float aux_f, aux2_f;
 	double aux_d, aux2_d, aux_double;
@@ -267,6 +269,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 					break;
 				case(CONSTANT_Float):
 					pushOperandStack( frame->operandStack, frame->constant_pool[index].Float.bytes);
+
 					break;
 				case(CONSTANT_String)://TESTE: tem que ver isso aqui
 					aux_u4 = frame->constant_pool[index].String.string_index;
