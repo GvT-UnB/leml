@@ -24,7 +24,7 @@ void instr_getstatic(Frame * frame, u4 pc, u1 fWide, u1 * code){//FIELDREF
 
 void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 	u2 index, ntIndex;
-	u4 cIndex, fIndex, aux_u4;
+	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	u8 aux_u8;
 	char *cName, *mName, *mDesc;
 
@@ -37,15 +37,26 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 	mDesc = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
 
 	if((strcmp(cName, "java/io/PrintStream") == 0) &&((strcmp(mName,"print") == 0) ||(strcmp(mName,"println") == 0))){
-		if(strstr(mDesc, "J") != NULL){
-		} else if(strstr(mDesc, "Z") != NULL) {
-		} else if(strstr(mDesc, "C") != NULL) {
-		} else if(strstr(mDesc, "[C") != NULL) {
-		} else if(strstr(mDesc, "I") != NULL) {
-		} else if(strstr(mDesc, "F") != NULL) {
+		if(strstr(mDesc, "J") != NULL){//long
+            aux_u4  = popOperandStack( frame->operandStack);
+		    aux2_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = (aux2_u4<<32) | aux_u4;
+            printf("%d", aux_u8);
+		} else if(strstr(mDesc, "D") != NULL) {//double
+		    aux_u4  = popOperandStack( frame->operandStack);
+		    aux2_u4 = popOperandStack( frame->operandStack);
+		    aux_u8 = (aux2_u4<<32) | aux_u4;
+		    printf("%f", (double)aux_u4);
+        } else if(strstr(mDesc, "Z") != NULL) {//boolean
+		} else if(strstr(mDesc, "C") != NULL) {//char
+		} else if(strstr(mDesc, "[C") != NULL) {//array char
+		} else if(strstr(mDesc, "I") != NULL) {//int
+		    aux_u4  = popOperandStack( frame->operandStack);
+            printf("%d", aux_u4);
+		} else if(strstr(mDesc, "F") != NULL) {//float
             //aux_f = *((float*)&(popOperandStack(frame->operandStack));
             //printf("%f \n",aux_f);
-		} else if(strstr(mDesc, "Ljava/lang/String") != NULL) {
+		} else if(strstr(mDesc, "Ljava/lang/String") != NULL) {//string
 		    aux_u4 = popOperandStack( frame->operandStack);
 		    printf("%s", (char *)aux_u4);
 		}
@@ -409,7 +420,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pushOperandStack( frame->operandStack, aux_u4);
 			pc++;
 			break;
-		case OPCODE_bipush: //TESTE: ver se isso funfa
+		case OPCODE_bipush:
 			pc++;
 			aux_u1 = code[pc];
 			aux_u4 = aux_u1;
@@ -436,7 +447,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 					pushOperandStack( frame->operandStack, frame->constant_pool[index].Float.bytes);
 
 					break;
-				case(CONSTANT_String)://TESTE: tem que ver isso aqui
+				case(CONSTANT_String):
 					aux_u4 = frame->constant_pool[index].String.string_index;
 					pushOperandStack( frame->operandStack, frame->constant_pool[aux_u4].UTF8.bytes);
 					break;
@@ -455,9 +466,9 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 				case(CONSTANT_Float):
 					pushOperandStack( frame->operandStack, frame->constant_pool[index].Float.bytes);
 					break;
-				case(CONSTANT_String)://TESTE: tem que ver isso aqui
+				case(CONSTANT_String):
 					aux_u4 = frame->constant_pool[index].String.string_index;
-					//pushOperandStack( frame->operandStack, );
+					pushOperandStack( frame->operandStack, frame->constant_pool[aux_u4].UTF8.bytes);
 					break;
 			}
 			pc++;
@@ -1494,7 +1505,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_getstatic:
-		    getstatic(frame, pc, fWide, code);
+		    instr_getstatic(frame, pc, fWide, code);
 			break;
 		case OPCODE_putstatic:
 			break;
