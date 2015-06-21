@@ -6,8 +6,8 @@
 
 #include "lib/instruction.h"
 //#include "lib/macros.h"
-/*
-void instr_getstatic(){//FIELDREF
+
+void instr_getstatic(Frame * frame, u4 pc, u1 fWide, u1 * code){//FIELDREF
 	u2 index, ntIndex;
 	u4 cIndex, fIndex;
 	u8 aux_u8;
@@ -17,14 +17,14 @@ void instr_getstatic(){//FIELDREF
 	index = (code[pc] << 8) | code[pc+1];
 	cIndex = frame->constant_pool[index].Fieldref.class_index;
 	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
-	ntName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_and_type_index].UTF8.bytes;
+	ntName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
 	ntType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
 
 }
 
-void instr_invokeVirtual(){//METHODREF
+void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 	u2 index, ntIndex;
-	u4 cIndex, fIndex;
+	u4 cIndex, fIndex, aux_u4;
 	u8 aux_u8;
 	char *cName, *mName, *mDesc;
 
@@ -32,26 +32,29 @@ void instr_invokeVirtual(){//METHODREF
 	index = (code[pc] << 8) | code[pc+1];
 	cIndex = frame->constant_pool[index].Methodref.class_index;
 	ntIndex = frame->constant_pool[index].Methodref.name_and_type_index;
-	mName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_and_type_index].UTF8.bytes;
+	cName =  frame->constant_pool[frame->constant_pool[cIndex].Class.name_index].UTF8.bytes;
+	mName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
 	mDesc = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
 
-	if((strcmp(cName, "java/io/PrintStream") == 0) &&((strcmp(mdName,"print") == 0) ||(strcmp(mName,"println") == 0))){
+	if((strcmp(cName, "java/io/PrintStream") == 0) &&((strcmp(mName,"print") == 0) ||(strcmp(mName,"println") == 0))){
 		if(strstr(mDesc, "J") != NULL){
 		} else if(strstr(mDesc, "Z") != NULL) {
 		} else if(strstr(mDesc, "C") != NULL) {
 		} else if(strstr(mDesc, "[C") != NULL) {
 		} else if(strstr(mDesc, "I") != NULL) {
 		} else if(strstr(mDesc, "F") != NULL) {
-            aux_f = *((float*)&(popOperandStack(frame->operandStack));
-            printf("%f \n",aux_f);
+            //aux_f = *((float*)&(popOperandStack(frame->operandStack));
+            //printf("%f \n",aux_f);
 		} else if(strstr(mDesc, "Ljava/lang/String") != NULL) {
-
+		    aux_u4 = popOperandStack( frame->operandStack);
+		    printf("%s", (char *)aux_u4);
+		}
 		if(strstr(mName, "println") != NULL) {
 			printf("\n");
 		}
 	}
 }
-*/
+
 
 int16_t printBin(int16_t var, int dim){
     float value=0;
@@ -435,7 +438,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 					break;
 				case(CONSTANT_String)://TESTE: tem que ver isso aqui
 					aux_u4 = frame->constant_pool[index].String.string_index;
-					//pushOperandStack( frame->operandStack, );
+					pushOperandStack( frame->operandStack, frame->constant_pool[aux_u4].UTF8.bytes);
 					break;
 			}
 			pc++;
@@ -1499,6 +1502,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 		case OPCODE_putfield:
 			break;
 		case OPCODE_invokevirtual:
+		    instr_invokeVirtual(frame, pc, fWide, code);
 			break;
 		case OPCODE_invokespecial:
 			break;
