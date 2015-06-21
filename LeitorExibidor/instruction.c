@@ -1494,6 +1494,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_getstatic:
+		    getstatic(frame, pc, fWide, code);
 			break;
 		case OPCODE_putstatic:
 			break;
