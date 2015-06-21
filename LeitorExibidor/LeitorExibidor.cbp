@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="tutorial/HelloWorld.class" />
+				<Option parameters="tutorial/TiposPrimitivos.class" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-std=c99" />

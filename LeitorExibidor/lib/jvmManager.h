@@ -16,6 +16,7 @@
 #include "frameManager.h"
 
 #define MAIN_FOUND          1
+
 #define MAX_CLASSES_ON_HEAP 100
 
 /** \brief Instancia um novo objeto da classe class_file.

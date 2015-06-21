@@ -476,5 +476,49 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
     classRead(dot_class,class_file); ///Carrega para o HEAP a classe
     //printf("Bytecode Java copiado com sucesso!\n");
     fclose(dot_class);
+    class_file->class_full_name_length = strlen(file_name) - strlen(".class"); ///Deve-se retirar a string '.class' do nome completo da Classe.
+    class_file->class_full_name = (u1*)malloc(class_file->class_full_name_length * sizeof(u1));
+    for(int i = 0; i < class_file->class_full_name_length; i++){
+        class_file->class_full_name[i] = file_name[i]; ///Copia o nome completo da Classe, ignorando a parte do '.class'
+    }
+     class_file->class_full_name[class_file->class_full_name_length] = '\0'; ///Insere o caractere de fim de string.
+    //printf("O nome completo da classe lida eh: %s\n",class_file->class_full_name);
     verifyClassName(file_name,class_file); ///Verifica se o .class tem o mesmo nome da classe delcarada nele.
+}
+
+
+u4 seekClassInHeap(ClassFile * class_file,u4 numberOfClassesHeap,u1 * className){
+    printf("Devo procurar por: %s\n",className);
+    for(u2 i = 0; i < numberOfClassesHeap; i++){
+        //if(!strcmp(className,getClassName(class_file+i))){
+        printf("Serah que eh %s?\n",(class_file+i)->class_full_name);
+        if(!strcmp(className,(class_file+i)->class_full_name)){
+            //printf("Encontrei a classe %s! Na posicao %d\n",getClassName(class_file+i),i);
+            //printf("Encontrei a classe %s! Na posicao %d\n",(class_file+i)->class_full_name,i);
+            return i;
+        }
+    }
+    return CLASS_NOT_FOUND;
+}
+
+u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,ClassHandler * handler,u4 * numberOfClasses){
+    u4 i;
+    ///Verifica se o className jah esta salvo no heap!
+    i = seekClassInHeap(class_file,*numberOfClassesHeap,className);
+    //printf("%s\n",className);
+    ///Se a classe não estiver no HEAP, coloca no HEAP.
+    if(i != CLASS_NOT_FOUND){
+        //printf("Encontrei a classe %s! Na posicao %d\n",getClassName(class_file+i),i);
+        return i; ///Se a classe jah esta na memoria, retorna o indice dela no HEAP.
+    }else{
+        //printf("Nao achei... :(\n");
+        u1 * fullClassName = (u1*)malloc((strlen(className) + strlen(".class"))*sizeof(u1));
+        strcat(fullClassName,className);
+        strcat(fullClassName,".class"); ///Concatena o nome completo da classe com a string '.class'
+        //printf("Nome com extensão da classe: %s\n",fullClassName);
+        classLoader(class_file+(*numberOfClassesHeap), fullClassName, numberOfClassesHeap);///Carrega a classe no HEAP.
+        createNewObject(handler,numberOfClasses,class_file+(*numberOfClassesHeap)-1);///Instancia um Objeto da classe recem criada.
+        //printf("Mas jah botei na memoria! ;D\n");
+        return *numberOfClassesHeap; ///Retorna o indice da nova classe no HEAP.
+    }
 }

@@ -455,6 +455,9 @@ typedef struct{
     method_info *methods;
     u2 attributes_count;
     attribute_info *attributes;
+
+    u2 class_full_name_length;///Quantidade de bytes necessarios para armazenar o nome completo da classe.
+    u1 * class_full_name; ///Nome completo da classe, incluindo o endereco ateh ela a patir daparta raiz.
 }ClassFile;
 
 /*! \struct   LocalVariable
@@ -492,7 +495,8 @@ typedef struct StructFrameStack{
     struct StructFrameStack *next;
 }StructFrameStack;
 
-/**< Apenas para a main =>  */
+/**< Definições gerais.  */
 #define NOT_RETURN -1
 #define ATTRIBUTE_COD_NOT_FOUND -1
+#define CLASS_NOT_FOUND     -1
 #endif // MACROS_H_INCLUDED

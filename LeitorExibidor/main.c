@@ -5,7 +5,9 @@
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
 ///TODO: handler estah errado, necessita tratamento similar ao do class_file
-///TODO: Empilhar o frame corrente antes de criar um novo frame
+///TODO: Empilhar o frame corrente antes de criar um novo frame.
+///TODO: Criar função que carrega novo metodo, ele recebe entrada do tipo NOME_DA_CLASSE.NOME_METODO e procura pro NOME_METODO no method_info da classe.
+
 
 int main(int argc, char *argv[]){
     ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
@@ -78,20 +80,19 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+        //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
 
-    ///Verifica se o className jah esta salvo no heap!
-    u1 * className = "OrdenarArray"; ///Pega o nome da Classe.
-    for(int i = 0; i < numberOfClassesHeap; i++){
-        if(!strcmp(className,getClassName(class_file+i))){
-            printf("Encontrei a classe %s! Na posicao %d\n",getClassName(class_file+i),i);
-            break;
-        }
-    }
-    printf("%s\n",className);
 
+    //u1 * className = "tutorial/OrdenarArray"; ///Pega o nome da Classe.
+    //u1 * className = "tutorial/TiposPrimitivos"; ///Pega o nome da Classe.
+    //u1 * className = "tutorial/Teste"; ///Pega o nome da Classe.
+    u1 * className = "tutorial/ClassicSingleton"; ///Pega o nome da Classe.
+    u4 class_index = loadNewClass(class_file,&numberOfClassesHeap,className,handler,&numberOfClasses);
+printf("numberOfClassesHeap: %d\tnumberOfClasses: %d\n",numberOfClassesHeap,numberOfClasses);
+printf("class_index: %d\n",class_index);
     return 0;
 }
+
 
 void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop){
     u1 curOPCODE, flagIsWide = 0;
@@ -129,7 +130,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
 
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){
     u4 aux = *numberOfClasses +1;
-    //printf("TESTE 1!\n");
+    //printf("TESTE 1: %d\n",aux);
     handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));///Inicializa o Objeto
     //printf("TESTE 2!\n");
     if(handler == NULL)
@@ -152,7 +153,7 @@ void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
     nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
     nodeFrame->next = frameStackTop; ///Novo membro da pilha aponta para o topo da pilha corrente
     nodeFrame->frame = frame;///Salva o frame no novo membro da pilha.
-    *frameStackTop = *nodeFrame;///Novo membro vira o topo d apilha.
+    *frameStackTop = *nodeFrame;///Novo membro vira o topo da pilha.
 /*          printf("Method Info: \n");
             printf("---------------------------------------------------------------------------------------\n");
             printMethodInfo(frameStackTop->frame->localVariableArray[0], 1, frameStackTop->frame->handler->classRef);///Apenas para debugar!
@@ -171,9 +172,9 @@ Frame * popFrameStack(StructFrameStack *frameStackTop){
         aux = frameStackTop;
         if(frameStackTop->next){
             *frameStackTop = *frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
-        }
-        else{
-            frameStackTop = NULL;
+        }else{
+            //printf("Entrei no ELSE!\n");
+            free(frameStackTop);
         }
         free(aux);
         return currentframe;
@@ -188,6 +189,7 @@ int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStack
         if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes,"main")){ ///Procura pelo metodo main no method_info da classe
             //printf("Achei a MAIN no indice %d\n",i);
             createNewFrame(handler,i,NOT_RETURN,frameStackTop); ///encontrou o metodo main no indice i, cria o frame dele.
+            frameStackTop->next = NULL;
             return MAIN_FOUND; ///Retorna sucesso
         }
     }

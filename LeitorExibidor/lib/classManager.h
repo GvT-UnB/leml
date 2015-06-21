@@ -104,4 +104,26 @@ EXTERN u1 * getClassName(ClassFile * class_file);
  */
 EXTERN void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap);
 
+
+/** \brief Procure a classe de nome className no HEAP.
+ *
+ * \param class_file ClassFile* Referencia para o HEAP.
+ * \param numberOfClassesHeap u4 Numero de classes armazenadas no HEAP.
+ * \param className u1* Nome da classe que se deseja procurar.
+ * \return EXTERN u4 Caso a clase tenha sido encontrada, eh o indice dela no HEAP. Caso contrario, retorna o erro de classe nao encontrada.
+ *
+ */
+EXTERN u4 seekClassInHeap(ClassFile * class_file,u4 numberOfClassesHeap,u1 * className);
+
+/** \brief Se a classe de nome className nao estiver no HEAP, ela eh carregada no HEAP e instanciada.
+ *
+ * \param class_file ClassFile* Referencia para o HEAP.
+ * \param numberOfClassesHeap u4* Quantidade de classes no HEAP.
+ * \param className u1* Nome da classe que deve ser carregada.
+ * \param handler ClassHandler* Referencia para o espaco de memoria alocado para os objetos.
+ * \param numberOfClasses u4* Quantidade de objetos na memoria.
+ * \return EXTERN u4 O indice da Classe no HEAP.
+ *
+ */
+EXTERN u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,ClassHandler * handler,u4 * numberOfClasses);
 #endif // CLASSMANAGER_H_INCLUDED

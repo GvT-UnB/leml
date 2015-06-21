@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="UserViewer.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="frameManager.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="21608" topLine="438" />
+			<Cursor1 position="1682" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="frameManager.c" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\classManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5153" topLine="64" />
-		</Cursor>
-	</File>
-	<File name="lib\jvmManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="394" topLine="0" />
+			<Cursor1 position="5240" topLine="102" />
 		</Cursor>
 	</File>
 	<File name="lib\uReader.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -21,34 +16,44 @@
 			<Cursor1 position="131" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7121" topLine="92" />
+			<Cursor1 position="515" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="lib\frameManager.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\jvmManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4088" topLine="78" />
+			<Cursor1 position="367" topLine="53" />
 		</Cursor>
 	</File>
-	<File name="instruction.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="exceptionManager.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1956" topLine="37" />
+			<Cursor1 position="188" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="lib\macros.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14421" topLine="475" />
 		</Cursor>
 	</File>
 	<File name="classManager.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="14063" topLine="257" />
+			<Cursor1 position="23831" topLine="497" />
 		</Cursor>
 	</File>
-	<File name="lib\classManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UserViewer.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3750" topLine="77" />
+			<Cursor1 position="17916" topLine="1205" />
+		</Cursor>
+	</File>
+	<File name="lib\UserViewer.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2938" topLine="52" />
 		</Cursor>
 	</File>
 	<File name="lib\exceptionManager.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1456" topLine="9" />
+			<Cursor1 position="1244" topLine="12" />
 		</Cursor>
 	</File>
 	<File name="uReader.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -56,19 +61,14 @@
 			<Cursor1 position="64" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="exceptionManager.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\frameManager.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="675" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="lib\macros.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="instruction.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8782" topLine="285" />
-		</Cursor>
-	</File>
-	<File name="lib\UserViewer.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2938" topLine="53" />
+			<Cursor1 position="3360" topLine="85" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
