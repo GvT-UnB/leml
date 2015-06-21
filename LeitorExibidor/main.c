@@ -109,7 +109,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
             printf("OPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
             if(curOPCODE > 152 && curOPCODE < 178){
-                doInstructionShift(cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
+                doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }
             else{
                 doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);

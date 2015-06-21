@@ -84,19 +84,19 @@ int16_t printBin(int16_t var, int dim){
     return ((int16_t)value);
 }
 
-void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 *code, u1 fWide){
+void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 *code, u1 fWide){
     u1 aux_u1, aux2_u1;
 	u2 aux_u2, index;
 	int16_t branchoffset;
-	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress, opcodeAddress;
+	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnValue, returnValue2, opcodeAddress;
 	u8 aux_u8, aux2_u8;
 	float aux_f, aux2_f;
 	double aux_d, aux2_d, aux_double;
 
-    switch(code[*curPC]){
+     switch(code[*curPC]){
         case OPCODE_ifeq:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==0){
 				aux2_u4 = (u4) aux_u2;
 				curPC +=aux2_u4;
@@ -107,7 +107,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_ifne:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=0){
 				aux2_u4 = (u4) aux_u2;
 				*curPC +=aux2_u4;
@@ -118,7 +118,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_iflt:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<0){
 				aux2_u4 = (u4) aux_u2;
 				*curPC +=aux2_u4;
@@ -129,7 +129,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_ifge:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=0){
 				aux2_u4 = (u4) aux_u2;
 				*curPC +=aux2_u4;
@@ -140,7 +140,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_ifgt:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>0){
 				aux2_u4 = (u4) aux_u2;
 				*curPC +=aux2_u4;
@@ -151,7 +151,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_ifle:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=0){
 				aux2_u4 = (u4) aux_u2;
 				*curPC +=aux2_u4;
@@ -162,8 +162,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_icmpeq:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -174,8 +174,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_icmpne:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -186,8 +186,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_icmplt:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -200,8 +200,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 		    //(*curPC)++;
 			aux_u2 = (code[*curPC+1] << 8) | code[(*curPC)+2];
 			//printBin((code[*curPC+1] << 8) | code[(*curPC)+2], 16);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				(*curPC) += aux3_u4;
@@ -214,8 +214,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_icmpgt:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -226,8 +226,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_icmple:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -238,8 +238,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_acmpeq:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -250,8 +250,8 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_if_acmpne:
 			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( cur_frame->operandStack);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -271,7 +271,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
 		case OPCODE_jsr:
 		    //(*curPC)++;
-		    pushOperandStack(cur_frame->operandStack, (*curPC)+3); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
+		    pushOperandStack((*cur_frame)->operandStack, (*curPC)+3); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
 		    branchoffset = (code[*curPC+1] << 8) | code[*curPC+2]; ///Calcula o endereco para onde deve ser deslocado o pc
 		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
 		    (*curPC) += aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
@@ -287,39 +287,78 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
                 if(index > 255)
                     printf("Erro\n"); ///Deve-se trocar esse printf por uma excessao porque o index tem que estar dentro da faixa 0-255
 		    }
-		    *curPC = cur_frame->localVariableArray[index].value; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
+		    *curPC = (*cur_frame)->localVariableArray[index].value; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
 			break;
 		case OPCODE_tableswitch: ///Access jump table by index and jump
             //pc++;
-            instr_tableSwitch(cur_frame, curPC, code);
+            instr_tableSwitch((*cur_frame), curPC, code);
 			break;
 		case OPCODE_lookupswitch: /// Access jump table by key match and jump
-            instr_lookUpSwitch(cur_frame, curPC, code);
+            instr_lookUpSwitch((*cur_frame), curPC, code);
 			break;
 		case OPCODE_ireturn: /// Return int from method
-		    returnAddress = popOperandStack(cur_frame->operandStack);
-            ///tenho que dar free na pilha de operandos inteira
-            ///altera a variavel global de retorno
-            ///altera o tipo da variavel global de retorno
-            ///Arrumar um jeito de colocar na pilha de operandos do proximo frame
+		    returnValue = popOperandStack((*cur_frame)->operandStack); /// Desempilha o valor de retorno
+		    *curPC = (*cur_frame)->returnPC; /// Carrega o valor do PC do metodo chamador
+		    while((*cur_frame)->operandStack->next != NULL){ ///Loop para esvaziar(desempilhar) a pilha
+                popOperandStack((*cur_frame)->operandStack);
+		    }
+		    (*cur_frame) = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
+            pushOperandStack((*cur_frame)->operandStack, returnValue); ///Empilha o valor de retorno na pilha
 			break;
-		case OPCODE_lreturn:
+
+		case OPCODE_lreturn: /// Return long from method
+		    returnValue = popOperandStack((*cur_frame)->operandStack); /// Desempilha o primeiro valor de retorno
+		    returnValue2 = popOperandStack((*cur_frame)->operandStack); /// Desempilha o valor de retorno
+		    *curPC = (*cur_frame)->returnPC; ///Carrega o valor do PC do metodo chamador
+		    while((*cur_frame)->operandStack->next != NULL){    ///Esvazia a pilha de operando do frame que está sendo finalizado
+                popOperandStack((*cur_frame)->operandStack);
+		    }
+		    (*cur_frame) = popFrameStack(frameStackTop);    ///Carrega o frame chamador do metodo retornado na memoria
+		    pushOperandStack((*cur_frame)->operandStack, returnValue2);///Empilha o valor de retorno na pilha (Long)
+		    pushOperandStack((*cur_frame)->operandStack, returnValue);
 			break;
-		case OPCODE_freturn:
+
+		case OPCODE_freturn: /// Return float from method
+		    returnValue = popOperandStack((*cur_frame)->operandStack); /// Desempilha o valor de retorno
+		    *curPC = (*cur_frame)->returnPC; /// Carrega o valor do PC do metodo chamador
+		    while((*cur_frame)->operandStack->next != NULL){ ///Loop para esvaziar(desempilhar) a pilha
+                popOperandStack((*cur_frame)->operandStack);
+		    }
+		    (*cur_frame) = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
+            pushOperandStack((*cur_frame)->operandStack, returnValue); ///Empilha o valor de retorno na pilha
 			break;
-		case OPCODE_dreturn:
+
+		case OPCODE_dreturn: ///Return double from method
+		    returnValue = popOperandStack((*cur_frame)->operandStack); /// Desempilha o primeiro valor de retorno
+		    returnValue2 = popOperandStack((*cur_frame)->operandStack); /// Desempilha o valor de retorno
+		    *curPC = (*cur_frame)->returnPC; ///Carrega o valor do PC do metodo chamador
+		    while((*cur_frame)->operandStack->next != NULL){    ///Esvazia a pilha de operando do frame que está sendo finalizado
+                popOperandStack((*cur_frame)->operandStack);
+		    }
+		    (*cur_frame) = popFrameStack(frameStackTop);    ///Carrega o frame chamador do metodo retornado na memoria
+		    pushOperandStack((*cur_frame)->operandStack, returnValue2);///Empilha o valor de retorno na pilha (Long)
+		    pushOperandStack((*cur_frame)->operandStack, returnValue);
 			break;
+
 		case OPCODE_areturn:
+		    returnValue = popOperandStack((*cur_frame)->operandStack); /// Desempilha o valor de retorno
+		    *curPC = (*cur_frame)->returnPC; /// Carrega o valor do PC do metodo chamador
+		    while((*cur_frame)->operandStack->next != NULL){ ///Loop para esvaziar(desempilhar) a pilha
+                popOperandStack((*cur_frame)->operandStack);
+		    }
+		    (*cur_frame) = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
+            pushOperandStack((*cur_frame)->operandStack, returnValue); ///Empilha o valor de retorno na pilha
 			break;
+
 		case OPCODE_return:
-		    while(cur_frame->operandStack->next != NULL){
-                popOperandStack(cur_frame->operandStack);
+		    while((*cur_frame)->operandStack->next != NULL){
+                popOperandStack((*cur_frame)->operandStack);
                 printf("loop free operand stack\n");
 		    }
-		    if(cur_frame->returnPC != NOT_RETURN){
+		    if((*cur_frame)->returnPC != NOT_RETURN){
                 printf("entrou1\n");
-                *curPC = cur_frame->returnPC;
-                cur_frame = popFrameStack(frameStackTop);
+                *curPC = (*cur_frame)->returnPC;
+                (*cur_frame) = popFrameStack(frameStackTop);
 		    }
 		    else {
                 printf("entrou2\n");
@@ -329,6 +368,7 @@ void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFra
 			break;
     }
 }
+
 
 
 void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
