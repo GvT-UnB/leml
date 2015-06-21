@@ -26,13 +26,16 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
 }
 
 void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, u4 curPC){
+    int max_locals = handler->classRef->methods[method_index].attributes[0].Code.max_locals;
     newFrame->operandStack = (structOperandStack *)malloc(sizeof(structOperandStack));///Inicializa a Pilha de Operandos
     newFrame->operandStack->next = NULL;
-    newFrame->localVariableArray = (LocalVariable *)malloc(sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
+    newFrame->localVariableArray = (LocalVariable *)malloc(max_locals*sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
+    // cur_frame->methods->attributes[attributeCodeIndex].Code.code
     //newFrame->localVariableArray[0].value = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
     newFrame->localVariableArray[0].value = &handler->classRef;///Em localVariableArray[0] coloca a referencia para o Objeto dono do metodo
     newFrame->methods = (method_info *)malloc(sizeof(method_info));
     newFrame->methods = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
+    //printf("%d", handler->classRef->methods[method_index]->attributes[attributeCodeIndex].Code.max_locals);
         //printf("Method Info: \n");
         //printf("---------------------------------------------------------------------------------------\n");
         //printMethodInfo(newFrame->localVariableArray[0], 1, handler->classRef);///Apenas para debugar!
@@ -173,6 +176,8 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
     nodeOperand->value = operand;
     nodeOperand->next = *operandStackTop;
     *operandStackTop = nodeOperand;
+//    printf("\t\t\t----push int(%d), float(%f)\n ", operand, *((float*)&(operand)));
+//    printf("\t\t\t----push(%d)\n ", operand);
 }
 
 u4 popOperandStack(structOperandStack **operandStackTop){
@@ -182,6 +187,8 @@ u4 popOperandStack(structOperandStack **operandStackTop){
     operand = (*operandStackTop)->value;
     *operandStackTop = (*operandStackTop)->next;
     free(aux);
+//    printf("\t\t\t----pop int(%d), float(%f)\n ", operand,  *((float*)&(operand)));
+//    printf("\t\t\t----pop(%d)\n ", operand);
     return operand;
 }
 

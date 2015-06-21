@@ -99,7 +99,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
     //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
     while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
-        //printf("PC: %d\n",*curPC);
+        printf("\t\t\tPC: %d\n",*curPC);
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
@@ -107,7 +107,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
             incPC(curPC,curOPCODE,numberOfByteInstruction);
         }else{
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
-            printf("OPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
+            printf("\t\t\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
             if(curOPCODE > 152 && curOPCODE < 178){
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }
@@ -125,7 +125,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
         ///incPC(curPC,curOPCODE,numberOfByteInstruction);
     }
     //printf("saiu\n");
-    printf("PC: %d\n",*curPC);
+    //printf("PC: %d\n",*curPC);
 }
 
 void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){

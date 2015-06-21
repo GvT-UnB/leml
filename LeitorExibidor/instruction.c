@@ -19,6 +19,7 @@ void instr_getstatic(Frame * frame, u4 pc, u1 fWide, u1 * code){//FIELDREF
 	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
 	ntName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
 	ntType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
+	//procura o field de uma classe pelo nome e descrical e retorna o index da classe
 
 }
 
@@ -27,6 +28,7 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	u8 aux_u8;
 	char *cName, *mName, *mDesc;
+	float aux_f;
 
 	pc++;
 	index = (code[pc] << 8) | code[pc+1];
@@ -48,14 +50,22 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 		    aux_u8 = (aux2_u4<<32) | aux_u4;
 		    printf("%f", (double)aux_u4);
         } else if(strstr(mDesc, "Z") != NULL) {//boolean
+            if(popOperandStack( frame->operandStack)) {
+				printf("True");
+			} else {
+				printf("False");
+			}
 		} else if(strstr(mDesc, "C") != NULL) {//char
-		} else if(strstr(mDesc, "[C") != NULL) {//array char
+            aux_u4  = popOperandStack( frame->operandStack);
+            printf("%c",aux_u4);
+            //if(strstr(mDesc, "[C") != NULL) {//array char
 		} else if(strstr(mDesc, "I") != NULL) {//int
 		    aux_u4  = popOperandStack( frame->operandStack);
             printf("%d", aux_u4);
 		} else if(strstr(mDesc, "F") != NULL) {//float
-            //aux_f = *((float*)&(popOperandStack(frame->operandStack));
-            //printf("%f \n",aux_f);
+		    aux_u4  = popOperandStack( frame->operandStack);
+            aux_f = *((float*)&(aux_u4));
+            printf("%f \n",aux_f);
 		} else if(strstr(mDesc, "Ljava/lang/String") != NULL) {//string
 		    aux_u4 = popOperandStack( frame->operandStack);
 		    printf("%s", (char *)aux_u4);
@@ -91,11 +101,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnValue, returnValue2, opcodeAddress;
 	u8 aux_u8, aux2_u8;
 	float aux_f, aux2_f;
-	double aux_d, aux2_d, aux_double;
+	double aux_d, aux2_d;
 
      switch(code[*curPC]){
         case OPCODE_ifeq:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==0){
 				aux2_u4 = (u4) aux_u2;
@@ -117,7 +127,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_iflt:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<0){
 				aux2_u4 = (u4) aux_u2;
@@ -128,7 +138,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifge:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=0){
 				aux2_u4 = (u4) aux_u2;
@@ -150,7 +160,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifle:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=0){
 				aux2_u4 = (u4) aux_u2;
@@ -161,9 +171,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmpeq:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -173,9 +183,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmpne:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -185,9 +195,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmplt:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4<aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -200,8 +210,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		    //(*curPC)++;
 			aux_u2 = (code[*curPC+1] << 8) | code[(*curPC)+2];
 			//printBin((code[*curPC+1] << 8) | code[(*curPC)+2], 16);
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4>=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				(*curPC) += aux3_u4;
@@ -213,9 +223,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			//getchar();
 			break;
 		case OPCODE_if_icmpgt:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4>aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -225,9 +235,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmple:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4<=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -237,9 +247,9 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_acmpeq:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -249,9 +259,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_acmpne:
-			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
-			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
-			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -443,7 +454,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dconst_0:
-			aux_double = 0.0;
+			aux_d = 0.0;
 			memcpy(aux_u8, &aux_d, sizeof(u8));
 			aux_u4 = aux_u8>>32;
 			pushOperandStack( frame->operandStack, aux_u4);
@@ -452,7 +463,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dconst_1:
-			aux_double = 1.0;
+			aux_d= 1.0;
 			memcpy(aux_u8, &aux_d, sizeof(u8));
 			aux_u4 = aux_u8>>32;
 			pushOperandStack( frame->operandStack, aux_u4);
@@ -549,6 +560,11 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			}
 			else
 				index = code[pc];
+//            printf("%d\n", index);
+//            printf("%d\n", frame->operandStack, frame->localVariableArray[index].value);
+//            printf("%d\n", frame->operandStack, frame->localVariableArray[index+1].value);
+//
+//            getchar();
 			pushOperandStack( frame->operandStack, frame->localVariableArray[index].value);
 			pushOperandStack( frame->operandStack, frame->localVariableArray[index+1].value);
 			pc++;
