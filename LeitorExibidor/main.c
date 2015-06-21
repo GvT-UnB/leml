@@ -11,7 +11,8 @@ int main(int argc, char *argv[]){
     ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
     ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
-    u4 curPC = 0;
+    frameStackTop->next = NULL;
+    u4 curPC = 0;///==============================MODIFIQUEI AQUI===========================================================================================
     u4 numberOfClasses = 0; ///Quantidade de objetos instanciados
     u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
@@ -94,6 +95,7 @@ int main(int argc, char *argv[]){
 
 void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop){
     u1 curOPCODE, flagIsWide = 0;
+    //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
     while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
         //printf("PC: %d\n",*curPC);
@@ -101,23 +103,27 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
             ///Incrementa PC
-            ///incPC(curPC,curOPCODE,numberOfByteInstruction);
+            incPC(curPC,curOPCODE,numberOfByteInstruction);
         }else{
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
-            printf("OPCODE: %d\n", curOPCODE);
+            printf("OPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
             if(curOPCODE > 152 && curOPCODE < 178){
-                doInstructionShift(cur_frame, curOPCODE, curPC, frameStackTop);
+                doInstructionShift(cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }
             else{
                 doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
                 ///Incrementa PC
-                ///incPC(curPC,curOPCODE,numberOfByteInstruction);
+                incPC(curPC,curOPCODE,numberOfByteInstruction);
             }
             flagIsWide = 0; ///Zera a flag de instrucao WIDE.
         }
+        if(*curPC == -1){ ///Programa encerrado. return da main chamado
+            break;
+        }
         ///Incrementa PC
-        incPC(curPC,curOPCODE,numberOfByteInstruction);
+        ///incPC(curPC,curOPCODE,numberOfByteInstruction);
     }
+    //printf("saiu\n");
     printf("PC: %d\n",*curPC);
 }
 
@@ -163,7 +169,12 @@ Frame * popFrameStack(StructFrameStack *frameStackTop){
         Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
         currentframe = frameStackTop->frame;///Novo frame recebe o frame salvo no topo da pilha
         aux = frameStackTop;
-        frameStackTop = frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
+        if(frameStackTop->next){
+            *frameStackTop = *frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
+        }
+        else{
+            frameStackTop = NULL;
+        }
         free(aux);
         return currentframe;
     }else{
@@ -176,7 +187,7 @@ int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStack
     for(int i = 0; i < handler->classRef->methods_count; i++){
         if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes,"main")){ ///Procura pelo metodo main no method_info da classe
             //printf("Achei a MAIN no indice %d\n",i);
-            createNewFrame(handler,i,curPC,frameStackTop); ///encontrou o metodo main no indice i, cria o frame dele.
+            createNewFrame(handler,i,NOT_RETURN,frameStackTop); ///encontrou o metodo main no indice i, cria o frame dele.
             return MAIN_FOUND; ///Retorna sucesso
         }
     }

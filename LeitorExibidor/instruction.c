@@ -52,108 +52,270 @@ void instr_invokeVirtual(){//METHODREF
 	}
 }
 */
-void doInstructionShift(Frame *cur_frame, u1 curOPCODE, u4 *curPC, StructFrameStack *frameStackTop){
-}
-void instr_tableSwitch(Frame *frame, u4 pc, u1 * code){
-    u1 byte1, byte2, byte3, byte4;
-    u4 highTableS, lowTableS, defaultTableS, valTableS, opcodeAddress, targetAddress, *tableSwitch;
-    tableSwitch = (u4*)malloc(sizeof(u4)); ///Aloca memória para a tabela(vetor) do switch
-    opcodeAddress = pc;
-    while((pc + 1)%4 != 0){ ///Loop para o preenchimento do padding <0-3 bytes>
-        pc++;
-    }
-    pc++;
 
-    byte1 = code[pc++];
-    byte2 = code[pc++];
-    byte3 = code[pc++];
-    byte4 = code[pc++];
-    defaultTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
-
-    byte1 = code[pc++];
-    byte2 = code[pc++];
-    byte3 = code[pc++];
-    byte4 = code[pc++];
-    lowTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
-
-    byte1 = code[pc++];
-    byte2 = code[pc++];
-    byte3 = code[pc++];
-    byte4 = code[pc++];
-    highTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
-
-    valTableS = popOperandStack(frame->operandStack);
-
-    for(int i; i < highTableS-lowTableS+1; i++){ /// Preenche a tabela (vetor) com os offsets de cada case
-        byte1 = code[pc++];
-        byte2 = code[pc++];
-        byte3 = code[pc++];
-        byte4 = code[pc++];
-        tableSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
-    }
-
-    if(valTableS < lowTableS || valTableS > highTableS){
-        targetAddress = opcodeAddress + defaultTableS;
-    }
-    else{
-        targetAddress = opcodeAddress + tableSwitch[valTableS-lowTableS];
-    }
-    pc = targetAddress; /// PC e mandado para o offset selecionado
-}
-
-void instr_lookUpSwitch(Frame *frame, u4 pc, u1 * code){
-    u1 byte1, byte2, byte3, byte4, found;
-    u4 *lookupSwitch, opcodeAddress, defaultLS, targetAddress, npair, i, key;
-    opcodeAddress = pc;
-    while((pc + 1)%4 != 0){
-        pc++;
-    }
-    pc++;
-
-    byte1 = code[pc++];
-    byte2 = code[pc++];
-    byte3 = code[pc++];
-    byte4 = code[pc++];
-    defaultLS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
-
-    byte1 = code[pc++];
-    byte2 = code[pc++];
-    byte3 = code[pc++];
-    byte4 = code[pc++];
-    npair = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; ///Quantidade de itens a serem percorridos
-
-    lookupSwitch = (u4*)malloc(npair*2*sizeof(u4)); /// armazena em um vetor o dobro do espaço de variaveis do switch para armazenar os valores dentro deles
-
-    for(int i=0; i< npair*2; i += 2){ ///Loop anda de dois em dois para pegar dois valores de uma vez
-        byte1 = code[pc++];
-        byte2 = code[pc++];
-        byte3 = code[pc++];
-        byte4 = code[pc++];
-        lookupSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// match
-
-        byte1 = code[pc++];
-        byte2 = code[pc++];
-        byte3 = code[pc++];
-        byte4 = code[pc++];
-        lookupSwitch[i+1] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// offset (key)
-    }
-
-    key = popOperandStack(); ///recupera o valor do topo da pilha
-    i=0;
-    while( found != 1 && i < ((npair*2)-1)){///o loop para quando ele chega no limite do array - 1 ou quando encontra o match
-        if(key != lookupSwitch[i]){
-            found = 1; /// Flag para quando o match é encontrado
+int16_t printBin(int16_t var, int dim){
+    float value=0;
+    for(int i=0; i<dim; i++){
+        printf("%d ", (var >> (dim - i-1)) & 1);
+        if(((var >> (dim - i-1)) & 1) == 1){
+            if(dim- i -1 == 15){
+                value -= pow(2,dim-i-1);
+            }
+            else{
+                value += (pow(2,(dim-i-1)));
+            }
         }
-        i+=2; ///incrementa de dois em dois para buscar entre os match's
     }
-    if(found == 0){/// caso nao encontre
-        targetAddress = defaultLS + opcodeAddress;
-    }
-    else{///caso encontre
-        targetAddress = lookupSwitch[i+1] + opcodeAddress; ///pega o offset seguido do match selecionado
-    }
-    pc = targetAddress;
+    printf("valor = %.0f\n", value);
+    return ((int16_t)value);
 }
+
+void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 *code, u1 fWide){
+    u1 aux_u1, aux2_u1;
+	u2 aux_u2, index;
+	int16_t branchoffset;
+	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress, opcodeAddress;
+	u8 aux_u8, aux2_u8;
+	float aux_f, aux2_f;
+	double aux_d, aux2_d, aux_double;
+
+    switch(code[*curPC]){
+        case OPCODE_ifeq:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4==0){
+				aux2_u4 = (u4) aux_u2;
+				curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_ifne:
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4!=0){
+				aux2_u4 = (u4) aux_u2;
+				*curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_iflt:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4<0){
+				aux2_u4 = (u4) aux_u2;
+				*curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_ifge:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4>=0){
+				aux2_u4 = (u4) aux_u2;
+				*curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_ifgt:
+			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4>0){
+				aux2_u4 = (u4) aux_u2;
+				*curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_ifle:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4<=0){
+				aux2_u4 = (u4) aux_u2;
+				*curPC +=aux2_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_icmpeq:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4==aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_icmpne:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4!=aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_icmplt:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4<aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_icmpge:
+		    //(*curPC)++;
+			aux_u2 = (code[*curPC+1] << 8) | code[(*curPC)+2];
+			//printBin((code[*curPC+1] << 8) | code[(*curPC)+2], 16);
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4>=aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				(*curPC) += aux3_u4;
+			}
+			else{
+				(*curPC) += 3;
+			}
+			//printf("if_icmpge curPC: %d\n", *curPC);
+			//getchar();
+			break;
+		case OPCODE_if_icmpgt:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4>aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_icmple:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4<=aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_acmpeq:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4==aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_if_acmpne:
+			aux_u2 = (code[*curPC] << 8) | code[*curPC+1];
+			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( cur_frame->operandStack);
+			if(aux_u4!=aux2_u4){
+				aux3_u4 = (u4) aux_u2;
+				*curPC +=aux3_u4;
+			}
+			else{
+				*curPC+=3;
+			}
+			break;
+		case OPCODE_goto:
+		    opcodeAddress = *curPC;
+		    (*curPC)++;
+		    branchoffset = (code[opcodeAddress+1] << 8) | code[opcodeAddress+2];  ///Calcula o endereco para o qual o GOTO ira mandar o pc
+		    aux_u4 = ((u4)branchoffset);
+		    *curPC = opcodeAddress + aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
+		    //printf("curPC: %d\n", *curPC);
+		    //getchar();
+			break;
+		case OPCODE_jsr:
+		    //(*curPC)++;
+		    pushOperandStack(cur_frame->operandStack, (*curPC)+3); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
+		    branchoffset = (code[*curPC+1] << 8) | code[*curPC+2]; ///Calcula o endereco para onde deve ser deslocado o pc
+		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
+		    (*curPC) += aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
+			break;
+		case OPCODE_ret: ///Return from subroutine
+		    (*curPC)++;
+		    if(fWide == 1){ ///Checa se a flag da instrucao wide esta setada
+                index = (code[*curPC] << 8) | code[*curPC+1]; ///Se sim, o index é composto por dois bytes
+                (*curPC)++;
+		    }
+		    else{
+                index = code[*curPC]; ///Se nao, é por apenas 1 byte
+                if(index > 255)
+                    printf("Erro\n"); ///Deve-se trocar esse printf por uma excessao porque o index tem que estar dentro da faixa 0-255
+		    }
+		    *curPC = cur_frame->localVariableArray[index].value; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
+			break;
+		case OPCODE_tableswitch: ///Access jump table by index and jump
+            //pc++;
+            instr_tableSwitch(cur_frame, curPC, code);
+			break;
+		case OPCODE_lookupswitch: /// Access jump table by key match and jump
+            instr_lookUpSwitch(cur_frame, curPC, code);
+			break;
+		case OPCODE_ireturn: /// Return int from method
+		    returnAddress = popOperandStack(cur_frame->operandStack);
+            ///tenho que dar free na pilha de operandos inteira
+            ///altera a variavel global de retorno
+            ///altera o tipo da variavel global de retorno
+            ///Arrumar um jeito de colocar na pilha de operandos do proximo frame
+			break;
+		case OPCODE_lreturn:
+			break;
+		case OPCODE_freturn:
+			break;
+		case OPCODE_dreturn:
+			break;
+		case OPCODE_areturn:
+			break;
+		case OPCODE_return:
+		    while(cur_frame->operandStack->next != NULL){
+                popOperandStack(cur_frame->operandStack);
+                printf("loop free operand stack\n");
+		    }
+		    if(cur_frame->returnPC != NOT_RETURN){
+                printf("entrou1\n");
+                *curPC = cur_frame->returnPC;
+                cur_frame = popFrameStack(frameStackTop);
+		    }
+		    else {
+                printf("entrou2\n");
+                *curPC = NOT_RETURN; ///significa que é o return da main
+		    }
+
+			break;
+    }
+}
+
 
 void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 	u1 aux_u1, aux2_u1;
@@ -1328,225 +1490,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			}
 			pc++;
 			break;
-		case OPCODE_ifeq:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4==0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_ifne:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4!=0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_iflt:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4<0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_ifge:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4>=0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_ifgt:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4>0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_ifle:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4<=0){
-				aux2_u4 = (u4) aux_u2;
-				pc +=aux2_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmpeq:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4==aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmpne:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4!=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmplt:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4<aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmpge:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4>=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmpgt:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4>aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_icmple:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4<=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_acmpeq:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4==aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_if_acmpne:
-			aux_u2 = (code[pc] << 8) | code[pc+1];
-			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
-			if(aux_u4!=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
-				pc +=aux3_u4;
-			}
-			else{
-				pc+=3;
-			}
-			break;
-		case OPCODE_goto:
-		    pc++;
-		    branchoffset = (code[pc] << 8) | code[pc+1]; ///Calcula o endereco para o qual o GOTO ira mandar o pc
-		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
-		    pc += aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
-			pc++;
-			break;
-		case OPCODE_jsr:
-		    pc++;
-		    pushOperandStack(frame->operandStack, pc+1); ///Salva na pilha o valor de retorno da proxima instrucao depois do JSR
-		    branchoffset = (code[pc] << 8) | code[pc+1]; ///Calcula o endereco para onde deve ser deslocado o pc
-		    memcpy(aux_u4, &branchoffset, sizeof(u4)); /// Grava o valor do branchoffset em uma variavel de 32 bits
-		    pc += aux_u4; ///Atribui o valor calculado ao pc para que haja o deslocamento solicitado
-			pc++;
-			break;
-		case OPCODE_ret: ///Return from subroutine
-		    pc++;
-		    if(fWide == 1){ ///Checa se a flag da instrucao wide esta setada
-                index = (code[pc] << 8) | code[pc+1]; ///Se sim, o index é composto por dois bytes
-                pc++;
-		    }
-		    else{
-                index = code[pc]; ///Se nao, é por apenas 1 byte
-                if(index < 0 || index > 255)
-                    printf("Erro\n"); ///Deve-se trocar esse printf por uma excessao porque o index tem que estar dentro da faixa 0-255
-		    }
-		    pc = frame->localVariableArray[index].value; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
-			pc++;
-			break;
-		case OPCODE_tableswitch: ///Access jump table by index and jump
-            //pc++;
-            instr_tableSwitch(frame, pc, code);
-            pc++;
-			break;
-		case OPCODE_lookupswitch: /// Access jump table by key match and jump
-            instr_lookUpSwitch(frame, pc, code);
-            pc++;
-			break;
-		case OPCODE_ireturn: /// Return int from method
-		    returnAddress = popOperandStack(frame->operandStack);
-		    printf("AINDA NAO IMPLEMENTADO\n");
-            ///tenho que dar free na pilha de operandos inteira
-            ///altera a variavel global de retorno
-            ///altera o tipo da variavel global de retorno
-            ///Arrumar um jeito de colocar na pilha de operandos do proximo frame
-			break;
-			break;
-		case OPCODE_lreturn:
-			break;
-		case OPCODE_freturn:
-			break;
-		case OPCODE_dreturn:
-			break;
-		case OPCODE_areturn:
-			break;
-		case OPCODE_return:
-			break;
 		case OPCODE_getstatic:
 			break;
 		case OPCODE_putstatic:
@@ -1605,4 +1548,105 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 	}
 
+}
+
+void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code){
+    u1 byte1, byte2, byte3, byte4;
+    u4 highTableS, lowTableS, defaultTableS, valTableS, opcodeAddress, targetAddress, *tableSwitch;
+    tableSwitch = (u4*)malloc(sizeof(u4)); ///Aloca memória para a tabela(vetor) do switch
+    opcodeAddress = *curPC;
+    while((*curPC + 1)%4 != 0){ ///Loop para o preenchimento do padding <0-3 bytes>
+        (*curPC)++;
+    }
+    (*curPC)++;
+
+    byte1 = code[(*curPC)++];
+    byte2 = code[(*curPC)++];
+    byte3 = code[(*curPC)++];
+    byte4 = code[(*curPC)++];
+    defaultTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = code[(*curPC)++];
+    byte2 = code[(*curPC)++];
+    byte3 = code[(*curPC)++];
+    byte4 = code[(*curPC)++];
+    lowTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = code[(*curPC)++];
+    byte2 = code[(*curPC)++];
+    byte3 = code[(*curPC)++];
+    byte4 = code[(*curPC)++];
+    highTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    valTableS = popOperandStack(frame->operandStack);
+
+    for(int i=0; i < highTableS-lowTableS+1; i++){ /// Preenche a tabela (vetor) com os offsets de cada case
+        byte1 = code[(*curPC)++];
+        byte2 = code[(*curPC)++];
+        byte3 = code[(*curPC)++];
+        byte4 = code[(*curPC)++];
+        tableSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+    }
+
+    if(valTableS < lowTableS || valTableS > highTableS){
+        targetAddress = opcodeAddress + defaultTableS;
+    }
+    else{
+        targetAddress = opcodeAddress + tableSwitch[valTableS-lowTableS];
+    }
+    *curPC = targetAddress; /// PC e mandado para o offset selecionado
+}
+
+void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
+    u1 byte1, byte2, byte3, byte4, found;
+    u4 *lookupSwitch, opcodeAddress, defaultLS, targetAddress, npair, i, key;
+    opcodeAddress = (*curPC);
+    while(((*curPC) + 1)%4 != 0){
+        (*curPC)++;
+    }
+    (*curPC)++;
+
+    byte1 = code[(*curPC)++];
+    byte2 = code[(*curPC)++];
+    byte3 = code[(*curPC)++];
+    byte4 = code[(*curPC)++];
+    defaultLS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
+
+    byte1 = code[(*curPC)++];
+    byte2 = code[(*curPC)++];
+    byte3 = code[(*curPC)++];
+    byte4 = code[(*curPC)++];
+    npair = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; ///Quantidade de itens a serem percorridos
+
+    lookupSwitch = (u4*)malloc(npair*2*sizeof(u4)); /// armazena em um vetor o dobro do espaço de variaveis do switch para armazenar os valores dentro deles
+
+    for(int i=0; i< npair*2; i += 2){ ///Loop anda de dois em dois para pegar dois valores de uma vez
+        byte1 = code[(*curPC)++];
+        byte2 = code[(*curPC)++];
+        byte3 = code[(*curPC)++];
+        byte4 = code[(*curPC)++];
+        lookupSwitch[i] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// match
+
+        byte1 = code[(*curPC)++];
+        byte2 = code[(*curPC)++];
+        byte3 = code[(*curPC)++];
+        byte4 = code[(*curPC)++];
+        lookupSwitch[i+1] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// offset (key)
+    }
+
+    key = popOperandStack(); ///recupera o valor do topo da pilha
+    i=0;
+    while( found != 1 && i < ((npair*2)-1)){///o loop para quando ele chega no limite do array - 1 ou quando encontra o match
+        if(key != lookupSwitch[i]){
+            found = 1; /// Flag para quando o match é encontrado
+        }
+        i+=2; ///incrementa de dois em dois para buscar entre os match's
+    }
+    if(found == 0){/// caso nao encontre
+        targetAddress = defaultLS + opcodeAddress;
+    }
+    else{///caso encontre
+        targetAddress = lookupSwitch[i+1] + opcodeAddress; ///pega o offset seguido do match selecionado
+    }
+    *curPC = targetAddress;
 }

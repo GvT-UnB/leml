@@ -28,7 +28,6 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
 void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, u4 curPC){
     newFrame->operandStack = (structOperandStack *)malloc(sizeof(structOperandStack));///Inicializa a Pilha de Operandos
     newFrame->operandStack->next = NULL;
-     newFrame->operandStack->value = 1;
     newFrame->localVariableArray = (LocalVariable *)malloc(sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
     //newFrame->localVariableArray[0].value = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
     newFrame->localVariableArray[0].value = &handler->classRef;///Em localVariableArray[0] coloca a referencia para o Objeto dono do metodo

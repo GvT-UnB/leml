@@ -12,11 +12,31 @@
     <error file="classManager.c" line="266" id="memleak" severity="error" msg="Memory leak: className" />
     <error file="classManager.c" line="266" id="memleak" severity="error" msg="Memory leak: classFullName" />
     <error file="classManager.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="frameManager.c" line="51" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="frameManager.c" line="52" id="variableScope" severity="style" msg="The scope of the variable &apos;indice&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="instruction.c" line="1530" id="uselessAssignmentArg" severity="style" msg="Assignment of function parameter has no effect outside the function." />
+    <error file="instruction.c" line="1531" id="uselessAssignmentArg" severity="style" msg="Assignment of function parameter has no effect outside the function." />
+    <error file="instruction.c" line="72" id="unusedVariable" severity="style" msg="Unused variable: aux_u1" />
+    <error file="instruction.c" line="72" id="unusedVariable" severity="style" msg="Unused variable: aux2_u1" />
+    <error file="instruction.c" line="75" id="unusedVariable" severity="style" msg="Unused variable: aux4_u4" />
+    <error file="instruction.c" line="284" id="unreadVariable" severity="style" msg="Variable &apos;returnAddress&apos; is assigned a value that is never used." />
+    <error file="instruction.c" line="76" id="unusedVariable" severity="style" msg="Unused variable: aux_u8" />
+    <error file="instruction.c" line="76" id="unusedVariable" severity="style" msg="Unused variable: aux2_u8" />
+    <error file="instruction.c" line="77" id="unusedVariable" severity="style" msg="Unused variable: aux_f" />
+    <error file="instruction.c" line="77" id="unusedVariable" severity="style" msg="Unused variable: aux2_f" />
+    <error file="instruction.c" line="78" id="unusedVariable" severity="style" msg="Unused variable: aux_d" />
+    <error file="instruction.c" line="78" id="unusedVariable" severity="style" msg="Unused variable: aux2_d" />
+    <error file="instruction.c" line="78" id="unusedVariable" severity="style" msg="Unused variable: aux_double" />
+    <error file="instruction.c" line="319" id="unusedVariable" severity="style" msg="Unused variable: aux2_u1" />
+    <error file="instruction.c" line="320" id="unusedVariable" severity="style" msg="Unused variable: branchoffset" />
+    <error file="instruction.c" line="321" id="unusedVariable" severity="style" msg="Unused variable: returnAddress" />
+    <error file="instruction.c" line="399" id="unreadVariable" severity="style" msg="Variable &apos;aux_double&apos; is assigned a value that is never used." />
+    <error file="instruction.c" line="1595" id="memleak" severity="error" msg="Memory leak: tableSwitch" />
+    <error file="instruction.c" line="1649" id="memleak" severity="error" msg="Memory leak: lookupSwitch" />
     <error file="lib\UserViewer.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\classManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\classManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\frameManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;FRAMEMANAGER_SERV&apos; was not checked because its code equals another one." />
+    <error file="lib\instruction.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;JVMMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\jvmManager.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
@@ -53,24 +73,21 @@
     <error file="lib\macros.h" line="411" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous17::sourcefile_index&apos; is never used." />
     <error file="lib\macros.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;MACROS_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\uReader.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="main.c" line="155" id="uselessAssignmentPtrArg" severity="style" msg="Assignment of function parameter has no effect outside the function. Did you forget dereferencing it?" />
-    <error file="main.c" line="35" id="redundantAssignment" severity="style" msg="Variable &apos;cur_frame&apos; is reassigned a value before the old one has been used." />
-    <error file="main.c" line="153" id="redundantAssignment" severity="style" msg="Variable &apos;currentframe&apos; is reassigned a value before the old one has been used." />
-    <error file="main.c" line="154" id="redundantAssignment" severity="style" msg="Variable &apos;aux&apos; is reassigned a value before the old one has been used." />
-    <error file="main.c" line="95" id="variableScope" severity="style" msg="The scope of the variable &apos;curOPCODE&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
-    <error file="main.c" line="95" id="variableScope" severity="style" msg="The scope of the variable &apos;flagIsWide&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
-    <error file="main.c" line="105" id="unreadVariable" severity="style" msg="Variable &apos;flagIsWide&apos; is assigned a value that is never used." />
-    <error file="main.c" line="35" id="memleak" severity="error" msg="Memory leak: cur_frame" />
-    <error file="main.c" line="147" id="memleak" severity="error" msg="Memory leak: nodeFrame" />
-    <error file="main.c" line="153" id="memleak" severity="error" msg="Memory leak: currentframe" />
-    <error file="main.c" line="154" id="memleak" severity="error" msg="Memory leak: aux" />
-    <error file="main.c" line="92" id="memleak" severity="error" msg="Memory leak: class_file" />
+    <error file="main.c" line="176" id="uselessAssignmentPtrArg" severity="style" msg="Assignment of function parameter has no effect outside the function. Did you forget dereferencing it?" />
+    <error file="main.c" line="37" id="redundantAssignment" severity="style" msg="Variable &apos;cur_frame&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="170" id="redundantAssignment" severity="style" msg="Variable &apos;currentframe&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="171" id="redundantAssignment" severity="style" msg="Variable &apos;aux&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="97" id="variableScope" severity="style" msg="The scope of the variable &apos;curOPCODE&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
+    <error file="main.c" line="37" id="memleak" severity="error" msg="Memory leak: cur_frame" />
+    <error file="main.c" line="164" id="memleak" severity="error" msg="Memory leak: nodeFrame" />
+    <error file="main.c" line="170" id="memleak" severity="error" msg="Memory leak: currentframe" />
+    <error file="main.c" line="171" id="memleak" severity="error" msg="Memory leak: aux" />
+    <error file="main.c" line="94" id="memleak" severity="error" msg="Memory leak: class_file" />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="frameManager.c" line="177" id="unusedFunction" severity="style" msg="The function &apos;popOperandStack&apos; is never used." />
+    <error file="instruction.c" line="54" id="unusedFunction" severity="style" msg="The function &apos;printBin&apos; is never used." />
     <error file="UserViewer.c" line="1184" id="unusedFunction" severity="style" msg="The function &apos;printFrame&apos; is never used." />
     <error file="UserViewer.c" line="1214" id="unusedFunction" severity="style" msg="The function &apos;printHandler&apos; is never used." />
     <error file="UserViewer.c" line="1206" id="unusedFunction" severity="style" msg="The function &apos;printLocalVariableArray&apos; is never used." />
-    <error file="frameManager.c" line="169" id="unusedFunction" severity="style" msg="The function &apos;pushOperandStack&apos; is never used." />
     <error id="missingIncludeSystem" severity="style" msg="Cppcheck cannot find all the include files. Cppcheck can check the code without the include files found. But the results will probably be more accurate if all the include files are found. Please check your project&apos;s include directories and add all of them as include directories for Cppcheck. To see what files Cppcheck cannot find use --check-config." />
 </results>

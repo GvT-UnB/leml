@@ -8,12 +8,12 @@
 
 #include "macros.h"
 
-EXTERN void doInstructionShift(Frame *cur_frame, u1 curOPCODE, u4 *curPC, StructFrameStack *frameStackTop);
+EXTERN void doInstructionShift(Frame *cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
 
 EXTERN void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code );
 
-EXTERN void instr_tableSwitch(Frame *frame, u4 pc, u1 * code);
+EXTERN void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code);
 
-EXTERN void instr_lookUpSwitch(Frame *frame, u4 pc, u1 * code);
+EXTERN void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code);
 
 #endif // CLASSMANAGER_H_INCLUDED
