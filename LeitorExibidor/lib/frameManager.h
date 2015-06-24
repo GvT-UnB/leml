@@ -105,4 +105,25 @@ EXTERN void pushOperandStack(structOperandStack **operandStackTop, u4 operand);
  */
 EXTERN u4 popOperandStack(structOperandStack **operandStackTop);
 
+/** \brief Procura por um metodo na classe referenciada pelo Frame.
+ *
+ * \param cur_frame Frame* Frame corrente.
+ * \param method_name u1* Nome do metodo que se deseja localizar.
+ * \return EXTERN u4 Indice para o metodo no method_info da classe.
+ *
+ */
+EXTERN u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name);
+
+/** \brief Cria um novo Frame para um metodo da mesma classe do Frame corrente.
+ *
+ * \param newMethodFullName u1* Nome do novo metodo.
+ * \param cur_frame Frame* Frame corrente.
+ * \param frameStackTop StructFrameStack* Todo da pilha de Frames.
+ * \param handler ClassHandler* Espaco em memoria referente ao objetos.
+ * \param curPC u4 PC corrente.
+ * \return EXTERN void
+ *
+ */
+EXTERN void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC);
+
 #endif // FRAMEMANAGER_H_INCLUDED

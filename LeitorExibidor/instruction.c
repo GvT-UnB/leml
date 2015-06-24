@@ -172,8 +172,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_icmpeq:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -184,8 +184,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_icmpne:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -196,8 +196,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_icmplt:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -210,8 +210,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		    //(*curPC)++;
 			aux_u2 = (code[*curPC+1] << 8) | code[(*curPC)+2];
 			//printBin((code[*curPC+1] << 8) | code[(*curPC)+2], 16);
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				(*curPC) += aux3_u4;
@@ -224,8 +224,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_icmpgt:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -236,8 +236,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_icmple:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -248,8 +248,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 		case OPCODE_if_acmpeq:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -261,8 +261,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		case OPCODE_if_acmpne:
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux2_u4 = popOperandStack( cur_frame->operandStack);
-			aux_u4 = popOperandStack( cur_frame->operandStack);
+			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
+			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
 				aux3_u4 = (u4) aux_u2;
 				*curPC +=aux3_u4;
@@ -313,8 +313,13 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		    while((*cur_frame)->operandStack->next != NULL){ ///Loop para esvaziar(desempilhar) a pilha
                 popOperandStack((*cur_frame)->operandStack);
 		    }
-		    (*cur_frame) = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
-            pushOperandStack((*cur_frame)->operandStack, returnValue); ///Empilha o valor de retorno na pilha
+		    Frame * tmp_frame = (Frame *)malloc(sizeof(Frame));
+		    tmp_frame = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
+		    pushOperandStack(tmp_frame->operandStack, returnValue); ///Empilha o valor de retorno na pilha
+		    printf("Antes: %d",(*cur_frame)->returnPC);
+		    (*cur_frame) = tmp_frame;
+		    printf("\tDepois: %d\n",(*cur_frame)->returnPC);
+
 			break;
 
 		case OPCODE_lreturn: /// Return long from method
@@ -954,6 +959,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 		case OPCODE_iadd:
 			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
+			//printf("iadd: %d\n",aux_u4 + aux2_u4);
 			pushOperandStack( frame->operandStack, aux_u4 + aux2_u4 );
 			pc++;
 			break;
@@ -1569,15 +1575,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 		case OPCODE_putfield:
 			break;
-		case OPCODE_invokevirtual:
-		    instr_invokeVirtual(frame, pc, fWide, code);
-			break;
-		case OPCODE_invokespecial:
-			break;
-		case OPCODE_invokestatic:
-			break;
-		case OPCODE_invokeinterface:
-			break;
 		case OPCODE_new:
 			break;
 		case OPCODE_newarray:
@@ -1602,8 +1599,8 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			printf("instrucao nao implementada\n");
 			break;
 		case OPCODE_wide:
-            fWide = 1;
-            pc++;
+//            fWide = 1;
+//            pc++;
 			break;
 		case OPCODE_multianewarray:
 			break;
@@ -1721,4 +1718,114 @@ void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
         targetAddress = lookupSwitch[i+1] + opcodeAddress; ///pega o offset seguido do match selecionado
     }
     *curPC = targetAddress;
+}
+
+
+void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){
+     //u1 * newMethodFullName = "Teste.soma";
+
+     ///Carrega as informacoes da Classe e Metodo
+     u2 method_ref = code[curPC+1];
+     method_ref = method_ref << BYTE_SIZE | code[curPC+2];
+     u2 class_index = cur_frame->constant_pool[method_ref].Methodref.class_index;
+     u2 class_name_index = cur_frame->constant_pool[class_index].Class.name_index;
+     u2 name_and_type_index = cur_frame->constant_pool[method_ref].Methodref.name_and_type_index;
+     u2 name_index = cur_frame->constant_pool[name_and_type_index].NameAndType.name_index;
+     u2 descriptor_index = cur_frame->constant_pool[name_and_type_index].NameAndType.descriptor_index;
+     u1 * method_descriptor = cur_frame->constant_pool[descriptor_index].UTF8.bytes; ///Descricoa do metodo
+     u1 * method_name = cur_frame->constant_pool[name_index].UTF8.bytes; ///Nome do metodo
+     u1 * class_name = cur_frame->constant_pool[class_name_index].UTF8.bytes; ///Nome da classe
+
+//     printf("method_descriptor: %s\n",method_descriptor);
+//     printf("method_name: %s\n",method_name);
+//     printf("class_name: %s\n",class_name);
+
+    Frame * tmp_frame = (Frame *)malloc(sizeof(Frame));
+    u4 method_index = seekNewMethodInFrameClass(cur_frame, method_name); ///Pega o indice do metodo no method_info da classe.
+    createNewFrame(handler,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
+    //printf("Antes do Pop Frame: %s\n",frameStackTop->next->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
+    tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+    //printf("Depois do Pop Frame: %s\n",frameStackTop->next->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
+
+    ///Coloca os parametros da pilha de operandos do Frame corrente.
+     u2 method_descriptor_len = strlen(method_descriptor);
+     int num_parans = 0;
+     int localVariableArray_index = 0;
+     u4 value_low,value_high,value;
+
+     for(int i = method_descriptor_len-3; i > 0; i--){
+        if(method_descriptor[i] == '(')
+            break;
+        switch(method_descriptor[i]){
+        case 'D': ///Eh um double
+            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
+            //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
+        case 'J': ///Eh um long
+            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
+            //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
+        default:
+            value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            //pushOperandStack(tmp_frame->operandStack,value);///Empilha  no Frame chamado
+        }
+        num_parans++;
+     }
+
+     ///Coloca os parametos coletados na pilha de operandos do novo Frame.
+     int aux_localVariableArray_index = localVariableArray_index-1;
+     for(int i = 0; i < num_parans; i++){
+        if(method_descriptor[i] == ')')
+            break;
+        switch(method_descriptor[i]){
+        case 'D': ///Eh um double
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+        case 'J': ///Eh um long
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+        default:
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado
+        }
+     }
+
+//     ///Limpa os dados do vetor de variaveis locais
+//     for(int i = 1; i < aux_localVariableArray_index; i++){
+//        tmp_frame->localVariableArray[i].value = 0;
+//     }
+
+     pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
+     //printf("Frame: %s\n",cur_frame->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
+     *cur_frame = *tmp_frame; ///Muda o Frame corrente para o novo Frame
+     //printf("Frame: %s\n",cur_frame->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
+}
+
+void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){
+    u1 aux_u1, aux2_u1;
+	u2 aux_u2, index;
+	int16_t branchoffset;
+	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress, opcodeAddress;
+	u8 aux_u8, aux2_u8;
+	float aux_f, aux2_f;
+	double aux_d, aux2_d, aux_double;
+
+    switch(code[curPC]){
+		case OPCODE_invokevirtual:
+		    instr_invokeVirtual(cur_frame, curPC, flagIsWide, code);
+			break;
+		case OPCODE_invokespecial:
+			break;
+		case OPCODE_invokestatic:
+		    doInvokestatic(cur_frame,frameStackTop,cur_frame->handler, curPC, flagIsWide, code);
+			break;
+		case OPCODE_invokeinterface:
+			break;
+    }
 }

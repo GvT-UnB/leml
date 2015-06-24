@@ -474,10 +474,11 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
     //printf("Lendo o bytecode Java para a memoria...\n");
     *numberOfClassesHeap = *numberOfClassesHeap + 1;
     classRead(dot_class,class_file); ///Carrega para o HEAP a classe
+    //classPrint(class_file);
     //printf("Bytecode Java copiado com sucesso!\n");
     fclose(dot_class);
     class_file->class_full_name_length = strlen(file_name) - strlen(".class"); ///Deve-se retirar a string '.class' do nome completo da Classe.
-    class_file->class_full_name = (u1*)malloc(class_file->class_full_name_length * sizeof(u1));
+    class_file->class_full_name = (u1*)malloc((class_file->class_full_name_length+1) * sizeof(u1));
     for(int i = 0; i < class_file->class_full_name_length; i++){
         class_file->class_full_name[i] = file_name[i]; ///Copia o nome completo da Classe, ignorando a parte do '.class'
     }
@@ -503,6 +504,7 @@ u4 seekClassInHeap(ClassFile * class_file,u4 numberOfClassesHeap,u1 * className)
 
 u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,ClassHandler * handler,u4 * numberOfClasses){
     u4 i;
+    u1 * dotClass = ".class";
     ///Verifica se o className jah esta salvo no heap!
     i = seekClassInHeap(class_file,*numberOfClassesHeap,className);
     //printf("%s\n",className);
@@ -512,10 +514,14 @@ u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,C
         return i; ///Se a classe jah esta na memoria, retorna o indice dela no HEAP.
     }else{
         //printf("Nao achei... :(\n");
-        u1 * fullClassName = (u1*)malloc((strlen(className) + strlen(".class"))*sizeof(u1));
-        strcat(fullClassName,className);
-        strcat(fullClassName,".class"); ///Concatena o nome completo da classe com a string '.class'
-        //printf("Nome com extensão da classe: %s\n",fullClassName);
+        u1 * fullClassName = (u1*)malloc((strlen(className) + strlen(dotClass))*sizeof(u1));
+        for(int i = 0; i < strlen(className);i++){
+            fullClassName[i] = className[i];
+        }
+        for(int i = 0; i < strlen(dotClass);i++){
+            fullClassName[i+strlen(className)] = dotClass[i]; ///Concatena o nome completo da classe com a string '.class'
+        }
+        //printf("Nome com extensao da classe: %s\n",fullClassName);
         classLoader(class_file+(*numberOfClassesHeap), fullClassName, numberOfClassesHeap);///Carrega a classe no HEAP.
         createNewObject(handler,numberOfClasses,class_file+(*numberOfClassesHeap)-1);///Instancia um Objeto da classe recem criada.
         //printf("Mas jah botei na memoria! ;D\n");

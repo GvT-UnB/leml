@@ -177,7 +177,7 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
     nodeOperand->next = *operandStackTop;
     *operandStackTop = nodeOperand;
 //    printf("\t\t\t----push int(%d), float(%f)\n ", operand, *((float*)&(operand)));
-//    printf("\t\t\t----push(%d)\n ", operand);
+    printf("\t\t\t----push(%d)\n ", operand);
 }
 
 u4 popOperandStack(structOperandStack **operandStackTop){
@@ -188,7 +188,7 @@ u4 popOperandStack(structOperandStack **operandStackTop){
     *operandStackTop = (*operandStackTop)->next;
     free(aux);
 //    printf("\t\t\t----pop int(%d), float(%f)\n ", operand,  *((float*)&(operand)));
-//    printf("\t\t\t----pop(%d)\n ", operand);
+    printf("\t\t\t----pop(%d)\n ", operand);
     return operand;
 }
 
@@ -198,4 +198,53 @@ u1 getOpcode(attribute_info * attributes, u4 curPC){
 
 void incPC(u4 * curPC, u1 curOPCODE,u1 * numberOfByteInstruction){
      *curPC = *curPC + numberOfByteInstruction[curOPCODE];///Incrementa curPC de acordo com a quantidade de bytes que foi necessario na instrucao executada.
+}
+
+
+u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name){
+    for(int i = 0; i < cur_frame->handler->classRef->methods_count; i++){
+        if(!strcmp(cur_frame->constant_pool[ cur_frame->handler->classRef->methods[i].name_index ].UTF8.bytes, method_name)){ ///Procura pelo metodo no method_info da classe referenciada pelo Frame
+            return i; ///Retorna o indice do metodo no method_info
+        }
+    }
+    return NOT_RETURN; ///Nao encontrou o metodo na classe apontada pelo Frame
+}
+
+
+void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC){
+    u1 * newMethodClassName; ///Vai receber o nome da classe
+    u1 * newMethodName; ///Vai receber o nome do metodo
+
+    ///Separa o newMethodFullName de NOME_CLASSE.NOME_METODO para NOME_CLASSE e NOME_METODO
+    u4 newMethodFullName_len = strlen(newMethodFullName);
+    int i=0;
+    while(newMethodFullName[i] != '.'){
+        i++; ///Encontra a localizacao do ponto
+    }
+    if(newMethodFullName_len == i)
+        printf("Putz! Nao tinha ponto! :O\n"); ///Deu merda! XD
+
+    newMethodClassName = (u1*)malloc((i+1)*sizeof(u1));
+    newMethodName = (u1*)malloc((newMethodFullName_len-i-1)*sizeof(u1));
+
+    for(int j = 0; j < i; j++){
+        *(newMethodClassName+j) = newMethodFullName[j]; ///Copia o nome da classe
+    }
+    *(newMethodClassName+i) = '\0';
+
+    for(int j = 0; j < newMethodFullName_len-i; j++){
+        newMethodName[j] = newMethodFullName[i+j+1]; ///Copia o nome do metodo
+    }
+    newMethodName[newMethodFullName_len-i-1] = '\0';
+
+    //printf("O nome da classe eh: %s\n",newMethodClassName);
+    //printf("O nome do metodo eh: %s\n",newMethodName);
+
+    ///Procura pelo metodo na classe referenciada pelo Frame corrente
+    u4 method_index = seekNewMethodInFrameClass(cur_frame, newMethodName); ///Pega o indice do metodo no method_info da classe.
+    //printf("Indice do metodo: %d\n",method_index);
+
+//    pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
+//    createNewFrame(handler,method_index, curPC,frameStackTop); ///Cria novo Frame para o novo metodo
+
 }

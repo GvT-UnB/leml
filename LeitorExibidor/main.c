@@ -4,9 +4,8 @@
 ///TODO: Tratar os fields estaticos,são inicializados com ZERO
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
-///TODO: handler estah errado, necessita tratamento similar ao do class_file
-///TODO: Empilhar o frame corrente antes de criar um novo frame.
-///TODO: Criar função que carrega novo metodo, ele recebe entrada do tipo NOME_DA_CLASSE.NOME_METODO e procura pro NOME_METODO no method_info da classe.
+///TODO: Verificar o problema do REALLOC (handler).
+///TODO: Utilizar o loadNewMethodInSameClass para fazer o (invokestatic).
 
 
 int main(int argc, char *argv[]){
@@ -14,7 +13,7 @@ int main(int argc, char *argv[]){
     ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
     frameStackTop->next = NULL;
-    u4 curPC = 0;///==============================MODIFIQUEI AQUI===========================================================================================
+    u4 curPC = 0;
     u4 numberOfClasses = 0; ///Quantidade de objetos instanciados
     u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
@@ -53,7 +52,7 @@ int main(int argc, char *argv[]){
     runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop);
 
     ///Verifica se uma classe ja esta no HEAP
-        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
+//        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
 /*            printf("[1] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
             classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -61,18 +60,18 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+//        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
 
-        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
+//        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
 /*        classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+ //       createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
 
-        classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
+ //       classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
  /*           printf("[2] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
         classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -81,15 +80,29 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
         //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
-
-
+/*
+    ///Carrega nova classe no HEAP
     //u1 * className = "tutorial/OrdenarArray"; ///Pega o nome da Classe.
     //u1 * className = "tutorial/TiposPrimitivos"; ///Pega o nome da Classe.
     //u1 * className = "tutorial/Teste"; ///Pega o nome da Classe.
     u1 * className = "tutorial/ClassicSingleton"; ///Pega o nome da Classe.
     u4 class_index = loadNewClass(class_file,&numberOfClassesHeap,className,handler,&numberOfClasses);
-printf("numberOfClassesHeap: %d\tnumberOfClasses: %d\n",numberOfClassesHeap,numberOfClasses);
-printf("class_index: %d\n",class_index);
+    printf("numberOfClassesHeap: %d\tnumberOfClasses: %d\n",numberOfClassesHeap,numberOfClasses);
+    printf("class_index: %d\n",class_index);
+*/
+    ///Carrega novo Metodo!
+/*    u1 * newMethodFullName = "Teste.soma"; ///NOME_CLASSE.NOME_METODO
+    loadNewMethodInSameClass(newMethodFullName,cur_frame,frameStackTop,cur_frame->handler, curPC);
+    cur_frame = popFrameStack(frameStackTop);
+    printf("Method Info: \n");
+        printf("---------------------------------------------------------------------------------------\n");
+        printMethodInfo(cur_frame->methods, 1, cur_frame->handler->classRef);///Apenas para debugar!
+        printf("PC de retorno: %d\n",cur_frame->returnPC);
+        printf("Constant Pool: \n");
+        printf("---------------------------------------------------------------------------------------\n");
+        printConstantPool(cur_frame->constant_pool,cur_frame->handler->classRef->constant_pool_count, cur_frame->handler->classRef);///Apenas para debugar!
+    */
+
     return 0;
 }
 
@@ -99,7 +112,8 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
     //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
     while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
-        printf("\t\t\tPC: %d\n",*curPC);
+        //printf("\t\t\tPC: %d\n",*curPC);
+        printf("\tMETODO ATUAL: %s\n",cur_frame->handler->classRef->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
@@ -110,8 +124,13 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
             printf("\t\t\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
             if(curOPCODE > 152 && curOPCODE < 178){
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
-            }
-            else{
+            }else if(curOPCODE > 181 && curOPCODE < 186){
+                doInstructionInvoke(cur_frame,frameStackTop,cur_frame->handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code);
+                u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
+                ///Atualiza PC para o novo Frame.
+                *curPC = 0;
+                //incPC(curPC,curOPCODE,numberOfByteInstruction);
+            }else{
                 doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
                 ///Incrementa PC
                 incPC(curPC,curOPCODE,numberOfByteInstruction);
@@ -148,40 +167,76 @@ void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFram
     pushFrameStack(frameStackTop, frame);///Coloca o frame no topo da pilha de frames.
 }
 
-void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
-    StructFrameStack *nodeFrame;
-    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
-    nodeFrame->next = frameStackTop; ///Novo membro da pilha aponta para o topo da pilha corrente
-    nodeFrame->frame = frame;///Salva o frame no novo membro da pilha.
-    *frameStackTop = *nodeFrame;///Novo membro vira o topo da pilha.
-/*          printf("Method Info: \n");
-            printf("---------------------------------------------------------------------------------------\n");
-            printMethodInfo(frameStackTop->frame->localVariableArray[0], 1, frameStackTop->frame->handler->classRef);///Apenas para debugar!
-            printf("PC de retorno: %d\n",frameStackTop->frame->returnPC);
-            printf("Constant Pool: \n");
-            printf("---------------------------------------------------------------------------------------\n");
-            printConstantPool(frameStackTop->frame->constant_pool,frameStackTop->frame->handler->classRef->constant_pool_count, frameStackTop->frame->handler->classRef);///Apenas para debugar!
-*/
+void pushFrameStack(StructFrameStack **frameStackTop, Frame * frame){
+StructFrameStack *nodeFrame;
+    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+    nodeFrame->frame = frame;
+    nodeFrame->next = *frameStackTop;
+    *frameStackTop = nodeFrame;
+printf("Push Frame: %s\n",(*frameStackTop)->frame->constant_pool[(*frameStackTop)->frame->methods->name_index].UTF8.bytes);
+//    StructFrameStack **aux_node = &frameStackTop;
+//    StructFrameStack *nodeFrame = NULL;
+//    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
+//    nodeFrame->frame = frame;///Salva o frame no novo membro da pilha.
+//    //printf("\tPush1: frameStackTop: %d\tnodeFrame: %d\tNext: %d\n",*frameStackTop,*nodeFrame,nodeFrame->next);
+//    //(*nodeFrame).next = &frameStackTop; ///Novo membro da pilha aponta para o topo da pilha corrente
+//    nodeFrame->next = *aux_node; ///Novo membro da pilha aponta para o topo da pilha corrente
+//    //frameStackTop = &nodeFrame;///Novo membro vira o topo da pilha.
+//    *aux_node = nodeFrame;///Novo membro vira o topo da pilha.
+//    //printf("\tPush2: frameStackTop: %d\tnodeFrame: %d\tNext: %d\n",*frameStackTop,*nodeFrame,nodeFrame->next);
+//    printf("Push Frame: %s\n",frameStackTop->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
 }
 
-Frame * popFrameStack(StructFrameStack *frameStackTop){
-    if(frameStackTop != NULL){
-        StructFrameStack * aux = (StructFrameStack*)malloc(sizeof(StructFrameStack));
-        Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
-        currentframe = frameStackTop->frame;///Novo frame recebe o frame salvo no topo da pilha
-        aux = frameStackTop;
-        if(frameStackTop->next){
-            *frameStackTop = *frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
-        }else{
-            //printf("Entrei no ELSE!\n");
-            free(frameStackTop);
-        }
+Frame * popFrameStack(StructFrameStack **frameStackTop){
+StructFrameStack * aux;
+    Frame * currentframe;
+    aux = *frameStackTop;
+    currentframe = (*frameStackTop)->frame;
+    //*frameStackTop = (*frameStackTop)->next;
+
+    if(!(*frameStackTop)->next){
+            printf("entrou no IF\n");
+        *frameStackTop = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+    }else{
+        printf("entrou no ELSE\n");
+        *frameStackTop = (*frameStackTop)->next;
         free(aux);
+    }
+    printf("Pop Frame: %s\n",currentframe->constant_pool[currentframe->methods->name_index].UTF8.bytes);
+    return currentframe;
+/*
+    if(frameStackTop != NULL){
+        //StructFrameStack ** aux2 = &frameStackTop;
+        StructFrameStack * aux = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+        //StructFrameStack * aux = *aux2;
+        Frame * currentframe = NULL;
+        currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
+        currentframe = frameStackTop->frame;///Novo frame recebe o frame salvo no topo da pilha
+        //printf("TETE: %s\n",(*aux2)->frame->constant_pool[currentframe->methods->name_index].UTF8.bytes);
+        //currentframe = (*aux2)->frame;///Novo frame recebe o frame salvo no topo da pilha
+        //aux = frameStackTop;
+        if(frameStackTop->next){
+                printf("\tAntes => Pop Frame: %s\n",frameStackTop->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
+                //*aux2 = (*aux2)->next;
+            *frameStackTop = *frameStackTop->next;///Novo topo da fila vira o membro apontado pelo frame retirado.
+                printf("\tDepois => Pop Frame: %s\n",frameStackTop->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
+            //free(aux);
+        }else{
+            printf("Entrei no ELSE!\n");
+            StructFrameStack ** aux2 = &frameStackTop;
+            (*aux2)->next = NULL;
+            *aux2 = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+            //free(frameStackTop);
+            //free(*aux2);
+        }
+        //free(aux);
+        printf("Pop Frame: %s\n",currentframe->constant_pool[currentframe->methods->name_index].UTF8.bytes);
         return currentframe;
     }else{
         char stackName = "Pilha de Frames";
         throwException(POP_IN_A_EMPTY_STACK,POP_IN_A_EMPTY_STACK_MSG,stackName);
     }
+    */
 }
 
 int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStackTop){
