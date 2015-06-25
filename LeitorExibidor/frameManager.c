@@ -177,7 +177,7 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
     nodeOperand->next = *operandStackTop;
     *operandStackTop = nodeOperand;
 //    printf("\t\t\t----push int(%d), float(%f)\n ", operand, *((float*)&(operand)));
-    printf("\t\t\t----push(%d)\n ", operand);
+    //printf("\t\t\t----push(%d)\n ", operand);
 }
 
 u4 popOperandStack(structOperandStack **operandStackTop){
@@ -188,7 +188,7 @@ u4 popOperandStack(structOperandStack **operandStackTop){
     *operandStackTop = (*operandStackTop)->next;
     free(aux);
 //    printf("\t\t\t----pop int(%d), float(%f)\n ", operand,  *((float*)&(operand)));
-    printf("\t\t\t----pop(%d)\n ", operand);
+    //printf("\t\t\t----pop(%d)\n ", operand);
     return operand;
 }
 

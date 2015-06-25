@@ -316,11 +316,47 @@
 	<stdio.h>
 	<stdarg.h>
 
-1435260745 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\framemanager.c
+1435260960 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
 
 1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
+
+1435261439 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\instruction.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/instruction.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\instruction.h
+	"macros.h"
+
+1435260746 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\ureader.c
+	"lib/uReader.h"
+
+1435260600 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\userviewer.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdint.h>
+	"lib/UserViewer.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\userviewer.h
+	"macros.h"
+
+1435261575 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\main.c
+	"lib/jvmManager.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\jvmmanager.h
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"classManager.h"
+	"exceptionManager.h"
+	"UserViewer.h"
+	"frameManager.h"
 
