@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="lib\jvmManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\classManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1614" topLine="44" />
+			<Cursor1 position="4657" topLine="102" />
+		</Cursor>
+	</File>
+	<File name="lib\UserViewer.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2995" topLine="1" />
 		</Cursor>
 	</File>
 	<File name="lib\frameManager.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -11,49 +16,14 @@
 			<Cursor1 position="4803" topLine="102" />
 		</Cursor>
 	</File>
-	<File name="exceptionManager.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="188" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="uReader.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="64" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="lib\macros.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="13409" topLine="469" />
-		</Cursor>
-	</File>
-	<File name="lib\exceptionManager.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1244" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="lib\instruction.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="665" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="lib\classManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4657" topLine="102" />
+			<Cursor1 position="7738" topLine="231" />
 		</Cursor>
 	</File>
 	<File name="lib\uReader.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="131" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="UserViewer.c" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8341" topLine="176" />
-		</Cursor>
-	</File>
-	<File name="frameManager.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="12334" topLine="169" />
 		</Cursor>
 	</File>
 	<File name="classManager.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -63,43 +33,47 @@
 	</File>
 	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12283" topLine="166" />
+			<Cursor1 position="8821" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="exceptionManager.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="188" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="lib\instruction.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="665" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="instruction.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="64574" topLine="1658" />
+			<Cursor1 position="14274" topLine="1796" />
 		</Cursor>
-		<Folding>
-			<Collapse line="135" />
-			<Collapse line="142" />
-			<Collapse line="146" />
-			<Collapse line="153" />
-			<Collapse line="157" />
-			<Collapse line="164" />
-			<Collapse line="168" />
-			<Collapse line="176" />
-			<Collapse line="180" />
-			<Collapse line="188" />
-			<Collapse line="192" />
-			<Collapse line="200" />
-			<Collapse line="204" />
-			<Collapse line="214" />
-			<Collapse line="218" />
-			<Collapse line="228" />
-			<Collapse line="232" />
-			<Collapse line="240" />
-			<Collapse line="244" />
-			<Collapse line="252" />
-			<Collapse line="256" />
-			<Collapse line="265" />
-			<Collapse line="269" />
-			<Collapse line="291" />
-		</Folding>
 	</File>
-	<File name="lib\UserViewer.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="uReader.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2995" topLine="1" />
+			<Cursor1 position="64" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="UserViewer.c" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8341" topLine="176" />
+		</Cursor>
+	</File>
+	<File name="lib\jvmManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1888" topLine="38" />
+		</Cursor>
+	</File>
+	<File name="lib\exceptionManager.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1244" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="frameManager.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12334" topLine="169" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

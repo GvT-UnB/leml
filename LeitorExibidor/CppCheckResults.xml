@@ -17,7 +17,7 @@
     <error file="frameManager.c" line="250" id="memleak" severity="error" msg="Memory leak: newMethodClassName" />
     <error file="frameManager.c" line="250" id="memleak" severity="error" msg="Memory leak: newMethodName" />
     <error file="instruction.c" line="263" id="redundantAssignment" severity="style" msg="Variable &apos;aux_u2&apos; is reassigned a value before the old one has been used." />
-    <error file="instruction.c" line="1747" id="redundantAssignment" severity="style" msg="Variable &apos;tmp_frame&apos; is reassigned a value before the old one has been used." />
+    <error file="instruction.c" line="1749" id="redundantAssignment" severity="style" msg="Variable &apos;tmp_frame&apos; is reassigned a value before the old one has been used." />
     <error file="instruction.c" line="28" id="variableScope" severity="style" msg="The scope of the variable &apos;aux_u4&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
     <error file="instruction.c" line="28" id="variableScope" severity="style" msg="The scope of the variable &apos;aux2_u4&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
     <error file="instruction.c" line="29" id="variableScope" severity="style" msg="The scope of the variable &apos;aux_u8&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
@@ -45,25 +45,25 @@
     <error file="instruction.c" line="393" id="unusedVariable" severity="style" msg="Unused variable: paux_u4" />
     <error file="instruction.c" line="396" id="unusedVariable" severity="style" msg="Unused variable: aux_double" />
     <error file="instruction.c" line="1737" id="unreadVariable" severity="style" msg="Variable &apos;class_name&apos; is assigned a value that is never used." />
-    <error file="instruction.c" line="1812" id="unusedVariable" severity="style" msg="Unused variable: aux_u1" />
-    <error file="instruction.c" line="1812" id="unusedVariable" severity="style" msg="Unused variable: aux2_u1" />
-    <error file="instruction.c" line="1813" id="unusedVariable" severity="style" msg="Unused variable: aux_u2" />
-    <error file="instruction.c" line="1813" id="unusedVariable" severity="style" msg="Unused variable: index" />
-    <error file="instruction.c" line="1814" id="unusedVariable" severity="style" msg="Unused variable: branchoffset" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: aux_u4" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: aux2_u4" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: aux3_u4" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: aux4_u4" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: returnAddress" />
-    <error file="instruction.c" line="1815" id="unusedVariable" severity="style" msg="Unused variable: opcodeAddress" />
-    <error file="instruction.c" line="1816" id="unusedVariable" severity="style" msg="Unused variable: aux_u8" />
-    <error file="instruction.c" line="1816" id="unusedVariable" severity="style" msg="Unused variable: aux2_u8" />
-    <error file="instruction.c" line="1817" id="unusedVariable" severity="style" msg="Unused variable: aux_f" />
-    <error file="instruction.c" line="1817" id="unusedVariable" severity="style" msg="Unused variable: aux2_f" />
-    <error file="instruction.c" line="1818" id="unusedVariable" severity="style" msg="Unused variable: aux_d" />
-    <error file="instruction.c" line="1818" id="unusedVariable" severity="style" msg="Unused variable: aux2_d" />
-    <error file="instruction.c" line="1818" id="unusedVariable" severity="style" msg="Unused variable: aux_double" />
-    <error file="instruction.c" line="1747" id="memleak" severity="error" msg="Memory leak: tmp_frame" />
+    <error file="instruction.c" line="1816" id="unusedVariable" severity="style" msg="Unused variable: aux_u1" />
+    <error file="instruction.c" line="1816" id="unusedVariable" severity="style" msg="Unused variable: aux2_u1" />
+    <error file="instruction.c" line="1817" id="unusedVariable" severity="style" msg="Unused variable: aux_u2" />
+    <error file="instruction.c" line="1817" id="unusedVariable" severity="style" msg="Unused variable: index" />
+    <error file="instruction.c" line="1818" id="unusedVariable" severity="style" msg="Unused variable: branchoffset" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: aux_u4" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: aux2_u4" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: aux3_u4" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: aux4_u4" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: returnAddress" />
+    <error file="instruction.c" line="1819" id="unusedVariable" severity="style" msg="Unused variable: opcodeAddress" />
+    <error file="instruction.c" line="1820" id="unusedVariable" severity="style" msg="Unused variable: aux_u8" />
+    <error file="instruction.c" line="1820" id="unusedVariable" severity="style" msg="Unused variable: aux2_u8" />
+    <error file="instruction.c" line="1821" id="unusedVariable" severity="style" msg="Unused variable: aux_f" />
+    <error file="instruction.c" line="1821" id="unusedVariable" severity="style" msg="Unused variable: aux2_f" />
+    <error file="instruction.c" line="1822" id="unusedVariable" severity="style" msg="Unused variable: aux_d" />
+    <error file="instruction.c" line="1822" id="unusedVariable" severity="style" msg="Unused variable: aux2_d" />
+    <error file="instruction.c" line="1822" id="unusedVariable" severity="style" msg="Unused variable: aux_double" />
+    <error file="instruction.c" line="1749" id="memleak" severity="error" msg="Memory leak: tmp_frame" />
     <error file="instruction.c" line="317" id="memleak" severity="error" msg="Memory leak: tmp_frame" />
     <error file="instruction.c" line="1667" id="memleak" severity="error" msg="Memory leak: tableSwitch" />
     <error file="instruction.c" line="1721" id="memleak" severity="error" msg="Memory leak: lookupSwitch" />
@@ -106,19 +106,16 @@
     <error file="lib\macros.h" line="403" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous15::line_number_table_length&apos; is never used." />
     <error file="lib\macros.h" line="407" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous16::local_variable_table_length&apos; is never used." />
     <error file="lib\macros.h" line="411" id="unusedStructMember" severity="style" msg="struct or union member &apos;Anonymous17::sourcefile_index&apos; is never used." />
+    <error file="lib\macros.h" line="495" id="unusedStructMember" severity="style" msg="struct or union member &apos;StructFrameStack::stackTop&apos; is never used." />
     <error file="lib\macros.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;MACROS_SERV&apos; was not checked because its code equals another one." />
     <error file="lib\uReader.h" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
-    <error file="main.c" line="38" id="redundantAssignment" severity="style" msg="Variable &apos;cur_frame&apos; is reassigned a value before the old one has been used." />
-    <error file="main.c" line="213" id="redundantAssignment" severity="style" msg="Variable &apos;currentframe&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="39" id="redundantAssignment" severity="style" msg="Variable &apos;cur_frame&apos; is reassigned a value before the old one has been used." />
+    <error file="main.c" line="219" id="redundantAssignment" severity="style" msg="Variable &apos;currentframe&apos; is reassigned a value before the old one has been used." />
     <error file="main.c" line="112" id="variableScope" severity="style" msg="The scope of the variable &apos;curOPCODE&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:void f(int x){    int i = 0;    if (x) {        // it&apos;s safe to move &apos;int i = 0;&apos; here        for (int n = 0; n &lt; 10; ++n) {            // it is possible but not safe to move &apos;int i = 0;&apos; here            do_something(&amp;i);        }    }}When you see this message it is always safe to reduce the variable scope 1 level." />
     <error file="main.c" line="130" id="unreadVariable" severity="style" msg="Variable &apos;attributeCodeIndex&apos; is assigned a value that is never used." />
-    <error file="main.c" line="210" id="unreadVariable" severity="style" msg="Variable &apos;aux&apos; is assigned a value that is never used." />
-    <error file="main.c" line="38" id="memleak" severity="error" msg="Memory leak: cur_frame" />
-    <error file="main.c" line="213" id="memleak" severity="error" msg="Memory leak: currentframe" />
-    <error file="main.c" line="232" id="memleak" severity="error" msg="Memory leak: aux" />
+    <error file="main.c" line="39" id="memleak" severity="error" msg="Memory leak: cur_frame" />
+    <error file="main.c" line="219" id="memleak" severity="error" msg="Memory leak: currentframe" />
     <error file="main.c" line="107" id="memleak" severity="error" msg="Memory leak: class_file" />
-    <error file="main.c" line="197" id="memleak" severity="error" msg="Memory leak: nodeFrame" />
-    <error file="main.c" line="232" id="memleak" severity="error" msg="Memory leak: frameStackTop" />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;CLASSMANAGER_SERV&apos; was not checked because its code equals another one." />
     <error file="main.c" line="0" id="purgedConfiguration" severity="style" msg="The configuration &apos;UREADER_SERV&apos; was not checked because its code equals another one." />
     <error file="classManager.c" line="505" id="unusedFunction" severity="style" msg="The function &apos;loadNewClass&apos; is never used." />

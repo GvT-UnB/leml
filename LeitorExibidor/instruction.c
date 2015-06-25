@@ -316,10 +316,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		    Frame * tmp_frame = (Frame *)malloc(sizeof(Frame));
 		    tmp_frame = popFrameStack(frameStackTop); ///CArrega o frame chamador do metodo retornado na memoria
 		    pushOperandStack(tmp_frame->operandStack, returnValue); ///Empilha o valor de retorno na pilha
-		    printf("Antes: %d",(*cur_frame)->returnPC);
 		    (*cur_frame) = tmp_frame;
-		    printf("\tDepois: %d\n",(*cur_frame)->returnPC);
-
 			break;
 
 		case OPCODE_lreturn: /// Return long from method
@@ -367,20 +364,20 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 
 		case OPCODE_return:
+		    printf("RETURN\n");
 		    while((*cur_frame)->operandStack->next != NULL){
                 popOperandStack((*cur_frame)->operandStack);
                 printf("loop free operand stack\n");
 		    }
 		    if((*cur_frame)->returnPC != NOT_RETURN){
-                printf("entrou1\n");
+                //printf("entrou1\n");
                 *curPC = (*cur_frame)->returnPC;
                 (*cur_frame) = popFrameStack(frameStackTop);
 		    }
 		    else {
-                printf("entrou2\n");
+                //printf("entrou2\n");
                 *curPC = NOT_RETURN; ///significa que é o return da main
 		    }
-
 			break;
     }
 }
@@ -1722,8 +1719,6 @@ void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
 
 
 void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){
-     //u1 * newMethodFullName = "Teste.soma";
-
      ///Carrega as informacoes da Classe e Metodo
      u2 method_ref = code[curPC+1];
      method_ref = method_ref << BYTE_SIZE | code[curPC+2];
@@ -1743,9 +1738,7 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
     Frame * tmp_frame = (Frame *)malloc(sizeof(Frame));
     u4 method_index = seekNewMethodInFrameClass(cur_frame, method_name); ///Pega o indice do metodo no method_info da classe.
     createNewFrame(handler,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
-    //printf("Antes do Pop Frame: %s\n",frameStackTop->next->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
     tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
-    //printf("Depois do Pop Frame: %s\n",frameStackTop->next->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
 
     ///Coloca os parametros da pilha de operandos do Frame corrente.
      u2 method_descriptor_len = strlen(method_descriptor);
@@ -1802,9 +1795,8 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
 //     }
 
      pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
-     //printf("Frame: %s\n",cur_frame->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
      *cur_frame = *tmp_frame; ///Muda o Frame corrente para o novo Frame
-     //printf("Frame: %s\n",cur_frame->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
+
 }
 
 void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){

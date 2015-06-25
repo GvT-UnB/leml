@@ -47,7 +47,7 @@ EXTERN void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,Str
  * \return void
  *
  */
-EXTERN void pushFrameStack(StructFrameStack **frameStackTop, Frame * frame);
+EXTERN void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame);
 
 /** \brief Retira um frame do topo da pilha de frames.
  *
@@ -55,7 +55,7 @@ EXTERN void pushFrameStack(StructFrameStack **frameStackTop, Frame * frame);
  * \return Frame* Referencia para o frame retirado do topo da pilha.
  *
  */
-EXTERN Frame * popFrameStack(StructFrameStack **frameStackTop);
+EXTERN Frame * popFrameStack(StructFrameStack *frameStackTop);
 
 /** \brief Procura pelo metodo main no ClassHandler, caso encontre o metodo main eh criado o Frame dele e inserido no inicio da pilha de frames.
  *

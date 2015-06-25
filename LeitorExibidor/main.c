@@ -12,7 +12,8 @@ int main(int argc, char *argv[]){
     ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
     ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
-    frameStackTop->next = NULL;
+    //frameStackTop->next = NULL;
+    frameStackTop->stackTop = -1;
     u4 curPC = 0;
     u4 numberOfClasses = 0; ///Quantidade de objetos instanciados
     u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
@@ -111,7 +112,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
     u1 curOPCODE, flagIsWide = 0;
     //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
-    while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC]){ ///Enquanto o code nao for NULL, repete
+    while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC] && *curPC != NOT_RETURN){ ///Enquanto o code nao for NULL, repete
         //printf("\t\t\tPC: %d\n",*curPC);
         printf("\tMETODO ATUAL: %s\n",cur_frame->handler->classRef->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
@@ -126,10 +127,13 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }else if(curOPCODE > 181 && curOPCODE < 186){
                 doInstructionInvoke(cur_frame,frameStackTop,cur_frame->handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code);
-                u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
+                //u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
                 ///Atualiza PC para o novo Frame.
-                *curPC = 0;
-                //incPC(curPC,curOPCODE,numberOfByteInstruction);
+                if(curOPCODE == OPCODE_invokestatic){
+                    *curPC = 0;
+                }else{
+                    incPC(curPC,curOPCODE,numberOfByteInstruction);
+                }
             }else{
                 doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
                 ///Incrementa PC
@@ -167,13 +171,18 @@ void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFram
     pushFrameStack(frameStackTop, frame);///Coloca o frame no topo da pilha de frames.
 }
 
-void pushFrameStack(StructFrameStack **frameStackTop, Frame * frame){
-StructFrameStack *nodeFrame;
-    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));
-    nodeFrame->frame = frame;
-    nodeFrame->next = *frameStackTop;
-    *frameStackTop = nodeFrame;
-printf("Push Frame: %s\n",(*frameStackTop)->frame->constant_pool[(*frameStackTop)->frame->methods->name_index].UTF8.bytes);
+void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
+//    StructFrameStack *nodeFrame;
+//    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+//    nodeFrame->frame = frame;
+//    nodeFrame->next = *frameStackTop;
+//    *frameStackTop = nodeFrame;
+    if (frameStackTop->stackTop == FRAME_STACK_MAX-1) {
+		printf(" Erro: Pilha sem memoria.\n");
+		exit(1);
+	}
+	frameStackTop->frame[++(frameStackTop->stackTop)] = *frame;
+printf("Push Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
 //    StructFrameStack **aux_node = &frameStackTop;
 //    StructFrameStack *nodeFrame = NULL;
 //    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
@@ -187,23 +196,36 @@ printf("Push Frame: %s\n",(*frameStackTop)->frame->constant_pool[(*frameStackTop
 //    printf("Push Frame: %s\n",frameStackTop->frame->constant_pool[frameStackTop->frame->methods->name_index].UTF8.bytes);
 }
 
-Frame * popFrameStack(StructFrameStack **frameStackTop){
-StructFrameStack * aux;
-    Frame * currentframe;
-    aux = *frameStackTop;
-    currentframe = (*frameStackTop)->frame;
-    //*frameStackTop = (*frameStackTop)->next;
+Frame * popFrameStack(StructFrameStack *frameStackTop){
+//StructFrameStack * aux;
+//    Frame * currentframe;
+//    aux = *frameStackTop;
+//    currentframe = (*frameStackTop)->frame;
+//    //*frameStackTop = (*frameStackTop)->next;
+//
+//    if(!(*frameStackTop)->next){
+//            printf("entrou no IF\n");
+//        *frameStackTop = (StructFrameStack*)malloc(sizeof(StructFrameStack));
+//    }else{
+//        printf("entrou no ELSE\n");
+//        *frameStackTop = (*frameStackTop)->next;
+//        free(aux);
+//    }
+//    printf("Pop Frame: %s\n",currentframe->constant_pool[currentframe->methods->name_index].UTF8.bytes);
+//    return currentframe;
 
-    if(!(*frameStackTop)->next){
-            printf("entrou no IF\n");
-        *frameStackTop = (StructFrameStack*)malloc(sizeof(StructFrameStack));
-    }else{
-        printf("entrou no ELSE\n");
-        *frameStackTop = (*frameStackTop)->next;
-        free(aux);
-    }
-    printf("Pop Frame: %s\n",currentframe->constant_pool[currentframe->methods->name_index].UTF8.bytes);
-    return currentframe;
+if (frameStackTop->stackTop < 0) {
+		printf(" Erro: Acesso a posicao invalida da pilha.\n\n");
+		exit(1);
+	}
+	Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
+	*currentframe = frameStackTop->frame[(frameStackTop->stackTop)];
+	//frameStackTop->frame[(frameStackTop->stackTop)] = (Frame *)malloc(sizeof(Frame));;
+	printf("Pop Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
+	frameStackTop->stackTop--;
+	return currentframe;
+	//return frameStackTop->frame[(frameStackTop->stackTop)--];
+
 /*
     if(frameStackTop != NULL){
         //StructFrameStack ** aux2 = &frameStackTop;
@@ -244,7 +266,7 @@ int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStack
         if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes,"main")){ ///Procura pelo metodo main no method_info da classe
             //printf("Achei a MAIN no indice %d\n",i);
             createNewFrame(handler,i,NOT_RETURN,frameStackTop); ///encontrou o metodo main no indice i, cria o frame dele.
-            frameStackTop->next = NULL;
+//            frameStackTop->next = NULL;
             return MAIN_FOUND; ///Retorna sucesso
         }
     }
