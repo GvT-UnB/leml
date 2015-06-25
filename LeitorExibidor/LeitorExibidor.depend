@@ -294,3 +294,33 @@
 1435019267 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
 	"macros.h"
 
+1435260715 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c
+	<stdio.h>
+	"lib/classManager.h"
+	"lib/exceptionManager.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\classmanager.h
+	"uReader.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\ureader.h
+	<stdio.h>
+	"macros.h"
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
+	<stdint.h>
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+
+1435260745 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
+	"lib/exceptionManager.h"
+	<stdio.h>
+	<stdarg.h>
+
+1435260745 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\framemanager.c
+	"lib/frameManager.h"
+	<stdio.h>
+	<stdlib.h>
+
+1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\framemanager.h
+	"macros.h"
+
