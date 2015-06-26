@@ -8,14 +8,55 @@
 
 #include "macros.h"
 
+/** \brief pega o index do field baseado no indice dele no field_info
+ *
+ * \param fields field_info* vetor com os fields da classe
+ * \param fName char* resolucao do nome do field
+ * \param fields_count u2 quantidade de fields
+ * \param constant_pool cp_info* ponteiro pra constant pool
+ * \return EXTERNu4 retorna o fieldIndex
+ *
+ */
 EXTERN u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * constant_pool );
 
+/** \brief Executa a intrucao putstatic
+ *
+ * \param frame Frame* ponteiro pro frame sendo executado
+ * \param pc u4 pc atual
+ * \param code u1* vetor de codigos
+ * \return EXTERN void
+ *
+ */
 EXTERN void instr_putstatic(Frame * frame, u4 pc, u1 * code);
 
+/** \brief Executa a intrucao getstatic
+ *
+ * \param frame Frame* ponteiro pro frame sendo executado
+ * \param pc u4 pc atual
+ * \param code u1* vetor de codigos
+ * \return EXTERN void
+ *
+ */
 EXTERN void instr_getstatic(Frame * frame, u4 pc, u1 * code);
 
+/** \brief printa um numero binario em decimal
+ *
+ * \param var int16_t variavel binaria
+ * \param dim int varivel decimal
+ * \return EXTERN int16_t retorno  numero binario
+ *
+ */
 EXTERN int16_t printBin(int16_t var, int dim);
 
+/** \brief Executa a intrucao getstatic
+ *
+ * \param frame Frame* ponteiro pro frame sendo executado
+ * \param pc u4 pc atual
+ * \param fWide u1 flag wide
+ * \param code u1* vetor de codigos
+ * \return EXTERN void
+ *
+ */
 EXTERN void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code);
 
 EXTERN void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
