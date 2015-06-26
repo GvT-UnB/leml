@@ -1917,6 +1917,7 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
     tmp_frame = (Frame *)malloc(sizeof(Frame));
         tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
 
+
     ///Coloca os parametros da pilha de operandos do Frame corrente.
      u2 method_descriptor_len = strlen(method_descriptor);
      int num_parans = 0;
@@ -1938,7 +1939,7 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
                 value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
                 tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
             }
-
+            break;
         case 'J': ///Eh um long
             if(method_descriptor[i-1] != '['){
                 value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
@@ -1951,6 +1952,7 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
                 value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
                 tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
             }
+            break;
         case '[':
                 break;
         default:
@@ -1962,17 +1964,32 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
 
      ///Coloca no Vetor de Variaveis Locais do novo Frame.
      ///Coloca os parametos coletados na pilha de operandos do novo Frame.
+
      int aux_localVariableArray_index = localVariableArray_index-1;
      for(int i = 0; i < num_parans; i++){
         if(method_descriptor[i] == ')')
             break;
         switch(method_descriptor[i]){
         case 'D': ///Eh um double
-            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
-            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            if(method_descriptor[i-1] != '['){
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            }
+            else{
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            }
+            break;
         case 'J': ///Eh um long
-            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
-            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            if(method_descriptor[i-1] != '['){
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            }
+            else{
+                pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            }
+            break;
+        case '[':
+                break;
         default:
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado
         }

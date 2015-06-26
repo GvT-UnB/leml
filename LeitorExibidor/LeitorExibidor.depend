@@ -387,7 +387,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1435300606 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\framemanager.c
+1435307131 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
@@ -395,14 +395,14 @@
 1435284135 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
-1435306443 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\instruction.c
+1435306757 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\instruction.c
 	<stdio.h>
 	<string.h>
 	<math.h>
 	<stdint.h>
 	"lib/instruction.h"
 
-1435300606 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\main.c
+1435307121 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
 1435298094 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\jvmmanager.h
