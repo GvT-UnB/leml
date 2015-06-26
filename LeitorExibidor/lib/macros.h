@@ -525,7 +525,7 @@ typedef struct{
     u4 returnPC; ///Endereco do PC atual do metodo que invocou o metodo corrente.
 } Frame;
 
-#define FRAME_STACK_MAX     1000
+#define FRAME_STACK_MAX     100000
 typedef struct StructFrameStack{
     u4 stackTop;
     Frame frame[FRAME_STACK_MAX];

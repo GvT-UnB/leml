@@ -2029,22 +2029,22 @@ void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHand
      u1 * method_name = cur_frame->constant_pool[name_index].UTF8.bytes; ///Nome do metodo
      u1 * class_name = cur_frame->constant_pool[class_name_index].UTF8.bytes; ///Nome da classe
 
-     printf("method_descriptor: %s\n",method_descriptor);
-     printf("method_name: %s\n",method_name);
-     printf("class_name: %s\n",class_name);
+//     printf("method_descriptor: %s\n",method_descriptor);
+//     printf("method_name: %s\n",method_name);
+//     printf("class_name: %s\n",class_name);
 
     ///Caso seja necessario, carrega nova classe no HEAP
     u4 method_index;
 
     ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
     u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
-//printf("Teste 1\n");
+
+
     ///Procura pelo indice do metodo no method_info da classe
     method_index = seekNewMethodInClassHandler(handler, method_name); ///Pega o indice do metodo no method_info da classe.
 //    printf("Teste 2\n");
     createNewFrame(handler+new_class_index_heap,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
-///Arrumar o 'tutorial/'
-//printf("Teste 3\n");
+
     ///Cria o Novo Frame
     Frame * tmp_frame;
     tmp_frame = (Frame *)malloc(sizeof(Frame));
@@ -2065,14 +2065,17 @@ void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHand
             value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            break;
         case 'J': ///Eh um long
             value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
             value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            break;
         default:
             value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
             tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            break;
         }
         num_parans++;
      }
@@ -2087,14 +2090,32 @@ void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHand
         case 'D': ///Eh um double
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            break;
         case 'J': ///Eh um long
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+            break;
         default:
             pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado
+            break;
         }
      }
 
+}
+
+void doNew(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
+     ///Carrega as informacoes da Classe e Metodo
+     printf("Entrei no new!\n");
+     u2 class_index = code[curPC+1];
+     class_index = class_index << BYTE_SIZE | code[curPC+2];
+     u2 class_name_index = cur_frame->constant_pool[class_index].Class.name_index;
+     u1 * class_name = cur_frame->constant_pool[class_name_index].UTF8.bytes; ///Nome da classe
+     //printf("class_name: %s\n",class_name);
+
+    ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
+    u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
+    printf("Aqui?\n");
+    pushOperandStack(cur_frame->operandStack,class_file+new_class_index_heap);
 }
 
 void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
@@ -2118,6 +2139,11 @@ void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, Clas
 			break;
 		case OPCODE_invokeinterface:
 			break;
+        case OPCODE_new:
+            printf("Vou entrar no new!\n");
+            doNew(cur_frame, frameStackTop, handler, curPC, code, class_file, numberOfClassesHeap, numberOfClasses, numberOfByteInstruction);
+            printf("Sai do new!\n");
+            break;
     }
 }
 

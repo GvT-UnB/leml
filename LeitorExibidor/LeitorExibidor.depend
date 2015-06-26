@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1435290225 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1435311836 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
-1435290224 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1435296000 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1434174419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
@@ -12,7 +12,7 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1435290730 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1435311854 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
@@ -258,7 +258,7 @@
 1434742041 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
-1435289277 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
+1435296323 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -285,7 +285,7 @@
 	<stdint.h>
 	"lib/macros.h"
 
-1435290686 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
+1435312236 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
 	<stdio.h>
 	<string.h>
 	<math.h>

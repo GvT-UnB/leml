@@ -21,10 +21,9 @@ ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
     class_file->constant_pool_count = u2Read(dot_class);
     class_file->constant_pool = (cp_info *)malloc(class_file->constant_pool_count * sizeof(cp_info)); //aloca espaço para o constant_pool
 
-
     for(int i = 1; i < class_file->constant_pool_count; i++){ //Lembre-se, o constant_pool começa em 1 !!!
         class_file->constant_pool[i].tag = u1Read(dot_class);
-        //printf("%d\n", class_file->constant_pool[i].tag);
+        //printf("\tTAG: %d\n", class_file->constant_pool[i].tag);
         switch(class_file->constant_pool[i].tag){ //Dependendo do valor da TAG, será utilizado uma diferente struct da Union do Constant Pool
             case CONSTANT_Class:
                 class_file->constant_pool[i].Class.name_index = u2Read(dot_class);
@@ -122,7 +121,7 @@ ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
     class_file->attributes = (attribute_info *)malloc(class_file->attributes_count * sizeof(attribute_info));
     readAttributesInfo(class_file->attributes,class_file->attributes_count,dot_class, class_file->constant_pool);
 
-
+printf("Fim do Class Reader!\n");
     return class_file;
 }
 
@@ -263,8 +262,15 @@ void verifyClassName(char * argv, ClassFile * class_file){
     char * classFullName = (char *)malloc(classNameLength * sizeof(char));
     classFullName = argv;
 
+    if(classFullName[0] == 'j' && classFullName[1] == 'a' && classFullName[2] == 'v' && classFullName[3] == 'a' && classFullName[4] == '/'){
+        className = (char *)malloc(classNameLength * sizeof(char ));
+        strcpy(className,classFullName);
+        goto takeExtOut;
+    }
+
     ///Retira o caminho até o arquivo
     while(strchr(classFullName,'/')){
+        className = NULL;
         while(classFullName[i] != '/'){
             i++;
         }
@@ -277,8 +283,10 @@ void verifyClassName(char * argv, ClassFile * class_file){
         classFullName = (char *)malloc(classNameLength * sizeof(char));
         strcpy(classFullName,className);
         classNameLength = strlen(classFullName);
+        i=0;
     }
 
+takeExtOut:
     ///Retira o .class do nome do arquivo
     i=0;
     while(classFullName[i] != '.'){
@@ -499,6 +507,7 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
     u1 * path = NULL;
 //    printf("file_name: %s\n",file_name);
 //    printf("rootDirectory: %s\n",rootDirectory);
+
     if((dot_class = fopen(file_name,"rb")) == NULL){ ///Verifica se o arquivo foi encontrado no diretorio raiz.
         path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(file_name)));
 //        printf("Antes de tudo\n");
@@ -511,8 +520,9 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
         }
     }
     //printf("Lendo o bytecode Java para a memoria...\n");
-    *numberOfClassesHeap = *numberOfClassesHeap + 1;
+    //classRead(dot_class,class_file+(*numberOfClassesHeap)); ///Carrega para o HEAP a classe
     classRead(dot_class,class_file); ///Carrega para o HEAP a classe
+    *numberOfClassesHeap = *numberOfClassesHeap + 1;
     //classPrint(class_file);
     //printf("Bytecode Java copiado com sucesso!\n");
     fclose(dot_class);
@@ -577,7 +587,7 @@ u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,C
         classLoader(class_file+(*numberOfClassesHeap), fullClassName, numberOfClassesHeap);///Carrega a classe no HEAP.
         createNewObject(handler,numberOfClasses,class_file+(*numberOfClassesHeap)-1, frameStackTop,numberOfByteInstruction);///Instancia um Objeto da classe recem criada.
         //printf("Mas jah botei na memoria! ;D\n");
-        return *numberOfClassesHeap; ///Retorna o indice da nova classe no HEAP.
+        return (*numberOfClassesHeap)-1; ///Retorna o indice da nova classe no HEAP.
     }
 }
 

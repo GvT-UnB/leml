@@ -129,11 +129,11 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
 
             if((curOPCODE > 152 && curOPCODE < 178) || (curOPCODE > 197 && curOPCODE < 202)){///Instrucoes com deslocamento
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
-            }else if(curOPCODE > 181 && curOPCODE < 186){
+            }else if(curOPCODE > 181 && curOPCODE < 188){
                 doInstructionInvoke(cur_frame,frameStackTop, handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code, class_file,numberOfClassesHeap, numberOfClasses,numberOfByteInstruction);
                 //u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
                 ///Atualiza PC para o novo Frame.
-                if(curOPCODE == OPCODE_invokestatic){
+                if(curOPCODE == OPCODE_invokestatic || curOPCODE == OPCODE_invokespecial){
                     *curPC = 0;
                 }else{
                     incPC(curPC,curOPCODE,numberOfByteInstruction);
@@ -191,6 +191,7 @@ void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * cl
 void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop){
     //Frame * newFrame = (Frame *)malloc(sizeof(Frame));
     Frame * frame = (Frame *)malloc(sizeof(Frame));
+    printf("FRAME method_index: %d\n",method_index);
     newFrame(frame,handler,method_index,curPC);///Cria o novo metodo de indice method_index referente ao Objeto apontado por handler
     pushFrameStack(frameStackTop, frame);///Coloca o frame no topo da pilha de frames.
 }
