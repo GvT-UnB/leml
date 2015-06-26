@@ -191,7 +191,6 @@ void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * cl
 void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop){
     //Frame * newFrame = (Frame *)malloc(sizeof(Frame));
     Frame * frame = (Frame *)malloc(sizeof(Frame));
-    printf("FRAME method_index: %d\n",method_index);
     newFrame(frame,handler,method_index,curPC);///Cria o novo metodo de indice method_index referente ao Objeto apontado por handler
     pushFrameStack(frameStackTop, frame);///Coloca o frame no topo da pilha de frames.
 }

@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1435311836 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1435312419 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
-1435296000 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1435312419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1434174419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
@@ -12,13 +12,13 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1435311854 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1435313251 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 	"lib/instruction.h"
 
-1435290224 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
+1435313133 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1432505183 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\exceptionmanager.c
@@ -195,7 +195,7 @@
 1434466247 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 
-1434466274 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\userviewer.c
+1435312419 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\userviewer.c
 	<stdio.h>
 	<string.h>
 	<math.h>
@@ -240,12 +240,12 @@
 	<stdint.h>
 	"lib/UserViewer.h"
 
-1435290224 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
+1435312419 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
 
-1434937306 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
+1435312419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
 1434174512 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\utype.h
@@ -285,14 +285,14 @@
 	<stdint.h>
 	"lib/macros.h"
 
-1435312236 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
+1435313216 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
 	<stdio.h>
 	<string.h>
 	<math.h>
 	<stdint.h>
 	"lib/instruction.h"
 
-1435289741 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
+1435313044 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
 	"macros.h"
 
 1435283281 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c

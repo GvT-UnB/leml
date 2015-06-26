@@ -121,7 +121,6 @@ ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
     class_file->attributes = (attribute_info *)malloc(class_file->attributes_count * sizeof(attribute_info));
     readAttributesInfo(class_file->attributes,class_file->attributes_count,dot_class, class_file->constant_pool);
 
-printf("Fim do Class Reader!\n");
     return class_file;
 }
 

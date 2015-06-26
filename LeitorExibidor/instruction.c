@@ -2105,7 +2105,6 @@ void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHand
 
 void doNew(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
      ///Carrega as informacoes da Classe e Metodo
-     printf("Entrei no new!\n");
      u2 class_index = code[curPC+1];
      class_index = class_index << BYTE_SIZE | code[curPC+2];
      u2 class_name_index = cur_frame->constant_pool[class_index].Class.name_index;
@@ -2114,7 +2113,6 @@ void doNew(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * han
 
     ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
     u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
-    printf("Aqui?\n");
     pushOperandStack(cur_frame->operandStack,class_file+new_class_index_heap);
 }
 
@@ -2140,9 +2138,7 @@ void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, Clas
 		case OPCODE_invokeinterface:
 			break;
         case OPCODE_new:
-            printf("Vou entrar no new!\n");
             doNew(cur_frame, frameStackTop, handler, curPC, code, class_file, numberOfClassesHeap, numberOfClasses, numberOfByteInstruction);
-            printf("Sai do new!\n");
             break;
     }
 }
