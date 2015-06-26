@@ -94,9 +94,10 @@ void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
-	u8 aux_u8;
+	u8 aux_u8, aux2_u8;
 	char *cName, *mName, *mDesc;
 	float aux_f;
+	double aux_d;
 
 	pc++;
 	index = (code[pc] << 8) | code[pc+1];
@@ -114,11 +115,14 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
 			aux_u8 = (aux_u8<<32) | aux_u4;
             printf("%d", aux_u8);
 		} else if(strstr(mDesc, "D") != NULL) {//double
-		    aux_u4  = popOperandStack( frame->operandStack);
-		    aux2_u4 = popOperandStack( frame->operandStack);
+		    aux_u4  = popOperandStack( frame->operandStack);//low
+		    aux2_u4 = popOperandStack( frame->operandStack);//high
 		    aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
-		    printf("%f", *((float*)&(aux_u8)));
+		    aux_u8 <<=32;
+		    aux2_u8 = (unsigned) aux_u4;
+			aux_u8 = aux_u8 |aux2_u8;
+			aux_d = *((double*)&(aux_u8));
+		    printf("%f", aux_d);
         } else if(strstr(mDesc, "Z") != NULL) {//boolean
             if(popOperandStack( frame->operandStack)) {
 				printf("True");
@@ -1053,16 +1057,20 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dadd:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
+			aux_u4 = popOperandStack( frame->operandStack);
 			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
-			aux_d = *((double*)&(aux2_u8));
+			aux_u4 = popOperandStack( frame->operandStack);
+			aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
 			aux_d += aux2_d;
 			aux_u8 = *((u8*)&(aux_d));
 			aux_u4 = aux_u8>>32;//high
@@ -1104,16 +1112,20 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dsub:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
 			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
 			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
+			aux2_u4 = popOperandStack( frame->operandStack);
+			aux_u4 = popOperandStack( frame->operandStack);
+			aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
-			aux_d = *((double*)&(aux2_u8));
 			aux_d -= aux2_d;
 			aux_u8 = *((u8*)&(aux_d));
 			aux_u4 = aux_u8>>32;//high
@@ -1155,16 +1167,20 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dmul:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
 			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
 			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
+			aux2_u4 = popOperandStack( frame->operandStack);
+			aux_u4 = popOperandStack( frame->operandStack);
+			aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
-			aux_d = *((double*)&(aux2_u8));
 			aux_d *= aux2_d;
 			aux_u8 = *((u8*)&(aux_d));
 			aux_u4 = aux_u8>>32;//high
@@ -1206,16 +1222,20 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_ddiv:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
 			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
 			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
+			aux2_u4 = popOperandStack( frame->operandStack);
+			aux_u4 = popOperandStack( frame->operandStack);
+			aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
-			aux_d = *((double*)&(aux2_u8));
 			aux_d /= aux2_d;
 			aux_u8 = *((u8*)&(aux_d));
 			aux_u4 = aux_u8>>32;//high
@@ -1258,16 +1278,20 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_drem:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
 			aux_u4 = popOperandStack( frame->operandStack);
-			aux2_u4 = popOperandStack( frame->operandStack);
 			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
+			aux2_u4 = popOperandStack( frame->operandStack);
+			aux_u4 = popOperandStack( frame->operandStack);
+			aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
-			aux_d = *((double*)&(aux2_u8));
 			aux_d = fmod(aux_d, aux2_d);
 			aux_u8 = *((u8*)&(aux_d));
 			aux_u4 = aux_u8>>32;//high
@@ -1303,10 +1327,12 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dneg:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+			aux_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
 			aux_d = -aux_d;
 			aux_u8 = *((u8*)&(aux_d));
@@ -1642,15 +1668,19 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dcmpl:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
-			aux2_d = *((double*)&(aux2_u8));
 			aux_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+			aux_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
 			if(aux_d == aux2_d) {
 				pushOperandStack( frame->operandStack, 0);
@@ -1662,15 +1692,19 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_dcmpg:
-			aux_u4 = popOperandStack( frame->operandStack);
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux2_u8 = aux2_u4;
-			aux2_u8 = (aux2_u8<<32) | aux_u4;
-			aux2_d = *((double*)&(aux2_u8));
 			aux_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
+			aux2_d = *((double*)&(aux_u8));
 			aux2_u4 = popOperandStack( frame->operandStack);
-			aux_u8 = aux2_u4;
-			aux_u8 = (aux_u8<<32) | aux_u4;
+			aux_u4 = popOperandStack( frame->operandStack);
+            aux_u8 = aux2_u4;
+            aux_u8 <<=32;
+            aux2_u8 = (unsigned) aux_u4;
+            aux_u8 = aux_u8 |aux2_u8;
 			aux_d = *((double*)&(aux_u8));
 			if(aux_d == aux2_d) {
 				pushOperandStack( frame->operandStack, 0);
