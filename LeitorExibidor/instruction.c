@@ -383,7 +383,6 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 		    *curPC = (*cur_frame)->localVariableArray[index].value; ///PC = o valor dentro da posicao buscada no vetor de variaveis globais como endereco de retorno
 			break;
 		case OPCODE_tableswitch: ///Access jump table by index and jump
-            //pc++;
             instr_tableSwitch((*cur_frame), curPC, code);
 			break;
 		case OPCODE_lookupswitch: /// Access jump table by key match and jump
@@ -769,22 +768,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pushOperandStack( frame->operandStack, frame->localVariableArray[3].value);
 			pc++;
 			break;
-		case OPCODE_iaload:
-			break;
-		case OPCODE_laload:
-			break;
-		case OPCODE_faload:
-			break;
-		case OPCODE_daload:
-			break;
-		case OPCODE_aaload:
-			break;
-		case OPCODE_baload:
-			break;
-		case OPCODE_caload:
-			break;
-		case OPCODE_saload:
-			break;
 		case OPCODE_istore:
 			pc++;
 			index = code[pc];
@@ -939,22 +922,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			aux_u4 = popOperandStack( frame->operandStack);
 			frame->localVariableArray[3].value = aux_u4;
 			pc++;
-			break;
-		case OPCODE_iastore:
-			break;
-		case OPCODE_lastore:
-			break;
-		case OPCODE_fastore:
-			break;
-		case OPCODE_dastore:
-			break;
-		case OPCODE_aastore:
-			break;
-		case OPCODE_bastore:
-			break;
-		case OPCODE_castore:
-			break;
-		case OPCODE_sastore:
 			break;
 		case OPCODE_pop:
 			popOperandStack( frame->operandStack);
@@ -1740,12 +1707,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 		case OPCODE_new:
 			break;
-		case OPCODE_newarray:
-			break;
-		case OPCODE_anewarray:
-			break;
-		case OPCODE_arraylength:
-			break;
 		case OPCODE_athrow:
 			printf("instrucao nao implementada\n");
 			break;
@@ -1760,20 +1721,6 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 		case OPCODE_monitorexit:
 			printf("instrucao nao implementada\n");
-			break;
-		case OPCODE_wide:
-//            fWide = 1;
-//            pc++;
-			break;
-		case OPCODE_multianewarray:
-			break;
-		case OPCODE_ifnull:
-			break;
-		case OPCODE_ifnonnull:
-			break;
-		case OPCODE_goto_w:
-			break;
-		case OPCODE_jsr_w:
 			break;
 		case OPCODE_breakpoint:
 			printf("instrucao nao implementada\n");
@@ -2294,8 +2241,16 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
 		case OPCODE_anewarray:  ///Create new array of reference
 		    aux_u2 = (code[pc+1] << 8) | code[pc+2];
 		    index = (u4)aux_u2; ///indice no constant pool corrente  que contem uma referencia simbólica para a o tipo da classe/array/interface
+
             count = popOperandStack(frame->operandStack); ///Tamanho do array
-            array = (u4*)calloc(count, sizeof(u4));
+
+            array->data = (ClassHandler*)calloc(count, sizeof(ClassHandler));
+            array->length = count;
+
+            frame->handler->arrayList->array_t = array;
+
+            pushArrayList(frame->handler->arrayList, *frame->handler->arrayList->array_t);
+
             pushFrameStack(frame->operandStack, array);
 			break;
 		case OPCODE_arraylength: ///Get length of array

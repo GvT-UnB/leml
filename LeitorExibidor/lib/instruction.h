@@ -59,12 +59,47 @@ EXTERN int16_t printBin(int16_t var, int dim);
  */
 EXTERN void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code);
 
-EXTERN void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
+/** \brief Funcao responsavel pela implentacao de todas as instrucoes que necessitam de deslocamento dentro do codigo
+ *
+ * \param cur_frame Frame** Ponteiro do frame corrente
+ * \param curPC u4* Pc corrente
+ * \param frameStackTop StructFrameStack* Referencia ao topo da pilha de frames
+ * \param code u1* Referencia ao bytecode
+ * \param fWide u1 Flag para a instrucao wide
+ * \return EXTERN void
+ *
+ */
+EXTERN void doInstructionShift(Frame **cur_frame, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
 
+/** \brief Funcao referente a todas as instrucoes que nao necessitam de deslocamento e nem array
+ *
+ * \param frame Frame* Referencia ao frame corrente
+ * \param pc u4 copia do pc corrente
+ * \param fWide u1 Flag para checar se o fWide esta setado
+ * \param code u1* Bytecode
+ * \return EXTERN void
+ *
+ */
 EXTERN void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code );
 
+/** \brief Instrucao referente ao tableSwitch
+ *
+ * \param frame Frame* Referencia ao frame corrente
+ * \param curPC u4* ponteiro para o pc corrente
+ * \param code u1* bytecode
+ * \return EXTERN void
+ *
+ */
 EXTERN void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code);
 
+/** \brief Intrucao referente ao lookUpSwich
+ *
+ * \param frame Frame* Referencia para o frame corrente
+ * \param curPC u4* Ponteiro para o pc corrente
+ * \param code u1*  ponteiro para o bytecode
+ * \return EXTERN void
+ *
+ */
 EXTERN void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code);
 
 /** \brief Executa a instrucao Invokestati
