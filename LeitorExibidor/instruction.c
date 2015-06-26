@@ -22,6 +22,7 @@ void printStack(structOperandStack **operandStackTop){
     printf("\n");
 }
 
+///Pega o field index base na posicao do fieldinfo no class file
 u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * constant_pool ){
     char * auxName;
     for(int i = 0; i < fields_count; i++){
@@ -33,7 +34,7 @@ u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * c
     return -1;
 }
 
-
+///resolve o nome e tipo do field e preenche o valor do field estatico
 void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
@@ -61,7 +62,8 @@ void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 
 }
 
-void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
+///resolve o nome e tipo do field e pega o valor do field estatico
+void instr_getstatic(Frame * frame, u4 pc, u1 * code){
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	char *cName, *fName, *fType;
@@ -91,7 +93,8 @@ void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 
 }
 
-void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
+///Printa o que estiver na pilha de acordo com o tipo
+void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	u8 aux_u8, aux2_u8;
@@ -446,7 +449,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 //		    printf("RETURN\n");
 		    while((*cur_frame)->operandStack->next != NULL){
                 popOperandStack((*cur_frame)->operandStack);
-                printf("loop free operand stack\n");
+//                printf("loop free operand stack\n");
 		    }
 		    if((*cur_frame)->returnPC != NOT_RETURN){
                 //printf("entrou1\n");
