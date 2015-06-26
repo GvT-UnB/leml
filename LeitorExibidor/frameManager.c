@@ -186,6 +186,7 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
 u4 popOperandStack(structOperandStack **operandStackTop){
     structOperandStack *aux;
     u4 operand;
+    //printf("\t\t\t----pop(%d)=============\n ", operand);
     aux = *operandStackTop;
     operand = (*operandStackTop)->value;
     *operandStackTop = (*operandStackTop)->next;

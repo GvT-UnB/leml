@@ -1816,15 +1816,17 @@ void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
         byte2 = code[(*curPC)++];
         byte3 = code[(*curPC)++];
         byte4 = code[(*curPC)++];
-        lookupSwitch[i+1] = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4; /// offset (key)
+        lookupSwitch[i+1] = ((byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4); /// offset (key)
+
     }
 
-    key = popOperandStack(); ///recupera o valor do topo da pilha
+    key = popOperandStack(frame->operandStack); ///recupera o valor do topo da pilha
     i=0;
     while( found != 1 && i < ((npair*2)-1)){///o loop para quando ele chega no limite do array - 1 ou quando encontra o match
-        if(key != lookupSwitch[i]){
+        if(key == lookupSwitch[i]){
             found = 1; /// Flag para quando o match é encontrado
         }
+        else
         i+=2; ///incrementa de dois em dois para buscar entre os match's
     }
     if(found == 0){/// caso nao encontre
@@ -1833,6 +1835,7 @@ void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
     else{///caso encontre
         targetAddress = lookupSwitch[i+1] + opcodeAddress; ///pega o offset seguido do match selecionado
     }
+
     *curPC = targetAddress;
 }
 
@@ -1971,13 +1974,13 @@ void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHand
 
     ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
     u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
-printf("Teste 1\n");
+//printf("Teste 1\n");
     ///Procura pelo indice do metodo no method_info da classe
     method_index = seekNewMethodInClassHandler(handler, method_name); ///Pega o indice do metodo no method_info da classe.
-    printf("Teste 2\n");
+//    printf("Teste 2\n");
     createNewFrame(handler+new_class_index_heap,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
 ///Arrumar o 'tutorial/'
-printf("Teste 3\n");
+//printf("Teste 3\n");
     ///Cria o Novo Frame
     Frame * tmp_frame;
     tmp_frame = (Frame *)malloc(sizeof(Frame));
