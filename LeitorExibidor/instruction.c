@@ -52,13 +52,10 @@ void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 
 	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
         frame->handler->classRef->field_value[fIndex].U4.value = popOperandStack( frame->operandStack);
-        printf("Referencia\n");
     } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
         frame->handler->classRef->field_value[fIndex].U8.low = popOperandStack( frame->operandStack);
         frame->handler->classRef->field_value[fIndex].U8.high = popOperandStack( frame->operandStack);
-        printf("double ou long\n");
     }else{
-        printf("u4\n");
         frame->handler->classRef->field_value[fIndex].U4.value = popOperandStack( frame->operandStack);
     }
 
@@ -82,13 +79,13 @@ void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 
 	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
         pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U4.value);
-        printf("Referencia\n");
+//        printf("Referencia\n");
     } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
         pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U8.high);
         pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U8.low);
-        printf("double ou long\n");
+//        printf("double ou long\n");
     }else{
-        printf("u4\n");
+//        printf("u4\n");
         pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U4.value);
     }
 
@@ -2090,8 +2087,7 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
 		case OPCODE_aaload: ///Load reference from array
 		    index = popOperandStack(frame->operandStack);
 		    array = popOperandStack(frame->operandStack);
-		    printf("index %d array %d", index, array);
-		    value_u4 = ((u4*)array)[index];///conversao de void para 32 bits
+		    value_u4 = ((u4*)array->data)[index];///conversao de void para 32 bits
 		    pushOperandStack(frame->operandStack, value_u4);
 			break;
 
@@ -2100,7 +2096,7 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
 		case OPCODE_daload: ///Load double from array
 		    index = popOperandStack(frame->operandStack);
 		    array = popOperandStack(frame->operandStack);
-		    value_u8 = ((u8*)array)[index]; ///conversao de void par     64 bits
+		    value_u8 = ((u8*)array->data)[index]; ///conversao de void par     64 bits
 		    value_u4 = (u4)(value_u8 & 0xFFFFFFFF); ///Pega a segunda metade do numero de 64 bits para colocar na pilha
 		    pushOperandStack(frame->operandStack, value_u4);
 		    value_u4 = (u4)(value_u8 >> 32); ///Pega a primeira metade do numero de 64 bits para colocar na pilha
@@ -2141,8 +2137,9 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
 		    value2_u4 = popOperandStack(frame->operandStack);
 		    index = popOperandStack(frame->operandStack);
 		    array = popOperandStack(frame->operandStack);
-			value_u8 = (value_u4 << 32) | value2_u4; ///Concatena os dois valores retornados pela pilha
-			((u8*)array)[index] = value_u8; ///Armazena o valor recuperado na pilha
+		    value_u8 = value_u4;
+			value_u8 = (value_u8 << 32) | value2_u4; ///Concatena os dois valores retornados pela pilha
+			((u8*)array->data)[index] = value_u8; ///Armazena o valor recuperado na pilha
 			break;
 
         ///Operacoes de 16 bits
@@ -2158,7 +2155,7 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
             value_u4 = popOperandStack(frame->operandStack);
             index = popOperandStack(frame->operandStack);
             array = popOperandStack(frame->operandStack);
-			((u1*)array)[index]  = (u1)value_u4; ///Converte o valor encontrado em 8 bits com sinal e insere no array
+			((u1*)array->data)[index]  = (u1)value_u4; ///Converte o valor encontrado em 8 bits com sinal e insere no array
 			break;
 
         case OPCODE_newarray:

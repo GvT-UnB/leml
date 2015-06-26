@@ -477,17 +477,17 @@ void setStaticFields(ClassFile * class_file){
             fType = class_file->constant_pool[class_file->fields[i].descriptor_index].UTF8.bytes;
             class_file->field_value[j].field_index = i;
             fname = class_file->constant_pool[class_file->fields[i].name_index].UTF8.bytes;
-            printf("\nFIELD_NAME: %s\n",fname);
-            printf("FIELD_INDEX: %d\n", i);
+//            printf("\nFIELD_NAME: %s\n",fname);
+//            printf("FIELD_INDEX: %d\n", i);
             if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
                 class_file->field_value[j].U4.value = 0;
-                printf("Referencia\n");
+//                printf("Referencia\n");
             } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
                 class_file->field_value[j].U8.high = 0;
                 class_file->field_value[j].U8.low = 0;
-                printf("double ou long\n");
+//                printf("double ou long\n");
             }else{
-                printf("u4\n");
+//                printf("u4\n");
                 class_file->field_value[j].U4.value = 0;
             }
         }
