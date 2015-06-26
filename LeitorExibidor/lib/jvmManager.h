@@ -17,7 +17,8 @@
 
 #define MAIN_FOUND          1
 
-#define MAX_CLASSES_ON_HEAP 100
+#define MAX_CLASSES_ON_HEAP 1000
+#define MAX_FRAMES_ON_STACK 1000
 
 /** \brief Instancia um novo objeto da classe class_file.
  *
@@ -27,7 +28,7 @@
  * \return void
  *
  */
-EXTERN void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file);
+EXTERN void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file, StructFrameStack *frameStackTop,u1 * numberOfByteInstruction);
 
 /** \brief Instancia um novo Frame de um metodo da classe class_file e logo em seguida o insere no topo da pilha de Frames.
  *
@@ -75,6 +76,6 @@ EXTERN int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *fra
  * \return EXTERN void
  *
  */
-EXTERN void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop);
+EXTERN void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, ClassHandler * handler);
 
 #endif // FRAMEMANAGER_H_INCLUDED

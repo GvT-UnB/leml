@@ -4,13 +4,13 @@
 ///TODO: Tratar os fields estaticos,são inicializados com ZERO
 ///TODO: Criar o ClassLoader, ele precisa verificar o PATH da classe
 ///TODO: Array com Union
-///TODO: Verificar o problema do REALLOC (handler).
-///TODO: Utilizar o loadNewMethodInSameClass para fazer o (invokestatic).
+///TODO: tratar o <clinit>
+
 
 
 int main(int argc, char *argv[]){
     ClassFile * class_file = (ClassFile *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassFile)); ///Eh o HEAP...pois eh, nao tah mnemônico :/
-    ClassHandler * handler = (ClassHandler *)malloc(sizeof(ClassHandler));
+    ClassHandler * handler = (ClassHandler *)malloc(MAX_CLASSES_ON_HEAP*sizeof(ClassHandler));
     StructFrameStack *frameStackTop = (StructFrameStack *)malloc(sizeof(StructFrameStack));
     //frameStackTop->next = NULL;
     frameStackTop->stackTop = -1;
@@ -19,8 +19,11 @@ int main(int argc, char *argv[]){
     u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
 
+    getRootDirectory(*++argv);
+    //printf("PATH: %s\n",rootDirectory);
+
     ///Carrega a classe informada por linha de comando no HEAP
-    classLoader(class_file+numberOfClassesHeap, *++argv, &numberOfClassesHeap);
+    classLoader(class_file+numberOfClassesHeap, *argv, &numberOfClassesHeap);
     //classPrint(class_file+numberOfClassesHeap-1);
 
     if(argc > 2 && !strcmp(*++argv,"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
@@ -29,7 +32,7 @@ int main(int argc, char *argv[]){
     fillNumberOfByteInstruction(&numberOfByteInstruction);
 
     ///Instancia um novo Objeto.
-    createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1 );
+    createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
     //printHandler(handler);
 
     ///Procura pela MAIN, caso encontra instancia e coloca no topo da pilha de operandos, caso contrairo taca erro.
@@ -50,10 +53,10 @@ int main(int argc, char *argv[]){
     //printHandler(cur_frame->localVariableArray[0].value);
 
     ///Chama a funcao responsavel por efetivamente rodar a JVM
-    runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop);
+    runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop, class_file, &numberOfClassesHeap, &numberOfClasses, handler);
 
     ///Verifica se uma classe ja esta no HEAP
-//        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
+        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
 /*            printf("[1] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
             classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -61,18 +64,18 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-//        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 
-//        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
+        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
 /*        classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
- //       createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 
- //       classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
+        classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
  /*           printf("[2] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
         classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -80,7 +83,7 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1);
+        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 /*
     ///Carrega nova classe no HEAP
     //u1 * className = "tutorial/OrdenarArray"; ///Pega o nome da Classe.
@@ -108,7 +111,7 @@ int main(int argc, char *argv[]){
 }
 
 
-void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop){
+void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFrameStack *frameStackTop, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, ClassHandler * handler){
     u1 curOPCODE, flagIsWide = 0;
     //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
@@ -126,7 +129,7 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
             if(curOPCODE > 152 && curOPCODE < 178){
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }else if(curOPCODE > 181 && curOPCODE < 186){
-                doInstructionInvoke(cur_frame,frameStackTop,cur_frame->handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code);
+                doInstructionInvoke(cur_frame,frameStackTop, handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code, class_file,numberOfClassesHeap, numberOfClasses,numberOfByteInstruction);
                 //u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
                 ///Atualiza PC para o novo Frame.
                 if(curOPCODE == OPCODE_invokestatic){
@@ -151,10 +154,10 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
     //printf("PC: %d\n",*curPC);
 }
 
-void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file){
+void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * class_file, StructFrameStack *frameStackTop,u1 * numberOfByteInstruction){
     u4 aux = *numberOfClasses +1;
     //printf("TESTE 1: %d\n",aux);
-    handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));///Inicializa o Objeto
+    //handler = (ClassHandler *)realloc(handler,aux * sizeof(ClassHandler));///Inicializa o Objeto
     //printf("TESTE 2!\n");
     if(handler == NULL)
         throwException(INSUFFICIENT_MEMORY,INSUFFICIENT_MEMORY_MSG);///Verifica se foi possivel alocar memoria suficiente
@@ -162,6 +165,18 @@ void createNewObject(ClassHandler * handler, u4 * numberOfClasses,ClassFile * cl
     //printf("TESTE 3!\n");
     //printHandler(handler+(*numberOfClasses));
     *numberOfClasses = *numberOfClasses + 1; ///Atualiza a quantidade de classes instanciadas.
+
+    ///Verifica a existencia do metodo <clinit>
+    u1 * clinit = "<clinit>";
+    u4 clinit_method_index = seekNewMethodInClassFile(class_file,clinit); ///Procura pelo <clinit>
+    u4 attributeCodeIndex = findAttributeCodeIndex(class_file->methods->attributes,class_file->methods->attributes_count);
+    if(clinit_method_index != NOT_RETURN){ ///Caso o metodo <<clinit>> exita.
+        createNewFrame(handler, clinit_method_index, 0,frameStackTop); ///Cria um novo frame pro <<clinit>>
+        Frame * clinit_frame = (Frame *)malloc(sizeof(Frame));
+        clinit_frame = popFrameStack(frameStackTop);
+        ///Executa as operacoes do <clinit>
+        doCLInit(class_file,class_file->methods->attributes[attributeCodeIndex].Code.code,clinit_frame,numberOfByteInstruction);
+    }
 }
 
 void createNewFrame(ClassHandler * handler, u4 method_index, u4 curPC,StructFrameStack *frameStackTop){
@@ -271,4 +286,24 @@ int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStack
         }
     }
     throwException(MAIN_NOT_FOUND,MAIN_NOT_FOUND_MSG); ///Nao encontrou a main, taca erro.
+}
+
+void getRootDirectory(u1 * file_name){
+    int i;
+    int fileNameLength = strlen(file_name);
+
+    if(strchr(file_name,'/')){ ///Verifica se existe o caracter '/' no nome do arquivo
+        for(i = fileNameLength; i >= 0; i--){
+            if(file_name[i] == '/'){ ///Procura a posicao do ultimo '/' no nome do arquivo
+                rootDirectory = (u1 *)malloc((i+1) * sizeof(u1));
+                for(int j = 0; j <= i; j++ ){
+                    rootDirectory[j] = file_name[j]; ///Copia os caracteres do PATH para a variavel global
+                }
+                rootDirectory[i+1] = '\0'; ///Insere o caractere de fimd e string.
+                break;
+            }
+        }
+    }else{
+        rootDirectory = NULL; ///O diretorio raiz eh o mesmo do executavel.
+    }
 }

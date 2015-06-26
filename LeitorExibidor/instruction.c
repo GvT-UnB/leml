@@ -1822,7 +1822,7 @@ void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code){
 }
 
 
-void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){
+void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
      ///Carrega as informacoes da Classe e Metodo
      u2 method_ref = code[curPC+1];
      method_ref = method_ref << BYTE_SIZE | code[curPC+2];
@@ -1839,10 +1839,31 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
 //     printf("method_name: %s\n",method_name);
 //     printf("class_name: %s\n",class_name);
 
-    Frame * tmp_frame = (Frame *)malloc(sizeof(Frame));
-    u4 method_index = seekNewMethodInFrameClass(cur_frame, method_name); ///Pega o indice do metodo no method_info da classe.
-    createNewFrame(handler,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
-    tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+    ///Caso seja necessario, carrega nova classe no HEAP
+    Frame * tmp_frame;// = (Frame *)malloc(sizeof(Frame));
+    u4 method_index;
+    u2 this_class_index = cur_frame->handler->classRef->this_class;
+    u2 this_class_name_index = cur_frame->constant_pool[this_class_index].Class.name_index;
+    u1 this_class_name;
+
+    if(this_class_name_index != class_name_index){
+         this_class_name = cur_frame->constant_pool[this_class_name_index].UTF8.bytes; ///Nome da classe dona do Frame corrente.
+        ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
+        u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
+        ///Procura pelo indice do metodo no method_info da classe
+        method_index = seekNewMethodInClassHandler(handler, method_name); ///Pega o indice do metodo no method_info da classe.
+        createNewFrame(handler+new_class_index_heap,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
+    }else{
+        ///Caso o metodo chamado seja da mesma classe do metodo chamador
+        ///Procura pelo indice do metodo no method_info da classe
+        method_index = seekNewMethodInFrameClass(cur_frame, method_name); ///Pega o indice do metodo no method_info da classe.
+        u4 class_index_heap = loadNewClass(class_file,numberOfClassesHeap,handler->classRef->class_full_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
+        createNewFrame(handler+class_index_heap,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
+    }
+
+    ///Cria o Novo Frame
+    tmp_frame = (Frame *)malloc(sizeof(Frame));
+        tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
 
     ///Coloca os parametros da pilha de operandos do Frame corrente.
      u2 method_descriptor_len = strlen(method_descriptor);
@@ -1859,23 +1880,19 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
             value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
-            //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
-            //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
         case 'J': ///Eh um long
             value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
             value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
             tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
-            //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
-            //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
         default:
             value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
             tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
-            //pushOperandStack(tmp_frame->operandStack,value);///Empilha  no Frame chamado
         }
         num_parans++;
      }
 
+     ///Coloca no Vetor de Variaveis Locais do novo Frame.
      ///Coloca os parametos coletados na pilha de operandos do novo Frame.
      int aux_localVariableArray_index = localVariableArray_index-1;
      for(int i = 0; i < num_parans; i++){
@@ -1900,10 +1917,90 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
 
      pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
      *cur_frame = *tmp_frame; ///Muda o Frame corrente para o novo Frame
+}
+
+void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
+     ///Carrega as informacoes da Classe e Metodo
+     u2 method_ref = code[curPC+1];
+     method_ref = method_ref << BYTE_SIZE | code[curPC+2];
+     u2 class_index = cur_frame->constant_pool[method_ref].Methodref.class_index;
+     u2 class_name_index = cur_frame->constant_pool[class_index].Class.name_index;
+     u2 name_and_type_index = cur_frame->constant_pool[method_ref].Methodref.name_and_type_index;
+     u2 name_index = cur_frame->constant_pool[name_and_type_index].NameAndType.name_index;
+     u2 descriptor_index = cur_frame->constant_pool[name_and_type_index].NameAndType.descriptor_index;
+     u1 * method_descriptor = cur_frame->constant_pool[descriptor_index].UTF8.bytes; ///Descricoa do metodo
+     u1 * method_name = cur_frame->constant_pool[name_index].UTF8.bytes; ///Nome do metodo
+     u1 * class_name = cur_frame->constant_pool[class_name_index].UTF8.bytes; ///Nome da classe
+
+     printf("method_descriptor: %s\n",method_descriptor);
+     printf("method_name: %s\n",method_name);
+     printf("class_name: %s\n",class_name);
+
+    ///Caso seja necessario, carrega nova classe no HEAP
+    u4 method_index;
+
+    ///Caso o nome da classe dona do novo metodo seja diferente da classe corrente.
+    u4 new_class_index_heap = loadNewClass(class_file,numberOfClassesHeap,class_name,handler,numberOfClasses, frameStackTop,numberOfByteInstruction);
+printf("Teste 1\n");
+    ///Procura pelo indice do metodo no method_info da classe
+    method_index = seekNewMethodInClassHandler(handler, method_name); ///Pega o indice do metodo no method_info da classe.
+    printf("Teste 2\n");
+    createNewFrame(handler+new_class_index_heap,method_index, curPC+3,frameStackTop); ///Cria novo Frame para o novo metodo
+///Arrumar o 'tutorial/'
+printf("Teste 3\n");
+    ///Cria o Novo Frame
+    Frame * tmp_frame;
+    tmp_frame = (Frame *)malloc(sizeof(Frame));
+    tmp_frame = popFrameStack(frameStackTop);///Retira o novo frame da pilha
+
+    ///Coloca os parametros da pilha de operandos do Frame corrente.
+     u2 method_descriptor_len = strlen(method_descriptor);
+     int num_parans = 0;
+     int localVariableArray_index = 0;
+     u4 value_low,value_high,value;
+
+     for(int i = method_descriptor_len-3; i > 0; i--){
+        if(method_descriptor[i] == '(')
+            break;
+        switch(method_descriptor[i]){
+        case 'D': ///Eh um double
+            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+        case 'J': ///Eh um long
+            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+        default:
+            value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
+            tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
+        }
+        num_parans++;
+     }
+
+     ///Coloca no Vetor de Variaveis Locais do novo Frame.
+     ///Coloca os parametos coletados na pilha de operandos do novo Frame.
+     int aux_localVariableArray_index = localVariableArray_index-1;
+     for(int i = 0; i < num_parans; i++){
+        if(method_descriptor[i] == ')')
+            break;
+        switch(method_descriptor[i]){
+        case 'D': ///Eh um double
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+        case 'J': ///Eh um long
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes mais significativos
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado os bytes menos significativos
+        default:
+            pushOperandStack(tmp_frame->operandStack,tmp_frame->localVariableArray[aux_localVariableArray_index--].value);///Empilha  no Frame chamado
+        }
+     }
 
 }
 
-void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code){
+void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
     u1 aux_u1, aux2_u1;
 	u2 aux_u2, index;
 	int16_t branchoffset;
@@ -1917,11 +2014,29 @@ void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, Clas
 		    instr_invokeVirtual(cur_frame, curPC, flagIsWide, code);
 			break;
 		case OPCODE_invokespecial:
+		    doInvokespecial(cur_frame,frameStackTop,cur_frame->handler, curPC, flagIsWide, code, class_file, numberOfClassesHeap, numberOfClasses, numberOfByteInstruction);
 			break;
 		case OPCODE_invokestatic:
-		    doInvokestatic(cur_frame,frameStackTop,cur_frame->handler, curPC, flagIsWide, code);
+		    doInvokestatic(cur_frame,frameStackTop,cur_frame->handler, curPC, flagIsWide, code, class_file, numberOfClassesHeap, numberOfClasses, numberOfByteInstruction);
 			break;
 		case OPCODE_invokeinterface:
 			break;
+    }
+}
+
+void doCLInit(ClassFile * class_file,u1 * code, Frame * clinit_frame, u1 * numberOfByteInstruction){
+    u4 curPC = 0;
+    u1 curOPCODE, flagIsWide = 0;
+    u4 attributeCodeIndex = findAttributeCodeIndex(clinit_frame->methods->attributes,clinit_frame->methods->attributes_count);
+    while(code[curPC]){
+        curOPCODE = getOpcode(&clinit_frame->methods->attributes[attributeCodeIndex], curPC); ///Procura pelo OPCODE apontado por curPC.
+        if(curOPCODE == OPCODE_wide){
+            flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
+        }else{
+             doInstruction(clinit_frame, curPC, flagIsWide, clinit_frame->methods->attributes[attributeCodeIndex].Code.code);
+        }
+        ///Incrementa PC
+        incPC(&curPC,curOPCODE,numberOfByteInstruction);
+        flagIsWide = 0;
     }
 }

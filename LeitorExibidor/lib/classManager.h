@@ -132,5 +132,16 @@ EXTERN u4 seekClassInHeap(ClassFile * class_file,u4 numberOfClassesHeap,u1 * cla
  * \return EXTERN u4 O indice da Classe no HEAP.
  *
  */
-EXTERN u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,ClassHandler * handler,u4 * numberOfClasses);
+EXTERN u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,ClassHandler * handler,u4 * numberOfClasses,StructFrameStack *frameStackTop,u1 * numberOfByteInstruction);
+
+/** \brief Procura pelo indice do metodo de nome method_name no method_info da classe referenciada pelo Handler
+ *
+ * \param handler ClassHandler* Referencia para a classe alocada no HEAP.
+ * \param method_name u1* Nome do metodo.
+ * \return EXTERN u4 Indice do metodo no method_info da Classe
+ *
+ */
+EXTERN u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name);
+
+EXTERN u4 seekNewMethodInClassFile(ClassFile * class_file, u1 * method_name);
 #endif // CLASSMANAGER_H_INCLUDED

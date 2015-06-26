@@ -508,7 +508,7 @@ typedef struct{
     u4 returnPC; ///Endereco do PC atual do metodo que invocou o metodo corrente.
 } Frame;
 
-#define FRAME_STACK_MAX     100
+#define FRAME_STACK_MAX     1000
 typedef struct StructFrameStack{
     u4 stackTop;
     Frame frame[FRAME_STACK_MAX];
@@ -519,4 +519,7 @@ typedef struct StructFrameStack{
 #define NOT_RETURN -1
 #define ATTRIBUTE_COD_NOT_FOUND -1
 #define CLASS_NOT_FOUND     -1
+
+ u1 * rootDirectory; ///Nome do diretorio raiz, tendo como base o path do bytecode passado por linha de comando.
+
 #endif // MACROS_H_INCLUDED

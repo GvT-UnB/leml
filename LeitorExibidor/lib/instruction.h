@@ -16,6 +16,6 @@ EXTERN void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code);
 
 EXTERN void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code);
 
-EXTERN void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code);
+EXTERN void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
 
 #endif // CLASSMANAGER_H_INCLUDED
