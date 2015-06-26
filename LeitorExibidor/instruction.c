@@ -7,6 +7,21 @@
 #include "lib/instruction.h"
 //#include "lib/macros.h"
 
+///funcao de debug, so apagar depois
+
+void printStack(structOperandStack **operandStackTop){
+    structOperandStack *aux;
+    aux = *operandStackTop;
+    printf("Operand Stack: ");
+    if(aux == NULL)
+        printf("null\n");
+    while(aux != NULL){
+        printf("%d -> ", aux->value);
+        aux = aux->next;
+    }
+    printf("\n");
+}
+
 u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * constant_pool ){
     char * auxName;
     for(int i = 0; i < fields_count; i++){
@@ -119,7 +134,10 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){//METHODREF
             //if(strstr(mDesc, "[C") != NULL) {//array char
 		} else if(strstr(mDesc, "I") != NULL) {//int
 		    aux_u4  = popOperandStack( frame->operandStack);
-            printf("%d", aux_u4);
+		    if(strstr(mDesc, "[I") != NULL)
+                printf("**%d**",(u4 *) aux_u4);
+            else
+                printf("%d", aux_u4);
 		} else if(strstr(mDesc, "F") != NULL) {//float
 		    aux_u4  = popOperandStack( frame->operandStack);
             aux_f = *((float*)&(aux_u4));
@@ -163,10 +181,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 
      switch(code[*curPC]){
         case OPCODE_ifeq:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				curPC +=aux2_u4;
 			}
 			else{
@@ -174,10 +192,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifne:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				*curPC +=aux2_u4;
 			}
 			else{
@@ -185,10 +203,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_iflt:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				*curPC +=aux2_u4;
 			}
 			else{
@@ -196,10 +214,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifge:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				*curPC +=aux2_u4;
 			}
 			else{
@@ -207,10 +225,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifgt:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				*curPC +=aux2_u4;
 			}
 			else{
@@ -218,10 +236,10 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_ifle:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=0){
-				aux2_u4 = (u4) aux_u2;
+				aux2_u4 = (u4) branchoffset;
 				*curPC +=aux2_u4;
 			}
 			else{
@@ -229,11 +247,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmpeq:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -241,11 +259,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmpne:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -253,25 +271,26 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmplt:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
 				*curPC+=3;
 			}
+//			printf("var1:%d var2:%d PC:%d soma: %d\n", aux_u4, aux2_u4, *curPC, aux3_u4);
 			break;
 		case OPCODE_if_icmpge:
 		    //(*curPC)++;
-			aux_u2 = (code[*curPC+1] << 8) | code[(*curPC)+2];
+			branchoffset = (code[*curPC+1] << 8) | code[(*curPC)+2];
 			//printBin((code[*curPC+1] << 8) | code[(*curPC)+2], 16);
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				(*curPC) += aux3_u4;
 			}
 			else{
@@ -281,11 +300,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			//getchar();
 			break;
 		case OPCODE_if_icmpgt:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4>aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -293,11 +312,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_icmple:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4<=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -305,11 +324,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_acmpeq:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4==aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -317,12 +336,11 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			}
 			break;
 		case OPCODE_if_acmpne:
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
-			aux_u2 = (code[*curPC+1] << 8) | code[*curPC+2];
+			branchoffset = (code[*curPC+1] << 8) | code[*curPC+2];
 			aux2_u4 = popOperandStack( (*cur_frame)->operandStack);
 			aux_u4 = popOperandStack( (*cur_frame)->operandStack);
 			if(aux_u4!=aux2_u4){
-				aux3_u4 = (u4) aux_u2;
+				aux3_u4 = (u4) branchoffset;
 				*curPC +=aux3_u4;
 			}
 			else{
@@ -1870,21 +1888,37 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
      int num_parans = 0;
      int localVariableArray_index = 0;
      u4 value_low,value_high,value;
-
      for(int i = method_descriptor_len-3; i > 0; i--){
         if(method_descriptor[i] == '(')
             break;
         switch(method_descriptor[i]){
         case 'D': ///Eh um double
-            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
-            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
-            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
-            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            if(method_descriptor[i-1] != '['){
+                value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+                value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+                //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
+                //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
+            }else{
+                value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            }
+
         case 'J': ///Eh um long
-            value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
-            value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
-            tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
-            tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+            if(method_descriptor[i-1] != '['){
+                value_low = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes menos significativos
+                value_high = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador os bytes mais significativos
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value_high; ///Salva temporariamente no vetor de variaveis locais do novo frame
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value_low;
+                //pushOperandStack(tmp_frame->operandStack,value_high);///Empilha  no Frame chamado os bytes mais significativos
+                //pushOperandStack(tmp_frame->operandStack,value_low);///Empilha  no Frame chamado os bytes menos significativos
+            }else{
+                value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
+                tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
+            }
+        case '[':
+                break;
         default:
             value = popOperandStack(cur_frame->operandStack);///Desenpilha do Frame chamador
             tmp_frame->localVariableArray[localVariableArray_index++].value = value; ///Salva temporariamente no vetor de variaveis locais do novo frame
@@ -1914,11 +1948,10 @@ void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandl
 //     for(int i = 1; i < aux_localVariableArray_index; i++){
 //        tmp_frame->localVariableArray[i].value = 0;
 //     }
-
      pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
      *cur_frame = *tmp_frame; ///Muda o Frame corrente para o novo Frame
+//    system("pause");
 }
-
 void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction){
      ///Carrega as informacoes da Classe e Metodo
      u2 method_ref = code[curPC+1];
@@ -2038,5 +2071,153 @@ void doCLInit(ClassFile * class_file,u1 * code, Frame * clinit_frame, u1 * numbe
         ///Incrementa PC
         incPC(&curPC,curOPCODE,numberOfByteInstruction);
         flagIsWide = 0;
+    }
+}
+
+void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
+    u1 atype;
+    u2 aux_u2;
+    u4 index, value_u4, value2_u4;
+    u8 value_u8;
+    int count, element_size;
+    struct_Array *array;
+
+    switch(code[pc]){
+
+        /// Operacoes de 32 bits
+        case OPCODE_iaload: ///Load int from array
+		case OPCODE_faload: ///Load float from array
+		case OPCODE_aaload: ///Load reference from array
+		    index = popOperandStack(frame->operandStack);
+		    array = popOperandStack(frame->operandStack);
+		    printf("index %d array %d", index, array);
+		    value_u4 = ((u4*)array)[index];///conversao de void para 32 bits
+		    pushOperandStack(frame->operandStack, value_u4);
+			break;
+
+        /// Operacoes de 64 bits
+		case OPCODE_laload: ///Load long from array
+		case OPCODE_daload: ///Load double from array
+		    index = popOperandStack(frame->operandStack);
+		    array = popOperandStack(frame->operandStack);
+		    value_u8 = ((u8*)array)[index]; ///conversao de void par     64 bits
+		    value_u4 = (u4)(value_u8 & 0xFFFFFFFF); ///Pega a segunda metade do numero de 64 bits para colocar na pilha
+		    pushOperandStack(frame->operandStack, value_u4);
+		    value_u4 = (u4)(value_u8 >> 32); ///Pega a primeira metade do numero de 64 bits para colocar na pilha
+		    pushOperandStack(frame->operandStack, value_u4);
+			break;
+
+        /// Operacoes de 8 bits
+		case OPCODE_baload: ///Load byte or boolean from array
+		    index = popOperandStack(frame->operandStack);
+		    array = (struct_Array*)popOperandStack(frame->operandStack); ///Converter para o tipo da struct Array
+		    value_u4 = (u4)((u1*)(array->data))[index];///recupera o valor e expande o valor para 32 bits
+		    pushOperandStack(frame->operandStack, value_u4);
+			break;
+
+        /// Operacoes de 16 bits
+		case OPCODE_caload: ///Load char from array
+		case OPCODE_saload: ///Load short from array
+		    index = popOperandStack(frame->operandStack);
+		    array = (struct_Array*)popOperandStack(frame->operandStack);
+		    value_u4 = (u4)((u2*)(array->data))[index];///recupera o valor e expande o valor para 32 bits
+		    pushOperandStack(frame->operandStack, value_u4);
+			break;
+
+        ///Operacoes de 32 bits
+        case OPCODE_iastore: ///Store into int array
+        case OPCODE_aastore: ///Store into reference array
+		case OPCODE_fastore: ///Store into float array
+		    value_u4 = popOperandStack(frame->operandStack);
+            index = popOperandStack(frame->operandStack);
+            array = (struct_Array*)popOperandStack(frame->operandStack);
+            ((u4*)(array->data))[index] = value_u4;
+			break;
+
+        ///Operacoes de 64 bits
+        case OPCODE_lastore: ///Store into long array
+		case OPCODE_dastore: ///Store into double array
+		    value_u4 = popOperandStack(frame->operandStack);
+		    value2_u4 = popOperandStack(frame->operandStack);
+		    index = popOperandStack(frame->operandStack);
+		    array = popOperandStack(frame->operandStack);
+			value_u8 = (value_u4 << 32) | value2_u4; ///Concatena os dois valores retornados pela pilha
+			((u8*)array)[index] = value_u8; ///Armazena o valor recuperado na pilha
+			break;
+
+        ///Operacoes de 16 bits
+        case OPCODE_castore: ///Store into char array
+        case OPCODE_sastore: ///Store into short array
+            value_u4 = popOperandStack(frame->operandStack);
+            index = popOperandStack(frame->operandStack);
+            array = popOperandStack(frame->operandStack);
+			((u2*)(array->data))[index]  = (u2)value_u4; ///Converte o valor encontrado em 8 bits com sinal e insere no array
+			break;
+
+        case OPCODE_bastore: ///Store into byte or boolean array
+            value_u4 = popOperandStack(frame->operandStack);
+            index = popOperandStack(frame->operandStack);
+            array = popOperandStack(frame->operandStack);
+			((u1*)array)[index]  = (u1)value_u4; ///Converte o valor encontrado em 8 bits com sinal e insere no array
+			break;
+
+        case OPCODE_newarray:
+            atype = code[pc+1]; ///recebe o tipo do array
+            count = popOperandStack(frame->operandStack); ///Tamanho do array
+
+            switch(atype){
+                case (4): ///Boolean
+                    element_size = sizeof(int8_t); ///Representado como 1 byte
+                    //array[count] = '*';
+                    break;
+                case (5): ///Char
+                    element_size = sizeof(char);
+                    break;
+                case (6): ///Float
+                    element_size = sizeof(float);
+                    break;
+                case (7): ///Dobble
+                    element_size = sizeof(double);
+                    break;
+                case (8): ///Byte
+                    element_size = sizeof(int8_t); ///lembrando que tem sinal
+                    break;
+                case (9): ///Short
+                    element_size = sizeof(int16_t);
+                    break;
+                case (10): ///Inteiro
+                    element_size = sizeof(int32_t);
+                    break;
+                case (11): ///Long
+                    element_size = sizeof(int64_t);
+                    break;
+            }
+            array = (struct_Array*)malloc(sizeof(struct_Array));
+            array->data = calloc(count, element_size);
+            array->length = count;
+//printf("%p\n",frame->handler->arrayList->array_t);
+            frame->handler->arrayList->array_t = (array); ///Salva o array no handler
+
+            pushArrayList(frame->handler->arrayList, *frame->handler->arrayList->array_t);
+
+            pushOperandStack(frame->operandStack, frame->handler->arrayList->array_t);
+            //printStack(frame->operandStack);
+            //getchar();
+			break;
+///PODE HAVER ERRO AQUI-------------------------------------------------------------------------------------------
+		case OPCODE_anewarray:  ///Create new array of reference
+		    aux_u2 = (code[pc+1] << 8) | code[pc+2];
+		    index = (u4)aux_u2; ///indice no constant pool corrente  que contem uma referencia simbólica para a o tipo da classe/array/interface
+            count = popOperandStack(frame->operandStack); ///Tamanho do array
+            array = (u4*)calloc(count, sizeof(u4));
+            pushFrameStack(frame->operandStack, array);
+			break;
+		case OPCODE_arraylength: ///Get length of array
+		    array = (struct_Array*)popOperandStack(frame->operandStack);   ///recupera a struct que contem o array e seu tamanho
+		    pushOperandStack(frame->operandStack, array->length); ///armazena o tamanho do array na pilha
+			break;
+        case OPCODE_multianewarray: ///Create new multidimensional array
+
+			break;
     }
 }

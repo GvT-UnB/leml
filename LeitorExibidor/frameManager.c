@@ -7,6 +7,9 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
     //handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     handler->classRef = class_file;
 
+    handler->arrayList = (structArrayList*)malloc(sizeof(structArrayList)); ///lista de arrays
+    handler->arrayList->next = NULL;
+
     handler->fields = (field_info *)malloc(handler->classRef->fields_count * sizeof(field_info));
 
     for(int i = 0; i < handler->classRef->fields_count; i++){
@@ -177,7 +180,7 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
     nodeOperand->next = *operandStackTop;
     *operandStackTop = nodeOperand;
 //    printf("\t\t\t----push int(%d), float(%f)\n ", operand, *((float*)&(operand)));
-    //printf("\t\t\t----push(%d)\n ", operand);
+    printf("\t\t\t----push(%d)\n ", operand);
 }
 
 u4 popOperandStack(structOperandStack **operandStackTop){
@@ -188,7 +191,7 @@ u4 popOperandStack(structOperandStack **operandStackTop){
     *operandStackTop = (*operandStackTop)->next;
     free(aux);
 //    printf("\t\t\t----pop int(%d), float(%f)\n ", operand,  *((float*)&(operand)));
-    //printf("\t\t\t----pop(%d)\n ", operand);
+    printf("\t\t\t----pop(%d)\n ", operand);
     return operand;
 }
 
@@ -247,4 +250,12 @@ void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFra
 //    pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente
 //    createNewFrame(handler,method_index, curPC,frameStackTop); ///Cria novo Frame para o novo metodo
 
+}
+
+void pushArrayList(structArrayList **arrayListInit, struct_Array *array_t){
+    structArrayList *nodeArray;
+    nodeArray = (structArrayList*)malloc(sizeof(structArrayList));
+    nodeArray->array_t = array_t;
+    nodeArray->next = *arrayListInit;
+    *arrayListInit = nodeArray;
 }

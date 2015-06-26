@@ -126,4 +126,13 @@ EXTERN u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name);
  */
 EXTERN void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC);
 
+/** \brief Insere um novo array na estrutura de arrays
+ *
+ * \param arrayListInit structArrayList** ponteiro para o inicio na estrutura
+ * \param array_t struct_Array struct do tipo array (contem o data e o length)
+ * \return EXTERN void
+ *
+ */
+EXTERN void pushArrayList(structArrayList **arrayListInit, struct_Array *array_t);
+
 #endif // FRAMEMANAGER_H_INCLUDED

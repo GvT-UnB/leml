@@ -8,7 +8,9 @@
 
 #include "macros.h"
 
-EXTERN void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
+EXTERN void doInstructionShift(Frame **cur_frame, u4 *curPC, StructFrameStack *frameStackTop, u1 * code, u1 fWide);
+
+EXTERN void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code);
 
 EXTERN void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code );
 

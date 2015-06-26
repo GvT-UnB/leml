@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
         printConstantPool(cur_frame->constant_pool,cur_frame->handler->classRef->constant_pool_count, cur_frame->handler->classRef);///Apenas para debugar!
 */
     //printHandler(cur_frame->localVariableArray[0].value);
-
+printf("%p\n", class_file);
     ///Chama a funcao responsavel por efetivamente rodar a JVM
     runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop, class_file, &numberOfClassesHeap, &numberOfClasses, handler);
 
@@ -119,14 +119,15 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
         printf("\t\t\tPC: %d\n",*curPC);
         printf("\tMETODO ATUAL: %s\n",cur_frame->handler->classRef->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
+        printf("\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
             ///Incrementa PC
             incPC(curPC,curOPCODE,numberOfByteInstruction);
         }else{
             ///Chama a funcao que realiza as instrucoes. Esta sendo implementada pelo GVT.
-            printf("\t\t\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
-            if(curOPCODE > 152 && curOPCODE < 178){
+
+            if((curOPCODE > 152 && curOPCODE < 178) || (curOPCODE > 197 && curOPCODE < 202)){///Instrucoes com deslocamento
                 doInstructionShift(&cur_frame, curPC, frameStackTop, cur_frame->methods->attributes[attributeCodeIndex].Code.code, flagIsWide);
             }else if(curOPCODE > 181 && curOPCODE < 186){
                 doInstructionInvoke(cur_frame,frameStackTop, handler, *curPC,flagIsWide,cur_frame->methods->attributes[attributeCodeIndex].Code.code, class_file,numberOfClassesHeap, numberOfClasses,numberOfByteInstruction);
@@ -137,12 +138,20 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
                 }else{
                     incPC(curPC,curOPCODE,numberOfByteInstruction);
                 }
-            }else{
+            }else if((curOPCODE>45 && curOPCODE<54)||(curOPCODE>78 && curOPCODE<87) || (curOPCODE>187 && curOPCODE<191) || curOPCODE==197){ ///Instrucoes referentes aos arrays
+                doInstructionArray(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
+                incPC(curPC,curOPCODE,numberOfByteInstruction);
+                //printf("entrou doInstructionArray\n" );
+            }
+            else{
                 doInstruction(cur_frame, *curPC, flagIsWide, cur_frame->methods->attributes[attributeCodeIndex].Code.code);
+                //printf("entrou doInstruction\n" );
                 ///Incrementa PC
                 incPC(curPC,curOPCODE,numberOfByteInstruction);
             }
             flagIsWide = 0; ///Zera a flag de instrucao WIDE.
+//            printStack((cur_frame)->operandStack);///DEBUGGER---------------------------------------------------------------
+            //getchar();
         }
         if(*curPC == -1){ ///Programa encerrado. return da main chamado
             break;

@@ -491,12 +491,29 @@ typedef struct{
     struct structOperandStack *next; /// Ponteiro para o próximo no da pilha
 }structOperandStack;
 
+/*! \struct   struct_Array
+    \brief structs referente aos componentes do array.
+*/
+typedef struct struct_Array{
+    void *data; ///array
+    int length;
+ }struct_Array;
+
+/*! \struct   structArrayList
+    \brief structs referente aos arrays que sao armazenados quando uma classe eh instanciada (Objeto).
+*/
+typedef struct structArrayList{
+    struct_Array *array_t;
+    struct structArrayList *next;
+}structArrayList;
+
 /*! \struct   ClassHandler
     \brief structs referente aos dados que sao armazenados quando uma classe eh instanciada (Objeto).
 */
 typedef struct{
     ClassFile * classRef; ///Referencia para a classe alocada na memoria
     field_info * fields; ///Espaco de memoria alocado para os fields do Objeto
+    structArrayList *arrayList;
 }ClassHandler; ///Objeto
 
 typedef struct{
@@ -514,6 +531,7 @@ typedef struct StructFrameStack{
     Frame frame[FRAME_STACK_MAX];
     //struct StructFrameStack *next;
 }StructFrameStack;
+
 
 /**< Definições gerais.  */
 #define NOT_RETURN -1

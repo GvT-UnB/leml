@@ -11,7 +11,7 @@ void printFrame(Frame *frame);
 void printHandler(ClassHandler *handler);
 void printFields(u2 fields_count, field_info *fields);
 void printLocalVariableArray(u2 attributes_count, LocalVariable *localVariableArray);
-void printOperandStack(structOperandStack * operandStack);
+void printOperandStack(structOperandStack ** operandStack);
 
 
 void classPrint(ClassFile * class_file){
@@ -1191,14 +1191,14 @@ void printFrame(Frame *frame){
 }
 
 ///Muito provavelmente não funciona. Tem que testar ainda
-void printOperandStack(structOperandStack * operandStack){
+void printOperandStack(structOperandStack ** operandStack){
     structOperandStack *operandStackTop;
-    operandStackTop = operandStack;
+    operandStackTop = *operandStack;
     printf("Operand Stack:\n");
     printf("---------------------------------------------------------------------------------------\n");
-    while(operandStack->next != NULL){
-        printf("%d->", operandStackTop);
-        operandStackTop = operandStack->next;
+    while(operandStackTop->next != NULL){
+        printf("%d->", operandStackTop->value);
+        operandStackTop = operandStackTop->next;
     }
     printf("\n---------------------------------------------------------------------------------------\n");
 }
