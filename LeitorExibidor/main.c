@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
         printConstantPool(cur_frame->constant_pool,cur_frame->handler->classRef->constant_pool_count, cur_frame->handler->classRef);///Apenas para debugar!
 */
     //printHandler(cur_frame->localVariableArray[0].value);
-printf("%p\n", class_file);
+//printf("%p\n", class_file);
     ///Chama a funcao responsavel por efetivamente rodar a JVM
     runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop, class_file, &numberOfClassesHeap, &numberOfClasses, handler);
 
@@ -206,7 +206,7 @@ void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
 		exit(1);
 	}
 	frameStackTop->frame[++(frameStackTop->stackTop)] = *frame;
-printf("Push Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
+//printf("Push Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
 //    StructFrameStack **aux_node = &frameStackTop;
 //    StructFrameStack *nodeFrame = NULL;
 //    nodeFrame = (StructFrameStack*)malloc(sizeof(StructFrameStack));///Instancia novo membro da pilha de frames
@@ -245,7 +245,7 @@ if (frameStackTop->stackTop < 0) {
 	Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
 	*currentframe = frameStackTop->frame[(frameStackTop->stackTop)];
 	//frameStackTop->frame[(frameStackTop->stackTop)] = (Frame *)malloc(sizeof(Frame));;
-	printf("Pop Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
+//	printf("Pop Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
 	frameStackTop->stackTop--;
 	return currentframe;
 	//return frameStackTop->frame[(frameStackTop->stackTop)--];

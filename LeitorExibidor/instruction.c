@@ -443,7 +443,7 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 			break;
 
 		case OPCODE_return:
-		    printf("RETURN\n");
+//		    printf("RETURN\n");
 		    while((*cur_frame)->operandStack->next != NULL){
                 popOperandStack((*cur_frame)->operandStack);
                 printf("loop free operand stack\n");
