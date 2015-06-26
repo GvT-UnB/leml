@@ -492,7 +492,6 @@ void setStaticFields(ClassFile * class_file){
             }
         }
     }
-    getchar();
 }
 
 void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){

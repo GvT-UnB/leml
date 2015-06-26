@@ -19,7 +19,7 @@ u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * c
 }
 
 
-void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
+void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	char *cName, *fName, *fType;
@@ -49,7 +49,7 @@ void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 
 }
 
-void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
+void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
 	u2 index, ntIndex;
 	u4 cIndex, fIndex, aux_u4, aux2_u4;
 	char *cName, *fName, *fType;
