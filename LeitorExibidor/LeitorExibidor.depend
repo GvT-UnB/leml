@@ -294,19 +294,19 @@
 1435019267 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
 	"macros.h"
 
-1435260715 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c
+1435283281 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 
-1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\classmanager.h
+1435273911 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\ureader.h
 	<stdio.h>
 	"macros.h"
 
-1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
+1435283230 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1435260745 c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
@@ -316,7 +316,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1435260960 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\framemanager.c
+1435271837 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
@@ -337,7 +337,7 @@
 1435260746 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1435260600 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\userviewer.c
+1435272346 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\userviewer.c
 	<stdio.h>
 	<string.h>
 	<math.h>

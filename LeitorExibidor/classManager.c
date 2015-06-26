@@ -466,6 +466,34 @@ u1 * getClassName(ClassFile * class_file){
     return class_file->constant_pool[ name_index ].UTF8.bytes;
 }
 
+void setStaticFields(ClassFile * class_file){
+    int j =0;
+    char *fType, *fname;//tipo do field
+    class_file->field_value = (Field_Value *)malloc(class_file->fields_count * sizeof(Field_Value));
+    //frame->constant_pool[frame->constant_pool[class_file->fields[i].descriptor_index].NameAndType.name_index].UTF8.bytes;
+    for(int i = 0; i < class_file->fields_count; i++){
+        if(class_file->fields[i].access_flags & ACC_STATIC){
+            fType = class_file->constant_pool[class_file->fields[i].descriptor_index].UTF8.bytes;
+            class_file->field_value[j].field_index = i;
+            fname = class_file->constant_pool[class_file->fields[i].name_index].UTF8.bytes;
+            printf("\nFIELD_NAME: %s\n",fname);
+            printf("FIELD_INDEX: %d\n", i);
+            if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+                class_file->field_value[j].U4.value = 0;
+                printf("Referencia\n");
+            } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+                class_file->field_value[j].U8.high = 0;
+                class_file->field_value[j].U8.low = 0;
+                printf("double ou long\n");
+            }else{
+                printf("u4\n");
+                class_file->field_value[j].U4.value = 0;
+            }
+        }
+    }
+    getchar();
+}
+
 void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){
     FILE * dot_class;
     if((dot_class = fopen(file_name,"rb")) == NULL){
@@ -485,6 +513,7 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
      class_file->class_full_name[class_file->class_full_name_length] = '\0'; ///Insere o caractere de fim de string.
     //printf("O nome completo da classe lida eh: %s\n",class_file->class_full_name);
     verifyClassName(file_name,class_file); ///Verifica se o .class tem o mesmo nome da classe delcarada nele.
+    setStaticFields(class_file);
 }
 
 

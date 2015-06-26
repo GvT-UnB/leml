@@ -435,6 +435,22 @@ typedef struct {
     attribute_info *attributes;
 } method_info;
 
+/*! \struct   Field_Value
+    \brief structs referente ao array de fields estaticos
+*/
+typedef struct{
+	u2 field_index;
+	union {
+		struct {
+            u4 value;
+		} U4;
+		struct {
+            u4 high;
+            u4 low;
+		} U8;
+	}
+}Field_Value;
+
 /*! \struct   ClassFile
     \brief Estrutura Interna dum arquivo .class
 */
@@ -458,6 +474,7 @@ typedef struct{
 
     u2 class_full_name_length;///Quantidade de bytes necessarios para armazenar o nome completo da classe.
     u1 * class_full_name; ///Nome completo da classe, incluindo o endereco ateh ela a patir daparta raiz.
+    Field_Value * field_value; ///Array com os fields estaticos
 }ClassFile;
 
 /*! \struct   LocalVariable
@@ -467,6 +484,7 @@ typedef struct{
     u4 value;
     //u1 local_variable_type;
 } LocalVariable;
+
 
 typedef struct{
     u4 value;   ///Armazena o valor do operando

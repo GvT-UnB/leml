@@ -7,19 +7,75 @@
 #include "lib/instruction.h"
 //#include "lib/macros.h"
 
-void instr_getstatic(Frame * frame, u4 pc, u1 fWide, u1 * code){//FIELDREF
-	u2 index, ntIndex;
-	u4 cIndex, fIndex;
-	u8 aux_u8;
-	char *cName, *ntName, *ntType;
+u4 getFieldIndex(field_info * fields, char * fName, u2 fields_count, cp_info * constant_pool ){
+    char * auxName;
+    for(int i = 0; i < fields_count; i++){
+        auxName = constant_pool[fields[i].name_index].UTF8.bytes;
+        if(strstr(fName, auxName) != NULL){
+            return i;
+        }
+    }
+    return -1;
+}
 
-	pc++;
-	index = (code[pc] << 8) | code[pc+1];
+
+void instr_getstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
+	u2 index, ntIndex;
+	u4 cIndex, fIndex, aux_u4, aux2_u4;
+	char *cName, *fName, *fType;
+
+	index = (code[pc+1] << 8) | code[pc+2];
 	cIndex = frame->constant_pool[index].Fieldref.class_index;
 	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
-	ntName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
-	ntType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
-	//procura o field de uma classe pelo nome e descrical e retorna o index da classe
+	fName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
+	fType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
+
+	fIndex = getFieldIndex(frame->handler->fields, fName, frame->handler->classRef->fields_count, frame->constant_pool);
+	if(fIndex<0){
+        return;
+	}
+
+	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+        frame->handler->classRef->field_value[fIndex].U4.value = popOperandStack( frame->operandStack);
+        printf("Referencia\n");
+    } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+        frame->handler->classRef->field_value[fIndex].U8.low = popOperandStack( frame->operandStack);
+        frame->handler->classRef->field_value[fIndex].U8.high = popOperandStack( frame->operandStack);
+        printf("double ou long\n");
+    }else{
+        printf("u4\n");
+        frame->handler->classRef->field_value[fIndex].U4.value = popOperandStack( frame->operandStack);
+    }
+
+}
+
+void instr_putstatic(Frame * frame, u4 pc, u1 * code){//FIELDREF
+	u2 index, ntIndex;
+	u4 cIndex, fIndex, aux_u4, aux2_u4;
+	char *cName, *fName, *fType;
+
+	index = (code[pc+1] << 8) | code[pc+2];
+	cIndex = frame->constant_pool[index].Fieldref.class_index;
+	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
+	fName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
+	fType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
+
+	fIndex = getFieldIndex(frame->handler->fields, fName, frame->handler->classRef->fields_count, frame->constant_pool);
+	if(fIndex<0){
+        return;
+	}
+
+	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+        pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U4.value);
+        printf("Referencia\n");
+    } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+        pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U8.high);
+        pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U8.low);
+        printf("double ou long\n");
+    }else{
+        printf("u4\n");
+        pushOperandStack( frame->operandStack, frame->handler->classRef->field_value[fIndex].U4.value);
+    }
 
 }
 
@@ -1611,9 +1667,10 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			pc++;
 			break;
 		case OPCODE_getstatic:
-		    instr_getstatic(frame, pc, fWide, code);
+		    instr_getstatic(frame, pc, code);
 			break;
 		case OPCODE_putstatic:
+		    instr_putstatic(frame, pc, code);
 			break;
 		case OPCODE_getfield:
 			break;

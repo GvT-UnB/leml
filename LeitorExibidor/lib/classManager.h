@@ -93,6 +93,13 @@ EXTERN void fillNumberOfByteInstruction(u1 * numberOfByteInstruction);
  */
 EXTERN u1 * getClassName(ClassFile * class_file);
 
+/** \brief Cria o array de field estaticos e seta os valores como zero
+ *
+ * \param class_file ClassFile* Referencia para o espaco de memoria onde a classe serah armazenada.
+ * \return EXTERN void
+ *
+ */
+EXTERN void setStaticFields(ClassFile * class_file);
 
 /** \brief Carrega no HEAP a classe indicada pelo arquivo de nome file_name
  *
