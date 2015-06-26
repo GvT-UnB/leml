@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['class_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5fmanager_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f8c_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['class________________manager________________8c________8js____8js__8js_8js.js',['../class________________________________manager________________________________8c________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['class_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5fmanager_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f8h_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['class________________manager________________8h________8js____8js__8js_8js.js',['../class________________________________manager________________________________8h________________8js________8js____8js__8js_8js.html',1,'']]],
   ['class_5f_5f_5f_5f_5f_5f_5f_5fmanager_5f_5f_5f_5f_5f_5f_5f_5f8c_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['class________manager________8c____8js__8js_8js.js',['../class________________manager________________8c________8js____8js__8js_8js.html',1,'']]],
   ['class_5f_5f_5f_5f_5f_5f_5f_5fmanager_5f_5f_5f_5f_5f_5f_5f_5f8h_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['class________manager________8h____8js__8js_8js.js',['../class________________manager________________8h________8js____8js__8js_8js.html',1,'']]],
   ['class_5f_5f_5f_5fmanager_5f_5f_5f_5f8c_5f_5f8js_5f8js_2ejs',['class____manager____8c__8js_8js.js',['../class________manager________8c____8js__8js_8js.html',1,'']]],
@@ -44,6 +46,16 @@ var searchData=
   ['classes_5f_5f_5f_5f_5f_5f_5f_5f6_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________6____8js__8js_8js.js',['../classes________________6________8js____8js__8js_8js.html',1,'']]],
   ['classes_5f_5f_5f_5f_5f_5f_5f_5f7_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________7____8js__8js_8js.js',['../classes________________7________8js____8js__8js_8js.html',1,'']]],
   ['classes_5f_5f_5f_5f_5f_5f_5f_5f8_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________8____8js__8js_8js.js',['../classes________________8________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f0_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________0________8js____8js__8js_8js.js',['../classes________________________________0________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f1_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________1________8js____8js__8js_8js.js',['../classes________________________________1________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f2_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________2________8js____8js__8js_8js.js',['../classes________________________________2________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f3_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________3________8js____8js__8js_8js.js',['../classes________________________________3________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f4_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________4________8js____8js__8js_8js.js',['../classes________________________________4________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f5_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________5________8js____8js__8js_8js.js',['../classes________________________________5________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f6_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________6________8js____8js__8js_8js.js',['../classes________________________________6________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f7_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________7________8js____8js__8js_8js.js',['../classes________________________________7________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classes_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f_5f8_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['classes________________8________8js____8js__8js_8js.js',['../classes________________________________8________________8js________8js____8js__8js_8js.html',1,'']]],
+  ['classicsingleton_2ejava',['ClassicSingleton.java',['../_classic_singleton_8java.html',1,'']]],
   ['classmanager_2ec',['classManager.c',['../class_manager_8c.html',1,'']]],
   ['classmanager_2eh',['classManager.h',['../class_manager_8h.html',1,'']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Leitor Exibidor: C:/Users/Diogo/Documents/UnB/Software Básico/Leitor - Exibidor/trunk/LeitorExibidor/lib/exceptionManager.h Source File</title>
+<title>Leitor Exibidor - JVM: C:/Users/Diogo/Documents/UnB/Software Básico/Leitor - Exibidor/trunk/LeitorExibidor/lib/exceptionManager.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Leitor Exibidor
+   <div id="projectname">Leitor Exibidor - JVM
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -123,19 +124,27 @@ $(document).ready(function(){initNavTree('exception_manager_8h_source.html','');
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#af2403da382c35cbe6d8523a905c7cbf5">   24</a></span>&#160;<span class="preprocessor">#define OPEN_FILE_ERROR         1</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a63b7662e3ceb875e83b384145372395e">   25</a></span>&#160;<span class="preprocessor">#define NOT_BYTECODE_JAVA       2</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#afc829e1dbd9da36dcf2174ca2f44b83a">   26</a></span>&#160;<span class="preprocessor">#define NOT_JAVA_2_VERSION      3</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a590db159e50280c2234a767d8dc1af52">   29</a></span>&#160;<span class="preprocessor">#define OPEN_FILE_ERROR_MSG &quot;Nao foi possivel abrir o arquivo %s\n&quot;, *argv</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a2ef8c9bf0f6adaa3a0af6d07886eb85a">   30</a></span>&#160;<span class="preprocessor">#define NOT_BYTECODE_JAVA_MSG &quot;O arquivo informado nao eh um bytecode java\n&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#aa76f9d350b78b95ed44adf6471c782f8">   31</a></span>&#160;<span class="preprocessor">#define NOT_JAVA_2_VERSION_MSG &quot;O bytecode informado nao eh compativel com a JVM 1.2\n&quot;</span></div>
-<div class="ttc" id="exception_manager_8h_html_a77366c1bd428629dc898e188bfd182a3"><div class="ttname"><a href="exception_manager_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a></div><div class="ttdeci">#define EXTERN</div><div class="ttdef"><b>Definition:</b> <a href="exception_manager_8h_source.html#l00006">exceptionManager.h:6</a></div></div>
-<div class="ttc" id="exception_manager_8h_html_a5049a305044a7c74e4e9b14385d92ea6"><div class="ttname"><a href="exception_manager_8h.html#a5049a305044a7c74e4e9b14385d92ea6">throwException</a></div><div class="ttdeci">EXTERN void throwException(int exception_code, char *string_error,...)</div><div class="ttdoc">Apresenta no terminal a mensagem e o codigo de erro. </div><div class="ttdef"><b>Definition:</b> <a href="exception_manager_8c_source.html#l00006">exceptionManager.c:6</a></div></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a4c0e3ce2843ba84506b8245e5817aa2d">   27</a></span>&#160;<span class="preprocessor">#define CLASS_DIFFER_FILE_NAME  4</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a4921f9a186627faaebc505056ab7ed6e">   28</a></span>&#160;<span class="preprocessor">#define INSUFFICIENT_MEMORY     5</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a67e4b213a18f3916811719fea63440fe">   29</a></span>&#160;<span class="preprocessor">#define POP_IN_A_EMPTY_STACK    6</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a29ac845cfb3267ecbd6d4c7fc8e61c0f">   30</a></span>&#160;<span class="preprocessor">#define MAIN_NOT_FOUND          7</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a590db159e50280c2234a767d8dc1af52">   33</a></span>&#160;<span class="preprocessor">#define OPEN_FILE_ERROR_MSG &quot;Nao foi possivel abrir o arquivo %s\n&quot;, file_name</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a2ef8c9bf0f6adaa3a0af6d07886eb85a">   34</a></span>&#160;<span class="preprocessor">#define NOT_BYTECODE_JAVA_MSG &quot;O arquivo informado nao eh um bytecode java\n&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#aa76f9d350b78b95ed44adf6471c782f8">   35</a></span>&#160;<span class="preprocessor">#define NOT_JAVA_2_VERSION_MSG &quot;O bytecode informado nao eh compativel com a JVM 1.2\n&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a6f2290b6f292939c4edb966b920269af">   36</a></span>&#160;<span class="preprocessor">#define CLASS_DIFFER_FILE_NAME_MSG &quot;O arquivo %s nao define a classe principal %s\n&quot;, className, getClassName(class_file)</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#aae40cf1a4e4697592bb4a6840c84dc77">   37</a></span>&#160;<span class="preprocessor">#define INSUFFICIENT_MEMORY_MSG &quot;Memoria insuficiente. A JVM serah abortada.\n&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a467452d299a4eb41e8b17d9235968ca6">   38</a></span>&#160;<span class="preprocessor">#define POP_IN_A_EMPTY_STACK_MSG &quot;O programa tentou executar um pop numa pilha vazia (%s).\n&quot;, stackName</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="exception_manager_8h.html#a542bc2de649b402110fab7b2a1d32c41">   39</a></span>&#160;<span class="preprocessor">#define MAIN_NOT_FOUND_MSG &quot;O metodo MAIN nao foi encontrado na classe %s.\n&quot;, handler-&gt;classRef-&gt;constant_pool[ handler-&gt;classRef-&gt;constant_pool[handler-&gt;classRef-&gt;this_class].Class.name_index ].UTF8.bytes</span></div>
+<div class="ttc" id="exception_manager_8h_html_a77366c1bd428629dc898e188bfd182a3"><div class="ttname"><a href="exception_manager_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a></div><div class="ttdeci">#define EXTERN</div><div class="ttdef"><b>Definition:</b> exceptionManager.h:6</div></div>
+<div class="ttc" id="exception_manager_8h_html_a5049a305044a7c74e4e9b14385d92ea6"><div class="ttname"><a href="exception_manager_8h.html#a5049a305044a7c74e4e9b14385d92ea6">throwException</a></div><div class="ttdeci">EXTERN void throwException(int exception_code, char *string_error,...)</div><div class="ttdoc">Apresenta no terminal a mensagem e o codigo de erro. </div><div class="ttdef"><b>Definition:</b> exceptionManager.c:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fdcab30c5f47fb34f64374d4556859fe.html">lib</a></li><li class="navelem"><a class="el" href="exception_manager_8h.html">exceptionManager.h</a></li>
-    <li class="footer">Generated on Wed Jun 3 2015 22:54:44 for Leitor Exibidor by
+    <li class="footer">Generated on Fri Jun 26 2015 07:28:15 for Leitor Exibidor - JVM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

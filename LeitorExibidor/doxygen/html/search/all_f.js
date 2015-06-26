@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['object',['Object',['../classjava_1_1lang_1_1_object.html',1,'java::lang']]],
+  ['object_2ejava',['Object.java',['../_object_8java.html',1,'']]],
   ['opcode_5faaload',['OPCODE_aaload',['../macros_8h.html#a1dd5672d3bb586a7d1800039c7f61a22',1,'macros.h']]],
   ['opcode_5faastore',['OPCODE_aastore',['../macros_8h.html#a59ed8dd769f4093c17d3c3acd92a9542',1,'macros.h']]],
   ['opcode_5faconst_5fnull',['OPCODE_aconst_null',['../macros_8h.html#ac072238ef85a9e979585ec00ab21f92e',1,'macros.h']]],
@@ -204,6 +206,7 @@ var searchData=
   ['opcode_5fwide',['OPCODE_wide',['../macros_8h.html#a5329113cc933fbac3bdc9b51a0eb864f',1,'macros.h']]],
   ['open_5ffile_5ferror',['OPEN_FILE_ERROR',['../exception_manager_8h.html#af2403da382c35cbe6d8523a905c7cbf5',1,'exceptionManager.h']]],
   ['open_5ffile_5ferror_5fmsg',['OPEN_FILE_ERROR_MSG',['../exception_manager_8h.html#a590db159e50280c2234a767d8dc1af52',1,'exceptionManager.h']]],
+  ['operandstack',['operandStack',['../struct_frame.html#a4bb6495de860db94dcc3cd017a60b249',1,'Frame']]],
   ['ordenararray',['OrdenarArray',['../class_ordenar_array.html',1,'']]],
   ['ordenararray_2ejava',['OrdenarArray.java',['../_ordenar_array_8java.html',1,'']]],
   ['outer_5fclass_5finfo_5findex',['outer_class_info_index',['../struct_classes.html#a3b7a87f79f7ea8908d258f19b237bec2',1,'Classes']]]

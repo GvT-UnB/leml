@@ -1,6 +1,9 @@
 var NAVTREE =
 [
-  [ "Leitor Exibidor", "index.html", [
+  [ "Leitor Exibidor - JVM", "index.html", [
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ]
+    ] ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -25,15 +28,15 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"________________user________________viewer________________8c________8js____8js__8js_8js.html",
-"all________________6________8js____8js__8js_8js.html#ac66103a860193c101caf39136cc5a19a",
-"classes________________8________8js____8js__8js_8js.html#ad8d674b4259c9fcd9482748dabf35b84",
-"files____0__8js_8js.html#ae10be6493e1df354f4870e8b6fc6f78b",
-"functions________________0________8js____8js__8js_8js.html",
-"macros_8h.html#a33503e33bb85bc32e4af3ae76299dc55",
-"navtree_8js.html#aaa2d293f55e5fe3620af4f9a2836e428",
-"structattribute________info__8js_8js.html#afb46c177c275f9b62cc18697eec7b286",
-"variables____9__8js_8js.html#ae2e01f046a3cb8ded2febcd999e9defd"
+"________________________________user________________________________viewer______________________5cf2175bbfa265f1f368f8509b64b55c.html",
+"all________________a________8js____8js__8js_8js.html",
+"defines____2__8js_8js.html#ad8111b061d386e814e870ad3f08da5e1",
+"files________________11________8js____8js__8js_8js.html#a57486d3e10d48e502efad9a660ca60a0",
+"functions____e__8js_8js.html#a348cc5f302b99d168d2ac735a7d1c4e1",
+"macros_8h.html#a3b53d58b361e029b87a571159bb3e7a1",
+"navtree_8js.html#a6522b3f540ead0febf12ccf5fc1f04c4",
+"struct_local__variable__table.html#ae939ac3ca00f5727beaa02d0e339183d",
+"variables________5____8js__8js_8js.html#aeb3358235bc73424879ade88b695b66b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

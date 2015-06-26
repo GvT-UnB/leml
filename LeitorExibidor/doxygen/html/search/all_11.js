@@ -13,7 +13,14 @@ var searchData=
   ['resize_5f_5f8js_5f8js_2ejs',['resize__8js_8js.js',['../resize____8js__8js_8js.html',1,'']]],
   ['resize_5f_5f_5f_5f8js_5f_5f8js_5f8js',['resize____8js__8js_8js',['../resize________8js____8js__8js_8js.html#a29cc1a896cf5d950b9df33499307955b',1,'resize____8js__8js_8js.js']]],
   ['resize_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['resize____8js__8js_8js.js',['../resize________8js____8js__8js_8js.html',1,'']]],
+  ['resize_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js',['resize________8js____8js__8js_8js',['../resize________________8js________8js____8js__8js_8js.html#ac1dc9ad426416305a4d520de207e5d2b',1,'resize________8js____8js__8js_8js.js']]],
+  ['resize_5f_5f_5f_5f_5f_5f_5f_5f8js_5f_5f_5f_5f8js_5f_5f8js_5f8js_2ejs',['resize________8js____8js__8js_8js.js',['../resize________________8js________8js____8js__8js_8js.html',1,'']]],
   ['resizeheight',['resizeHeight',['../resize_8js.html#a4bd3414bc1780222b192bcf33b645804',1,'resize.js']]],
   ['resizewidth',['resizeWidth',['../resize_8js.html#a99942f5b5c75445364f2437051090367',1,'resize.js']]],
-  ['restorewidth',['restoreWidth',['../resize_8js.html#a517273f9259c941fd618dda7a901e6c2',1,'resize.js']]]
+  ['restorewidth',['restoreWidth',['../resize_8js.html#a517273f9259c941fd618dda7a901e6c2',1,'resize.js']]],
+  ['returnopcode',['returnOpcode',['../instru_xC3_xA7_xC3_xB5es_8c.html#acdca2d01b42b11b32c45734e38f681f1',1,'instruções.c']]],
+  ['returnpc',['returnPC',['../struct_frame.html#a2dbf3b2ea9d00291bf57cf7715dcd3ad',1,'Frame']]],
+  ['returntype',['returnType',['../instru_xC3_xA7_xC3_xB5es_8c.html#a30f0eb77494e95a86fe48db2c170684b',1,'instruções.c']]],
+  ['rootdirectory',['rootDirectory',['../macros_8h.html#ac8788a3f325cc1895673ce0b41b08dc9',1,'macros.h']]],
+  ['runjvm',['runJVM',['../jvm_manager_8h.html#a2bdb1bef7b634dea0f1734e0151e5d4d',1,'runJVM(Frame *cur_frame, u4 *curPC, u1 *numberOfByteInstruction, StructFrameStack *frameStackTop, ClassFile *class_file, u4 *numberOfClassesHeap, u4 *numberOfClasses, ClassHandler *handler):&#160;main.c'],['../main_8c.html#ab32fe7590dcc26fe18d0f711105214fd',1,'runJVM(Frame *cur_frame, u4 *curPC, u1 *numberOfByteInstruction, StructFrameStack *frameStackTop, ClassFile *class_file, u4 *numberOfClassesHeap, u4 *numberOfClasses, ClassHandler *handler):&#160;main.c']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Leitor Exibidor: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/UserViewer.c File Reference</title>
+<title>Leitor Exibidor - JVM: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/UserViewer.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Leitor Exibidor
+   <div id="projectname">Leitor Exibidor - JVM
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -114,9 +115,7 @@ $(document).ready(function(){initNavTree('_user_viewer_8c.html','');});
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_user_viewer_8h_source.html">lib/UserViewer.h</a>&quot;</code><br />
-</div>
-<p><a href="_user_viewer_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a5c7b181a46e1bf752e98109ae790381f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a5c7b181a46e1bf752e98109ae790381f">CLASSMANAGER_SERV</a></td></tr>
@@ -124,9 +123,27 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1c0aad454eb729468d16d23389a11645"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a1c0aad454eb729468d16d23389a11645">classPrint</a> (FILE *dot_class, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
-<tr class="memdesc:a1c0aad454eb729468d16d23389a11645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Principal funcao responsavel por imprimir o bytecode.  <a href="#a1c0aad454eb729468d16d23389a11645">More...</a><br /></td></tr>
-<tr class="separator:a1c0aad454eb729468d16d23389a11645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10de6e16c5f8f85a9c613bf1d133c00b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a10de6e16c5f8f85a9c613bf1d133c00b">printFrame</a> (<a class="el" href="struct_frame.html">Frame</a> *frame)</td></tr>
+<tr class="memdesc:a10de6e16c5f8f85a9c613bf1d133c00b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcoes de Debug (Serao apagadas depois de cumprirem sua funcao)  <a href="#a10de6e16c5f8f85a9c613bf1d133c00b">More...</a><br /></td></tr>
+<tr class="separator:a10de6e16c5f8f85a9c613bf1d133c00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0810364365098b75063714324ac91b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#ae0810364365098b75063714324ac91b7">printHandler</a> (<a class="el" href="struct_class_handler.html">ClassHandler</a> *handler)</td></tr>
+<tr class="separator:ae0810364365098b75063714324ac91b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25c313d37f2c52ded6e2044a5fad36b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a25c313d37f2c52ded6e2044a5fad36b8">printFields</a> (<a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> fields_count, <a class="el" href="structfield__info.html">field_info</a> *fields)</td></tr>
+<tr class="separator:a25c313d37f2c52ded6e2044a5fad36b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e26acf7123eabd8bbf31f615e7b688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#ab6e26acf7123eabd8bbf31f615e7b688">printLocalVariableArray</a> (<a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> attributes_count, <a class="el" href="struct_local_variable.html">LocalVariable</a> *localVariableArray)</td></tr>
+<tr class="separator:ab6e26acf7123eabd8bbf31f615e7b688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ef7f5bbdd5c73d1a5091faa5c999268"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a7ef7f5bbdd5c73d1a5091faa5c999268">printOperandStack</a> (<a class="el" href="structstruct_operand_stack.html">structOperandStack</a> **operandStack)</td></tr>
+<tr class="memdesc:a7ef7f5bbdd5c73d1a5091faa5c999268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muito provavelmente não funciona. Tem que testar ainda.  <a href="#a7ef7f5bbdd5c73d1a5091faa5c999268">More...</a><br /></td></tr>
+<tr class="separator:a7ef7f5bbdd5c73d1a5091faa5c999268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a243aff1d7f31238684b9f8336f14bcbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a243aff1d7f31238684b9f8336f14bcbe">classPrint</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:a243aff1d7f31238684b9f8336f14bcbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Principal funcao responsavel por imprimir o bytecode.  <a href="#a243aff1d7f31238684b9f8336f14bcbe">More...</a><br /></td></tr>
+<tr class="separator:a243aff1d7f31238684b9f8336f14bcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7fb2e404a046e1d9835881102316d5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#ac7fb2e404a046e1d9835881102316d5c">printConstantPool</a> (<a class="el" href="structcp__info.html">cp_info</a> *constant_pool, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> constant_pool_count, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:ac7fb2e404a046e1d9835881102316d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">uncao que printa no dispositivo padrao de saida os dados do constant_pool  <a href="#ac7fb2e404a046e1d9835881102316d5c">More...</a><br /></td></tr>
+<tr class="separator:ac7fb2e404a046e1d9835881102316d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6caaf465cbaeb4d7661fcc380fb7b640"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a6caaf465cbaeb4d7661fcc380fb7b640">printMethodInfo</a> (<a class="el" href="structmethod__info.html">method_info</a> *methods, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> methods_count, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:a6caaf465cbaeb4d7661fcc380fb7b640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao que printa no dispositivo padrao de saida os dados do <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a>.  <a href="#a6caaf465cbaeb4d7661fcc380fb7b640">More...</a><br /></td></tr>
+<tr class="separator:a6caaf465cbaeb4d7661fcc380fb7b640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09d6e7445deb640143e6fe35f14a3c83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_user_viewer_8c.html#a09d6e7445deb640143e6fe35f14a3c83">printAttributesInfo</a> (<a class="el" href="structattribute__info.html">attribute_info</a> *attributes, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> attributes_count, <a class="el" href="structcp__info.html">cp_info</a> *constant_pool, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
 <tr class="memdesc:a09d6e7445deb640143e6fe35f14a3c83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao responsavel por imprimir na tela as informacoes dos atributos.  <a href="#a09d6e7445deb640143e6fe35f14a3c83">More...</a><br /></td></tr>
 <tr class="separator:a09d6e7445deb640143e6fe35f14a3c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,8 +170,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00001">1</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
 
 </div>
 </div>
@@ -198,30 +213,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00428">428</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a1c0aad454eb729468d16d23389a11645"></a>
+<a class="anchor" id="a243aff1d7f31238684b9f8336f14bcbe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void classPrint </td>
           <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>dot_class</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
-          <td class="paramname"><em>class_file</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>class_file</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -229,13 +232,12 @@ Functions</h2></td></tr>
 <p>Principal funcao responsavel por imprimir o bytecode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fp</td><td>FILE* ponteiro para o arquivo bytecode e class_file estrutura principal. </td></tr>
+    <tr><td class="paramname">class_file</td><td>ClassFile* estrutura principal. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00009">9</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
+<p>Chama a função responsavl por printar os methods </p>
 
 </div>
 </div>
@@ -277,8 +279,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00257">257</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
 
 </div>
 </div>
@@ -327,8 +327,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00181">181</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aecec5e1e0e6a5347807b7edac9fd603d"></a>
@@ -370,7 +368,198 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00488">488</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ac7fb2e404a046e1d9835881102316d5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printConstantPool </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcp__info.html">cp_info</a> *&#160;</td>
+          <td class="paramname"><em>constant_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a>&#160;</td>
+          <td class="paramname"><em>constant_pool_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>uncao que printa no dispositivo padrao de saida os dados do constant_pool </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constant_pool</td><td>cp_info* Referencia para o constant_pool que sera printado </td></tr>
+    <tr><td class="paramname">constant_pool_count</td><td>u2 Quantidade de membros do constant_pool que sera printado </td></tr>
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para a classe dona do constant pool </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a25c313d37f2c52ded6e2044a5fad36b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printFields </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a>&#160;</td>
+          <td class="paramname"><em>fields_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structfield__info.html">field_info</a> *&#160;</td>
+          <td class="paramname"><em>fields</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Não estou imprimindo os atributos das fields </p>
+
+</div>
+</div>
+<a class="anchor" id="a10de6e16c5f8f85a9c613bf1d133c00b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printFrame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_frame.html">Frame</a> *&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcoes de Debug (Serao apagadas depois de cumprirem sua funcao) </p>
+<h2>Debug (sem testar, não tenho certeza do funcionamento de nada) </h2>
+<p>Funcao para imprimir a pilha de operandos - envia a propria pilha </p>
+
+</div>
+</div>
+<a class="anchor" id="ae0810364365098b75063714324ac91b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_handler.html">ClassHandler</a> *&#160;</td>
+          <td class="paramname"><em>handler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab6e26acf7123eabd8bbf31f615e7b688"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printLocalVariableArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a>&#160;</td>
+          <td class="paramname"><em>attributes_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_local_variable.html">LocalVariable</a> *&#160;</td>
+          <td class="paramname"><em>localVariableArray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6caaf465cbaeb4d7661fcc380fb7b640"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printMethodInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmethod__info.html">method_info</a> *&#160;</td>
+          <td class="paramname"><em>methods</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a>&#160;</td>
+          <td class="paramname"><em>methods_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcao que printa no dispositivo padrao de saida os dados do <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">methods</td><td>method_info* Referencia para um <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> </td></tr>
+    <tr><td class="paramname">methods_count</td><td>u2 Quantidade de <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> que devem ser printados </td></tr>
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para a Classe dona do metodo referenciado pelo <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ef7f5bbdd5c73d1a5091faa5c999268"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printOperandStack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structstruct_operand_stack.html">structOperandStack</a> **&#160;</td>
+          <td class="paramname"><em>operandStack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muito provavelmente não funciona. Tem que testar ainda. </p>
 
 </div>
 </div>
@@ -419,8 +608,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_user_viewer_8c_source.html#l00381">381</a> of file <a class="el" href="_user_viewer_8c_source.html">UserViewer.c</a>.</p>
-
 </div>
 </div>
 </div><!-- contents -->
@@ -429,7 +616,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_user_viewer_8c.html">UserViewer.c</a></li>
-    <li class="footer">Generated on Wed Jun 3 2015 22:54:49 for Leitor Exibidor by
+    <li class="footer">Generated on Fri Jun 26 2015 07:28:16 for Leitor Exibidor - JVM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

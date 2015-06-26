@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Leitor Exibidor: C:/Users/Diogo/Documents/UnB/Software Básico/Leitor - Exibidor/trunk/LeitorExibidor/lib/exceptionManager.h File Reference</title>
+<title>Leitor Exibidor - JVM: C:/Users/Diogo/Documents/UnB/Software Básico/Leitor - Exibidor/trunk/LeitorExibidor/lib/exceptionManager.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Leitor Exibidor
+   <div id="projectname">Leitor Exibidor - JVM
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -122,12 +123,28 @@ Macros</h2></td></tr>
 <tr class="separator:a63b7662e3ceb875e83b384145372395e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc829e1dbd9da36dcf2174ca2f44b83a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#afc829e1dbd9da36dcf2174ca2f44b83a">NOT_JAVA_2_VERSION</a>&#160;&#160;&#160;3</td></tr>
 <tr class="separator:afc829e1dbd9da36dcf2174ca2f44b83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a590db159e50280c2234a767d8dc1af52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a590db159e50280c2234a767d8dc1af52">OPEN_FILE_ERROR_MSG</a>&#160;&#160;&#160;&quot;Nao foi possivel abrir o arquivo %s\n&quot;, *argv</td></tr>
+<tr class="memitem:a4c0e3ce2843ba84506b8245e5817aa2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a4c0e3ce2843ba84506b8245e5817aa2d">CLASS_DIFFER_FILE_NAME</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a4c0e3ce2843ba84506b8245e5817aa2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4921f9a186627faaebc505056ab7ed6e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a4921f9a186627faaebc505056ab7ed6e">INSUFFICIENT_MEMORY</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a4921f9a186627faaebc505056ab7ed6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e4b213a18f3916811719fea63440fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a67e4b213a18f3916811719fea63440fe">POP_IN_A_EMPTY_STACK</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a67e4b213a18f3916811719fea63440fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ac845cfb3267ecbd6d4c7fc8e61c0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a29ac845cfb3267ecbd6d4c7fc8e61c0f">MAIN_NOT_FOUND</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a29ac845cfb3267ecbd6d4c7fc8e61c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a590db159e50280c2234a767d8dc1af52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a590db159e50280c2234a767d8dc1af52">OPEN_FILE_ERROR_MSG</a>&#160;&#160;&#160;&quot;Nao foi possivel abrir o arquivo %s\n&quot;, file_name</td></tr>
 <tr class="separator:a590db159e50280c2234a767d8dc1af52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ef8c9bf0f6adaa3a0af6d07886eb85a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a2ef8c9bf0f6adaa3a0af6d07886eb85a">NOT_BYTECODE_JAVA_MSG</a>&#160;&#160;&#160;&quot;O arquivo informado nao eh um bytecode java\n&quot;</td></tr>
 <tr class="separator:a2ef8c9bf0f6adaa3a0af6d07886eb85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa76f9d350b78b95ed44adf6471c782f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#aa76f9d350b78b95ed44adf6471c782f8">NOT_JAVA_2_VERSION_MSG</a>&#160;&#160;&#160;&quot;O bytecode informado nao eh compativel com a JVM 1.2\n&quot;</td></tr>
 <tr class="separator:aa76f9d350b78b95ed44adf6471c782f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2290b6f292939c4edb966b920269af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a6f2290b6f292939c4edb966b920269af">CLASS_DIFFER_FILE_NAME_MSG</a>&#160;&#160;&#160;&quot;O arquivo %s nao define a classe principal %s\n&quot;, className, <a class="el" href="class_manager_8h.html#a079d67a31054b96b301d9d72e0aaf9db">getClassName</a>(class_file)</td></tr>
+<tr class="separator:a6f2290b6f292939c4edb966b920269af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae40cf1a4e4697592bb4a6840c84dc77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#aae40cf1a4e4697592bb4a6840c84dc77">INSUFFICIENT_MEMORY_MSG</a>&#160;&#160;&#160;&quot;Memoria insuficiente. A JVM serah abortada.\n&quot;</td></tr>
+<tr class="separator:aae40cf1a4e4697592bb4a6840c84dc77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467452d299a4eb41e8b17d9235968ca6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a467452d299a4eb41e8b17d9235968ca6">POP_IN_A_EMPTY_STACK_MSG</a>&#160;&#160;&#160;&quot;O programa tentou executar um pop numa pilha vazia (%s).\n&quot;, stackName</td></tr>
+<tr class="separator:a467452d299a4eb41e8b17d9235968ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542bc2de649b402110fab7b2a1d32c41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exception_manager_8h.html#a542bc2de649b402110fab7b2a1d32c41">MAIN_NOT_FOUND_MSG</a>&#160;&#160;&#160;&quot;O metodo MAIN nao foi encontrado na classe %s.\n&quot;, handler-&gt;classRef-&gt;constant_pool[ handler-&gt;classRef-&gt;constant_pool[handler-&gt;classRef-&gt;this_class].Class.name_index ].UTF8.bytes</td></tr>
+<tr class="separator:a542bc2de649b402110fab7b2a1d32c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -136,6 +153,30 @@ Functions</h2></td></tr>
 <tr class="separator:a5049a305044a7c74e4e9b14385d92ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a4c0e3ce2843ba84506b8245e5817aa2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLASS_DIFFER_FILE_NAME&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6f2290b6f292939c4edb966b920269af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLASS_DIFFER_FILE_NAME_MSG&#160;&#160;&#160;&quot;O arquivo %s nao define a classe principal %s\n&quot;, className, <a class="el" href="class_manager_8h.html#a079d67a31054b96b301d9d72e0aaf9db">getClassName</a>(class_file)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a77366c1bd428629dc898e188bfd182a3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +187,54 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00006">6</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a4921f9a186627faaebc505056ab7ed6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INSUFFICIENT_MEMORY&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aae40cf1a4e4697592bb4a6840c84dc77"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INSUFFICIENT_MEMORY_MSG&#160;&#160;&#160;&quot;Memoria insuficiente. A JVM serah abortada.\n&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a29ac845cfb3267ecbd6d4c7fc8e61c0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAIN_NOT_FOUND&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tabela de mensagens de erros referentes aos diferentes codigos de erro </p>
+
+</div>
+</div>
+<a class="anchor" id="a542bc2de649b402110fab7b2a1d32c41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAIN_NOT_FOUND_MSG&#160;&#160;&#160;&quot;O metodo MAIN nao foi encontrado na classe %s.\n&quot;, handler-&gt;classRef-&gt;constant_pool[ handler-&gt;classRef-&gt;constant_pool[handler-&gt;classRef-&gt;this_class].Class.name_index ].UTF8.bytes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -160,8 +248,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00025">25</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2ef8c9bf0f6adaa3a0af6d07886eb85a"></a>
@@ -174,8 +260,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00030">30</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="afc829e1dbd9da36dcf2174ca2f44b83a"></a>
@@ -187,9 +271,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Tabela de mensagens de erros referentes aos diferentes codigos de erro </p>
-
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00026">26</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
 
 </div>
 </div>
@@ -202,8 +283,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00031">31</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
 
 </div>
 </div>
@@ -218,8 +297,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>&lt; Tabela de codigos de erros </p>
 
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00024">24</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a590db159e50280c2234a767d8dc1af52"></a>
@@ -227,12 +304,34 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OPEN_FILE_ERROR_MSG&#160;&#160;&#160;&quot;Nao foi possivel abrir o arquivo %s\n&quot;, *argv</td>
+          <td class="memname">#define OPEN_FILE_ERROR_MSG&#160;&#160;&#160;&quot;Nao foi possivel abrir o arquivo %s\n&quot;, file_name</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="exception_manager_8h_source.html#l00029">29</a> of file <a class="el" href="exception_manager_8h_source.html">exceptionManager.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a67e4b213a18f3916811719fea63440fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define POP_IN_A_EMPTY_STACK&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a467452d299a4eb41e8b17d9235968ca6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define POP_IN_A_EMPTY_STACK_MSG&#160;&#160;&#160;&quot;O programa tentou executar um pop numa pilha vazia (%s).\n&quot;, stackName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -278,8 +377,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
 
-<p>Definition at line <a class="el" href="exception_manager_8c_source.html#l00006">6</a> of file <a class="el" href="exception_manager_8c_source.html">exceptionManager.c</a>.</p>
-
 </div>
 </div>
 </div><!-- contents -->
@@ -288,7 +385,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fdcab30c5f47fb34f64374d4556859fe.html">lib</a></li><li class="navelem"><a class="el" href="exception_manager_8h.html">exceptionManager.h</a></li>
-    <li class="footer">Generated on Wed Jun 3 2015 22:54:49 for Leitor Exibidor by
+    <li class="footer">Generated on Fri Jun 26 2015 07:28:16 for Leitor Exibidor - JVM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

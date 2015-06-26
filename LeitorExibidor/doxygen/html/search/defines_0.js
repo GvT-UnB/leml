@@ -13,6 +13,7 @@ var searchData=
   ['acc_5fsynchronized',['ACC_SYNCHRONIZED',['../macros_8h.html#a6eb88a744819be2fd9b240ed56bbb421',1,'macros.h']]],
   ['acc_5ftransient',['ACC_TRANSIENT',['../macros_8h.html#a79b164828e45ca7eb81b895b8ee4960e',1,'macros.h']]],
   ['acc_5fvolatile',['ACC_VOLATILE',['../macros_8h.html#afa6aaa9fa8e6b7c139a6f459ab3a42b1',1,'macros.h']]],
+  ['attribute_5fcod_5fnot_5ffound',['ATTRIBUTE_COD_NOT_FOUND',['../macros_8h.html#a5de06d47887338c2c457538ed2013efa',1,'macros.h']]],
   ['attribute_5fcode',['ATTRIBUTE_Code',['../macros_8h.html#a6297a2d22026f73fdda20998eaf83481',1,'macros.h']]],
   ['attribute_5fconstantvalue',['ATTRIBUTE_ConstantValue',['../macros_8h.html#a7ba58b893ec2f20343ec92fb0ad83208',1,'macros.h']]],
   ['attribute_5fexceptions',['ATTRIBUTE_Exceptions',['../macros_8h.html#a382e4802244c573916b5986ef0589792',1,'macros.h']]],

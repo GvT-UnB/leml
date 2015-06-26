@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Leitor Exibidor: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/lib/macros.h File Reference</title>
+<title>Leitor Exibidor - JVM: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/lib/macros.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Leitor Exibidor
+   <div id="projectname">Leitor Exibidor - JVM
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -105,7 +106,8 @@ $(document).ready(function(){initNavTree('macros_8h.html','');});
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">macros.h File Reference</div>  </div>
 </div><!--header-->
@@ -140,16 +142,42 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmethod__info.html">method_info</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente ao campo <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a>  <a href="structmethod__info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_field___value.html">Field_Value</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente ao array de fields estaticos  <a href="struct_field___value.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_class_file.html">ClassFile</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estrutura Interna dum arquivo .class.  <a href="struct_class_file.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_local_variable.html">LocalVariable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente aos items do vetor de variaveis locais do <a class="el" href="struct_frame.html" title="Objeto. ">Frame</a>  <a href="struct_local_variable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_operand_stack.html">structOperandStack</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct___array.html">struct_Array</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente aos componentes do array.  <a href="structstruct___array.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_array_list.html">structArrayList</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente aos arrays que sao armazenados quando uma classe eh instanciada (Objeto).  <a href="structstruct_array_list.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_class_handler.html">ClassHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structs referente aos dados que sao armazenados quando uma classe eh instanciada (Objeto).  <a href="struct_class_handler.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame.html">Frame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objeto.  <a href="struct_frame.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a77366c1bd428629dc898e188bfd182a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a>&#160;&#160;&#160;extern</td></tr>
+<tr class="separator:a77366c1bd428629dc898e188bfd182a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac386047e0757f23dbd49d77a76642c0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#ac386047e0757f23dbd49d77a76642c0c">U4_MAGIC</a>&#160;&#160;&#160;0xCAFEBABE</td></tr>
 <tr class="separator:ac386047e0757f23dbd49d77a76642c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86fd4404b140711fdb77326609c0f393"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a86fd4404b140711fdb77326609c0f393">BYTE_SIZE</a>&#160;&#160;&#160;8</td></tr>
 <tr class="separator:a86fd4404b140711fdb77326609c0f393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe134ede9f4cac41559b2222b17a1a98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#afe134ede9f4cac41559b2222b17a1a98">MAX_INSTRUCTIONS</a>&#160;&#160;&#160;250</td></tr>
+<tr class="separator:afe134ede9f4cac41559b2222b17a1a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fdbb084daf13068941396db9988bb8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a0fdbb084daf13068941396db9988bb8d">ACC_PUBLIC</a>&#160;&#160;&#160;0x0001</td></tr>
 <tr class="separator:a0fdbb084daf13068941396db9988bb8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4a89247b3598c31a5999c76bf168a6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#ab4a89247b3598c31a5999c76bf168a6a">ACC_PRIVATE</a>&#160;&#160;&#160;0x0002</td></tr>
@@ -620,6 +648,14 @@ Macros</h2></td></tr>
 <tr class="separator:a9a177881a7437088e7d19ac053d8ebea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0c56956fa76ee68b21b0ec49059034f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#ae0c56956fa76ee68b21b0ec49059034f">OPCODE_breakpoint</a>&#160;&#160;&#160;202</td></tr>
 <tr class="separator:ae0c56956fa76ee68b21b0ec49059034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a085ed2c836c040fdd770c83f8cc47d39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a085ed2c836c040fdd770c83f8cc47d39">FRAME_STACK_MAX</a>&#160;&#160;&#160;100000</td></tr>
+<tr class="separator:a085ed2c836c040fdd770c83f8cc47d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af854c6cfecad4bee2d6a1f8943ba0bf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#af854c6cfecad4bee2d6a1f8943ba0bf1">NOT_RETURN</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:af854c6cfecad4bee2d6a1f8943ba0bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de06d47887338c2c457538ed2013efa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a5de06d47887338c2c457538ed2013efa">ATTRIBUTE_COD_NOT_FOUND</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a5de06d47887338c2c457538ed2013efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dafd7e70879988f5b4ebd46278ac0d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a8dafd7e70879988f5b4ebd46278ac0d0">CLASS_NOT_FOUND</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a8dafd7e70879988f5b4ebd46278ac0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -632,6 +668,20 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a4af10c3137cf79c12265e8d288070711"><td class="memItemLeft" align="right" valign="top">typedef int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a></td></tr>
 <tr class="memdesc:a4af10c3137cf79c12265e8d288070711"><td class="mdescLeft">&#160;</td><td class="mdescRight">4 bytes  <a href="#a4af10c3137cf79c12265e8d288070711">More...</a><br /></td></tr>
 <tr class="separator:a4af10c3137cf79c12265e8d288070711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f930ae0484417a1883fd3f7cdb490e"><td class="memItemLeft" align="right" valign="top">typedef int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#ab9f930ae0484417a1883fd3f7cdb490e">u8</a></td></tr>
+<tr class="memdesc:ab9f930ae0484417a1883fd3f7cdb490e"><td class="mdescLeft">&#160;</td><td class="mdescRight">8 bytes  <a href="#ab9f930ae0484417a1883fd3f7cdb490e">More...</a><br /></td></tr>
+<tr class="separator:ab9f930ae0484417a1883fd3f7cdb490e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431151d5c3cb32200b604efc97568dd0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct___array.html">struct_Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a431151d5c3cb32200b604efc97568dd0">struct_Array</a></td></tr>
+<tr class="separator:a431151d5c3cb32200b604efc97568dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a33fecbc7478100a948a15cf87b77d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct_array_list.html">structArrayList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a66a33fecbc7478100a948a15cf87b77d">structArrayList</a></td></tr>
+<tr class="separator:a66a33fecbc7478100a948a15cf87b77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57253377bfef1fe7d31f89e07b47a391"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#a57253377bfef1fe7d31f89e07b47a391">StructFrameStack</a></td></tr>
+<tr class="separator:a57253377bfef1fe7d31f89e07b47a391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac8788a3f325cc1895673ce0b41b08dc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="macros_8h.html#ac8788a3f325cc1895673ce0b41b08dc9">rootDirectory</a></td></tr>
+<tr class="separator:ac8788a3f325cc1895673ce0b41b08dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a638658b616d4e7c16078f606224dc9ba"></a>
@@ -643,8 +693,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00021">21</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -658,8 +706,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00014">14</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aca0c3297ae6a71033cf324d99793189a"></a>
@@ -671,8 +717,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00020">20</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -686,8 +730,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00018">18</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab4a89247b3598c31a5999c76bf168a6a"></a>
@@ -700,8 +742,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00011">11</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aab759ad3d0d4d4ed59b7f516f1a4e271"></a>
@@ -713,8 +753,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00012">12</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -729,8 +767,6 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <p>Máscara de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00010">10</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7980f70a1935dcd3a74bf0e24fd2bce7"></a>
@@ -742,8 +778,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00013">13</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -757,8 +791,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00022">22</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a64ab0ee48e02f736237394d4580bad5a"></a>
@@ -770,8 +802,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00019">19</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -785,8 +815,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00015">15</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a79b164828e45ca7eb81b895b8ee4960e"></a>
@@ -798,8 +826,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00017">17</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -813,7 +839,17 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00016">16</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a5de06d47887338c2c457538ed2013efa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ATTRIBUTE_COD_NOT_FOUND&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -826,8 +862,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00042">42</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -842,8 +876,6 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <p>Tipos Válidos de Tags (Constants Pool) </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00041">41</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a382e4802244c573916b5986ef0589792"></a>
@@ -855,8 +887,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00043">43</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -870,8 +900,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00044">44</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a73837bc39fc0c018702528a36f77b67e"></a>
@@ -883,8 +911,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00046">46</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -898,8 +924,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00047">47</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a472445329ea9525ca15812b6c7bffb22"></a>
@@ -911,8 +935,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00048">48</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -926,8 +948,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00045">45</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a397666c4934effd9f4f62ddfb16a42d5"></a>
@@ -939,8 +959,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00049">49</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -955,7 +973,17 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <p>Tamanho de um byte </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00007">7</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a8dafd7e70879988f5b4ebd46278ac0d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLASS_NOT_FOUND&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -971,8 +999,6 @@ Typedefs</h2></td></tr>
 <p>Combinações de máscaras de bits abaixo que especifica permissões de acesso e propriedades da classe, interface, métodos e atributos</p>
 <p>Tipos Válidos de Tags (Constants Pool) </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00028">28</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab49341c3b4ade4bfa1a64be8d2f73ae1"></a>
@@ -984,8 +1010,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00036">36</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -999,8 +1023,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00029">29</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab914627ce5b25c4acfc98f2eacb78473"></a>
@@ -1012,8 +1034,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00034">34</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1027,8 +1047,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00033">33</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ac0e92044d246c6e4d691116f89a70ebb"></a>
@@ -1040,8 +1058,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00031">31</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1055,8 +1071,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00035">35</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2a179cf178ea867c6ab1700508c269dd"></a>
@@ -1068,8 +1082,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00030">30</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1083,8 +1095,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00037">37</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a0a7acbe175de56072a2f0a1a051418e1"></a>
@@ -1096,8 +1106,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00032">32</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1111,7 +1119,54 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00038">38</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a77366c1bd428629dc898e188bfd182a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXTERN&#160;&#160;&#160;extern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a085ed2c836c040fdd770c83f8cc47d39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FRAME_STACK_MAX&#160;&#160;&#160;100000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afe134ede9f4cac41559b2222b17a1a98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_INSTRUCTIONS&#160;&#160;&#160;250</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tamanho máximo de instruções que a JVM possui </p>
+
+</div>
+</div>
+<a class="anchor" id="af854c6cfecad4bee2d6a1f8943ba0bf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOT_RETURN&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1125,8 +1180,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00102">102</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a59ed8dd769f4093c17d3c3acd92a9542"></a>
@@ -1138,8 +1191,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00135">135</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1153,8 +1204,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00053">53</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aad090076ff1716853d18d189cf097e87"></a>
@@ -1166,8 +1215,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00077">77</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1181,8 +1228,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00094">94</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a88d1f8a57a487f31a534ec0daa74c17e"></a>
@@ -1194,8 +1239,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00095">95</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1209,8 +1252,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00096">96</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a569c5fa95586bc7e42df946cf13b6c64"></a>
@@ -1222,8 +1263,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00097">97</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1237,8 +1276,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00240">240</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ac35a9d245394cfe67de918f4a215b21c"></a>
@@ -1250,8 +1287,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00228">228</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1265,8 +1300,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00241">241</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab5156f9ddcfb8d4d8240ab7d29c906d2"></a>
@@ -1278,8 +1311,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00110">110</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1293,8 +1324,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00127">127</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa1452c477644bddb2cd21f3119862cb5"></a>
@@ -1306,8 +1335,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00128">128</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1321,8 +1348,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00129">129</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a29414589083e13afcc45b9c3f09342f3"></a>
@@ -1334,8 +1359,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00130">130</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1349,8 +1372,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00242">242</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a12d658cf4c6f509ba93c97ffee703ff9"></a>
@@ -1362,8 +1383,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00103">103</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1377,8 +1396,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00136">136</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a79fb05544d66d7d0cfafa6c0d7a921fa"></a>
@@ -1390,8 +1407,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00068">68</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1405,8 +1420,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00253">253</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a061614ea09bbf1000f991236c7811c8d"></a>
@@ -1418,8 +1431,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00104">104</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1433,8 +1444,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00137">137</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a08ed36f15845d18f7c0fb94926e9ccf9"></a>
@@ -1446,8 +1455,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00243">243</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1461,8 +1468,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00196">196</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a87ee3ece80137e4b4ce106ec13612645"></a>
@@ -1474,8 +1479,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00194">194</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1489,8 +1492,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00195">195</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a775f3e5546ca4c5f5b5c4bbbb5f3d7dc"></a>
@@ -1502,8 +1503,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00151">151</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1517,8 +1516,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00101">101</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a90fa241ea89736b937c72c2989181888"></a>
@@ -1530,8 +1527,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00134">134</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1545,8 +1540,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00204">204</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9cba21c889928b39eb657540b85fdccf"></a>
@@ -1558,8 +1551,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00203">203</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1573,8 +1564,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00066">66</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ac13062c7a91c1cc920e4d6014d916712"></a>
@@ -1586,8 +1575,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00067">67</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1601,8 +1588,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00163">163</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a942be3c9b6f0ea1c3b13973f6086ec0a"></a>
@@ -1614,8 +1599,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00076">76</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1629,8 +1612,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00090">90</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a42c85fa7c500d312b1b3b06c2cf9588b"></a>
@@ -1642,8 +1623,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00091">91</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1657,8 +1636,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00092">92</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2507d6bafd2903d77e59eb5bb017d15c"></a>
@@ -1670,8 +1647,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00093">93</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1685,8 +1660,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00159">159</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a384b1811e32f1e29dcadd6f4349396fb"></a>
@@ -1698,8 +1671,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00171">171</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1713,8 +1684,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00167">167</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abbf16cd24cad78b96b067cebed65c48e"></a>
@@ -1726,8 +1695,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00227">227</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1741,8 +1708,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00109">109</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a00ca1697eba6d24dad653a99d287e61f"></a>
@@ -1754,8 +1719,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00123">123</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1769,8 +1732,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00124">124</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="acb46e95fac762f6c968237f8f6b95637"></a>
@@ -1782,8 +1743,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00125">125</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1797,8 +1756,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00126">126</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aea8e466f50c4e3b1e70b7b7163c0dd5e"></a>
@@ -1810,8 +1767,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00155">155</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1825,8 +1780,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00141">141</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6abde2a1ec18db262bf676e70b950624"></a>
@@ -1838,8 +1791,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00144">144</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1853,8 +1804,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00145">145</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad9851c75ef3c8ea9f56c4032884dac35"></a>
@@ -1866,8 +1815,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00146">146</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1881,8 +1828,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00142">142</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa0ba0a9245f49bac5087ec9e6bbb8224"></a>
@@ -1894,8 +1839,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00143">143</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1909,8 +1852,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00193">193</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2e7fc2be8c3ca6e5ada467438d2260cf"></a>
@@ -1922,8 +1863,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00191">191</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1937,8 +1876,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00192">192</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9af5d9e078ae465813ab24c83f99b9a3"></a>
@@ -1950,8 +1887,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00150">150</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1965,8 +1900,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00100">100</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ae53fcaa5d0fbacb05f380a99022ea1cf"></a>
@@ -1978,8 +1911,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00133">133</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -1993,8 +1924,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00202">202</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aed0cc01b9f948206bbe9a0dcc0c48268"></a>
@@ -2006,8 +1935,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00201">201</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2021,8 +1948,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00063">63</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9760d8eabf1fa9e016cf2146621d129e"></a>
@@ -2034,8 +1959,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00064">64</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2049,8 +1972,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00065">65</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ac2c859930633186f0a4c3c80b790c4a9"></a>
@@ -2062,8 +1983,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00162">162</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2077,8 +1996,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00075">75</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad81f4c30bd69162d1b77cd9b74519b04"></a>
@@ -2090,8 +2007,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00086">86</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2105,8 +2020,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00087">87</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7f5855564d4771a744ca71180922d979"></a>
@@ -2118,8 +2031,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00088">88</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2133,8 +2044,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00089">89</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a308597933c9a749541e8941e9ee3dd4b"></a>
@@ -2146,8 +2055,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00158">158</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2161,8 +2068,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00170">170</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a22d2ee77e1d8d747b280c6acae21c566"></a>
@@ -2174,8 +2079,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00166">166</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2189,8 +2092,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00226">226</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abbf4f19ffe918890c34c0873407362b6"></a>
@@ -2202,8 +2103,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00108">108</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2217,8 +2116,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00119">119</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="acee46e51d54078cca564545309fe2538"></a>
@@ -2230,8 +2127,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00120">120</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2245,8 +2140,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00121">121</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a31771d3a1709330ae9d3d3fb04c72619"></a>
@@ -2258,8 +2151,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00122">122</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2273,8 +2164,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00154">154</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6fcd7c2d0e9d6a783b6c6d68434f0db3"></a>
@@ -2286,8 +2175,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00232">232</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2301,8 +2188,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00230">230</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a639776249155da855c71f25053e35ce8"></a>
@@ -2314,8 +2199,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00219">219</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2329,8 +2212,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00251">251</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aab27c57f543cd56182f93cc1537478fe"></a>
@@ -2342,8 +2223,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00197">197</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2357,8 +2236,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00198">198</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a1a1760f8fa60bb4b62358faf1aada890"></a>
@@ -2370,8 +2247,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00187">187</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2385,8 +2260,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00186">186</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a54c1888cac0750477cbc377f37b96f51"></a>
@@ -2398,8 +2271,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00185">185</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2413,8 +2284,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00199">199</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad3e9a50de8d803d089530675dd1d3769"></a>
@@ -2426,8 +2295,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00148">148</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2441,8 +2308,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00098">98</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab3a745d9feeb907050433097957a8d0b"></a>
@@ -2454,8 +2319,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00178">178</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2469,8 +2332,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00131">131</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a69e227165df58fbdebab455ff68f642f"></a>
@@ -2482,8 +2343,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00055">55</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2497,8 +2356,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00056">56</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a162e9f0208724bd0c28d96b91778daff"></a>
@@ -2510,8 +2367,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00057">57</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2525,8 +2380,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00058">58</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a8b64e3be54653f69d2f9153a880d47d9"></a>
@@ -2538,8 +2391,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00059">59</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2553,8 +2404,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00060">60</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a5605f586da8fc0b20d32c458bb359e52"></a>
@@ -2566,8 +2415,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00054">54</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2581,8 +2428,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00160">160</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa9dd1939e2a7033d13691fa59828ca8c"></a>
@@ -2594,8 +2439,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00217">217</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2609,8 +2452,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00218">218</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a33503e33bb85bc32e4af3ae76299dc55"></a>
@@ -2622,8 +2463,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00211">211</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2637,8 +2476,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00214">214</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a35a0ec096309d872c1c648f39c63ede1"></a>
@@ -2650,8 +2487,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00215">215</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2665,8 +2500,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00216">216</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a1b479452175490af31d6492f417d11a2"></a>
@@ -2678,8 +2511,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00213">213</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2693,8 +2524,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00212">212</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a5af3e87a6bef9b1babf3886fb7c276db"></a>
@@ -2706,8 +2535,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00205">205</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2721,8 +2548,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00208">208</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2e98d88e2834c1d101245c53ae50aff2"></a>
@@ -2734,8 +2559,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00209">209</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2749,8 +2572,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00210">210</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="acd3c70cee51125934d29a57a36fcbe58"></a>
@@ -2762,8 +2583,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00207">207</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2777,8 +2596,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00206">206</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9a14576ccffe2ac3a131fde87a17143c"></a>
@@ -2790,8 +2607,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00250">250</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2805,8 +2620,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00249">249</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7ae6fa42fe55102d40135e4f57e8ef91"></a>
@@ -2818,8 +2631,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00184">184</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2833,8 +2644,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00073">73</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ac5557428cb3b42548551288c74f01969"></a>
@@ -2846,8 +2655,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00078">78</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2861,8 +2668,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00079">79</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6f2e26247f30f96edb14cb8064a2d527"></a>
@@ -2874,8 +2679,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00080">80</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2889,8 +2692,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00081">81</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a378d4469df345c4403cfb284371dae40"></a>
@@ -2902,8 +2703,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00156">156</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2917,8 +2716,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00168">168</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ae57bba83923f7c02083b6e80d26e74fa"></a>
@@ -2930,8 +2727,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00244">244</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2945,8 +2740,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00237">237</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a33559a9e2780b3127992426c8a25d7e8"></a>
@@ -2958,8 +2751,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00235">235</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -2973,8 +2764,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00236">236</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad160e4dba71a3a15d5d7e441681b4669"></a>
@@ -2986,8 +2775,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00234">234</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3001,8 +2788,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00180">180</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="af226097cd13460c839cf2311b8c1d29f"></a>
@@ -3014,8 +2799,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00164">164</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3029,8 +2812,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00224">224</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa444545df107f2097b01b5ebe401fce1"></a>
@@ -3042,8 +2823,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00172">172</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3057,8 +2836,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00174">174</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a5a1188ad64cc561bc6d2d65cdd0db7e1"></a>
@@ -3070,8 +2847,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00106">106</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3085,8 +2860,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00111">111</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a8fb8cfb72d2530b43bfa6ac85eb8a03a"></a>
@@ -3098,8 +2871,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00112">112</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3113,8 +2884,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00113">113</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a69be00da64f6f48d9b4b6223188a1025"></a>
@@ -3126,8 +2895,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00114">114</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3141,8 +2908,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00152">152</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9f479f7c34fcfa4df4e5bed0c73992e6"></a>
@@ -3154,8 +2919,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00176">176</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3169,8 +2932,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00182">182</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a574eb88fa1bd5361b2a4e3459db80f58"></a>
@@ -3182,8 +2943,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00220">220</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3197,8 +2956,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00252">252</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a118191617f997aa46faeac9b5b4c62a1"></a>
@@ -3210,8 +2967,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00190">190</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3225,8 +2980,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00189">189</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aeb441722ccd4bd1013d40c71601572e7"></a>
@@ -3238,8 +2991,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00188">188</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3253,8 +3004,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00149">149</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a053a9b1af93d022e0d19e907e3a82f71"></a>
@@ -3266,8 +3015,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00099">99</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3281,8 +3028,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00179">179</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a83757ec560dea2555f5e0ecc56c5570e"></a>
@@ -3294,8 +3039,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00132">132</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3309,8 +3052,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00200">200</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6ea5e0288d52e75d12aec61e8c6ab031"></a>
@@ -3322,8 +3063,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00061">61</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3337,8 +3076,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00062">62</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a863a9ce890fe4c6514e390bb73e16d82"></a>
@@ -3350,8 +3087,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00070">70</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3365,8 +3100,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00072">72</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad28ba618355a74f56469e35d25ff9a34"></a>
@@ -3378,8 +3111,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00071">71</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3393,8 +3124,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00161">161</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aca7f93ba7b67de5dc57d6f032554be97"></a>
@@ -3406,8 +3135,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00074">74</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3421,8 +3148,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00082">82</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abb83db185ff5be075c7e97ef0380b6e9"></a>
@@ -3434,8 +3159,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00083">83</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3449,8 +3172,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00084">84</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a41fcd77e9e6ac1fd072a9f73bc15f0e9"></a>
@@ -3462,8 +3183,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00085">85</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3477,8 +3196,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00157">157</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad17b3d0976e84a64a863688b245a0e68"></a>
@@ -3490,8 +3207,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00169">169</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3505,8 +3220,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00223">223</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab9c294e68938c32f89582deb5a6263ce"></a>
@@ -3518,8 +3231,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00181">181</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3533,8 +3244,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00165">165</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a1589ad267ea20efe015d3b886e197211"></a>
@@ -3546,8 +3255,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00225">225</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3561,8 +3268,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00173">173</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a32f09aeff54f362a1f071e0bb0e11dbc"></a>
@@ -3574,8 +3279,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00175">175</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3589,8 +3292,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00107">107</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a35a3310e499cc8322dff200b47a40767"></a>
@@ -3602,8 +3303,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00115">115</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3617,8 +3316,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00116">116</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="af6e2541a10b1481d8709d876293ce0a9"></a>
@@ -3630,8 +3327,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00117">117</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3645,8 +3340,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00118">118</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="afc17f8d7bb16b4c37bd4b501f4200abf"></a>
@@ -3658,8 +3351,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00153">153</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3673,8 +3364,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00177">177</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a56de74364700b96f2fb812d25fce8bf0"></a>
@@ -3686,8 +3375,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00183">183</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3701,8 +3388,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00245">245</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a119caf0ce8b9e724aa190edad5b8154e"></a>
@@ -3714,8 +3399,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00246">246</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3729,8 +3412,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00248">248</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a566e35f4890ec45715a47fd01c9e22a0"></a>
@@ -3743,8 +3424,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00238">238</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a4081bacfb3fad38fc4693297790853ab"></a>
@@ -3756,8 +3435,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00239">239</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3772,8 +3449,6 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <p>Opcodes </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00052">52</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a614db6d84b933171d088c5f2968e5739"></a>
@@ -3785,8 +3460,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00139">139</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3800,8 +3473,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00140">140</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7561eea03eace0602a8006527e26742e"></a>
@@ -3813,8 +3484,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00233">233</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3828,8 +3497,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00231">231</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2aa7ac40ccf25b78cbb47fea217a48c3"></a>
@@ -3841,8 +3508,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00221">221</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3856,8 +3521,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00229">229</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a948f720e909c1e374a97a6903d669604"></a>
@@ -3869,8 +3532,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00105">105</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3884,8 +3545,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00138">138</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abc46a0ddad447d4fd8b0416caf7f1b9b"></a>
@@ -3897,8 +3556,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00069">69</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3912,8 +3569,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00147">147</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a476f029c9fc71137dadd9533c98bfc92"></a>
@@ -3926,8 +3581,6 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00222">222</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a5329113cc933fbac3bdc9b51a0eb864f"></a>
@@ -3939,8 +3592,6 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00247">247</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3955,11 +3606,46 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 <p>Assinatura do arquivo .class </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00004">4</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a431151d5c3cb32200b604efc97568dd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structstruct___array.html">struct_Array</a> <a class="el" href="structstruct___array.html">struct_Array</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a66a33fecbc7478100a948a15cf87b77d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structstruct_array_list.html">structArrayList</a> <a class="el" href="structstruct_array_list.html">structArrayList</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a57253377bfef1fe7d31f89e07b47a391"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a> <a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Definições gerais. </p>
+
+</div>
+</div>
 <a class="anchor" id="a8026a39c502750413402a90d9d8bae3c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3971,8 +3657,6 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p>1 byte </p>
-
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00259">259</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
 
 </div>
 </div>
@@ -3988,8 +3672,6 @@ Typedefs</h2></td></tr>
 
 <p>2 bytes </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00263">263</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a4af10c3137cf79c12265e8d288070711"></a>
@@ -4004,7 +3686,32 @@ Typedefs</h2></td></tr>
 
 <p>4 bytes </p>
 
-<p>Definition at line <a class="el" href="macros_8h_source.html#l00267">267</a> of file <a class="el" href="macros_8h_source.html">macros.h</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab9f930ae0484417a1883fd3f7cdb490e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="macros_8h.html#ab9f930ae0484417a1883fd3f7cdb490e">u8</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>8 bytes </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ac8788a3f325cc1895673ce0b41b08dc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a>* rootDirectory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -4014,7 +3721,7 @@ Typedefs</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fdcab30c5f47fb34f64374d4556859fe.html">lib</a></li><li class="navelem"><a class="el" href="macros_8h.html">macros.h</a></li>
-    <li class="footer">Generated on Wed Jun 3 2015 22:54:49 for Leitor Exibidor by
+    <li class="footer">Generated on Fri Jun 26 2015 07:28:16 for Leitor Exibidor - JVM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

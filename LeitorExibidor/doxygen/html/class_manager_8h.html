@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Leitor Exibidor: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/lib/classManager.h File Reference</title>
+<title>Leitor Exibidor - JVM: C:/Users/Diogo/Documents/UnB/Software BÃ¡sico/Leitor - Exibidor/trunk/LeitorExibidor/lib/classManager.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Leitor Exibidor
+   <div id="projectname">Leitor Exibidor - JVM
    </div>
   </td>
  </tr>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -120,9 +121,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3fe0cc7cccebb655a786b8cdf5bb6030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a3fe0cc7cccebb655a786b8cdf5bb6030">classRead</a> (FILE *dot_class)</td></tr>
-<tr class="memdesc:a3fe0cc7cccebb655a786b8cdf5bb6030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao responsavel por ler o bytecode java e armazenar na memoria.  <a href="#a3fe0cc7cccebb655a786b8cdf5bb6030">More...</a><br /></td></tr>
-<tr class="separator:a3fe0cc7cccebb655a786b8cdf5bb6030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8f0010782d5c4aa6185582bdbfe51f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#aa8f0010782d5c4aa6185582bdbfe51f2">classRead</a> (FILE *dot_class, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:aa8f0010782d5c4aa6185582bdbfe51f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao responsavel por ler o bytecode java e armazenar na memoria.  <a href="#aa8f0010782d5c4aa6185582bdbfe51f2">More...</a><br /></td></tr>
+<tr class="separator:aa8f0010782d5c4aa6185582bdbfe51f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a984ebf4800845df739d2b88a2addc183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a984ebf4800845df739d2b88a2addc183">readAttributesInfo</a> (<a class="el" href="structattribute__info.html">attribute_info</a> *attributes, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> attributes_count, FILE *dot_class, <a class="el" href="structcp__info.html">cp_info</a> *constant_pool)</td></tr>
 <tr class="memdesc:a984ebf4800845df739d2b88a2addc183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcao responsavel por ler para a memoria os dados referentes ao Attributte Info do bytecode java.  <a href="#a984ebf4800845df739d2b88a2addc183">More...</a><br /></td></tr>
 <tr class="separator:a984ebf4800845df739d2b88a2addc183"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +134,36 @@ Functions</h2></td></tr>
 <tr class="separator:a857e760736a5e34e4118105d1189e150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3238f3de16c215ebbcc316b16b72a97c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a3238f3de16c215ebbcc316b16b72a97c">readLocalVariableTable</a> (<a class="el" href="struct_local__variable__table.html">Local_variable_table</a> *local_variable_table, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> local_variable_table_length, FILE *dot_class)</td></tr>
 <tr class="separator:a3238f3de16c215ebbcc316b16b72a97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c429b0944925dfd3d75ceba4e2fe0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#af3c429b0944925dfd3d75ceba4e2fe0d">findAttributeCodeIndex</a> (<a class="el" href="structattribute__info.html">attribute_info</a> *attributes, <a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a> attributes_count)</td></tr>
+<tr class="memdesc:af3c429b0944925dfd3d75ceba4e2fe0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Localiza o indice de onde o attribute CODE está salvo num <a class="el" href="structattribute__info.html" title="structs referente ao campo attribute_info ">attribute_info</a>.  <a href="#af3c429b0944925dfd3d75ceba4e2fe0d">More...</a><br /></td></tr>
+<tr class="separator:af3c429b0944925dfd3d75ceba4e2fe0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab267acbc8a74fa74e834b9517292d259"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#ab267acbc8a74fa74e834b9517292d259">verifyClassName</a> (char *argv, <a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:ab267acbc8a74fa74e834b9517292d259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode.  <a href="#ab267acbc8a74fa74e834b9517292d259">More...</a><br /></td></tr>
+<tr class="separator:ab267acbc8a74fa74e834b9517292d259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af640cb48b2013cf31754d12eddaee7f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#af640cb48b2013cf31754d12eddaee7f1">fillNumberOfByteInstruction</a> (<a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *numberOfByteInstruction)</td></tr>
+<tr class="memdesc:af640cb48b2013cf31754d12eddaee7f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução.  <a href="#af640cb48b2013cf31754d12eddaee7f1">More...</a><br /></td></tr>
+<tr class="separator:af640cb48b2013cf31754d12eddaee7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079d67a31054b96b301d9d72e0aaf9db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a079d67a31054b96b301d9d72e0aaf9db">getClassName</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:a079d67a31054b96b301d9d72e0aaf9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o nome da classe do Objeto referenciado por handler.  <a href="#a079d67a31054b96b301d9d72e0aaf9db">More...</a><br /></td></tr>
+<tr class="separator:a079d67a31054b96b301d9d72e0aaf9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d640f3e7c645cff5e0c5479895f1fd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a6d640f3e7c645cff5e0c5479895f1fd1">setStaticFields</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file)</td></tr>
+<tr class="memdesc:a6d640f3e7c645cff5e0c5479895f1fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria o array de field estaticos e seta os valores como zero.  <a href="#a6d640f3e7c645cff5e0c5479895f1fd1">More...</a><br /></td></tr>
+<tr class="separator:a6d640f3e7c645cff5e0c5479895f1fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad7982b24e842f4b51462b0e29aba72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a4ad7982b24e842f4b51462b0e29aba72">classLoader</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file, char *file_name, <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *numberOfClassesHeap)</td></tr>
+<tr class="memdesc:a4ad7982b24e842f4b51462b0e29aba72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega no HEAP a classe indicada pelo arquivo de nome file_name.  <a href="#a4ad7982b24e842f4b51462b0e29aba72">More...</a><br /></td></tr>
+<tr class="separator:a4ad7982b24e842f4b51462b0e29aba72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70edc5d82b79ea539f736daaee6cfd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#ab70edc5d82b79ea539f736daaee6cfd4">seekClassInHeap</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file, <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> numberOfClassesHeap, <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *className)</td></tr>
+<tr class="memdesc:ab70edc5d82b79ea539f736daaee6cfd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procure a classe de nome className no HEAP.  <a href="#ab70edc5d82b79ea539f736daaee6cfd4">More...</a><br /></td></tr>
+<tr class="separator:ab70edc5d82b79ea539f736daaee6cfd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac070401bb05e91284ad21f9e521311f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#ac070401bb05e91284ad21f9e521311f5">loadNewClass</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file, <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *numberOfClassesHeap, <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *className, <a class="el" href="struct_class_handler.html">ClassHandler</a> *handler, <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *numberOfClasses, <a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a> *frameStackTop, <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *numberOfByteInstruction)</td></tr>
+<tr class="memdesc:ac070401bb05e91284ad21f9e521311f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Se a classe de nome className nao estiver no HEAP, ela eh carregada no HEAP e instanciada.  <a href="#ac070401bb05e91284ad21f9e521311f5">More...</a><br /></td></tr>
+<tr class="separator:ac070401bb05e91284ad21f9e521311f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c6ff48c60770a11ba261f6f742b5db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#af5c6ff48c60770a11ba261f6f742b5db">seekNewMethodInClassHandler</a> (<a class="el" href="struct_class_handler.html">ClassHandler</a> *handler, <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *method_name)</td></tr>
+<tr class="memdesc:af5c6ff48c60770a11ba261f6f742b5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procura pelo indice do metodo de nome method_name no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da classe referenciada pelo Handler.  <a href="#af5c6ff48c60770a11ba261f6f742b5db">More...</a><br /></td></tr>
+<tr class="separator:af5c6ff48c60770a11ba261f6f742b5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f211c2bd414187a3b2b99c99f40bc73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_manager_8h.html#a6f211c2bd414187a3b2b99c99f40bc73">seekNewMethodInClassFile</a> (<a class="el" href="struct_class_file.html">ClassFile</a> *class_file, <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *method_name)</td></tr>
+<tr class="memdesc:a6f211c2bd414187a3b2b99c99f40bc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procura o indice de um metodo no class file.  <a href="#a6f211c2bd414187a3b2b99c99f40bc73">More...</a><br /></td></tr>
+<tr class="separator:a6f211c2bd414187a3b2b99c99f40bc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a77366c1bd428629dc898e188bfd182a3"></a>
@@ -145,12 +176,64 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_manager_8h_source.html#l00006">6</a> of file <a class="el" href="class_manager_8h_source.html">classManager.h</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a3fe0cc7cccebb655a786b8cdf5bb6030"></a>
+<a class="anchor" id="a4ad7982b24e842f4b51462b0e29aba72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void classLoader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *&#160;</td>
+          <td class="paramname"><em>numberOfClassesHeap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Carrega no HEAP a classe indicada pelo arquivo de nome file_name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para o espaco de memoria onde a classe serah armazenada. </td></tr>
+    <tr><td class="paramname">file_name</td><td>char* Nome do arquivo bytecode java. </td></tr>
+    <tr><td class="paramname">numberOfClassesHeap</td><td>u4* Quantidade de classes armazenadas no HEAP. Eh incrementado ao fim da operacao. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
+<p>Verifica se o arquivo foi encontrado no diretorio raiz.</p>
+<p>Adiciona o PATH para o nome do arquivo.</p>
+<p>Verifica se o arquivo foi encontrado</p>
+<p>Carrega para o HEAP a classe</p>
+<p>Verifica se foi preciso adicionar o PATH no nome do arquivo.</p>
+<p>Deve-se retirar a string '.class' do nome completo da Classe.</p>
+<p>Copia o nome completo da Classe, ignorando a parte do '.class'</p>
+<p>Deve-se retirar a string '.class' do nome completo da Classe.</p>
+<p>Copia o nome completo da Classe, ignorando a parte do '.class'</p>
+<p>Insere o caractere de fim de string.</p>
+<p>Verifica se o .class tem o mesmo nome da classe delcarada nele. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa8f0010782d5c4aa6185582bdbfe51f2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -158,8 +241,18 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="struct_class_file.html">ClassFile</a>* classRead </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>dot_class</em></td><td>)</td>
+          <td class="paramname"><em>dot_class</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -168,12 +261,226 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dot_class</td><td>FILE* arquivo bytecode que deve ser lido. </td></tr>
+    <tr><td class="paramname">class_file</td><td>ClassFile* Espaco no HEAP onde a classe serah armazenada. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_class_file.html" title="Estrutura Interna dum arquivo .class. ">ClassFile</a> * retorna o endereço do bytecode salvo em memória. </dd></dl>
 
-<p>Definition at line <a class="el" href="class_manager_8c_source.html#l00007">7</a> of file <a class="el" href="class_manager_8c_source.html">classManager.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="af640cb48b2013cf31754d12eddaee7f1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void fillNumberOfByteInstruction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>numberOfByteInstruction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Completa o vetor numberOfByteInstruction com a quantidade de bytes necessarias para cada instrução. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numberOfByteInstruction</td><td>u1* Vetor que armazena a quantidade de bytes que cada instrução utiliza. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>2 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>ATENÇÃO! Isso aqui pode estar errado...</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>4 bytes</p>
+<p>3 bytes</p>
+<p>3 bytes</p>
+<p>ATENÇÃO! Isso aqui pode estar errado...</p>
+<p>ATENÇÃO! Isso aqui pode estar errado...</p>
+<p>1 byte </p>
+
+</div>
+</div>
+<a class="anchor" id="af3c429b0944925dfd3d75ceba4e2fe0d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> findAttributeCodeIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structattribute__info.html">attribute_info</a> *&#160;</td>
+          <td class="paramname"><em>attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#aa76d8c8015643c6a837661a10142016e">u2</a>&#160;</td>
+          <td class="paramname"><em>attributes_count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Localiza o indice de onde o attribute CODE está salvo num <a class="el" href="structattribute__info.html" title="structs referente ao campo attribute_info ">attribute_info</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attributes</td><td>attribute_info* Referencia para o <a class="el" href="structattribute__info.html" title="structs referente ao campo attribute_info ">attribute_info</a>. </td></tr>
+    <tr><td class="paramname">attributes_count</td><td>u2 Quantidade de attributes referenciados por attributes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERNu4 </dd></dl>
+<p>Percorre todo o <a class="el" href="structattribute__info.html" title="structs referente ao campo attribute_info ">attribute_info</a> do metodo.</p>
+<p>Procura pelo <a class="el" href="structattribute__info.html" title="structs referente ao campo attribute_info ">attribute_info</a> CODE </p>
+
+</div>
+</div>
+<a class="anchor" id="a079d67a31054b96b301d9d72e0aaf9db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a>* getClassName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna o nome da classe do Objeto referenciado por handler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handler</td><td>ClassHandler* Referencia para um objeto. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN u1* Nome da classe. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac070401bb05e91284ad21f9e521311f5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> loadNewClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *&#160;</td>
+          <td class="paramname"><em>numberOfClassesHeap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>className</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_class_handler.html">ClassHandler</a> *&#160;</td>
+          <td class="paramname"><em>handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> *&#160;</td>
+          <td class="paramname"><em>numberOfClasses</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_struct_frame_stack.html">StructFrameStack</a> *&#160;</td>
+          <td class="paramname"><em>frameStackTop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>numberOfByteInstruction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Se a classe de nome className nao estiver no HEAP, ela eh carregada no HEAP e instanciada. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para o HEAP. </td></tr>
+    <tr><td class="paramname">numberOfClassesHeap</td><td>u4* Quantidade de classes no HEAP. </td></tr>
+    <tr><td class="paramname">className</td><td>u1* Nome da classe que deve ser carregada. </td></tr>
+    <tr><td class="paramname">handler</td><td>ClassHandler* Referencia para o espaco de memoria alocado para os objetos. </td></tr>
+    <tr><td class="paramname">numberOfClasses</td><td>u4* Quantidade de objetos na memoria. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN u4 O indice da Classe no HEAP. </dd></dl>
+<p>Verifica se o className jah esta salvo no heap!</p>
+<p>Se a classe não estiver no HEAP, coloca no HEAP.</p>
+<p>Se a classe jah esta na memoria, retorna o indice dela no HEAP.</p>
+<p>Concatena o nome completo da classe com a string '.class'</p>
+<p>Carrega a classe no HEAP.</p>
+<p>Instancia um Objeto da classe recem criada.</p>
+<p>Retorna o indice da nova classe no HEAP. </p>
 
 </div>
 </div>
@@ -225,8 +532,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="class_manager_8c_source.html#l00128">128</a> of file <a class="el" href="class_manager_8c_source.html">classManager.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9d4e3a464f28503fafa960c8d4276105"></a>
@@ -270,8 +575,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
 
-<p>Definition at line <a class="el" href="class_manager_8c_source.html#l00222">222</a> of file <a class="el" href="class_manager_8c_source.html">classManager.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a857e760736a5e34e4118105d1189e150"></a>
@@ -312,8 +615,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
-
-<p>Definition at line <a class="el" href="class_manager_8c_source.html#l00231">231</a> of file <a class="el" href="class_manager_8c_source.html">classManager.c</a>.</p>
 
 </div>
 </div>
@@ -356,7 +657,190 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
 
-<p>Definition at line <a class="el" href="class_manager_8c_source.html#l00238">238</a> of file <a class="el" href="class_manager_8c_source.html">classManager.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab70edc5d82b79ea539f736daaee6cfd4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> seekClassInHeap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a>&#160;</td>
+          <td class="paramname"><em>numberOfClassesHeap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>className</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Procure a classe de nome className no HEAP. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para o HEAP. </td></tr>
+    <tr><td class="paramname">numberOfClassesHeap</td><td>u4 Numero de classes armazenadas no HEAP. </td></tr>
+    <tr><td class="paramname">className</td><td>u1* Nome da classe que se deseja procurar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN u4 Caso a clase tenha sido encontrada, eh o indice dela no HEAP. Caso contrario, retorna o erro de classe nao encontrada. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6f211c2bd414187a3b2b99c99f40bc73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> seekNewMethodInClassFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>method_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Procura o indice de um metodo no class file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_file</td><td>ClassFile* referencia para o class file </td></tr>
+    <tr><td class="paramname">method_name</td><td>u1* nome do metodo que deve ser procurado. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN u4 indice do metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da classe. </dd></dl>
+<p>Procura pelo metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da classe</p>
+<p>Retorna o indice do metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a></p>
+<p>Nao encontrou o metodo na classe apontada pelo <a class="el" href="struct_frame.html" title="Objeto. ">Frame</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="af5c6ff48c60770a11ba261f6f742b5db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> <a class="el" href="macros_8h.html#a4af10c3137cf79c12265e8d288070711">u4</a> seekNewMethodInClassHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_handler.html">ClassHandler</a> *&#160;</td>
+          <td class="paramname"><em>handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="macros_8h.html#a8026a39c502750413402a90d9d8bae3c">u1</a> *&#160;</td>
+          <td class="paramname"><em>method_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Procura pelo indice do metodo de nome method_name no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da classe referenciada pelo Handler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handler</td><td>ClassHandler* Referencia para a classe alocada no HEAP. </td></tr>
+    <tr><td class="paramname">method_name</td><td>u1* Nome do metodo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN u4 Indice do metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da Classe </dd></dl>
+<p>Procura pelo metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a> da classe</p>
+<p>Retorna o indice do metodo no <a class="el" href="structmethod__info.html" title="structs referente ao campo method_info ">method_info</a></p>
+<p>Nao encontrou o metodo na classe apontada pelo <a class="el" href="struct_frame.html" title="Objeto. ">Frame</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="a6d640f3e7c645cff5e0c5479895f1fd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void setStaticFields </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cria o array de field estaticos e seta os valores como zero. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_file</td><td>ClassFile* Referencia para o espaco de memoria onde a classe serah armazenada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EXTERN void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab267acbc8a74fa74e834b9517292d259"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_user_viewer_8h.html#a77366c1bd428629dc898e188bfd182a3">EXTERN</a> void verifyClassName </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_class_file.html">ClassFile</a> *&#160;</td>
+          <td class="paramname"><em>class_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica se o bytecode informado tem o mesmo nome que o indicado dentro do bytecode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argv</td><td>char* nome do bytecode </td></tr>
+    <tr><td class="paramname">class_file</td><td>ClassFile* espaço em memoria onde os daados da classe estão salvos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>Retira o caminho até o arquivo</p>
+<p>Retira o .class do nome do arquivo</p>
+<p>Verifica se o nomo do arquivo é o mesmo nome da classe </p>
 
 </div>
 </div>
@@ -366,7 +850,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fdcab30c5f47fb34f64374d4556859fe.html">lib</a></li><li class="navelem"><a class="el" href="class_manager_8h.html">classManager.h</a></li>
-    <li class="footer">Generated on Wed Jun 3 2015 22:54:49 for Leitor Exibidor by
+    <li class="footer">Generated on Fri Jun 26 2015 07:28:16 for Leitor Exibidor - JVM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

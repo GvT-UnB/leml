@@ -1,16 +1,28 @@
 var annotated =
 [
+    [ "java", "namespacejava.html", "namespacejava" ],
     [ "attribute_info", "structattribute__info.html", "structattribute__info" ],
     [ "Classes", "struct_classes.html", "struct_classes" ],
     [ "ClassFile", "struct_class_file.html", "struct_class_file" ],
+    [ "ClassHandler", "struct_class_handler.html", "struct_class_handler" ],
+    [ "ClassicSingleton", "class_classic_singleton.html", "class_classic_singleton" ],
     [ "cp_info", "structcp__info.html", "structcp__info" ],
     [ "ExceptionTable", "struct_exception_table.html", "struct_exception_table" ],
+    [ "Exemplolookupswitch", "class_exemplolookupswitch.html", null ],
+    [ "ExemploSwitchDiaDaSemana", "class_exemplo_switch_dia_da_semana.html", null ],
     [ "field_info", "structfield__info.html", "structfield__info" ],
+    [ "Field_Value", "struct_field___value.html", "struct_field___value" ],
+    [ "Frame", "struct_frame.html", "struct_frame" ],
     [ "HelloWorld", "class_hello_world.html", null ],
     [ "Leitura", "class_leitura.html", null ],
     [ "Line_number_table", "struct_line__number__table.html", "struct_line__number__table" ],
     [ "Local_variable_table", "struct_local__variable__table.html", "struct_local__variable__table" ],
+    [ "LocalVariable", "struct_local_variable.html", "struct_local_variable" ],
     [ "method_info", "structmethod__info.html", "structmethod__info" ],
     [ "OrdenarArray", "class_ordenar_array.html", null ],
+    [ "struct_Array", "structstruct___array.html", "structstruct___array" ],
+    [ "structArrayList", "structstruct_array_list.html", "structstruct_array_list" ],
+    [ "StructFrameStack", "struct_struct_frame_stack.html", "struct_struct_frame_stack" ],
+    [ "structOperandStack", "structstruct_operand_stack.html", "structstruct_operand_stack" ],
     [ "TiposPrimitivos", "class_tipos_primitivos.html", null ]
 ];
