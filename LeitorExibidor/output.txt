@@ -1,0 +1,242 @@
+Magic Number:		0xcafebabe
+Minor Version:		0
+Major Version:		46 [1.2]
+Constant Pool Count:	31
+Access flags:		0x0020 [super ]
+This class:		cp_info #5 <SomaInt>
+Super class:		cp_info #6 <java/lang/Object>
+Interfaces Count:	0
+Fields Count:		0
+Methods Count:		3
+Attributes Count:	1
+
++Constant Pool:
+
+[01]CONSTANT_Methodref:		Class name:	cp_info #6 <java/lang/Object>
+				Name and type:	cp_info #17 <<init>()V>
+
+[02]CONSTANT_Methodref:		Class name:	cp_info #5 <SomaInt>
+				Name and type:	cp_info #18 <soma(II)I>
+
+[03]CONSTANT_Fieldref:		Class name:	cp_info #19 <java/lang/System>
+				Name and type:	cp_info #20 <outLjava/io/PrintStream;>
+
+[04]CONSTANT_Methodref:		Class name:	cp_info #21 <java/io/PrintStream>
+				Name and type:	cp_info #22 <println(I)V>
+
+[05]CONSTANT_Class:		Class Name:	cp_info #23 <SomaInt>
+
+[06]CONSTANT_Class:		Class Name:	cp_info #24 <java/lang/Object>
+
+[07]CONSTANT_Utf8		Length of byte array:	6
+				Length of string:	6
+				String:			<init>
+
+[08]CONSTANT_Utf8		Length of byte array:	3
+				Length of string:	3
+				String:			()V
+
+[09]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			Code
+
+[10]CONSTANT_Utf8		Length of byte array:	15
+				Length of string:	15
+				String:			LineNumberTable
+
+[11]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			soma
+
+[12]CONSTANT_Utf8		Length of byte array:	5
+				Length of string:	5
+				String:			(II)I
+
+[13]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			main
+
+[14]CONSTANT_Utf8		Length of byte array:	22
+				Length of string:	22
+				String:			([Ljava/lang/String;)V
+
+[15]CONSTANT_Utf8		Length of byte array:	10
+				Length of string:	10
+				String:			SourceFile
+
+[16]CONSTANT_Utf8		Length of byte array:	12
+				Length of string:	12
+				String:			SomaInt.java
+
+[17]CONSTANT_NameAndType	Name:		cp_info #7 <<init>>
+				Descriptor:	cp_info #8 <()V>
+
+[18]CONSTANT_NameAndType	Name:		cp_info #11 <soma>
+				Descriptor:	cp_info #12 <(II)I>
+
+[19]CONSTANT_Class:		Class Name:	cp_info #25 <java/lang/System>
+
+[20]CONSTANT_NameAndType	Name:		cp_info #26 <out>
+				Descriptor:	cp_info #27 <Ljava/io/PrintStream;>
+
+[21]CONSTANT_Class:		Class Name:	cp_info #28 <java/io/PrintStream>
+
+[22]CONSTANT_NameAndType	Name:		cp_info #29 <println>
+				Descriptor:	cp_info #30 <(I)V>
+
+[23]CONSTANT_Utf8		Length of byte array:	7
+				Length of string:	7
+				String:			SomaInt
+
+[24]CONSTANT_Utf8		Length of byte array:	16
+				Length of string:	16
+				String:			java/lang/Object
+
+[25]CONSTANT_Utf8		Length of byte array:	16
+				Length of string:	16
+				String:			java/lang/System
+
+[26]CONSTANT_Utf8		Length of byte array:	3
+				Length of string:	3
+				String:			out
+
+[27]CONSTANT_Utf8		Length of byte array:	21
+				Length of string:	21
+				String:			Ljava/io/PrintStream;
+
+[28]CONSTANT_Utf8		Length of byte array:	19
+				Length of string:	19
+				String:			java/io/PrintStream
+
+[29]CONSTANT_Utf8		Length of byte array:	7
+				Length of string:	7
+				String:			println
+
+[30]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			(I)V
+
++Interfaces
+
++Fields
+	Member Count:		0
+
++Methods
+	Member Count:		3
+
+	[0] <init>
+		Name:			cp_info #7 <<init>>
+		Descriptor:		cp_info #8 <()V>
+		Access flags:		0x0000 []
+
+		[0] Code
+			Attribute name index:		cp_info #9
+			Attribute length:		29
+		Bytecode:
+		-------------------------------------------
+			 0  aload_0
+			 1  invokespecial 1 <java/lang/Object.<init>>
+			 4  return
+		-------------------------------------------
+
+		Exception table:
+	----------------------------------------------------------------------
+	Nr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose
+	----------------------------------------------------------------------
+
+		Misc:
+		Maximum stack depth:		1
+		Maximum local variables:	1
+		Code length:			5
+
+		[0] LineNumberTable
+			Attribute name index:		cp_info #10
+			Attribute length:		6
+			Nr.	    start_pc	    line_number
+		-------------------------------------------------
+			0		0		1
+		-------------------------------------------------
+
+	[1] soma
+		Name:			cp_info #11 <soma>
+		Descriptor:		cp_info #12 <(II)I>
+		Access flags:		0x0009 [static public ]
+
+		[0] Code
+			Attribute name index:		cp_info #9
+			Attribute length:		28
+		Bytecode:
+		-------------------------------------------
+			 0  iload_0
+			 1  iload_1
+			 2  iadd
+			 3  ireturn
+		-------------------------------------------
+
+		Exception table:
+	----------------------------------------------------------------------
+	Nr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose
+	----------------------------------------------------------------------
+
+		Misc:
+		Maximum stack depth:		2
+		Maximum local variables:	2
+		Code length:			4
+
+		[0] LineNumberTable
+			Attribute name index:		cp_info #10
+			Attribute length:		6
+			Nr.	    start_pc	    line_number
+		-------------------------------------------------
+			0		0		3
+		-------------------------------------------------
+
+	[2] main
+		Name:			cp_info #13 <main>
+		Descriptor:		cp_info #14 <([Ljava/lang/String;)V>
+		Access flags:		0x0009 [static public ]
+
+		[0] Code
+			Attribute name index:		cp_info #9
+			Attribute length:		56
+		Bytecode:
+		-------------------------------------------
+			 0  sipush 0 200
+			 3  istore_1
+			 4  iload_1
+			 5  sipush 1 44
+			 8  invokestatic 2 <SomaInt.soma>
+			11  istore_1
+			12  getstatic 0 3
+			15  iload_1
+			16  invokevirtual 4 <java/io/PrintStream.println>
+			19  return
+		-------------------------------------------
+
+		Exception table:
+	----------------------------------------------------------------------
+	Nr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose
+	----------------------------------------------------------------------
+
+		Misc:
+		Maximum stack depth:		2
+		Maximum local variables:	2
+		Code length:			20
+
+		[0] LineNumberTable
+			Attribute name index:		cp_info #10
+			Attribute length:		18
+			Nr.	    start_pc	    line_number
+		-------------------------------------------------
+			0		0		6
+			1		4		7
+			2		12		9
+			3		19		10
+		-------------------------------------------------
+
++Attributes
+
+		[0] SourceFile
+			Attribute name index:		cp_info #15
+			Attribute length:		2
+			Source file name index:		cp_info #16 <SomaInt.java>

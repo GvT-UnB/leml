@@ -14,7 +14,7 @@
  * \return void
  *
  */
-EXTERN void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_poo, ClassFile *class_file);
+EXTERN void printAttributesInfo(attribute_info * attributes, u2 attributes_count, cp_info * constant_poo, ClassFile *class_file, FILE* output);
 
 /** \brief Principal funcao responsavel por imprimir o bytecode.
  *
@@ -46,7 +46,7 @@ EXTERN void selectPointer(ClassFile *class_file, int i, char *string, int option
  */
 
 
-EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool);
+EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool, FILE *output);
 /** \brief funcao que imprimi o bytecode do atributo code.
  *
  * \param ponteiro para o bytecode do atributo code, tamanho do bytecode e o ponteiro da constant pool.
@@ -54,7 +54,7 @@ EXTERN void printCode(u1 *code, u4 code_length,cp_info * constant_pool);
  *
  */
 
-EXTERN void getAccessFlag(int flag, char *string, int tipo);
+EXTERN void getAccessFlag(int flag, char *string, int tipo, FILE* output);
 
 
 /** \brief Funcao que printa no dispositivo padrao de saida os dados do method_info
@@ -65,7 +65,7 @@ EXTERN void getAccessFlag(int flag, char *string, int tipo);
  * \return EXTERN void
  *
  */
-EXTERN void printMethodInfo(method_info * methods, u2 methods_count, ClassFile *class_file);
+EXTERN void printMethodInfo(method_info * methods, u2 methods_count, ClassFile *class_file, FILE* output);
 
 /** \brief uncao que printa no dispositivo padrao de saida os dados do constant_pool
  *
@@ -75,5 +75,5 @@ EXTERN void printMethodInfo(method_info * methods, u2 methods_count, ClassFile *
  * \return EXTERN void
  *
  */
-EXTERN void printConstantPool(cp_info * constant_pool, u2 constant_pool_count, ClassFile *class_file);
+EXTERN void printConstantPool(cp_info * constant_pool, u2 constant_pool_count, ClassFile *class_file, FILE* file);
 #endif // CLASSMANAGER_H_INCLUDED
