@@ -361,25 +361,25 @@
 	"UserViewer.h"
 	"frameManager.h"
 
-1435310934 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\classmanager.c
+1435313371 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
 	"lib/instruction.h"
 
-1435298094 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\classmanager.h
+1435313371 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1434544849 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\ureader.h
 	<stdio.h>
 	"macros.h"
 
-1435298094 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\macros.h
+1435313371 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1434712320 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\exceptionmanager.h
 
-1435312295 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\instruction.h
+1435441168 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\instruction.h
 	"macros.h"
 
 1434544849 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\exceptionmanager.c
@@ -395,17 +395,17 @@
 1435284135 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
-1435311787 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\instruction.c
+1435517304 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\instruction.c
 	<stdio.h>
 	<string.h>
 	<math.h>
 	<stdint.h>
 	"lib/instruction.h"
 
-1435310850 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\main.c
+1435313371 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
-1435298094 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\jvmmanager.h
+1435313371 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\jvmmanager.h
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -415,13 +415,13 @@
 	"UserViewer.h"
 	"frameManager.h"
 
-1434544849 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\userviewer.h
+1435441168 c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\lib\userviewer.h
 	"macros.h"
 
 1434544851 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1435026287 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\userviewer.c
+1435441156 source:c:\users\jv\documents\unb\sb\jvm\trunk\leitorexibidor\userviewer.c
 	<stdio.h>
 	<string.h>
 	<math.h>

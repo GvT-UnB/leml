@@ -142,8 +142,9 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){
 		    aux_u4  = popOperandStack( frame->operandStack);
 		    if(strstr(mDesc, "[I") != NULL)
                 printf("**%d**",(u4 *) aux_u4);
-            else
+            else{
                 printf("%d", aux_u4);
+            }
 		} else if(strstr(mDesc, "F") != NULL) {//float
 		    aux_u4  = popOperandStack( frame->operandStack);
             aux_f = *((float*)&(aux_u4));
@@ -467,6 +468,8 @@ void doInstructionShift(Frame **cur_frame/*, u1 curOPCODE*/, u4 *curPC, StructFr
 
 void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 	u1 aux_u1, aux2_u1;
+	int8_t aux_i8;
+	int16_t aux_i16;
 	u2 aux_u2, index, branchoffset;
 	u4 aux_u4, aux2_u4, aux3_u4, aux4_u4, returnAddress;
 	u8 aux_u8, aux2_u8;
@@ -556,16 +559,14 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 		case OPCODE_bipush:
 			pc++;
-			aux_u1 = code[pc];
-			aux_u4 = aux_u1;
+			aux_i8 = code[pc];
+			aux_u4 = aux_i8;
 			pushOperandStack( frame->operandStack, aux_u4);
 			pc++;
 			break;
 		case OPCODE_sipush:
-			aux_u2 = (code[pc+1] << 8) | code[pc+2];
-			pc++;
-			pc++;
-			aux_u4 = aux_u2;
+			aux_i16 = (code[pc+1] << 8) | code[pc+2];
+			aux_u4 = aux_i16;
 			pushOperandStack( frame->operandStack, aux_u4);
 			pc++;
 			break;
