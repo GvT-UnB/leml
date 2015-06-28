@@ -78,9 +78,10 @@ public class bytePrint {
 				System.out.println(d4);
 				
 				System.out.println("Value of array variable data is :");
-				for(int i = 0; i < data.length; i++) {
+				for(int i = 0; i < 8; i++) {
 					System.out.println(data[i]);
 				}
+				System.out.println( data.length);
         }
 }
  
