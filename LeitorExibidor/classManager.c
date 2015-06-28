@@ -504,10 +504,14 @@ void setStaticFields(ClassFile * class_file){
 void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){
     FILE * dot_class;
     u1 * path = NULL;
+    u1 * full_file_name = (u1*)malloc(sizeof(u1)*(strlen(".class")+strlen(file_name)-1));
+    strcpy(full_file_name,file_name);
+    strcat(full_file_name,".class");
 //    printf("file_name: %s\n",file_name);
+//    printf("full_file_name: %s\n",full_file_name);
 //    printf("rootDirectory: %s\n",rootDirectory);
 
-    if((dot_class = fopen(file_name,"rb")) == NULL){ ///Verifica se o arquivo foi encontrado no diretorio raiz.
+    if((dot_class = fopen(full_file_name,"rb")) == NULL){ ///Verifica se o arquivo foi encontrado no diretorio raiz.
         path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(file_name)));
 //        printf("Antes de tudo\n");
         strcpy(path,rootDirectory);
@@ -543,7 +547,7 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
     class_file->class_full_name[class_file->class_full_name_length] = '\0'; ///Insere o caractere de fim de string.
 
 //    printf("O nome completo da classe lida eh: %s\n",class_file->class_full_name);
-    verifyClassName(file_name,class_file); ///Verifica se o .class tem o mesmo nome da classe delcarada nele.
+    //verifyClassName(file_name,class_file); ///Verifica se o .class tem o mesmo nome da classe delcarada nele.
     setStaticFields(class_file);
 }
 

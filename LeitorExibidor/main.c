@@ -18,15 +18,33 @@ int main(int argc, char *argv[]){
     u4 numberOfClasses = 0; ///Quantidade de objetos instanciados
     u4 numberOfClassesHeap = 0; ///Quantidade de classes na memoria
     u1 numberOfByteInstruction[MAX_INSTRUCTIONS]; ///Vetor que armazena a quantidade de bytes que cada instrução utiliza.
+    u1 * full_file_name = (u1*)malloc(sizeof(u1)*MAX_CLASSES_ON_HEAP);
 
-    getRootDirectory(*++argv);
+    //getRootDirectory(*++argv);
     //printf("PATH: %s\n",rootDirectory);
+    ///Trata o caso de passar o PATH completo
+    strcpy(full_file_name,argv[1]);
+    if(argc > 2){
+        for(int i = 2; i < argc-1;i++ ){ ///Necessaro pois para cada espaço em branco no PATH eh criado uma nova string.
+            strcat(full_file_name," ");
+            strcat(full_file_name,argv[i]);
+            //if(i < argc -2)
+              //  strcat(full_file_name," ");
+        }
 
+        if(strcmp(argv[argc - 1],"-print")){
+            strcat(full_file_name," ");
+            strcat(full_file_name,argv[argc - 1]);
+        }
+    }
+
+    //printf("PATH + NAME: %s\n\n\n\n",full_file_name);
     ///Carrega a classe informada por linha de comando no HEAP
-    classLoader(class_file+numberOfClassesHeap, *argv, &numberOfClassesHeap);
+    //classLoader(class_file+numberOfClassesHeap, *argv, &numberOfClassesHeap);
+    classLoader(class_file+numberOfClassesHeap, full_file_name, &numberOfClassesHeap);
     //classPrint(class_file+numberOfClassesHeap-1);
 
-    if(argc > 2 && !strcmp(*++argv,"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
+    if(argc > 2 && !strcmp(argv[argc - 1],"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
         classPrint(class_file+numberOfClassesHeap-1);
 
     fillNumberOfByteInstruction(&numberOfByteInstruction);
@@ -56,7 +74,7 @@ int main(int argc, char *argv[]){
     runJVM(cur_frame,&curPC,&numberOfByteInstruction, frameStackTop, class_file, &numberOfClassesHeap, &numberOfClasses, handler);
 
     ///Verifica se uma classe ja esta no HEAP
-        classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
+        //classLoader(class_file+numberOfClassesHeap, "tutorial/HelloWorld.class", &numberOfClassesHeap);
 /*            printf("[1] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
             classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -64,18 +82,18 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
+        //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 
-        classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
+        //classLoader(class_file+numberOfClassesHeap, "tutorial/OrdenarArray.class", &numberOfClassesHeap);
 /*        classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
+        //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 
-        classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
+       // classLoader(class_file+numberOfClassesHeap, "tutorial/Teste.class", &numberOfClassesHeap);
  /*           printf("[2] numberOfClassesHeap - 1 = %d\n",(numberOfClassesHeap-1));
         classPrint(class_file+numberOfClassesHeap-1);
             printf("---------------------------------------------------------------------------------------\n");
@@ -83,7 +101,7 @@ int main(int argc, char *argv[]){
             printf("---------------------------------------------------------------------------------------\n");
             printf("---------------------------------------------------------------------------------------\n");
             system("pause");*/
-        createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
+        //createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
 /*
     ///Carrega nova classe no HEAP
     //u1 * className = "tutorial/OrdenarArray"; ///Pega o nome da Classe.
