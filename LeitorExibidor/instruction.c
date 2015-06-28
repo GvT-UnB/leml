@@ -120,8 +120,8 @@ void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){
             aux_u8 = aux_u8 |aux2_u8;
             printf("%lld", aux_u8);
 		} else if(strstr(mDesc, "D") != NULL) {//double
-		    aux_u4  = popOperandStack( frame->operandStack);//low
-		    aux2_u4 = popOperandStack( frame->operandStack);//high
+		    aux2_u4  = popOperandStack( frame->operandStack);//low
+		    aux_u4 = popOperandStack( frame->operandStack);//high
 		    aux_u8 = aux2_u4;
 		    aux_u8 <<=32;
 		    aux2_u8 = (unsigned) aux_u4;
