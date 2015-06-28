@@ -2,19 +2,9 @@ public class bytePrint {
  
         public static void main(String[] args) {
                
-                /*
-                 * byte is smallest Java integer type.
-                 * byte is 8 bit signed type ranges from –128 to 127.
-                 * byte is mostly used when dealing with raw data like reading a
-                 * binary file.
-                 *
-                 * Declare byte varibale as below
-                 *
-                 * byte <variable name> = <default value>;
-                 *
-                 * here assigning default value is optional.
-                 */
-                 
+              
+                 long data[] = new long[] {9123372036854775808L,4000000L,30000L,1L,-1L,30000L,4000000L,-9123372036854775808L };
+				 
                  byte b1 = 100;
                  byte b2 = 20;
 				 byte b3 = -20;
@@ -40,6 +30,8 @@ public class bytePrint {
 				 double d3 = -20.2;
 				 double d4 = -123.4;
                  
+				
+				 
                 System.out.println("Value of byte variable b1 is :");
 				System.out.println(b1);
                 System.out.println("Value of byte variable b2 is :");
@@ -84,6 +76,11 @@ public class bytePrint {
 				System.out.println(d3);
                 System.out.println("Value of double variable d4 is :");
 				System.out.println(d4);
+				
+				System.out.println("Value of array variable data is :");
+				for(int i = 0; i < data.length; i++) {
+					System.out.println(data[i]);
+				}
         }
 }
  
