@@ -3,7 +3,7 @@ public class bytePrint {
         public static void main(String[] args) {
                
               
-                 long data[] = new long[] {9123372036854775808L,4000000L,30000L,1L,-1L,30000L,4000000L,-9123372036854775808L };
+                 int data[] = new int[] {1,2,3,4,-5,6,7,-8 };
 				 
                  byte b1 = 100;
                  byte b2 = 20;
@@ -78,7 +78,7 @@ public class bytePrint {
 				System.out.println(d4);
 				
 				System.out.println("Value of array variable data is :");
-				for(int i = 0; i < 8; i++) {
+				for(int i = 0; i < data.length; i++) {
 					System.out.println(data[i]);
 				}
 				System.out.println( data.length);

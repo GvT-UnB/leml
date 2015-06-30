@@ -495,8 +495,9 @@ typedef struct{
     \brief structs referente aos componentes do array.
 */
 typedef struct struct_Array{
-    void *data; ///array
     int length;
+    void *data; ///array
+    int teste;
  }struct_Array;
 
 /*! \struct   structArrayList
