@@ -2312,13 +2312,21 @@ void doInstructionArray(Frame * frame, u4 pc, u1 fWide, u1 * code){
 
         /// Operacoes de 64 bits
 		case OPCODE_laload: ///Load long from array
-		case OPCODE_daload: ///Load double from array
 		    index = popOperandStack(frame->operandStack);
 		    array = popOperandStack(frame->operandStack);
 		    value_u8 = ((u8*)array->data)[index]; ///conversao de void par     64 bits
 		    value_u4 = (u4)(value_u8 & 0xFFFFFFFF); ///Pega a segunda metade do numero de 64 bits para colocar na pilha
 		    pushOperandStack(frame->operandStack, value_u4);
 		    value_u4 = (u4)(value_u8 >> 32); ///Pega a primeira metade do numero de 64 bits para colocar na pilha
+		    pushOperandStack(frame->operandStack, value_u4);
+		    break;
+		case OPCODE_daload: ///Load double from array
+		    index = popOperandStack(frame->operandStack);
+		    array = popOperandStack(frame->operandStack);
+		    value_u8 = ((u8*)array->data)[index]; ///conversao de void par     64 bits
+		    value_u4 = (u4)(value_u8 >> 32); ///Pega a segunda metade do numero de 64 bits para colocar na pilha
+		    pushOperandStack(frame->operandStack, value_u4);
+		    value_u4 = (u4)(value_u8 & 0xFFFFFFFF); ///Pega a primeira metade do numero de 64 bits para colocar na pilha
 		    pushOperandStack(frame->operandStack, value_u4);
 			break;
 
