@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1435751143 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1435752698 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
-1435721480 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
+1435752405 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
 	<stdint.h>
 
 1434174419 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\ureader.h
@@ -18,7 +18,7 @@
 	"lib/exceptionManager.h"
 	"lib/instruction.h"
 
-1435696766 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
+1435752735 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\classmanager.h
 	"uReader.h"
 
 1432505183 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\exceptionmanager.c
@@ -26,7 +26,7 @@
 	<stdio.h>
 	<stdarg.h>
 
-1435726235 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
+1435752387 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\exceptionmanager.h
 
 1433007657 source:c:\users\jv\documents\sb\leitor exibidor\trunk\leitorexibidor\exceptionmanager.c
 	"lib/exceptionManager.h"
@@ -240,12 +240,12 @@
 	<stdint.h>
 	"lib/UserViewer.h"
 
-1435724286 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
+1435752590 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\framemanager.c
 	"lib/frameManager.h"
 	<stdio.h>
 	<stdlib.h>
 
-1435697270 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
+1435752735 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
 1434174512 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\utype.h
@@ -258,7 +258,7 @@
 1434742041 c:\users\eliandra\documents\sb\jvm\trunk\leitorexibidor\lib\framemanager.h
 	"macros.h"
 
-1435296323 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
+1435752387 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\jvmmanager.h
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -292,7 +292,7 @@
 	<stdint.h>
 	"lib/instruction.h"
 
-1435718682 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
+1435752387 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\instruction.h
 	"macros.h"
 
 1435283281 source:c:\users\jv\documents\unb\sb\leitor exibidor\trunk\leitorexibidor\classmanager.c

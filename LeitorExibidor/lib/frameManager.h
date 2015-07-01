@@ -3,7 +3,7 @@
 #ifdef FRAMEMANAGER_SERV
 #define EXTERN
 #else
-#define EXTERN extern
+#define EXTERN
 #endif
 
 #include "macros.h"

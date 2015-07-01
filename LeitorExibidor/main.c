@@ -165,8 +165,7 @@ void pushFrameStack(StructFrameStack *frameStackTop, Frame * frame){
 //    nodeFrame->next = *frameStackTop;
 //    *frameStackTop = nodeFrame;
     if (frameStackTop->stackTop == FRAME_STACK_MAX-1) {
-		printf(" Erro: Pilha sem memoria.\n");
-		exit(1);
+        throwException(INSUFFICIENT_MEMORY,INSUFFICIENT_MEMORY_MSG);
 	}
 	frameStackTop->frame[++(frameStackTop->stackTop)] = *frame;
 //printf("Push Frame: %s\n",frameStackTop->frame[frameStackTop->stackTop].constant_pool[frameStackTop->frame[frameStackTop->stackTop].methods->name_index].UTF8.bytes);
@@ -202,8 +201,8 @@ Frame * popFrameStack(StructFrameStack *frameStackTop){
 //    return currentframe;
 
 if (frameStackTop->stackTop < 0) {
-		printf(" Erro: Acesso a posicao invalida da pilha.\n\n");
-		exit(1);
+        u1 * stackName = "FrameStack";
+        throwException(POP_IN_A_EMPTY_STACK,POP_IN_A_EMPTY_STACK_MSG);
 	}
 	Frame * currentframe = (Frame*)malloc(sizeof(Frame));///Instancia um novo frame
 	*currentframe = frameStackTop->frame[(frameStackTop->stackTop)];
