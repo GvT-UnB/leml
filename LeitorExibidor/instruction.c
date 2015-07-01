@@ -632,6 +632,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 			break;
 		case OPCODE_bipush:
 			pc++;
+
 			aux_i8 = code[pc];
 			aux_u4 = aux_i8;
 			pushOperandStack( frame->operandStack, aux_u4);
@@ -1812,7 +1813,7 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code){
     u1 byte1, byte2, byte3, byte4;
     u4 highTableS, lowTableS, defaultTableS, valTableS, opcodeAddress, targetAddress, *tableSwitch;
-    tableSwitch = (u4*)malloc(sizeof(u4)); ///Aloca memória para a tabela(vetor) do switch
+
     opcodeAddress = *curPC;
     while((*curPC + 1)%4 != 0){ ///Loop para o preenchimento do padding <0-3 bytes>
         (*curPC)++;
@@ -1838,7 +1839,7 @@ void instr_tableSwitch(Frame *frame, u4 *curPC, u1 * code){
     highTableS = (byte1 << 24) | (byte2 << 16) | (byte3 << 8) | byte4;
 
     valTableS = popOperandStack(frame->operandStack);
-
+    tableSwitch = (u4*)malloc((highTableS-lowTableS+1)*sizeof(u4));///Aloca memória para a tabela(vetor) do switch
     for(int i=0; i < highTableS-lowTableS+1; i++){ /// Preenche a tabela (vetor) com os offsets de cada case
         byte1 = code[(*curPC)++];
         byte2 = code[(*curPC)++];
