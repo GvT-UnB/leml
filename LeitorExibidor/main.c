@@ -81,10 +81,9 @@ void runJVM(Frame * cur_frame,u4 * curPC, u1 * numberOfByteInstruction, StructFr
     //cur_frame->operandStack->next = NULL;
     u4 attributeCodeIndex = findAttributeCodeIndex(cur_frame->methods->attributes,cur_frame->methods->attributes_count); ///Localiza o indice do attriute Code
     while(cur_frame->methods->attributes[attributeCodeIndex].Code.code[*curPC] && *curPC != NOT_RETURN){ ///Enquanto o code nao for NULL, repete
-//        printf("\t\t\tPC: %d\n",*curPC);
-        printf("\tMETODO ATUAL: %s\n",cur_frame->handler->classRef->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
+        //printf("\tMETODO ATUAL: %s\n",cur_frame->handler->classRef->constant_pool[cur_frame->methods->name_index].UTF8.bytes);
         curOPCODE = getOpcode(&cur_frame->methods->attributes[attributeCodeIndex], *curPC); ///Procura pelo OPCODE apontado por curPC.
-        printf("\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
+        //printf("\tOPCODE: %d\tPC: %d\n", curOPCODE, *curPC);
         if(curOPCODE == OPCODE_wide){
             flagIsWide = 1; ///Seta a flag avisando que a proxima instrucao eh do tipo WIDE.
             ///Incrementa PC

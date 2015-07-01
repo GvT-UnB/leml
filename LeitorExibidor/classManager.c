@@ -506,7 +506,7 @@ void setStaticFields(ClassFile * class_file){
 void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){
     FILE * dot_class;
     u1 * path = NULL;
-    u1 * full_file_name = (u1*)malloc(sizeof(u1)*(strlen(".class")+strlen(file_name)));
+    u1 * full_file_name = (u1*)malloc(sizeof(u1)*(strlen(".class")+strlen(file_name)+1));
     strcpy(full_file_name,file_name);
     strcat(full_file_name,".class");
 //    printf("file_name: %s\n",file_name);

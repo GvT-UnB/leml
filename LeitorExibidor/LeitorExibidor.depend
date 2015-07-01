@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1435750075 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
+1435751143 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\main.c
 	"lib/jvmManager.h"
 
 1435721480 c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\lib\macros.h
@@ -12,7 +12,7 @@
 1432305850 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\ureader.c
 	"lib/uReader.h"
 
-1435750075 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
+1435751102 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\classmanager.c
 	<stdio.h>
 	"lib/classManager.h"
 	"lib/exceptionManager.h"
@@ -285,7 +285,7 @@
 	<stdint.h>
 	"lib/macros.h"
 
-1435724286 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
+1435750393 source:c:\users\diogo\documents\unb\software básico\leitor - exibidor\trunk\leitorexibidor\instruction.c
 	<stdio.h>
 	<string.h>
 	<math.h>
