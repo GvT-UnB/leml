@@ -31,7 +31,7 @@ EXTERN void throwException(int exception_code, char * string_error, ...);
 #define CLASS_NOT_LOADED        8
 
 /**< Tabela de mensagens de erros referentes aos diferentes codigos de erro */
-#define OPEN_FILE_ERROR_MSG "Nao foi possivel abrir o arquivo %s\n", path
+#define OPEN_FILE_ERROR_MSG "Nao foi possivel abrir o arquivo %s\n", full_file_name
 #define NOT_BYTECODE_JAVA_MSG "O arquivo informado nao eh um bytecode java\n"
 #define NOT_JAVA_2_VERSION_MSG "O bytecode informado nao eh compativel com a JVM 1.2\n"
 #define CLASS_DIFFER_FILE_NAME_MSG "O arquivo %s nao define a classe principal %s\n", className, getClassName(class_file)

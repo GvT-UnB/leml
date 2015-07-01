@@ -506,7 +506,7 @@ void setStaticFields(ClassFile * class_file){
 void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesHeap){
     FILE * dot_class;
     u1 * path = NULL;
-    u1 * full_file_name = (u1*)malloc(sizeof(u1)*(strlen(".class")+strlen(file_name)-1));
+    u1 * full_file_name = (u1*)malloc(sizeof(u1)*(strlen(".class")+strlen(file_name)));
     strcpy(full_file_name,file_name);
     strcat(full_file_name,".class");
 //    printf("file_name: %s\n",file_name);
@@ -517,15 +517,20 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
         throwException(CLASS_NOT_LOADED,CLASS_NOT_LOADED_MSG); ///Verifica se o nome do arquivo contem .class
 
     if((dot_class = fopen(full_file_name,"rb")) == NULL){ ///Verifica se o arquivo foi encontrado no diretorio raiz.
-        path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(full_file_name)));
-//        printf("Antes de tudo\n");
-        strcpy(path,rootDirectory);
-//        printf("PATH: %s\n",path);
-        strcat(path,full_file_name);///Adiciona o PATH para o nome do arquivo.
-//        printf("FULL PATH: %s\n",path);
-        if((dot_class = fopen(path,"rb")) == NULL){
-            throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG); ///Verifica se o arquivo foi encontrado
+        if(rootDirectory){
+            path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(full_file_name)));
+            //printf("Antes de tudo\n");
+            strcpy(path,rootDirectory);
+            //printf("PATH: %s\n",path);
+            strcat(path,full_file_name);///Adiciona o PATH para o nome do arquivo.
+            //printf("FULL PATH: %s\n",path);
+            if((dot_class = fopen(path,"rb")) == NULL){
+                throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG); ///Verifica se o arquivo foi encontrado
+            }
+        }else{
+            throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG); ///Informa que o arquivo nao pode ser aberto.
         }
+
     }
     //printf("Lendo o bytecode Java para a memoria...\n");
     //classRead(dot_class,class_file+(*numberOfClassesHeap)); ///Carrega para o HEAP a classe

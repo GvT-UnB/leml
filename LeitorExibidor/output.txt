@@ -1,175 +1,145 @@
 Magic Number:		0xcafebabe
 Minor Version:		0
 Major Version:		46 [1.2]
-Constant Pool Count:	42
+Constant Pool Count:	34
 Access flags:		0x0020 [super ]
-This class:		cp_info #12 <TesteInvoke>
-Super class:		cp_info #13 <java/lang/Object>
+This class:		cp_info #8 <Teste>
+Super class:		cp_info #9 <java/lang/Object>
 Interfaces Count:	0
-Fields Count:		1
-Methods Count:		2
+Fields Count:		0
+Methods Count:		3
 Attributes Count:	1
 
 +Constant Pool:
 
-[01]CONSTANT_Methodref:		Class name:	cp_info #13 <java/lang/Object>
-				Name and type:	cp_info #24 <<init>()V>
+[01]CONSTANT_Methodref:		Class name:	cp_info #9 <java/lang/Object>
+				Name and type:	cp_info #20 <<init>()V>
 
-[02]CONSTANT_Long		HIGH_BYTES:		0x00000000
-				LOW_BYTES:		0x03e8
-				Long:			1000
+[02]CONSTANT_Float		Bytes:	0x42c80000
+				Float:	100.0000
 
-[03](large numeric continued)
+[03]CONSTANT_Double		High bytes:		0x408f4000
+				Low bytes:		0x00000000
+				Double:			1000.000000
 
-[04]CONSTANT_Class:		Class Name:	cp_info #25 <SomaLong>
+[04](large numeric continued)
 
-[05]CONSTANT_Methodref:		Class name:	cp_info #4 <SomaLong>
-				Name and type:	cp_info #24 <<init>()V>
+[05]CONSTANT_Methodref:		Class name:	cp_info #8 <Teste>
+				Name and type:	cp_info #21 <soma(II)I>
 
-[06]CONSTANT_Fieldref:		Class name:	cp_info #12 <TesteInvoke>
-				Name and type:	cp_info #26 <somaLongLSomaLong;>
+[06]CONSTANT_Fieldref:		Class name:	cp_info #22 <java/lang/System>
+				Name and type:	cp_info #23 <outLjava/io/PrintStream;>
 
-[07]CONSTANT_Long		HIGH_BYTES:		0x00000000
-				LOW_BYTES:		0x01f4
-				Long:			500
+[07]CONSTANT_Methodref:		Class name:	cp_info #24 <java/io/PrintStream>
+				Name and type:	cp_info #25 <print(I)V>
 
-[08](large numeric continued)
+[08]CONSTANT_Class:		Class Name:	cp_info #26 <Teste>
 
-[09]CONSTANT_Methodref:		Class name:	cp_info #4 <SomaLong>
-				Name and type:	cp_info #27 <soma(JJ)J>
+[09]CONSTANT_Class:		Class Name:	cp_info #27 <java/lang/Object>
 
-[10]CONSTANT_Fieldref:		Class name:	cp_info #28 <java/lang/System>
-				Name and type:	cp_info #29 <outLjava/io/PrintStream;>
-
-[11]CONSTANT_Methodref:		Class name:	cp_info #30 <java/io/PrintStream>
-				Name and type:	cp_info #31 <println(J)V>
-
-[12]CONSTANT_Class:		Class Name:	cp_info #32 <TesteInvoke>
-
-[13]CONSTANT_Class:		Class Name:	cp_info #33 <java/lang/Object>
-
-[14]CONSTANT_Utf8		Length of byte array:	8
-				Length of string:	8
-				String:			somaLong
-
-[15]CONSTANT_Utf8		Length of byte array:	10
-				Length of string:	10
-				String:			LSomaLong;
-
-[16]CONSTANT_Utf8		Length of byte array:	6
+[10]CONSTANT_Utf8		Length of byte array:	6
 				Length of string:	6
 				String:			<init>
 
-[17]CONSTANT_Utf8		Length of byte array:	3
+[11]CONSTANT_Utf8		Length of byte array:	3
 				Length of string:	3
 				String:			()V
 
-[18]CONSTANT_Utf8		Length of byte array:	4
+[12]CONSTANT_Utf8		Length of byte array:	4
 				Length of string:	4
 				String:			Code
 
-[19]CONSTANT_Utf8		Length of byte array:	15
+[13]CONSTANT_Utf8		Length of byte array:	15
 				Length of string:	15
 				String:			LineNumberTable
 
-[20]CONSTANT_Utf8		Length of byte array:	4
-				Length of string:	4
-				String:			main
-
-[21]CONSTANT_Utf8		Length of byte array:	22
-				Length of string:	22
-				String:			([Ljava/lang/String;)V
-
-[22]CONSTANT_Utf8		Length of byte array:	10
-				Length of string:	10
-				String:			SourceFile
-
-[23]CONSTANT_Utf8		Length of byte array:	16
-				Length of string:	16
-				String:			TesteInvoke.java
-
-[24]CONSTANT_NameAndType	Name:		cp_info #16 <<init>>
-				Descriptor:	cp_info #17 <()V>
-
-[25]CONSTANT_Utf8		Length of byte array:	8
-				Length of string:	8
-				String:			SomaLong
-
-[26]CONSTANT_NameAndType	Name:		cp_info #14 <somaLong>
-				Descriptor:	cp_info #15 <LSomaLong;>
-
-[27]CONSTANT_NameAndType	Name:		cp_info #34 <soma>
-				Descriptor:	cp_info #35 <(JJ)J>
-
-[28]CONSTANT_Class:		Class Name:	cp_info #36 <java/lang/System>
-
-[29]CONSTANT_NameAndType	Name:		cp_info #37 <out>
-				Descriptor:	cp_info #38 <Ljava/io/PrintStream;>
-
-[30]CONSTANT_Class:		Class Name:	cp_info #39 <java/io/PrintStream>
-
-[31]CONSTANT_NameAndType	Name:		cp_info #40 <println>
-				Descriptor:	cp_info #41 <(J)V>
-
-[32]CONSTANT_Utf8		Length of byte array:	11
-				Length of string:	11
-				String:			TesteInvoke
-
-[33]CONSTANT_Utf8		Length of byte array:	16
-				Length of string:	16
-				String:			java/lang/Object
-
-[34]CONSTANT_Utf8		Length of byte array:	4
+[14]CONSTANT_Utf8		Length of byte array:	4
 				Length of string:	4
 				String:			soma
 
-[35]CONSTANT_Utf8		Length of byte array:	5
+[15]CONSTANT_Utf8		Length of byte array:	5
 				Length of string:	5
-				String:			(JJ)J
+				String:			(II)I
 
-[36]CONSTANT_Utf8		Length of byte array:	16
+[16]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			main
+
+[17]CONSTANT_Utf8		Length of byte array:	22
+				Length of string:	22
+				String:			([Ljava/lang/String;)V
+
+[18]CONSTANT_Utf8		Length of byte array:	10
+				Length of string:	10
+				String:			SourceFile
+
+[19]CONSTANT_Utf8		Length of byte array:	10
+				Length of string:	10
+				String:			Teste.java
+
+[20]CONSTANT_NameAndType	Name:		cp_info #10 <<init>>
+				Descriptor:	cp_info #11 <()V>
+
+[21]CONSTANT_NameAndType	Name:		cp_info #14 <soma>
+				Descriptor:	cp_info #15 <(II)I>
+
+[22]CONSTANT_Class:		Class Name:	cp_info #28 <java/lang/System>
+
+[23]CONSTANT_NameAndType	Name:		cp_info #29 <out>
+				Descriptor:	cp_info #30 <Ljava/io/PrintStream;>
+
+[24]CONSTANT_Class:		Class Name:	cp_info #31 <java/io/PrintStream>
+
+[25]CONSTANT_NameAndType	Name:		cp_info #32 <print>
+				Descriptor:	cp_info #33 <(I)V>
+
+[26]CONSTANT_Utf8		Length of byte array:	5
+				Length of string:	5
+				String:			Teste
+
+[27]CONSTANT_Utf8		Length of byte array:	16
+				Length of string:	16
+				String:			java/lang/Object
+
+[28]CONSTANT_Utf8		Length of byte array:	16
 				Length of string:	16
 				String:			java/lang/System
 
-[37]CONSTANT_Utf8		Length of byte array:	3
+[29]CONSTANT_Utf8		Length of byte array:	3
 				Length of string:	3
 				String:			out
 
-[38]CONSTANT_Utf8		Length of byte array:	21
+[30]CONSTANT_Utf8		Length of byte array:	21
 				Length of string:	21
 				String:			Ljava/io/PrintStream;
 
-[39]CONSTANT_Utf8		Length of byte array:	19
+[31]CONSTANT_Utf8		Length of byte array:	19
 				Length of string:	19
 				String:			java/io/PrintStream
 
-[40]CONSTANT_Utf8		Length of byte array:	7
-				Length of string:	7
-				String:			println
+[32]CONSTANT_Utf8		Length of byte array:	5
+				Length of string:	5
+				String:			print
 
-[41]CONSTANT_Utf8		Length of byte array:	4
+[33]CONSTANT_Utf8		Length of byte array:	4
 				Length of string:	4
-				String:			(J)V
+				String:			(I)V
 
 +Interfaces
 
 +Fields
-	Member Count:		1
-
-	[0] somaLong	Name:				cp_info #14 <somaLong>
-			Descriptor:			cp_info #15 <LSomaLong;>
-			Access flags:			0x000a [static private ]
+	Member Count:		0
 
 +Methods
-	Member Count:		2
+	Member Count:		3
 
 	[0] <init>
-		Name:			cp_info #16 <<init>>
-		Descriptor:		cp_info #17 <()V>
+		Name:			cp_info #10 <<init>>
+		Descriptor:		cp_info #11 <()V>
 		Access flags:		0x0000 []
 
 		[0] Code
-			Attribute name index:		cp_info #18
+			Attribute name index:		cp_info #12
 			Attribute length:		29
 		Bytecode:
 		-------------------------------------------
@@ -189,39 +159,27 @@ Attributes Count:	1
 		Code length:			5
 
 		[0] LineNumberTable
-			Attribute name index:		cp_info #19
+			Attribute name index:		cp_info #13
 			Attribute length:		6
 			Nr.	    start_pc	    line_number
 		-------------------------------------------------
-			0		0		2
+			0		0		1
 		-------------------------------------------------
 
-	[1] main
-		Name:			cp_info #20 <main>
-		Descriptor:		cp_info #21 <([Ljava/lang/String;)V>
+	[1] soma
+		Name:			cp_info #14 <soma>
+		Descriptor:		cp_info #15 <(II)I>
 		Access flags:		0x0009 [static public ]
 
 		[0] Code
-			Attribute name index:		cp_info #18
-			Attribute length:		74
+			Attribute name index:		cp_info #12
+			Attribute length:		28
 		Bytecode:
 		-------------------------------------------
-			 0  ldc2_w 0 2
-			 3  lstore_1
-			 4  new 0 4
-			 7  dup
-			 8  invokespecial 5 <SomaLong.<init>>
-			11  putstatic 0 6
-			14  getstatic 0 6
-			17  pop
-			18  lload_1
-			19  ldc2_w 0 7
-			22  invokestatic 9 <SomaLong.soma>
-			25  lstore_1
-			26  getstatic 0 10
-			29  lload_1
-			30  invokevirtual 11 <java/io/PrintStream.println>
-			33  return
+			 0  iload_0
+			 1  iload_1
+			 2  iadd
+			 3  ireturn
 		-------------------------------------------
 
 		Exception table:
@@ -230,25 +188,79 @@ Attributes Count:	1
 	----------------------------------------------------------------------
 
 		Misc:
-		Maximum stack depth:		4
-		Maximum local variables:	3
-		Code length:			34
+		Maximum stack depth:		2
+		Maximum local variables:	2
+		Code length:			4
 
 		[0] LineNumberTable
-			Attribute name index:		cp_info #19
-			Attribute length:		22
+			Attribute name index:		cp_info #13
+			Attribute length:		6
 			Nr.	    start_pc	    line_number
 		-------------------------------------------------
-			0		0		5
-			1		4		7
-			2		14		8
-			3		26		10
-			4		33		11
+			0		0		3
+		-------------------------------------------------
+
+	[2] main
+		Name:			cp_info #16 <main>
+		Descriptor:		cp_info #17 <([Ljava/lang/String;)V>
+		Access flags:		0x0009 [static public ]
+
+		[0] Code
+			Attribute name index:		cp_info #12
+			Attribute length:		95
+		Bytecode:
+		-------------------------------------------
+			 0  ldc 2
+			 2  fstore_2
+			 3  ldc2_w 0 3
+			 6  dstore_3
+			 7  bipush 20
+			 9  istore 5
+			11  iconst_0
+			12  istore_1
+			13  iload_1
+			14  bipush 10
+			16  if_icmpge 0 18
+			19  iload 5
+			21  bipush 10
+			23  invokestatic 5 <Teste.soma>
+			26  istore 5
+			28  iinc 1 1
+			31  goto 255 238
+			34  getstatic 0 6
+			37  iload 5
+			39  invokevirtual 7 <java/io/PrintStream.print>
+			42  return
+		-------------------------------------------
+
+		Exception table:
+	----------------------------------------------------------------------
+	Nr.  |  start_pc  |  end_pc  |  handler_pc  |  catch_type  |  verbose
+	----------------------------------------------------------------------
+
+		Misc:
+		Maximum stack depth:		2
+		Maximum local variables:	6
+		Code length:			43
+
+		[0] LineNumberTable
+			Attribute name index:		cp_info #13
+			Attribute length:		34
+			Nr.	    start_pc	    line_number
+		-------------------------------------------------
+			0		0		7
+			1		3		8
+			2		7		9
+			3		11		10
+			4		19		11
+			5		28		10
+			6		34		13
+			7		42		14
 		-------------------------------------------------
 
 +Attributes
 
 		[0] SourceFile
-			Attribute name index:		cp_info #22
+			Attribute name index:		cp_info #18
 			Attribute length:		2
-			Source file name index:		cp_info #23 <TesteInvoke.java>
+			Source file name index:		cp_info #19 <Teste.java>

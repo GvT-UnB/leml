@@ -29,10 +29,7 @@ int main(int argc, char *argv[]){
         }
     }
 
-    ///Salva na memoria o PATH do arquivo de entrada.
-    getRootDirectory(full_file_name);
-    //printf("PATH: %s\n",rootDirectory);
-    //printf("PATH + NAME: %s\n\n\n\n",full_file_name);
+//    printf("PATH + NAME: %s\n\n\n\n",full_file_name);
 
     ///Carrega a classe informada por linha de comando no HEAP
     //classLoader(class_file+numberOfClassesHeap, *argv, &numberOfClassesHeap);
@@ -42,7 +39,12 @@ int main(int argc, char *argv[]){
     if(argc > 2 && !strcmp(argv[argc - 1],"-print")) ///Verifica se a flag para printar o .class foi passado pela linha de comando.
         classPrint(class_file+numberOfClassesHeap-1);
 
+    ///Carrega o vetor com o incremento de PC para cada instrucao
     fillNumberOfByteInstruction(&numberOfByteInstruction);
+
+    ///Salva na memoria o PATH do arquivo de entrada.
+    getRootDirectory(full_file_name);
+    //printf("PATH: %s\n",rootDirectory);
 
     ///Instancia um novo Objeto.
     createNewObject(handler,&numberOfClasses,class_file+numberOfClassesHeap-1, frameStackTop,&numberOfByteInstruction);
@@ -262,13 +264,15 @@ int createMainFrame(ClassHandler * handler,u4 curPC,StructFrameStack *frameStack
 void getRootDirectory(u1 * file_name){
     int i;
     int fileNameLength = strlen(file_name);
+    char tmp_file_name[fileNameLength];
+    strcpy(tmp_file_name,file_name);
 
-    if(strchr(file_name,'/') || strchr(file_name,'\\')){ ///Verifica se existe o caracter '/' no nome do arquivo
+    if(strchr(tmp_file_name,'/') || strchr(tmp_file_name,'\\')){ ///Verifica se existe o caracter '/' no nome do arquivo
         for(i = fileNameLength; i >= 0; i--){
-            if(file_name[i] == '/' || file_name[i] == '\\'){ ///Procura a posicao do ultimo '/' ou '\' no nome do arquivo
+            if(tmp_file_name[i] == '/' || tmp_file_name[i] == '\\'){ ///Procura a posicao do ultimo '/' ou '\' no nome do arquivo
                 rootDirectory = (u1 *)malloc((i+1) * sizeof(u1));
                 for(int j = 0; j <= i; j++ ){
-                    rootDirectory[j] = file_name[j]; ///Copia os caracteres do PATH para a variavel global
+                    rootDirectory[j] = tmp_file_name[j]; ///Copia os caracteres do PATH para a variavel global
                 }
                 rootDirectory[i+1] = '\0'; ///Insere o caractere de fimd e string.
                 break;
