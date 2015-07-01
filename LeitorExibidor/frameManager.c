@@ -4,6 +4,8 @@
 #include <stdlib.h>
 
 void newObject(ClassHandler * handler, ClassFile * class_file){
+    char *fType;
+//    char *fname;
     //handler = (ClassHandler *)malloc(sizeof(ClassHandler));
     handler->classRef = class_file;
 
@@ -11,6 +13,7 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
     handler->arrayList->next = NULL;
 
     handler->fields = (field_info *)malloc(handler->classRef->fields_count * sizeof(field_info));
+    handler->field_value = (Field_Value *)malloc(handler->classRef->fields_count * sizeof(Field_Value));
 
     for(int i = 0; i < handler->classRef->fields_count; i++){
         handler->fields[i].access_flags = handler->classRef->fields[i].access_flags;
@@ -21,6 +24,24 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
         handler->fields[i].attributes = (attribute_info *)malloc(handler->fields[i].attributes_count * sizeof(attribute_info));
         copyAttributesInfo(handler->fields[i].attributes,handler->fields[i].attributes_count, handler->classRef->fields[i].attributes, handler->classRef->constant_pool); ///Chama a função para copiar as informações dos atributos
         //printAttributesInfo(handler->fields[i].attributes, handler->fields[i].attributes_count, handler->classRef->constant_pool, handler->classRef);
+         if(handler->classRef->fields[i].access_flags & ACC_STATIC){
+            fType = handler->classRef->constant_pool[handler->classRef->fields[i].descriptor_index].UTF8.bytes;
+            handler->classRef->field_value[i].field_index = i;
+//            fname = handler->classRef->constant_pool[handler->classRef->fields[i].name_index].UTF8.bytes;
+//            printf("\nFIELD_NAME: %s\n",fname);
+//            printf("FIELD_INDEX: %d\n", i);
+            if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+                handler->classRef->field_value[i].U4.value = 0;
+//                printf("Referencia\n");
+            } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+                handler->classRef->field_value[i].U8.high = 0;
+                handler->classRef->field_value[i].U8.low = 0;
+//                printf("double ou long\n");
+            }else{
+//                printf("u4\n");
+                handler->classRef->field_value[i].U4.value = 0;
+            }
+        }
     }/*
     printFields(handler->classRef->fields_count, handler->fields);
     for(int i = 0; i < handler->classRef->fields_count; i++){

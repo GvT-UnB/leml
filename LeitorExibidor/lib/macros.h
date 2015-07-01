@@ -515,6 +515,7 @@ typedef struct{
     ClassFile * classRef; ///Referencia para a classe alocada na memoria
     field_info * fields; ///Espaco de memoria alocado para os fields do Objeto
     structArrayList *arrayList;
+    Field_Value * field_value;
 }ClassHandler; ///Objeto
 
 typedef struct{

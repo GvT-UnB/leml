@@ -93,6 +93,79 @@ void instr_getstatic(Frame * frame, u4 pc, u1 * code){
 
 }
 
+void instr_getfield(Frame * frame, u4 pc, u1 * code){
+	u2 index, ntIndex;
+	u4 cIndex, fIndex, aux_u4, aux2_u4;
+	char *cName, *fName, *fType;
+	ClassHandler * aux_ch;
+
+	index = (code[pc+1] << 8) | code[pc+2];
+	cIndex = frame->constant_pool[index].Fieldref.class_index;
+	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
+	fName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
+	fType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
+
+    aux_ch = (ClassHandler*)popOperandStack(frame->operandStack);
+
+	fIndex = getFieldIndex(aux_ch->fields, fName, aux_ch->classRef->fields_count, frame->constant_pool);
+	if(fIndex<0){
+        return;
+	}
+
+	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+        pushOperandStack( frame->operandStack, aux_ch->field_value[fIndex].U4.value);
+//        printf("Referencia\n");
+    } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+        pushOperandStack( frame->operandStack, aux_ch->field_value[fIndex].U8.high);
+        pushOperandStack( frame->operandStack, aux_ch->field_value[fIndex].U8.low);
+//        printf("double ou long\n");
+    }else{
+//        printf("u4\n");
+        pushOperandStack( frame->operandStack, aux_ch->field_value[fIndex].U4.value);
+    }
+
+}
+
+void instr_putfield(Frame * frame, u4 pc, u1 * code){//FIELDREF
+	u2 index, ntIndex;
+	u4 cIndex, fIndex, aux_u4, aux2_u4, flag;
+	char *cName, *fName, *fType;
+    ClassHandler * aux_ch;
+
+    flag = 0;
+	index = (code[pc+1] << 8) | code[pc+2];
+	cIndex = frame->constant_pool[index].Fieldref.class_index;
+	ntIndex = frame->constant_pool[index].Fieldref.name_and_type_index;
+	fName = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.name_index].UTF8.bytes;
+	fType = frame->constant_pool[frame->constant_pool[ntIndex].NameAndType.descriptor_index].UTF8.bytes;
+
+
+
+	if((strstr(fType, "[") != NULL)||(strstr(fType, "L") != NULL)){
+        aux_u4 = popOperandStack( frame->operandStack);
+    } else if((strstr(fType, "J") != NULL)||(strstr(fType, "D") != NULL)){
+        aux_u4 = popOperandStack( frame->operandStack);
+        aux2_u4 = popOperandStack( frame->operandStack);
+        flag = 1;
+    }else{
+        aux_u4 = popOperandStack( frame->operandStack);
+    }
+
+    aux_ch = (ClassHandler*)popOperandStack(frame->operandStack);
+	fIndex = getFieldIndex(aux_ch->fields, fName, aux_ch->classRef->fields_count, frame->constant_pool);
+	if(fIndex<0){
+        return;
+	}
+
+    if(flag==1){
+        aux_ch->field_value[fIndex].U8.low = aux_u4;
+        aux_ch->field_value[fIndex].U8.high = aux2_u4;
+    }
+    else{
+        aux_ch->field_value[fIndex].U4.value = aux_u4;
+    }
+}
+
 ///Printa o que estiver na pilha de acordo com o tipo
 void instr_invokeVirtual(Frame * frame, u4 pc, u1 fWide, u1 * code){
 	u2 index, ntIndex;
@@ -1707,8 +1780,10 @@ void doInstruction(Frame * frame, u4 pc, u1 fWide, u1 * code ){
 		    instr_putstatic(frame, pc, code);
 			break;
 		case OPCODE_getfield:
+		    instr_getfield(frame, pc, code);
 			break;
 		case OPCODE_putfield:
+		    instr_putfield(frame, pc, code);
 			break;
 		case OPCODE_new:
 			break;
