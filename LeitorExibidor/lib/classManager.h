@@ -141,7 +141,7 @@ EXTERN u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * clas
  * \return EXTERN u4 Indice do metodo no method_info da Classe
  *
  */
-EXTERN u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name);
+EXTERN u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name, u1 * method_descriptor);
 
 /** \brief Procura o indice de um metodo no class file.
  *
@@ -150,5 +150,5 @@ EXTERN u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name);
  * \return EXTERN u4 indice do metodo no method_info da classe.
  *
  */
-EXTERN u4 seekNewMethodInClassFile(ClassFile * class_file, u1 * method_name);
+EXTERN u4 seekNewMethodInClassFile(ClassFile * class_file, u1 * method_name, u1 * method_descriptor);
 #endif // CLASSMANAGER_H_INCLUDED

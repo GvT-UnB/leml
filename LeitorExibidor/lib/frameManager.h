@@ -112,7 +112,7 @@ EXTERN u4 popOperandStack(structOperandStack **operandStackTop);
  * \return EXTERN u4 Indice para o metodo no method_info da classe.
  *
  */
-EXTERN u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name);
+EXTERN u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name, u1 * method_descriptor);
 
 /** \brief Cria um novo Frame para um metodo da mesma classe do Frame corrente.
  *
@@ -124,7 +124,7 @@ EXTERN u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name);
  * \return EXTERN void
  *
  */
-EXTERN void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC);
+EXTERN void loadNewMethodInSameClass(u1 * newMethodFullName,u1 * method_descriptor,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC);
 
 /** \brief Insere um novo array na estrutura de arrays
  *

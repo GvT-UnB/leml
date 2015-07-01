@@ -50,13 +50,17 @@ void newObject(ClassHandler * handler, ClassFile * class_file){
 }
 
 void newFrame(Frame * newFrame, ClassHandler * handler, u4 method_index, u4 curPC){
-    int max_locals = handler->classRef->methods[method_index].attributes[0].Code.max_locals;
+    int max_locals;
+    //if(handler->classRef->methods[method_index].attributes_count > 0)
+        max_locals = handler->classRef->methods[method_index].attributes[0].Code.max_locals;
     newFrame->operandStack = (structOperandStack *)malloc(sizeof(structOperandStack));///Inicializa a Pilha de Operandos
     newFrame->operandStack->next = NULL;
-    newFrame->localVariableArray = (LocalVariable *)malloc(max_locals*sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
-    // cur_frame->methods->attributes[attributeCodeIndex].Code.code
-    //newFrame->localVariableArray[0].value = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
-    newFrame->localVariableArray[0].value = &handler->classRef;///Em localVariableArray[0] coloca a referencia para o Objeto dono do metodo
+    if(handler->classRef->methods[method_index].attributes_count > 0){
+        newFrame->localVariableArray = (LocalVariable *)malloc(max_locals*sizeof(LocalVariable));///Iniciliza o vetor de variaveis locais
+        // cur_frame->methods->attributes[attributeCodeIndex].Code.code
+        //newFrame->localVariableArray[0].value = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
+        newFrame->localVariableArray[0].value = &handler->classRef;///Em localVariableArray[0] coloca a referencia para o Objeto dono do metodo
+    }
     newFrame->methods = (method_info *)malloc(sizeof(method_info));
     newFrame->methods = &handler->classRef->methods[method_index];///Em localVariableArray[0] coloca a referencia para o proprio metodo
     //printf("%d", handler->classRef->methods[method_index]->attributes[attributeCodeIndex].Code.max_locals);
@@ -201,7 +205,7 @@ void pushOperandStack(structOperandStack **operandStackTop, u4 operand){
     nodeOperand->next = *operandStackTop;
     *operandStackTop = nodeOperand;
 //    printf("\t\t\t----push int(%d), float(%f)\n ", operand, *((float*)&(operand)));
-//    printf("\t\t\t----push(%d)\n ", operand);
+    printf("\t\t\t----push(%d)\n ", operand);
 }
 
 u4 popOperandStack(structOperandStack **operandStackTop){
@@ -213,7 +217,7 @@ u4 popOperandStack(structOperandStack **operandStackTop){
     *operandStackTop = (*operandStackTop)->next;
     free(aux);
 //    printf("\t\t\t----pop int(%d), float(%f)\n ", operand,  *((float*)&(operand)));
-//    printf("\t\t\t----pop(%d)\n ", operand);
+    printf("\t\t\t----pop(%d)\n ", operand);
     return operand;
 }
 
@@ -226,9 +230,10 @@ void incPC(u4 * curPC, u1 curOPCODE,u1 * numberOfByteInstruction){
 }
 
 
-u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name){
+u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name, u1 * method_descriptor){
     for(int i = 0; i < cur_frame->handler->classRef->methods_count; i++){
-        if(!strcmp(cur_frame->constant_pool[ cur_frame->handler->classRef->methods[i].name_index ].UTF8.bytes, method_name)){ ///Procura pelo metodo no method_info da classe referenciada pelo Frame
+        if(!strcmp(cur_frame->constant_pool[ cur_frame->handler->classRef->methods[i].name_index ].UTF8.bytes, method_name) && \
+           !strcmp(cur_frame->constant_pool[ cur_frame->handler->classRef->methods[i].descriptor_index ].UTF8.bytes, method_descriptor)){ ///Procura pelo metodo no method_info da classe referenciada pelo Frame
             return i; ///Retorna o indice do metodo no method_info
         }
     }
@@ -236,7 +241,7 @@ u4 seekNewMethodInFrameClass(Frame * cur_frame, u1 * method_name){
 }
 
 
-void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC){
+void loadNewMethodInSameClass(u1 * newMethodFullName,u1 * method_descriptor,Frame * cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC){
     u1 * newMethodClassName; ///Vai receber o nome da classe
     u1 * newMethodName; ///Vai receber o nome do metodo
 
@@ -266,7 +271,7 @@ void loadNewMethodInSameClass(u1 * newMethodFullName,Frame * cur_frame,StructFra
     //printf("O nome do metodo eh: %s\n",newMethodName);
 
     ///Procura pelo metodo na classe referenciada pelo Frame corrente
-    u4 method_index = seekNewMethodInFrameClass(cur_frame, newMethodName); ///Pega o indice do metodo no method_info da classe.
+    u4 method_index = seekNewMethodInFrameClass(cur_frame, newMethodName,method_descriptor); ///Pega o indice do metodo no method_info da classe.
     //printf("Indice do metodo: %d\n",method_index);
 
 //    pushFrameStack(frameStackTop, cur_frame); ///Empilha o Frame Corrente

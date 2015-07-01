@@ -117,7 +117,7 @@ EXTERN void instr_lookUpSwitch(Frame *frame, u4 *curPC, u1 * code);
  * \return EXTERN void
  *
  */
-EXTERN void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
+EXTERN void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 *curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
 
 /** \brief Realiza a instrucao Invokespecial
  *
@@ -134,7 +134,7 @@ EXTERN void  doInvokestatic(Frame *cur_frame,StructFrameStack *frameStackTop,Cla
  * \return EXTERN void
  *
  */
-EXTERN void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
+EXTERN void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,ClassHandler * handler, u4 *curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
 
 /** \brief Realiza as instrucoes do tipo Invoke ou New
  *
@@ -151,7 +151,7 @@ EXTERN void  doInvokespecial(Frame *cur_frame,StructFrameStack *frameStackTop,Cl
  * \return EXTERN void
  *
  */
-EXTERN void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
+EXTERN void doInstructionInvoke(Frame *cur_frame, StructFrameStack *frameStackTop, ClassHandler * handler, u4 *curPC, u1 flagIsWide, u1 * code, ClassFile * class_file, u4 * numberOfClassesHeap, u4 * numberOfClasses, u1 * numberOfByteInstruction);
 
 /** \brief Realiza a instrucao <clinit>
  *

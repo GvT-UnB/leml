@@ -1,170 +1,175 @@
 Magic Number:		0xcafebabe
 Minor Version:		0
 Major Version:		46 [1.2]
-Constant Pool Count:	43
-Access flags:		0x0021 [public ]
-This class:		cp_info #12 <ExemploSwitchDiaDaSemana>
+Constant Pool Count:	42
+Access flags:		0x0020 [super ]
+This class:		cp_info #12 <TesteInvoke>
 Super class:		cp_info #13 <java/lang/Object>
 Interfaces Count:	0
-Fields Count:		0
+Fields Count:		1
 Methods Count:		2
 Attributes Count:	1
 
 +Constant Pool:
 
 [01]CONSTANT_Methodref:		Class name:	cp_info #13 <java/lang/Object>
-				Name and type:	cp_info #22 <<init>()V>
+				Name and type:	cp_info #24 <<init>()V>
 
-[02]CONSTANT_Fieldref:		Class name:	cp_info #23 <java/lang/System>
-				Name and type:	cp_info #24 <outLjava/io/PrintStream;>
+[02]CONSTANT_Long		HIGH_BYTES:		0x00000000
+				LOW_BYTES:		0x03e8
+				Long:			1000
 
-[03]CONSTANT_String		String:		cp_info #25 <Domingo>
+[03](large numeric continued)
 
-[04]CONSTANT_Methodref:		Class name:	cp_info #26 <java/io/PrintStream>
-				Name and type:	cp_info #27 <println(Ljava/lang/String;)V>
+[04]CONSTANT_Class:		Class Name:	cp_info #25 <SomaLong>
 
-[05]CONSTANT_String		String:		cp_info #28 <Segunda-feira>
+[05]CONSTANT_Methodref:		Class name:	cp_info #4 <SomaLong>
+				Name and type:	cp_info #24 <<init>()V>
 
-[06]CONSTANT_String		String:		cp_info #29 <TerÃ§a-feira>
+[06]CONSTANT_Fieldref:		Class name:	cp_info #12 <TesteInvoke>
+				Name and type:	cp_info #26 <somaLongLSomaLong;>
 
-[07]CONSTANT_String		String:		cp_info #30 <Quarta-feira>
+[07]CONSTANT_Long		HIGH_BYTES:		0x00000000
+				LOW_BYTES:		0x01f4
+				Long:			500
 
-[08]CONSTANT_String		String:		cp_info #31 <Quinta-feira>
+[08](large numeric continued)
 
-[09]CONSTANT_String		String:		cp_info #32 <Sexta-feira>
+[09]CONSTANT_Methodref:		Class name:	cp_info #4 <SomaLong>
+				Name and type:	cp_info #27 <soma(JJ)J>
 
-[10]CONSTANT_String		String:		cp_info #33 <SÃ¡bado>
+[10]CONSTANT_Fieldref:		Class name:	cp_info #28 <java/lang/System>
+				Name and type:	cp_info #29 <outLjava/io/PrintStream;>
 
-[11]CONSTANT_String		String:		cp_info #34 <Este nÃ£o Ã© um dia vÃ¡lido!>
+[11]CONSTANT_Methodref:		Class name:	cp_info #30 <java/io/PrintStream>
+				Name and type:	cp_info #31 <println(J)V>
 
-[12]CONSTANT_Class:		Class Name:	cp_info #35 <ExemploSwitchDiaDaSemana>
+[12]CONSTANT_Class:		Class Name:	cp_info #32 <TesteInvoke>
 
-[13]CONSTANT_Class:		Class Name:	cp_info #36 <java/lang/Object>
+[13]CONSTANT_Class:		Class Name:	cp_info #33 <java/lang/Object>
 
-[14]CONSTANT_Utf8		Length of byte array:	6
+[14]CONSTANT_Utf8		Length of byte array:	8
+				Length of string:	8
+				String:			somaLong
+
+[15]CONSTANT_Utf8		Length of byte array:	10
+				Length of string:	10
+				String:			LSomaLong;
+
+[16]CONSTANT_Utf8		Length of byte array:	6
 				Length of string:	6
 				String:			<init>
 
-[15]CONSTANT_Utf8		Length of byte array:	3
+[17]CONSTANT_Utf8		Length of byte array:	3
 				Length of string:	3
 				String:			()V
 
-[16]CONSTANT_Utf8		Length of byte array:	4
+[18]CONSTANT_Utf8		Length of byte array:	4
 				Length of string:	4
 				String:			Code
 
-[17]CONSTANT_Utf8		Length of byte array:	15
+[19]CONSTANT_Utf8		Length of byte array:	15
 				Length of string:	15
 				String:			LineNumberTable
 
-[18]CONSTANT_Utf8		Length of byte array:	4
+[20]CONSTANT_Utf8		Length of byte array:	4
 				Length of string:	4
 				String:			main
 
-[19]CONSTANT_Utf8		Length of byte array:	22
+[21]CONSTANT_Utf8		Length of byte array:	22
 				Length of string:	22
 				String:			([Ljava/lang/String;)V
 
-[20]CONSTANT_Utf8		Length of byte array:	10
+[22]CONSTANT_Utf8		Length of byte array:	10
 				Length of string:	10
 				String:			SourceFile
 
-[21]CONSTANT_Utf8		Length of byte array:	29
-				Length of string:	29
-				String:			ExemploSwitchDiaDaSemana.java
+[23]CONSTANT_Utf8		Length of byte array:	16
+				Length of string:	16
+				String:			TesteInvoke.java
 
-[22]CONSTANT_NameAndType	Name:		cp_info #14 <<init>>
-				Descriptor:	cp_info #15 <()V>
+[24]CONSTANT_NameAndType	Name:		cp_info #16 <<init>>
+				Descriptor:	cp_info #17 <()V>
 
-[23]CONSTANT_Class:		Class Name:	cp_info #37 <java/lang/System>
+[25]CONSTANT_Utf8		Length of byte array:	8
+				Length of string:	8
+				String:			SomaLong
 
-[24]CONSTANT_NameAndType	Name:		cp_info #38 <out>
-				Descriptor:	cp_info #39 <Ljava/io/PrintStream;>
+[26]CONSTANT_NameAndType	Name:		cp_info #14 <somaLong>
+				Descriptor:	cp_info #15 <LSomaLong;>
 
-[25]CONSTANT_Utf8		Length of byte array:	7
-				Length of string:	7
-				String:			Domingo
+[27]CONSTANT_NameAndType	Name:		cp_info #34 <soma>
+				Descriptor:	cp_info #35 <(JJ)J>
 
-[26]CONSTANT_Class:		Class Name:	cp_info #40 <java/io/PrintStream>
+[28]CONSTANT_Class:		Class Name:	cp_info #36 <java/lang/System>
 
-[27]CONSTANT_NameAndType	Name:		cp_info #41 <println>
-				Descriptor:	cp_info #42 <(Ljava/lang/String;)V>
+[29]CONSTANT_NameAndType	Name:		cp_info #37 <out>
+				Descriptor:	cp_info #38 <Ljava/io/PrintStream;>
 
-[28]CONSTANT_Utf8		Length of byte array:	13
-				Length of string:	13
-				String:			Segunda-feira
+[30]CONSTANT_Class:		Class Name:	cp_info #39 <java/io/PrintStream>
 
-[29]CONSTANT_Utf8		Length of byte array:	14
-				Length of string:	14
-				String:			TerÃ§a-feira
-
-[30]CONSTANT_Utf8		Length of byte array:	12
-				Length of string:	12
-				String:			Quarta-feira
-
-[31]CONSTANT_Utf8		Length of byte array:	12
-				Length of string:	12
-				String:			Quinta-feira
+[31]CONSTANT_NameAndType	Name:		cp_info #40 <println>
+				Descriptor:	cp_info #41 <(J)V>
 
 [32]CONSTANT_Utf8		Length of byte array:	11
 				Length of string:	11
-				String:			Sexta-feira
+				String:			TesteInvoke
 
-[33]CONSTANT_Utf8		Length of byte array:	9
-				Length of string:	9
-				String:			SÃ¡bado
-
-[34]CONSTANT_Utf8		Length of byte array:	34
-				Length of string:	34
-				String:			Este nÃ£o Ã© um dia vÃ¡lido!
-
-[35]CONSTANT_Utf8		Length of byte array:	24
-				Length of string:	24
-				String:			ExemploSwitchDiaDaSemana
-
-[36]CONSTANT_Utf8		Length of byte array:	16
+[33]CONSTANT_Utf8		Length of byte array:	16
 				Length of string:	16
 				String:			java/lang/Object
 
-[37]CONSTANT_Utf8		Length of byte array:	16
+[34]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			soma
+
+[35]CONSTANT_Utf8		Length of byte array:	5
+				Length of string:	5
+				String:			(JJ)J
+
+[36]CONSTANT_Utf8		Length of byte array:	16
 				Length of string:	16
 				String:			java/lang/System
 
-[38]CONSTANT_Utf8		Length of byte array:	3
+[37]CONSTANT_Utf8		Length of byte array:	3
 				Length of string:	3
 				String:			out
 
-[39]CONSTANT_Utf8		Length of byte array:	21
+[38]CONSTANT_Utf8		Length of byte array:	21
 				Length of string:	21
 				String:			Ljava/io/PrintStream;
 
-[40]CONSTANT_Utf8		Length of byte array:	19
+[39]CONSTANT_Utf8		Length of byte array:	19
 				Length of string:	19
 				String:			java/io/PrintStream
 
-[41]CONSTANT_Utf8		Length of byte array:	7
+[40]CONSTANT_Utf8		Length of byte array:	7
 				Length of string:	7
 				String:			println
 
-[42]CONSTANT_Utf8		Length of byte array:	21
-				Length of string:	21
-				String:			(Ljava/lang/String;)V
+[41]CONSTANT_Utf8		Length of byte array:	4
+				Length of string:	4
+				String:			(J)V
 
 +Interfaces
 
 +Fields
-	Member Count:		0
+	Member Count:		1
+
+	[0] somaLong	Name:				cp_info #14 <somaLong>
+			Descriptor:			cp_info #15 <LSomaLong;>
+			Access flags:			0x000a [static private ]
 
 +Methods
 	Member Count:		2
 
 	[0] <init>
-		Name:			cp_info #14 <<init>>
-		Descriptor:		cp_info #15 <()V>
-		Access flags:		0x0001 [public ]
+		Name:			cp_info #16 <<init>>
+		Descriptor:		cp_info #17 <()V>
+		Access flags:		0x0000 []
 
 		[0] Code
-			Attribute name index:		cp_info #16
+			Attribute name index:		cp_info #18
 			Attribute length:		29
 		Bytecode:
 		-------------------------------------------
@@ -184,101 +189,39 @@ Attributes Count:	1
 		Code length:			5
 
 		[0] LineNumberTable
-			Attribute name index:		cp_info #17
+			Attribute name index:		cp_info #19
 			Attribute length:		6
 			Nr.	    start_pc	    line_number
 		-------------------------------------------------
-			0		0		1
+			0		0		2
 		-------------------------------------------------
 
 	[1] main
-		Name:			cp_info #18 <main>
-		Descriptor:		cp_info #19 <([Ljava/lang/String;)V>
+		Name:			cp_info #20 <main>
+		Descriptor:		cp_info #21 <([Ljava/lang/String;)V>
 		Access flags:		0x0009 [static public ]
 
 		[0] Code
-			Attribute name index:		cp_info #16
-			Attribute length:		226
+			Attribute name index:		cp_info #18
+			Attribute length:		74
 		Bytecode:
 		-------------------------------------------
-			 0  bipush 6
-			 2  istore_1
-			 3  iload_1
-			 4  tableswitch
-			 5  nop
-			 6  nop
-			 7  nop
-			 8  nop
-			 9  nop
-			10  nop
-			11  lshl
-			12  nop
-			13  nop
-			14  nop
-			15  aconst_null
-			16  nop
-			17  nop
-			18  nop
-			19  iconst_4
-			20  nop
-			21  nop
-			22  nop
-			23  aload_2
-			24  nop
-			25  nop
-			26  nop
-			27  lstore 0
-			29  nop
-			30  nop
-			31  lstore_3
-			32  nop
-			33  nop
-			34  nop
-			35  astore_2
-			36  nop
-			37  nop
-			38  nop
-			39  pop2
-			40  nop
-			41  nop
-			42  nop
-			43  dadd
-			44  nop
-			45  nop
-			46  nop
-			47  fdiv
-			48  getstatic 0 2
-			51  ldc 3
-			53  invokevirtual 4 <java/io/PrintStream.println>
-			56  goto 0 77
-			59  getstatic 0 2
-			62  ldc 5
-			64  invokevirtual 4 <java/io/PrintStream.println>
-			67  goto 0 66
-			70  getstatic 0 2
-			73  ldc 6
-			75  invokevirtual 4 <java/io/PrintStream.println>
-			78  goto 0 55
-			81  getstatic 0 2
-			84  ldc 7
-			86  invokevirtual 4 <java/io/PrintStream.println>
-			89  goto 0 44
-			92  getstatic 0 2
-			95  ldc 8
-			97  invokevirtual 4 <java/io/PrintStream.println>
-			100  goto 0 33
-			103  getstatic 0 2
-			106  ldc 9
-			108  invokevirtual 4 <java/io/PrintStream.println>
-			111  goto 0 22
-			114  getstatic 0 2
-			117  ldc 10
-			119  invokevirtual 4 <java/io/PrintStream.println>
-			122  goto 0 11
-			125  getstatic 0 2
-			128  ldc 11
-			130  invokevirtual 4 <java/io/PrintStream.println>
-			133  return
+			 0  ldc2_w 0 2
+			 3  lstore_1
+			 4  new 0 4
+			 7  dup
+			 8  invokespecial 5 <SomaLong.<init>>
+			11  putstatic 0 6
+			14  getstatic 0 6
+			17  pop
+			18  lload_1
+			19  ldc2_w 0 7
+			22  invokestatic 9 <SomaLong.soma>
+			25  lstore_1
+			26  getstatic 0 10
+			29  lload_1
+			30  invokevirtual 11 <java/io/PrintStream.println>
+			33  return
 		-------------------------------------------
 
 		Exception table:
@@ -287,38 +230,25 @@ Attributes Count:	1
 	----------------------------------------------------------------------
 
 		Misc:
-		Maximum stack depth:		2
-		Maximum local variables:	2
-		Code length:			134
+		Maximum stack depth:		4
+		Maximum local variables:	3
+		Code length:			34
 
 		[0] LineNumberTable
-			Attribute name index:		cp_info #17
-			Attribute length:		74
+			Attribute name index:		cp_info #19
+			Attribute length:		22
 			Nr.	    start_pc	    line_number
 		-------------------------------------------------
-			0		0		3
-			1		3		4
-			2		48		6
-			3		56		7
-			4		59		9
-			5		67		10
-			6		70		12
-			7		78		13
-			8		81		15
-			9		89		16
-			10		92		18
-			11		100		19
-			12		103		21
-			13		111		22
-			14		114		24
-			15		122		25
-			16		125		27
-			17		133		29
+			0		0		5
+			1		4		7
+			2		14		8
+			3		26		10
+			4		33		11
 		-------------------------------------------------
 
 +Attributes
 
 		[0] SourceFile
-			Attribute name index:		cp_info #20
+			Attribute name index:		cp_info #22
 			Attribute length:		2
-			Source file name index:		cp_info #21 <ExemploSwitchDiaDaSemana.java>
+			Source file name index:		cp_info #23 <TesteInvoke.java>

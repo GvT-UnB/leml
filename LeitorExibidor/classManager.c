@@ -102,11 +102,9 @@ ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
         readAttributesInfo(class_file->fields[i].attributes,class_file->fields[i].attributes_count,dot_class, class_file->constant_pool); //Chama a função que carrega as informações dos atributos
 
     }
-
     //system("pause");
     class_file->methods_count = u2Read(dot_class);
     class_file->methods = (method_info *)malloc(class_file->methods_count * sizeof(method_info));
-
     for(int i = 0; i < class_file->methods_count; i++){
         class_file->methods[i].access_flags = u2Read(dot_class);
         class_file->methods[i].name_index = u2Read(dot_class);
@@ -120,7 +118,6 @@ ClassFile * classRead(FILE * dot_class,ClassFile * class_file){
     class_file->attributes_count = u2Read(dot_class);
     class_file->attributes = (attribute_info *)malloc(class_file->attributes_count * sizeof(attribute_info));
     readAttributesInfo(class_file->attributes,class_file->attributes_count,dot_class, class_file->constant_pool);
-
     return class_file;
 }
 
@@ -261,48 +258,53 @@ void verifyClassName(char * argv, ClassFile * class_file){
     char * classFullName = (char *)malloc(classNameLength * sizeof(char));
     classFullName = argv;
 
-    if(classFullName[0] == 'j' && classFullName[1] == 'a' && classFullName[2] == 'v' && classFullName[3] == 'a' && classFullName[4] == '/'){
+    if(strstr(classFullName,"java/")){
         className = (char *)malloc(classNameLength * sizeof(char ));
         strcpy(className,classFullName);
         goto takeExtOut;
     }
 
     ///Retira o caminho até o arquivo
-    while(strchr(classFullName,'/')){
-        className = NULL;
-        while(classFullName[i] != '/'){
-            i++;
+    if(strchr(classFullName,'/') || strchr(classFullName,'\\')){
+            i = classNameLength;
+        while(classFullName[i] != '/' && classFullName[i] != '\\'){
+            i--;
         }
 
         className = (char *)malloc((classNameLength-i) * sizeof(char));
         i++;
-        for(int j=0;j<=(classNameLength-i);j++){
+        for(int j=0;j<(classNameLength-i);j++){
             className[j] = classFullName[i+j];
         }
-        classFullName = (char *)malloc(classNameLength * sizeof(char));
+        className[(classNameLength-i)] = '\0';
+        printf("className: %s\n",className);
+        classFullName = (char *)malloc((classNameLength-i) * sizeof(char));
         strcpy(classFullName,className);
+        printf("classFullName: %s\n",classFullName);
         classNameLength = strlen(classFullName);
-        i=0;
     }
-
+printf("Teste 1\n");
 takeExtOut:
     ///Retira o .class do nome do arquivo
-    i=0;
-    while(classFullName[i] != '.'){
-        i++;
+    if(strchr(classFullName,'.')){
+        i=0;
+        while(classFullName[i] != '.'){
+            i++;
+        }
+        free(className);
+        className = (char *)malloc((i+1) * sizeof(char ));
+        for(int j=0;j<i;j++){
+            className[j] = classFullName[j];
+        }
+        className[i] = '\0';
     }
-    free(className);
-    className = (char *)malloc((i+1) * sizeof(char ));
-    for(int j=0;j<i;j++){
-        className[j] = classFullName[j];
-    }
-    className[i] = '\0';
-
-    ///Verifica se o nomo do arquivo é o mesmo nome da classe
+printf("Teste 2\n");
+    ///Verifica se o nome do arquivo é o mesmo nome da classe
     //selectPointer(class_file, class_file->this_class, classRealName, 0);
     if(strcmp(className,getClassName(class_file))){
         throwException(CLASS_DIFFER_FILE_NAME,CLASS_DIFFER_FILE_NAME_MSG);
     }
+    printf("Teste 3\n");
 }
 
 
@@ -511,12 +513,15 @@ void classLoader(ClassFile * class_file, char * file_name, u4 * numberOfClassesH
 //    printf("full_file_name: %s\n",full_file_name);
 //    printf("rootDirectory: %s\n",rootDirectory);
 
+    if(strstr(file_name,".class"))
+        throwException(CLASS_NOT_LOADED,CLASS_NOT_LOADED_MSG); ///Verifica se o nome do arquivo contem .class
+
     if((dot_class = fopen(full_file_name,"rb")) == NULL){ ///Verifica se o arquivo foi encontrado no diretorio raiz.
-        path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(file_name)));
+        path = (u1*)malloc(sizeof(u1)*(strlen(rootDirectory)+strlen(full_file_name)));
 //        printf("Antes de tudo\n");
         strcpy(path,rootDirectory);
 //        printf("PATH: %s\n",path);
-        strcat(path,file_name);///Adiciona o PATH para o nome do arquivo.
+        strcat(path,full_file_name);///Adiciona o PATH para o nome do arquivo.
 //        printf("FULL PATH: %s\n",path);
         if((dot_class = fopen(path,"rb")) == NULL){
             throwException(OPEN_FILE_ERROR,OPEN_FILE_ERROR_MSG); ///Verifica se o arquivo foi encontrado
@@ -579,33 +584,40 @@ u4 loadNewClass(ClassFile * class_file,u4 * numberOfClassesHeap,u1 * className,C
         return i; ///Se a classe jah esta na memoria, retorna o indice dela no HEAP.
     }else{
         //printf("Nao achei... :(\n");
-        u1 * fullClassName = (u1*)malloc((strlen(className) + strlen(dotClass))*sizeof(u1));
-        for(int i = 0; i < strlen(className);i++){
-            fullClassName[i] = className[i];
-        }
-        for(int i = 0; i < strlen(dotClass);i++){
-            fullClassName[i+strlen(className)] = dotClass[i]; ///Concatena o nome completo da classe com a string '.class'
-        }
+//        u1 * fullClassName = (u1*)malloc((strlen(className) + strlen(dotClass))*sizeof(u1));
+//        for(int i = 0; i < strlen(className);i++){
+//            fullClassName[i] = className[i];
+//        }
+//        for(int i = 0; i < strlen(dotClass);i++){
+//            fullClassName[i+strlen(className)] = dotClass[i]; ///Concatena o nome completo da classe com a string '.class'
+//        }
+//        fullClassName[strlen(className) + strlen(dotClass)] = '\0';
+
         //printf("Nome com extensao da classe: %s\n",fullClassName);
-        classLoader(class_file+(*numberOfClassesHeap), fullClassName, numberOfClassesHeap);///Carrega a classe no HEAP.
+        classLoader(class_file+(*numberOfClassesHeap), className, numberOfClassesHeap);///Carrega a classe no HEAP.
+        //classLoader(class_file+(*numberOfClassesHeap), fullClassName, numberOfClassesHeap);///Carrega a classe no HEAP.
         createNewObject(handler,numberOfClasses,class_file+(*numberOfClassesHeap)-1, frameStackTop,numberOfByteInstruction);///Instancia um Objeto da classe recem criada.
         //printf("Mas jah botei na memoria! ;D\n");
         return (*numberOfClassesHeap)-1; ///Retorna o indice da nova classe no HEAP.
     }
 }
 
-u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name){
+u4 seekNewMethodInClassHandler(ClassHandler * handler, u1 * method_name, u1 * method_descriptor){
     for(int i = 0; i < handler->classRef->methods_count; i++){
-        if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes, method_name)){ ///Procura pelo metodo no method_info da classe
+        //printf("\t\t*******method_name: %s\t method_descriptor: %s\n",handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes,handler->classRef->constant_pool[ handler->classRef->methods[i].descriptor_index ].UTF8.bytes);
+        if(!strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].name_index ].UTF8.bytes, method_name) && \
+           !strcmp(handler->classRef->constant_pool[ handler->classRef->methods[i].descriptor_index ].UTF8.bytes, method_descriptor)){ ///Procura pelo metodo no method_info da classe
             return i; ///Retorna o indice do metodo no method_info
         }
     }
     return NOT_RETURN; ///Nao encontrou o metodo na classe apontada pelo Frame
 }
 
-u4 seekNewMethodInClassFile(ClassFile * class_file, u1 * method_name){
+u4 seekNewMethodInClassFile(ClassFile * class_file, u1 * method_name, u1 * method_descriptor){
     for(int i = 0; i < class_file->methods_count; i++){
-        if(!strcmp(class_file->constant_pool[ class_file->methods[i].name_index ].UTF8.bytes, method_name)){ ///Procura pelo metodo no method_info da classe
+        //printf("\t*******method_name: %s\t method_descriptor: %s\n",class_file->constant_pool[ class_file->methods[i].name_index ].UTF8.bytes,class_file->constant_pool[ class_file->methods[i].descriptor_index ].UTF8.bytes);
+        if(!strcmp(class_file->constant_pool[ class_file->methods[i].name_index ].UTF8.bytes, method_name) && \
+            !strcmp(class_file->constant_pool[ class_file->methods[i].descriptor_index ].UTF8.bytes, method_descriptor)){ ///Procura pelo metodo no method_info da classe
             return i; ///Retorna o indice do metodo no method_info
         }
     }
